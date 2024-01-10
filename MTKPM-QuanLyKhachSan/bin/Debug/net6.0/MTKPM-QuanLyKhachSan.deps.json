@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "MTKPM-QuanLyKhachSan/1.0.0": {
+        "runtime": {
+          "MTKPM-QuanLyKhachSan.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MTKPM-QuanLyKhachSan/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
