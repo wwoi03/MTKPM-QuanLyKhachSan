@@ -20,6 +20,7 @@ namespace MTKPM_QuanLyKhachSan.Models
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<RoomImage> RoomImages { get; set; }
         public DbSet<RoomType> RoomTypes { get; set; }
         public DbSet<Bill> Bills { get; set; }
         public DbSet<BookRoom> BookRooms { get; set; }
