@@ -9,11 +9,6 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             return View();
         }
 
-        public IActionResult Introduce()
-        {
-            return View();
-        }
-
         public IActionResult AboutUs()
         {
             return View();
