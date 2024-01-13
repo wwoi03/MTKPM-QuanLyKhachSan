@@ -37,10 +37,10 @@
 				</button>
 				<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 					<div class="navbar-nav mr-auto py-0">
-						<a href="index.html" class="nav-item nav-link active">Trang chủ</a>
-						<a href="about.html" class="nav-item nav-link">Về chúng tôi</a>
-						<a href="service.html" class="nav-item nav-link">Dịch vụ</a>
-						<a href="room.html" class="nav-item nav-link">Phòng</a>
+						<a asp-controller="PublicHome" asp-action="Index" class="nav-item nav-link active">Trang chủ</a>
+						<a asp-controller="PublicHome" asp-action="AboutUs" class="nav-item nav-link">Về chúng tôi</a>
+						<a asp-controller="PublicHome" asp-action="Service" class="nav-item nav-link">Dịch vụ</a>
+						<a asp-controller="PublicRoom" asp-action="Index" class="nav-item nav-link">Phòng</a>
 						@*<div class="nav-item dropdown">
 							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
 							<div class="dropdown-menu rounded-0 m-0">
@@ -49,9 +49,9 @@
 								<a href="testimonial.html" class="dropdown-item">Testimonial</a>
 							</div>
 						</div>*@
-						<a href="contact.html" class="nav-item nav-link">Liên hệ</a>
+						<a asp-controller="PublicHome" asp-action="Contact" class="nav-item nav-link">Liên hệ</a>
 					</div>
-					<a href="" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Đặt phòng<i class="fa fa-arrow-right ms-3"></i></a>
+					<a asp-controller="PublicRoom" asp-action="Booking" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Đặt phòng<i class="fa fa-arrow-right ms-3"></i></a>
 				</div>
 			</nav>
 		</div>

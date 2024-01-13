@@ -14,6 +14,11 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             return View();
         }
 
+        public IActionResult Service()
+        {
+            return View();
+        }
+
         public IActionResult Contact()
         {
             return View();

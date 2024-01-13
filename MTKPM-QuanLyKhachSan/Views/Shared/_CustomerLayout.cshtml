@@ -44,10 +44,20 @@
         <!-- Header End -->
 
 
+        <!-- PageHeader Start -->
+        @Html.Partial("_PageHeaderPartial");
+        <!-- PageHeader Start -->
+
+
         <!-- RenderBody Start -->
         @RenderBody()
         <!-- RenderBody End -->
         
+
+        <!-- NewSletter Start -->
+        @Html.Partial("_NewSletterPartial");
+        <!-- NewSletter Start -->
+
 
         <!-- Footer Start -->
         @Html.Partial("_FooterPartial")
