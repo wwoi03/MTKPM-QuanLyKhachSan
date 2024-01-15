@@ -5,7 +5,12 @@ namespace MTKPM_QuanLyKhachSan.Daos
 {
     public class RoomTypeDao
     {
-        DatabaseContext context = new DatabaseContext();
+        DatabaseContext context;
+
+        public RoomTypeDao(DatabaseContext context)
+        {
+            this.context = context;
+        }
 
         // Lấy danh sách loại phòng
         public List<RoomType> GetRoomTypes()
