@@ -9,10 +9,11 @@ namespace MTKPM_QuanLyKhachSan.Models
         public int BookRoomId { get; set; }
         public BookRoom BookRoom { get; set; }
         public int CustomerId { get; set; }
+        public string Payer { get; set; }
         public Customer Customer { get; set; }
-        public double ServicePrice { get; set; }
-        public double RoomPrice { get; set; }
-        public double TotalPrice { get; set; }
+        public decimal ServicePrice { get; set; }
+        public decimal RoomPrice { get; set; }
+        public decimal TotalPrice { get; set; }
         public DateTime DatePayment { get; set; }
     }
 }
