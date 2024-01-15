@@ -7,6 +7,6 @@ namespace MTKPM_QuanLyKhachSan.Models
         [Key]
         public int ServiceId { get; set; }
         public string Name { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
     }
 }
