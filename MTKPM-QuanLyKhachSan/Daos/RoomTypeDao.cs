@@ -17,5 +17,12 @@ namespace MTKPM_QuanLyKhachSan.Daos
         {
             return context.RoomTypes.ToList();
         }
+
+        // lấy loại phòng theo Id
+        public RoomType GetRoomType(int RoomTypeId)
+        {
+            RoomType roomType = context.RoomTypes.FirstOrDefault(r => r.RoomTypeId == RoomTypeId);
+            return roomType;
+        }
     }
 }
