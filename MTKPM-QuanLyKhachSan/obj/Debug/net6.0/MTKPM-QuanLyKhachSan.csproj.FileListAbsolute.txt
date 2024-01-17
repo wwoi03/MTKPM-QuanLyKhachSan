@@ -291,3 +291,4 @@ C:\Huflit_Study_Material\Project\course-projects\DA-MTKPM-WebQuanLyKhachSan\MTKP
 C:\Huflit_Study_Material\Project\course-projects\DA-MTKPM-WebQuanLyKhachSan\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Huflit_Study_Material\Project\course-projects\DA-MTKPM-WebQuanLyKhachSan\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0\MTKPM-QuanLyKhachSan.MvcApplicationPartsAssemblyInfo.cs
 C:\Huflit_Study_Material\Project\course-projects\DA-MTKPM-WebQuanLyKhachSan\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0\MTKPM-QuanLyKhachSan.csproj.CopyComplete
+C:\Huflit_Study_Material\Project\course-projects\DA-MTKPM-WebQuanLyKhachSan\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\bin\Debug\net6.0\HtmlAgilityPack.dll

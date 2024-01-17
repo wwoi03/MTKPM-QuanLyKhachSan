@@ -35,9 +35,10 @@
 								<small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>2 bồn tắm</small>
 								<small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
 							</div>
-							<p class="text-body mb-3">@item.Description</p>
+							
+							<p class="text-body mb-3 limit-2-lines">@item.ShortDesc()</p>
 							<div class="d-flex justify-content-between">
-								<a class="btn btn-sm btn-primary rounded py-2 px-4" href="">Xem chi tiết</a>
+								<a asp-controller="PublicRoom" asp-action="RoomDetails" asp-route-roomTypeId="@item.RoomTypeId" class="btn btn-sm btn-primary rounded py-2 px-4">Xem chi tiết</a>
 								<a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Đặt ngay</a>
 							</div>
 						</div>

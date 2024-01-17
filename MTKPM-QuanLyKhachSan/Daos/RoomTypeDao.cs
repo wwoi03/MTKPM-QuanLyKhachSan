@@ -19,7 +19,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
         }
 
         // lấy loại phòng theo Id
-        public RoomType GetRoomType(int RoomTypeId)
+        public RoomType GetRoomTypeById(int RoomTypeId)
         {
             RoomType roomType = context.RoomTypes.FirstOrDefault(r => r.RoomTypeId == RoomTypeId);
             return roomType;
