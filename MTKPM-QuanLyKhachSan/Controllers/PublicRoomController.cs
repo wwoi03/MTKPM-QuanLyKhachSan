@@ -20,8 +20,10 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             return View();
         }
 
-        public IActionResult RoomDetails()
+        public IActionResult RoomDetails(int roomTypeId)
         {
+            ViewBag.PageTitle = "Chi tiết phòng";
+            ViewBag.roomTypeDetails = roomTypeDao.GetRoomTypeById(roomTypeId);
             return View();
         }
 

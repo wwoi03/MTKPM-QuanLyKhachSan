@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using HtmlAgilityPack;
 
 namespace MTKPM_QuanLyKhachSan.Models
 {
@@ -12,5 +13,17 @@ namespace MTKPM_QuanLyKhachSan.Models
         public int? NumBed { get; set; }
         public int? NumAdult { get; set; }
         public int? NumChildren { get; set; }
+
+        public string ShortDesc()
+        {
+            // Sử dụng HtmlAgilityPack để phân tích HTML
+            HtmlDocument doc = new HtmlDocument();
+            doc.LoadHtml(Description);
+
+            // Lấy nội dung của thẻ p đầu tiên
+            var firstParagraphContent = doc.DocumentNode.SelectSingleNode("//p")?.InnerText;
+
+            return firstParagraphContent;
+        }
     }
 }
