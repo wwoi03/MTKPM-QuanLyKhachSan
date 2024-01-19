@@ -54,9 +54,53 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 			}
 			return View();
 		}
+        //Đăng ký
+        [HttpGet]
 
 		public IActionResult Register()
         {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Register(CustomerVM customerVM)
+        {
+            ModelState.Remove("CustomerId");
+            ModelState.Remove("CIC");
+            ModelState.Remove("Phone");
+            ModelState.Remove("Email");
+            ModelState.Remove("Address");
+            if (ModelState.IsValid)
+            {
+                Customer customerRegister = customerDao.GetCustomerByUserName(customerVM.Username);
+                if (customerRegister == null)
+                {
+                    if (customerVM.Password.Equals(customerVM.VerifyPassword))
+                    {
+                        Customer customer = new Customer()
+                        {
+                            Username = customerVM.Username,
+                            CIC = customerVM.CIC,
+                            Phone = customerVM.Phone,
+                            Email = customerVM.Email,
+                            Address = customerVM.Address,
+                            Name = customerVM.Name,
+                            Password = customerVM.Password
+                        };
+
+                        customerDao.CreateCustomer(customer);
+
+                        return RedirectToAction("Login");
+                    }
+                    else
+                    {
+                        ViewBag.messageError = "Mật khẩu xác nhận không khớp";
+                    }
+                }
+                else
+                {
+                    ViewBag.messageError = "Tài khoản đã tồn tại";
+                }
+            }
             return View();
         }
 

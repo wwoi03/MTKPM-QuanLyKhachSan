@@ -31,11 +31,11 @@
                         <h3 class="mb-4 text-center">Have an account?</h3>
                         <form action="#" method="post" class="signin-form">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Username" asp-for="Username"/>
+                                <input type="text" class="form-control" placeholder="Tên Đăng Nhập" asp-for="Username"/>
                                 <span asp-validation-for="@Model.Username" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password" asp-for="Password">
+                                <input type="password" class="form-control" placeholder="Mật Khẩu" asp-for="Password">
                                 <span asp-validation-for="@Model.Password" class="text-danger"></span>
                                 <span class="text-danger">@ViewBag.messageError</span>
                             </div>
@@ -45,13 +45,13 @@
                             <div class="form-group d-md-flex">
                                 <div class="w-50">
                                     <label class="checkbox-wrap checkbox-primary">
-                                        Remember Me
+                                        Lưu mật khẩu
                                         <input type="checkbox" checked>
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
                                 <div class="w-50 text-md-right">
-                                    <a href="#" style="color: #fff">Forgot Password</a>
+                                    <a asp-controller="PublicCustomer" asp-action="Register" style="color: #fff">Đăng Ký</a>
                                 </div>
                             </div>
                         </form>

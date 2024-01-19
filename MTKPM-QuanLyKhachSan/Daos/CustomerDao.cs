@@ -13,5 +13,11 @@ namespace MTKPM_QuanLyKhachSan.Daos
         {
             return context.Customers.Where(item => item.Username.Equals(username)).FirstOrDefault();
         }
+
+        public void CreateCustomer(Customer customer)
+        {
+            context.Customers.Add(customer);
+            context.SaveChanges();
+        }
     }
 }
