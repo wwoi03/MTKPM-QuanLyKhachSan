@@ -1,12 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MTKPM_QuanLyKhachSan.Daos;
+using MTKPM_QuanLyKhachSan.Models;
+
 
 namespace MTKPM_QuanLyKhachSan.Controllers
 {
     public class PublicHomeController : Controller
     {
-        public IActionResult Index()
+		RoomTypeDao roomTypeDao;
+
+		public PublicHomeController(DatabaseContext context)
+		{
+			roomTypeDao = new RoomTypeDao(context);
+		}
+		
+		public IActionResult Index(int roomTypeId)
         {
-            return View();
+			ViewBag.PageTitle = "Trang chủ";
+            ViewBag.hotRooms = roomTypeDao.GetRoomTypes();
+			ViewBag.roomTypeDetails = roomTypeDao.GetRoomTypeById(roomTypeId);
+			return View();
         }
 
         public IActionResult AboutUs()
