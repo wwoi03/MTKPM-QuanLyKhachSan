@@ -50,6 +50,15 @@
 							</div>
 						</div>*@
 						<a asp-controller="PublicHome" asp-action="Contact" class="nav-item nav-link">Liên hệ</a>
+
+						<div class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tên khách hàng</a>
+							<div class="dropdown-menu rounded-0 m-0">
+								<a asp-controller="PublicHome" asp-action="Information" class="dropdown-item">Thông tin tài khoản</a>
+								<a asp-controller="PublicHome" asp-action="HistoryBooking" class="dropdown-item">Lịch sử đặt phòng</a>
+								<a asp-controller="PublicHome" asp-action="Logout" class="dropdown-item">Đăng xuất</a>
+							</div>
+						</div>
 					</div>
 					<a asp-controller="PublicRoom" asp-action="Booking" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Đặt phòng<i class="fa fa-arrow-right ms-3"></i></a>
 				</div>
