@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "iN3h91TlF1IEDultfQ0jrAeAwSHkeea3Hrtfhyd5GfE=",
+  "Hash": "CFxNfMsiiZ8Rzdo8YhcXf1KsjJJAW7yIwn9VxqAVJCI=",
   "Source": "MTKPM-QuanLyKhachSan",
   "BasePath": "_content/MTKPM-QuanLyKhachSan",
   "Mode": "Default",
@@ -36565,6 +36565,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\customer\\js\\main.js"
+    },
+    {
+      "Identity": "C:\\Huflit_Study_Material\\Project\\course-projects\\DA-MTKPM-WebQuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\js\\public-booking.js",
+      "SourceId": "MTKPM-QuanLyKhachSan",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Huflit_Study_Material\\Project\\course-projects\\DA-MTKPM-WebQuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\",
+      "BasePath": "_content/MTKPM-QuanLyKhachSan",
+      "RelativePath": "customer/js/public-booking.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\customer\\js\\public-booking.js"
     },
     {
       "Identity": "C:\\Huflit_Study_Material\\Project\\course-projects\\DA-MTKPM-WebQuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\lib\\animate\\animate.css",

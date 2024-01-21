@@ -1,7 +1,7 @@
 ﻿@using MTKPM_QuanLyKhachSan.ViewModels
 @{
 	Layout = "~/Views/Shared/_CustomerLayout.cshtml";
-	var roomTypes = ViewBag.roomTypes; 
+	var roomTypes = ViewBag.roomTypes;
 }
 @model BookingVM
 
@@ -36,28 +36,28 @@
 							<div class="col-md-6">
 								<div class="form-floating">
 									<input type="text" class="form-control" id="name" placeholder="Your Name">
-									<label for="name">Your Name</label>
+									<label for="name">Tên của bạn</label>
 								</div>
 							</div>
 
 							<div class="col-md-6">
 								<div class="form-floating">
 									<input type="email" class="form-control" id="email" placeholder="Your Email">
-									<label for="email">Your Email</label>
+									<label for="email">Email của bạn</label>
 								</div>
 							</div>
 
 							<div class="col-md-6">
 								<div class="form-floating date" id="date3" data-target-input="nearest">
-									<input type="text" class="form-control datetimepicker-input" id="checkin" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker" />
-									<label for="checkin">Check In</label>
+									<input type="text" class="form-control date-input" id="checkin" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker" />
+									<label for="checkin">Ngày nhận</label>
 								</div>
 							</div>
 
 							<div class="col-md-6">
 								<div class="form-floating date" id="date4" data-target-input="nearest">
-									<input type="text" class="form-control datetimepicker-input" id="checkout" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
-									<label for="checkout">Check Out</label>
+									<input type="text" class="form-control date-input" id="checkout" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
+									<label for="checkout">Ngày trả</label>
 								</div>
 							</div>
 
@@ -88,16 +88,17 @@
 							<div class="col-6">
 								<div class="form-floating">
 									<select class="form-select" id="select-room-type">
-									@foreach (var item in roomTypes)
-									{
-										<option value="@item.RoomTypeId">@item.Name</option>
-									}
+										@foreach (var item in roomTypes)
+										{
+											<option value="@item.RoomTypeId">@item.Name</option>
+										}
 									</select>
 									<label for="select3">Loại phòng</label>
 								</div>
 							</div>
 
-							@*@Html.Partial("RoomPartialView")*@
+							<div class="col-6" id="render-room-partial-view">
+							</div>
 
 							<div class="col-12">
 								<div class="form-floating">
@@ -107,7 +108,7 @@
 							</div>
 
 							<div class="col-12">
-								<button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
+								<button class="btn btn-primary w-100 py-3" type="submit">Đặt ngay</button>
 							</div>
 						</div>
 					</form>
@@ -118,19 +119,4 @@
 </div>
 <!-- Booking End -->
 
-<script>
-	var selectRoomTypes = document.querySelector('#select-room-type')
-
-	if (selectRoomTypes != null) {
-		selectRoomTypes.addEventListener('change', function () {
-			var roomTypeId = selectRoomTypes.value;
-
-			console.log(roomTypeId)
-			//$.ajax({
-			//	type: "POST",
-			//	url: "~/PublicRoom/RoomPartialView=" + 
-			//})
-		})
-	}
-	
-</script>
+<script src="~/customer/js/public-booking.js"></script>

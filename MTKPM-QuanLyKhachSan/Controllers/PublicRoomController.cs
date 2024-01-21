@@ -69,7 +69,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
         public IActionResult RoomPartialView(int roomTypeId)
         {
             ViewBag.rooms = roomDao.GetEmptyRoomByType(roomTypeId);
-            return View();
+            return PartialView();
         }
     } 
 }
