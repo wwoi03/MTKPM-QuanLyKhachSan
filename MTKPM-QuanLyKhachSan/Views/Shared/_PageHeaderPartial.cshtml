@@ -26,13 +26,13 @@
 					<div class="col-md-10">
 						<div class="row g-2">
 							<div class="col-md-3">
-								<div class="date" id="date1" data-target-input="nearest">
-									<input asp-for="@Model.CheckIn" type="text" class="form-control datetimepicker-input" placeholder="Check in" data-target="#date1" data-toggle="datetimepicker" />
+								<div class="date" data-target-input="nearest">
+									<input asp-for="@Model.CheckIn" type="text" class="form-control date-input" placeholder="Check in" />
 								</div>
 							</div>
 							<div class="col-md-3">
-								<div class="date" id="date2" data-target-input="nearest">
-									<input asp-for="@Model.CheckOut" type="text" class="form-control datetimepicker-input" placeholder="Check out" data-target="#date2" data-toggle="datetimepicker" />
+								<div class="date" data-target-input="nearest">
+									<input asp-for="@Model.CheckOut" type="text" class="form-control date-input" placeholder="Check out" />
 								</div>
 							</div>
 							<div class="col-md-3">
