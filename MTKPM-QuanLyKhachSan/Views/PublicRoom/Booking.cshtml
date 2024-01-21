@@ -1,6 +1,9 @@
-﻿@{
+﻿@using MTKPM_QuanLyKhachSan.ViewModels
+@{
 	Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+	var roomTypes = ViewBag.roomTypes; 
 }
+@model BookingVM
 
 <!-- Booking Start -->
 <div class="container-xxl py-5">
@@ -36,60 +39,73 @@
 									<label for="name">Your Name</label>
 								</div>
 							</div>
+
 							<div class="col-md-6">
 								<div class="form-floating">
 									<input type="email" class="form-control" id="email" placeholder="Your Email">
 									<label for="email">Your Email</label>
 								</div>
 							</div>
+
 							<div class="col-md-6">
 								<div class="form-floating date" id="date3" data-target-input="nearest">
 									<input type="text" class="form-control datetimepicker-input" id="checkin" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker" />
 									<label for="checkin">Check In</label>
 								</div>
 							</div>
+
 							<div class="col-md-6">
 								<div class="form-floating date" id="date4" data-target-input="nearest">
 									<input type="text" class="form-control datetimepicker-input" id="checkout" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
 									<label for="checkout">Check Out</label>
 								</div>
 							</div>
+
 							<div class="col-md-6">
 								<div class="form-floating">
 									<select class="form-select" id="select1">
-										<option value="1">Adult 1</option>
-										<option value="2">Adult 2</option>
-										<option value="3">Adult 3</option>
+										<option value="1">1 người lớn</option>
+										<option value="2">2 người lớn</option>
+										<option value="3">3 người lớn</option>
+										<option value="4">4 người lớn</option>
 									</select>
-									<label for="select1">Select Adult</label>
+									<label for="select1">Số người lớn</label>
 								</div>
 							</div>
+
 							<div class="col-md-6">
 								<div class="form-floating">
 									<select class="form-select" id="select2">
-										<option value="1">Child 1</option>
-										<option value="2">Child 2</option>
-										<option value="3">Child 3</option>
+										<option value="1">1 trẻ em</option>
+										<option value="2">2 trẻ em</option>
+										<option value="3">3 trẻ em</option>
+										<option value="4">4 trẻ em</option>
 									</select>
-									<label for="select2">Select Child</label>
+									<label for="select2">Số trẻ em</label>
 								</div>
 							</div>
-							<div class="col-12">
+
+							<div class="col-6">
 								<div class="form-floating">
-									<select class="form-select" id="select3">
-										<option value="1">Room 1</option>
-										<option value="2">Room 2</option>
-										<option value="3">Room 3</option>
+									<select class="form-select" id="select-room-type">
+									@foreach (var item in roomTypes)
+									{
+										<option value="@item.RoomTypeId">@item.Name</option>
+									}
 									</select>
-									<label for="select3">Select A Room</label>
+									<label for="select3">Loại phòng</label>
 								</div>
 							</div>
+
+							@*@Html.Partial("RoomPartialView")*@
+
 							<div class="col-12">
 								<div class="form-floating">
 									<textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
 									<label for="message">Special Request</label>
 								</div>
 							</div>
+
 							<div class="col-12">
 								<button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
 							</div>
@@ -101,3 +117,20 @@
 	</div>
 </div>
 <!-- Booking End -->
+
+<script>
+	var selectRoomTypes = document.querySelector('#select-room-type')
+
+	if (selectRoomTypes != null) {
+		selectRoomTypes.addEventListener('change', function () {
+			var roomTypeId = selectRoomTypes.value;
+
+			console.log(roomTypeId)
+			//$.ajax({
+			//	type: "POST",
+			//	url: "~/PublicRoom/RoomPartialView=" + 
+			//})
+		})
+	}
+	
+</script>

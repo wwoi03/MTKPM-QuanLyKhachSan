@@ -8,10 +8,12 @@ namespace MTKPM_QuanLyKhachSan.Controllers
     public class PublicRoomController : Controller
     {
         RoomTypeDao roomTypeDao;
+        RoomDao roomDao;
 
         public PublicRoomController(DatabaseContext context)
         {
             roomTypeDao = new RoomTypeDao(context);
+            roomDao = new RoomDao(context);
         }
 
         public IActionResult Index(SearchRoomTypeVM searchRoomTypeVM)
@@ -22,12 +24,12 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             {
                 ViewBag.rooms = roomTypeDao.SearchRoomType
                 (
-                    searchRoomTypeVM.CheckIn, 
-                    searchRoomTypeVM.CheckOut, 
-                    searchRoomTypeVM.NumAdult, 
+                    searchRoomTypeVM.CheckIn,
+                    searchRoomTypeVM.CheckOut,
+                    searchRoomTypeVM.NumAdult,
                     searchRoomTypeVM.NumChildren
                 );
-            } 
+            }
             else
             {
                 ViewBag.rooms = roomTypeDao.GetRoomTypes();
@@ -45,7 +47,29 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 
         public IActionResult Booking()
         {
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+
+            if (HttpContext.Session.GetInt32("CustomerId") == null)
+            {
+                return RedirectToAction("Login", "PublicCustomer");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Booking(BookingVM bookingVM)
+        {
             return View();
         }
-    }
+
+        [HttpPost]
+        public IActionResult RoomPartialView(int roomTypeId)
+        {
+            ViewBag.rooms = roomDao.GetEmptyRoomByType(roomTypeId);
+            return View();
+        }
+    } 
 }
