@@ -5,108 +5,117 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MTKPM_QuanLyKhachSan
 build_property.RootNamespace = MTKPM_QuanLyKhachSan
-build_property.ProjectDir = C:\Huflit_Study_Material\Project\course-projects\DA-MTKPM-WebQuanLyKhachSan\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\
+build_property.ProjectDir = C:\Users\diepm\Desktop\MTKPM_Quản lý Khách Sạn\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Huflit_Study_Material\Project\course-projects\DA-MTKPM-WebQuanLyKhachSan\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan
+build_property.MSBuildProjectDirectory = C:\Users\diepm\Desktop\MTKPM_Quản lý Khách Sạn\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicCustomer/HistoryBooking.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicCustomer/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVibGljQ3VzdG9tZXJcQ2hhbmdlUGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicCustomer/EditInformation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVibGljQ3VzdG9tZXJcRWRpdEluZm9ybWF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicCustomer/HistoryBooking.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVibGljQ3VzdG9tZXJcSGlzdG9yeUJvb2tpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicCustomer/Information.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicCustomer/Information.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVibGljQ3VzdG9tZXJcSW5mb3JtYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicCustomer/Login.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicCustomer/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVibGljQ3VzdG9tZXJcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicCustomer/Register.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicCustomer/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVibGljQ3VzdG9tZXJcUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicHome/AboutUs.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicHome/AboutUs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVibGljSG9tZVxBYm91dFVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicHome/Contact.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicHome/Contact.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVibGljSG9tZVxDb250YWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicHome/Index.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicHome/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVibGljSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicHome/Service.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicHome/Service.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVibGljSG9tZVxTZXJ2aWNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicRoom/Booking.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicRoom/Booking.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVibGljUm9vbVxCb29raW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicRoom/Index.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicRoom/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVibGljUm9vbVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicRoom/RoomDetails.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/PublicRoom/RoomDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVibGljUm9vbVxSb29tRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/Error.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_CustomerLayout.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_CustomerLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DdXN0b21lckxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_FooterPartial.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_FooterPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb290ZXJQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_HeaderPartial.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_HeaderPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9IZWFkZXJQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_NewsletterPartial.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_NewsletterPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OZXdzbGV0dGVyUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_PageHeaderPartial.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_PageHeaderPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlSGVhZGVyUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_SpinnerPartial.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_SpinnerPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TcGlubmVyUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_TeamPartial.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_TeamPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UZWFtUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_TestimonialPartial.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_TestimonialPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UZXN0aW1vbmlhbFBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/_ViewImports.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/_ViewStart.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_Layout.cshtml]
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-3gcm6ssa0k

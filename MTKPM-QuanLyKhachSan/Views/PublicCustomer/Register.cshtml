@@ -32,6 +32,7 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Tên Đăng Nhập" asp-for="Username" />
                                 <span asp-validation-for="@Model.Username" class="text-danger"></span>
+                                <span class="text-danger">@ViewBag.messageError</span>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Tên người dùng" asp-for="Name">

@@ -20,5 +20,14 @@ namespace MTKPM_QuanLyKhachSan.Daos
             context.Customers.Add(customer);
             context.SaveChanges();
         }
-    }
+		public Customer GetCustomerbyId(int? customerId)
+		{
+			return context.Customers.Where(item => item.CustomerId.Equals(customerId)).FirstOrDefault();
+		}
+		public void EditInformation(Customer newCustomer)
+		{
+			context.Customers.Update(newCustomer);
+			context.SaveChanges();
+		}
+	}
 }

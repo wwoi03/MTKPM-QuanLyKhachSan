@@ -67,7 +67,9 @@
 						else
 						{
 							<div class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tên khách hàng</a>
+								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+									<i class="fas fa-user"></i> <!-- Sử dụng class của Font Awesome để hiển thị biểu tượng người dùng -->
+								</a>
 								<div class="dropdown-menu rounded-0 m-0">
 									<a asp-controller="PublicCustomer" asp-action="Information" class="dropdown-item">Thông tin tài khoản</a>
 									<a asp-controller="PublicCustomer" asp-action="HistoryBooking" class="dropdown-item">Lịch sử đặt phòng</a>
