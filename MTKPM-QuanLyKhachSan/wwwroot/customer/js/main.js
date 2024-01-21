@@ -58,14 +58,14 @@
     });
 
 
-    // Facts counter
+    /*// Facts counter
     $('[data-toggle="counter-up"]').counterUp({
         delay: 10,
         time: 2000
-    });
+    });*/
 
 
-    // Modal Video
+    /*// Modal Video
     $(document).ready(function () {
         var $videoSrc;
         $('.btn-play').click(function () {
@@ -80,7 +80,7 @@
         $('#videoModal').on('hide.bs.modal', function (e) {
             $("#video").attr('src', $videoSrc);
         })
-    });
+    });*/
 
 
     // Testimonials carousel
@@ -104,6 +104,11 @@
             }
         }
     });
-    
-})(jQuery);
 
+
+    // Datepicker
+    $(".date-input").datepicker({
+        minDate: 0,
+        dateFormat: 'dd MM, yy'
+    });
+})(jQuery);
