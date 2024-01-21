@@ -1,9 +1,12 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+﻿import { toast } from '../../lib/toast/toast.js';
+
+document.addEventListener('DOMContentLoaded', function () {
 	main();
 
 	// main
 	function main() {
 		selectRoom();
+		booking();
 	}
 
 	// hiển thị select room
@@ -13,10 +16,12 @@
 		if (selectRoomTypes != null) {
 			var roomTypeId = selectRoomTypes.value;
 
+			// hiển thị mặc định
 			if (roomTypeId != 0) {
 				postRoomPartialView(roomTypeId);
 			}
 
+			// hiển thị khi change
 			selectRoomTypes.addEventListener('change', function () {
 				roomTypeId = selectRoomTypes.value;
 
@@ -38,4 +43,48 @@
 			}
 		})
 	}
+
+	// đặt phòng
+	function booking() {
+		var btnSubmit = $('#btn-submit');
+
+		if (btnSubmit != null) {
+			btnSubmit.click(function () {
+				var bookingVM = GetBookingVM();
+
+				$.ajax({
+					type: "POST",
+					url: "../../PublicRoom/Booking",
+					data: bookingVM,
+					success: function (data) {
+						toast({
+							title: "Thành công!",
+							message: "Bạn đã đặt phòng thành công.",
+							type: "success",
+							duration: 3000
+						});
+					},
+					error: function () {
+
+					}
+				})
+			})
+		}
+	}
+
+	// lấy dữ liệu từ model
+	function GetBookingVM() {
+		var bookingVM = {
+			Name: $('#name').val(),
+			Phone: $('#phone').val(),
+			CheckIn: $('#checkin').val(),
+			CheckOut: $('#checkout').val(),
+			NumAdult: $('#numAdult').val(),
+			NumChildren: $('#numChildren').val(),
+			RoomId: $('#roomId').val(),
+			Note: $('#note').val(),
+		};
+
+		return bookingVM;
+    }
 })
