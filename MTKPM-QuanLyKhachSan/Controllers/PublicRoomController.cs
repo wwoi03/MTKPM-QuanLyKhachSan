@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
+using MTKPM_QuanLyKhachSan.ViewModels;
 
 namespace MTKPM_QuanLyKhachSan.Controllers
 {
@@ -13,10 +14,25 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             roomTypeDao = new RoomTypeDao(context);
         }
 
-        public IActionResult Index()
+        public IActionResult Index(SearchRoomTypeVM searchRoomTypeVM)
         {
             ViewBag.PageTitle = "Phòng";
-            ViewBag.rooms = roomTypeDao.GetRoomTypes();
+
+            if (searchRoomTypeVM.NumAdult > 0 && searchRoomTypeVM.NumChildren > 0)
+            {
+                ViewBag.rooms = roomTypeDao.SearchRoomType
+                (
+                    searchRoomTypeVM.CheckIn, 
+                    searchRoomTypeVM.CheckOut, 
+                    searchRoomTypeVM.NumAdult, 
+                    searchRoomTypeVM.NumChildren
+                );
+            } 
+            else
+            {
+                ViewBag.rooms = roomTypeDao.GetRoomTypes();
+            }
+
             return View();
         }
 

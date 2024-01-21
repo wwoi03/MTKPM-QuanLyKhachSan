@@ -24,5 +24,20 @@ namespace MTKPM_QuanLyKhachSan.Daos
             RoomType roomType = context.RoomTypes.FirstOrDefault(r => r.RoomTypeId == RoomTypeId);
             return roomType;
         }
+
+        // tìm kiếm loại phòng
+        public List<RoomType> SearchRoomType(DateTime checkIn, DateTime checkOut, int numAdult, int numChildren)
+        {
+            List<RoomType> roomTypes;
+            if (numAdult > numChildren)
+            {
+                roomTypes = context.RoomTypes.Where(i => i.NumAdult <= numAdult).ToList();
+            }
+            else
+            {
+                roomTypes = context.RoomTypes.Where(i => i.NumAdult <= numAdult || i.NumChildren <= numChildren).ToList();
+            }
+            return roomTypes;
+        }
     }
 }
