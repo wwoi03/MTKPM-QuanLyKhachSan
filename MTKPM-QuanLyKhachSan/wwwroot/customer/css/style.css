@@ -829,15 +829,24 @@
             float: none;
         }
 
-            .room-booking form .select-option .nice-select:after {
-                border-bottom: 2px solid #dfa974;
-                border-right: 2px solid #dfa974;
-                height: 10px;
-                margin-top: 0;
-                right: 20px;
-                width: 10px;
-                top: 36%;
-            }
+        .room-booking form .select-option select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('path_to_custom_arrow_icon.png'); /* Đường dẫn đến biểu tượng tùy chọn của bạn */
+            background-repeat: no-repeat;
+            background-position: right center;
+        }
+
+        .room-booking form .select-option .nice-select:after {
+            border-bottom: 2px solid #dfa974;
+            border-right: 2px solid #dfa974;
+            height: 10px;
+            margin-top: 0;
+            right: 20px;
+            width: 10px;
+            top: 36%;
+        }
 
             .room-booking form .select-option .nice-select span {
                 font-size: 16px;
