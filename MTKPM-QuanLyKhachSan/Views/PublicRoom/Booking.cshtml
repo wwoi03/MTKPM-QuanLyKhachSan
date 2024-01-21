@@ -1,6 +1,9 @@
-﻿@{
+﻿@using MTKPM_QuanLyKhachSan.ViewModels
+@{
 	Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+	var roomTypes = ViewBag.roomTypes;
 }
+@model BookingVM
 
 <!-- Booking Start -->
 <div class="container-xxl py-5">
@@ -32,66 +35,80 @@
 						<div class="row g-3">
 							<div class="col-md-6">
 								<div class="form-floating">
-									<input type="text" class="form-control" id="name" placeholder="Your Name">
-									<label for="name">Your Name</label>
+									<input asp-for="Name" type="text" class="form-control" id="name" placeholder="Your Name">
+									<label for="name">Tên của bạn</label>
 								</div>
 							</div>
+
 							<div class="col-md-6">
 								<div class="form-floating">
-									<input type="email" class="form-control" id="email" placeholder="Your Email">
-									<label for="email">Your Email</label>
+									<input asp-for="Phone" type="number" class="form-control" id="phone" placeholder="Your Phone">
+									<label for="phone">Số điện thoại</label>
 								</div>
 							</div>
+
 							<div class="col-md-6">
 								<div class="form-floating date" id="date3" data-target-input="nearest">
-									<input type="text" class="form-control datetimepicker-input" id="checkin" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker" />
-									<label for="checkin">Check In</label>
+									<input asp-for="CheckIn" type="text" class="form-control date-input" id="checkin" placeholder="Check In" />
+									<label for="checkin">Ngày nhận</label>
 								</div>
 							</div>
+
 							<div class="col-md-6">
 								<div class="form-floating date" id="date4" data-target-input="nearest">
-									<input type="text" class="form-control datetimepicker-input" id="checkout" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
-									<label for="checkout">Check Out</label>
+									<input asp-for="CheckOut" type="text" class="form-control date-input" id="checkout" placeholder="Check Out" />
+									<label for="checkout">Ngày trả</label>
 								</div>
 							</div>
+
 							<div class="col-md-6">
 								<div class="form-floating">
-									<select class="form-select" id="select1">
-										<option value="1">Adult 1</option>
-										<option value="2">Adult 2</option>
-										<option value="3">Adult 3</option>
+									<select class="form-select" id="numAdult">
+										<option value="1">1 người lớn</option>
+										<option value="2">2 người lớn</option>
+										<option value="3">3 người lớn</option>
+										<option value="4">4 người lớn</option>
 									</select>
-									<label for="select1">Select Adult</label>
+									<label for="select1">Số người lớn</label>
 								</div>
 							</div>
+
 							<div class="col-md-6">
 								<div class="form-floating">
-									<select class="form-select" id="select2">
-										<option value="1">Child 1</option>
-										<option value="2">Child 2</option>
-										<option value="3">Child 3</option>
+									<select class="form-select" id="numChildren">
+										<option value="1">1 trẻ em</option>
+										<option value="2">2 trẻ em</option>
+										<option value="3">3 trẻ em</option>
+										<option value="4">4 trẻ em</option>
 									</select>
-									<label for="select2">Select Child</label>
+									<label for="select2">Số trẻ em</label>
 								</div>
 							</div>
-							<div class="col-12">
+
+							<div class="col-6">
 								<div class="form-floating">
-									<select class="form-select" id="select3">
-										<option value="1">Room 1</option>
-										<option value="2">Room 2</option>
-										<option value="3">Room 3</option>
+									<select class="form-select" id="select-room-type">
+										@foreach (var item in roomTypes)
+										{
+											<option value="@item.RoomTypeId">@item.Name</option>
+										}
 									</select>
-									<label for="select3">Select A Room</label>
+									<label for="select3">Loại phòng</label>
 								</div>
 							</div>
+
+							<div class="col-6" id="render-room-partial-view">
+							</div>
+
 							<div class="col-12">
 								<div class="form-floating">
-									<textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
+									<textarea asp-for="Note" class="form-control" placeholder="Special Request" id="note" style="height: 100px"></textarea>
 									<label for="message">Special Request</label>
 								</div>
 							</div>
+
 							<div class="col-12">
-								<button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
+								<a id="btn-submit" class="btn btn-primary w-100 py-3">Đặt ngay</a>
 							</div>
 						</div>
 					</form>
@@ -101,3 +118,5 @@
 	</div>
 </div>
 <!-- Booking End -->
+
+<script type="module" src="~/customer/js/public-booking.js"></script>

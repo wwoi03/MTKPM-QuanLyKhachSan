@@ -17,7 +17,7 @@
 					<div class="room-item shadow rounded overflow-hidden">
 						<div class="position-relative">
 							<img class="img-fluid" src="~/customer/img/room-1.jpg" alt="">
-							<small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">@item.Price/đêm</small>
+							<small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">@item.FormatCurrency()/đêm</small>
 						</div>
 						<div class="p-4 mt-2">
 							<div class="d-flex justify-content-between mb-3">
@@ -30,12 +30,12 @@
 									<small class="fa fa-star text-primary"></small>
 								</div>
 							</div>
-							<div class="d-flex mb-3">
-								<small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>3 Giường</small>
-								<small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>2 bồn tắm</small>
-								<small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
+							<div class="d-flex mb-3 justify-content-between">
+								<small class="border-end me-2 pe-3"><i class="fa fa-bed text-primary me-2"></i>3 Giường</small>
+								<small class="border-end me-2 pe-3"><i class="fa fa-bath text-primary me-2"></i>2 bồn tắm</small>
+								<small class="border-end me-2 pe-3"><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
+								<small><i class="fa-solid fa-door-open text-primary me-2"></i>10/20</small>
 							</div>
-							
 							<p class="text-body mb-3 limit-2-lines">@item.ShortDesc()</p>
 							<div class="d-flex justify-content-between">
 								<a asp-controller="PublicRoom" asp-action="RoomDetails" asp-route-roomTypeId="@item.RoomTypeId" class="btn btn-sm btn-primary rounded py-2 px-4">Xem chi tiết</a>
