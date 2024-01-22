@@ -66,19 +66,54 @@ namespace MTKPM_QuanLyKhachSan.Controllers
         {
             ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
 
-            BookRoom bookRoom = new BookRoom()
+            ExecuteOperation executeOperation = new ExecuteOperation();
+
+            if (roomDao.RoomStatus(bookingVM.RoomId) != 0)
             {
-                CheckIn = bookingVM.ConvertDateTime(bookingVM.CheckIn),
-                CheckOut = bookingVM.ConvertDateTime(bookingVM.CheckOut),
-                CustomerId = (int)HttpContext.Session.GetInt32("CustomerId"),
-                RoomId = bookingVM.RoomId,
-                Note = bookingVM.Note,
-                IsPayment = false,
-            };
+                executeOperation = new ExecuteOperation()
+                {
+                    Type = 2,
+                    Mess = "Phòng đã có người đặt. Vui lòng chọn phòng khác.",
+                };
+            } 
+            else if (int.Parse(bookingVM.Phone) <= 0 || bookingVM.Phone.Length > 10)
+            {
+                executeOperation = new ExecuteOperation()
+                {
+                    Type = 2,
+                    Mess = "Vui lòng nhập đúng định dạng số điện thoại.",
+                };
+            }
+            else if (bookingVM.CheckDate() == false)
+            {
+                executeOperation = new ExecuteOperation()
+                {
+                    Type = 2,
+                    Mess = "Ngày đi phải nhỏ hơn ngày tới.",
+                };
+            }
+            else
+            {
+                BookRoom bookRoom = new BookRoom()
+                {
+                    CheckIn = bookingVM.ConvertDateTime(bookingVM.CheckIn),
+                    CheckOut = bookingVM.ConvertDateTime(bookingVM.CheckOut),
+                    CustomerId = (int)HttpContext.Session.GetInt32("CustomerId"),
+                    RoomId = bookingVM.RoomId,
+                    Note = bookingVM.Note,
+                    IsPayment = false,
+                };
 
-            bookRoomDao.Booking(bookRoom);
+                bookRoomDao.Booking(bookRoom);
 
-            return Json("Bạn đã đặt phòng thành công.");
+                executeOperation = new ExecuteOperation()
+                {
+                    Type = 1,
+                    Mess = "Đã đặt phòng thành công.",
+                };
+            }
+
+            return Json(executeOperation);
         }
 
         [HttpPost]

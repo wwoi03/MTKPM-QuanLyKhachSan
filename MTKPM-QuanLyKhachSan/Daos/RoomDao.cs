@@ -17,5 +17,11 @@ namespace MTKPM_QuanLyKhachSan.Daos
         {
             return context.Rooms.Where(i => i.RoomTypeId == roomTypeId && i.Status == 0).Include(i => i.RoomType).ToList();
         }
+
+        // kiểm tra trạng thái phòng
+        public int RoomStatus(int roomId)
+        {
+            return context.Rooms.FirstOrDefault(i => i.RoomId == roomId).Status;
+        }
     }
 }

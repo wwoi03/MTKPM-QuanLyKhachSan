@@ -43,5 +43,13 @@ namespace MTKPM_QuanLyKhachSan.ViewModels
 
             return DateTime.MinValue;
         }
+
+        // kiểm tra ngày trả bé hơn ngày nhận
+        public bool CheckDate()
+        {
+            if (ConvertDateTime(CheckIn) > ConvertDateTime(CheckOut))
+                return false;
+            return true;
+        }
     }
 }
