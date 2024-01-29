@@ -7566,3 +7566,132 @@ h3.page-sub-title {
 .custom-text-center {
     text-align: center;
 }
+
+/*-------------------------------------------- Thuê - trả phòng ------------------------------*/
+.custom-card {
+    /* border: 1px solid #ccc; */
+    border-radius: 4px;
+    /*width: 180px;*/
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+.custom-card-header {
+    padding: 10px;
+}
+
+.custom-card-content {
+    padding: 10px 0;
+}
+
+.custom-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+}
+
+    .custom-card-header .title {
+        color: green !important;
+    }
+
+.custom-card-content .block {
+    display: flex;
+    align-items: center;
+    padding: 0 10px 10px 10px;
+}
+
+.custom-card-content .block:last-child {
+    padding-bottom: 0;
+}
+
+
+.custom-icon {
+    font-size: 20px;
+    margin-right: 16px;
+}
+
+.custom-text {
+    font-size: 14px;
+}
+
+.custom-card-header .icon-menu {
+    font-size: 20px;
+    padding-right: 6px;
+    padding-left: 10px;
+    color: #000000B3;
+    margin: 0;
+}
+
+.custom-card-content {
+    color: #333;
+}
+
+    .custom-card-content .status {
+        color: #f44336;
+    }
+
+    .custom-card-content .date {
+        color: #000000B3;
+        font-size: 0.8rem;
+    }
+
+.custom-walk-icon {
+    
+}
+
+.custom-dropdown-menu {
+    position: absolute;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+    width: 220px;
+    right: -100%;
+    top: 37%;
+    padding: 8px 0;
+    display: none;
+    z-index: 9999;
+}
+
+    .custom-dropdown-menu.active {
+        display: block;
+    }
+
+.custom-dropdown-menu-item {
+    height: 48px;
+    padding: 0px 16px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+    .custom-dropdown-menu-item:hover {
+        background-color: #F5F5F5;
+    }
+
+    .custom-dropdown-menu-item i {
+        font-size: 18px;
+        margin-right: 16px;
+    }
+
+    .custom-dropdown-menu-item p {
+        margin: 0;
+    }
+
+.custom-room-type-item {
+    border-bottom: 1px solid #ccc;
+    padding: 24px 24px 16px 24px;
+}
+
+.custom-room-type-title {
+    
+    font-size: 15px;
+    color: #000
+}
+
+.custom-room-type-title p {
+    margin: 0;
+}
+

@@ -23,5 +23,11 @@ namespace MTKPM_QuanLyKhachSan.Daos
         {
             return context.Rooms.FirstOrDefault(i => i.RoomId == roomId).Status;
         }
+
+        // lấy danh sách phòng
+        public List<Room> GetRooms()
+        {
+            return context.Rooms.ToList();
+        }
     }
 }
