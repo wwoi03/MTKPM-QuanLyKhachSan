@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="~/admin/assets/css/feathericon.min.css">
     <link rel="stylehseet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
     <link rel="stylesheet" href="~/admin/assets/plugins/morris/morris.css">
+    <link rel="stylesheet" href="~/admin/assets/css/base.css">
     <link rel="stylesheet" href="~/admin/assets/css/style.css">
-    <link rel="stylesheet" href="/css/admin5p.css">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -24,11 +24,8 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="~/admin/assets/assets2/dist/css/adminlte.min.css">
 
-    <!-- Fontawesome -->
-    <link rel="stylesheet" href="~/fonts/fontawesome-free-6.4.0-web/fontawesome-free-6.4.0-web/css/all.css">
-
-    <!-- Admin5p -->
-    <link rel="stylesheet" href="~/css/base.css">
+    <!-- Font Awesome Stylesheet -->
+    <link href="~/css/fontawesome-free-6.5.1-web/css/all.css" rel="stylesheet">
 </head>
 
 <body>
@@ -73,7 +70,7 @@
                 <div id="sidebar-menu" class="sidebar-menu">
                     <ul>
                         <li class="active"> 
-                            <a asp-controller="Admin" asp-action="Index">
+                            <a href="/Admin/AdminHome/Index">
                                 <i class="fas fa-tachometer-alt"></i> 
                                 <span>Trang chính</span>
                             </a> 
@@ -82,28 +79,28 @@
                         <li class="list-divider"></li>
 
                         <li> 
-                            <a id="click-book-room" asp-controller="BookRoom" asp-action="Index">
+                            <a href="/Admin/AdminBooking/Index" id="click-book-room">
                                 <i class="fas fa-suitcase"></i> 
                                 <span>Đặt phòng</span>
                             </a> 
                         </li>
 
                         <li > 
-                            <a asp-controller="BookRoomDetails" asp-action="Index">
+                            <a href="/Admin/AdminRentCheckOut/Index">
                                 <i class="fas fa-key"></i> 
                                 <span>Thuê - trả phòng</span>
                             </a> 
                         </li>
 
                         <li > 
-                            <a asp-controller="Admin" asp-action="SystemManagementPage">
+                            <a href="/Admin/AdminSystemManager/Index">
                                 <i class="fas fa-cog"></i> 
                                 <span>Quản lý hệ thống</span>
-                            </a> 
+                            </a>
                         </li>
 
                         <li > 
-                            <a >
+                            <a href="/Admin/AdminSystemManager/Index">
                                 <i class="fas fa-user"></i> 
                                 <span>Tài khoản</span>
                             </a> 

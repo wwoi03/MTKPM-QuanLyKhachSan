@@ -9,6 +9,7 @@
     --bg-footer-color: #2A292B;
     --header-contact-height: 36px;
     --header-page-height: 90px;
+    --line-color: #E5E5E5;
 }
 
 * {
@@ -17,4 +18,17 @@
     box-sizing: border-box;
     text-decoration: none;
     list-style-type: none;
+}
+
+.img-100w-50h {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+}
+
+#submit-input {
+    text-align: right;
+    cursor: pointer;
+    padding-left: 10px;
 }

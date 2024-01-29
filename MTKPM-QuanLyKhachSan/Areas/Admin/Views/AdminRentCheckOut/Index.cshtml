@@ -1,0 +1,40 @@
+﻿@{
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-container d-flex">
+	<!-- Nội dung bên trái -->
+	<div class="left-panel col-8 pl-0 pr-0">
+		<!-- Thanh navbar -->
+		<nav class="panel-navbar">
+			<ul class="d-flex flex-row justify-content-between nav-container">
+				<li class="nav-item active" id="WaitRoom">
+					<i class="fa-solid fa-door-open nav-icon" style="color: #009688;"></i>
+					<span class="">Phòng chờ</span>
+				</li>
+
+				<li class="nav-item" id="RentRoom">
+					<i class="fa-solid fa-door-closed nav-icon" style="color: #66C0B8;"></i>
+					<span class="">Phòng đang thuê</span>
+				</li>
+
+				<li class="nav-item" id="CleanRoom">
+					<i _ngcontent-c5="" class="fas fa-broom fa-lg text-danger ng-star-inserted nav-icon"></i>
+					<span class="">Phòng cần dọn</span>
+				</li>
+
+				<li class="nav-item">
+					<i class="fa-solid fa-clock-rotate-left nav-icon" style="color: #68CBF8;"></i>
+					<span class="">Lịch sử</span>
+				</li>
+			</ul>
+
+			<div class="nav-line"></div>
+		</nav>
+	</div>
+
+	<!-- Nội dung bên phải -->
+	<div class="right-panel col-4 pl-0 pr-0">
+
+	</div>
+</div>
