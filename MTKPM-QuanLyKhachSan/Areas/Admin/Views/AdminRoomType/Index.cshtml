@@ -5,7 +5,7 @@
 <div class="main-container d-flex">
 	<!-- Nội dung bên trái -->
 	<div class="left-panel col-8 pl-0 pr-0">
-		<!-- Thanh navbar -->
+		<!-- Header title -->
 		<div class="custom-header-title">
 			<div class="d-flex justify-content-between">
 				<h4 class="card-title float-left mt-2" style="font-size: 24px">Tất cả loại phòng</h4>
@@ -13,6 +13,7 @@
 			</div>
 		</div>
 
+		<!-- Search -->
 		<div class="custom-bulkhead">
 			<form style="position: relative">
 				<input id="search-input" type="text" class="form-control" placeholder="Tìm kiếm theo tên phòng" name="searchString">
@@ -20,8 +21,7 @@
 			</form>
 		</div>
 
-
-
+		<!-- Main body -->
 		<div class="content container-fluid">
 			<div class="row">
 				<div class="col-sm-12">
@@ -29,6 +29,7 @@
 						<div class="card-body booking_card">
 							<div class="table-responsive">
 								<table class="datatable table table-stripped table table-hover table-center mb-0">
+									<!-- Titile -->
 									<thead>
 										<tr>
 											<th style="width: 1%" class="custom-text-center">Mã</th>
@@ -40,6 +41,7 @@
 										</tr>
 									</thead>
 
+									<!-- Render data -->
 									<tbody class="tbody-share">
 										<tr>
 											<td class="custom-text-center">101</td>
