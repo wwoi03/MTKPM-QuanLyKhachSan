@@ -1,0 +1,13 @@
+﻿@{
+	var rooms = ViewBag.rooms;
+}
+
+<div class="form-floating">
+	<select class="form-select" id="roomId">
+		@foreach (var item in rooms)
+		{
+			<option value="@item.RoomId">@item.Name</option>
+		}
+	</select>
+	<label for="select3">Phòng</label>
+</div>

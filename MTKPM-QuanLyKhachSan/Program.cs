@@ -4,6 +4,7 @@ using MTKPM_QuanLyKhachSan.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllersWithViews();
 
 // Kết nối đến database
@@ -32,8 +33,21 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
+/*app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=PublicHome}/{action=Index}/{id?}");
+    pattern: "{controller=PublicHome}/{action=Index}/{id?}");*/
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "Default",
+        pattern: "{controller=PublicHome}/{action=Index}/{id?}"
+    );
+
+    endpoints.MapControllerRoute(
+      name: "Admin",
+      pattern: "{area:exists}/{controller=AdminBooking}/{action=Index}/{id?}"
+    );
+});
 
 app.Run();
