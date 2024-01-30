@@ -1,0 +1,45 @@
+﻿#calendar {
+    max-width: 100%;
+}
+
+.fc-datagrid-body td {
+    cursor: pointer;
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+    padding: 0;
+}
+
+.fc .fc-button-primary {
+    background-color: #007CF9;
+    border-color: #007CF9;
+    color: #fff;
+}
+
+    .fc .fc-button-primary:hover {
+        background: #0069D4;
+        border-color: #0069D4;
+    }
+
+    .fc .fc-button-primary:disabled {
+        background-color: #59AAFB;
+        border-color: #59AAFB;
+        color: #F7FBFF;
+    }
+
+.fc-btnBooking-button,
+.fc-btnExportFileExcel-button {
+    background-color: #009688 !important;
+    border-color: #009688 !important;
+    color: #fff !important;
+}
+
+#calendar thead th:last-child .fc-scroller,
+#calendar .fc-scroller.fc-scroller-liquid-absolute {
+    overflow: scroll !important;
+}
+
+#calendar .fc-theme-standard td, 
+#calendar .fc-theme-standard th {
+    border: 1px solid var(--fc-border-color) !important;
+}
