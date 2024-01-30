@@ -3,20 +3,15 @@
 }
 
 <style>
-	p {
-		text-align: center;
-	}
-
 	#calendar {
 		max-width: 100%;
-
 	}
 
 	.fc-datagrid-body td {
 		cursor: pointer;
 	}
 
-	#calendar > .fc-header-toolbar.fc-toolbar.fc-toolbar-ltr {
+	.fc .fc-toolbar.fc-header-toolbar {
 		padding: 0;
 	}
 
@@ -35,6 +30,18 @@
 		background-color: #59AAFB;
 		border-color: #59AAFB;
 		color: #F7FBFF;
+	}
+
+	.fc-btnBooking-button,
+	.fc-btnExportFileExcel-button {
+		background-color: #009688 !important;
+		border-color: #009688 !important;
+		color: #fff !important;
+	}
+
+	#calendar thead th:last-child .fc-scroller,
+	#calendar .fc-scroller.fc-scroller-liquid-absolute {
+		overflow: scroll !important;
 	}
 </style>
 
@@ -264,11 +271,10 @@
 				initialView: 'resourceTimelineMonth',
 				initialDate: new Date(),
 				resourceAreaHeaderContent: 'Phòng',
-				themeSystem: 'bootstrap', // Sử dụng chủ đề Bootstrap (hoặc sử dụng 'standard', 'jquery-ui', 'bootstrap',...)
 				headerToolbar: {
 					left: 'prev,next today',
 					center: 'title',
-					right: 'promptResource'
+					right: 'btnExportFileExcel btnBooking'
 					//right: 'resourceTimelineMonth,resourceTimelineThreeDays,timeGridWeek,dayGridMonth'
 				},
 				buttonText: {
@@ -276,8 +282,17 @@
 				},
 				resourceAreaWidth: '10%', // Chỉnh độ rộng của khu vực resource
 				customButtons: {
-					promptResource: {
+					btnBooking: {
 						text: 'Đặt phòng',
+						click: function() {
+							var title = prompt('Room name');
+							if (title) {
+								calendar.addResource({ title: title });
+							}
+						}
+					},
+					btnExportFileExcel: {
+						text: 'Xuất excel',
 						click: function() {
 							var title = prompt('Room name');
 							if (title) {
@@ -295,40 +310,49 @@
 							}
 						});
 				},
+				eventClick: function(info) {
+					alert(
+						'Title: ' + info.event.title + '\n' + 
+						'Start: ' + info.event.start + '\n' + 
+						'End: ' + info.event.end);
+
+					// change the border color just for fun
+					info.el.style.borderColor = 'red';
+				},
 				resources: [
-					{ id: 'a', title: '101' },
-					{ id: 'b', title: '102', eventColor: 'green' },
-					{ id: 'c', title: '103', eventColor: 'orange' },
-					{ id: 'd', title: '104' },
-					{ id: 'e', title: '105' },
-					{ id: 'f', title: '106', eventColor: 'red' },
-					{ id: 'g', title: '107' },
-					{ id: 'h', title: '108' },
-					{ id: 'i', title: '109' },
-					{ id: 'j', title: '110' },
-					{ id: 'k', title: '111' },
-					{ id: 'l', title: '112' },
-					{ id: 'm', title: '113' },
-					{ id: 'n', title: '114' },
-					{ id: 'o', title: '115' },
-					{ id: 'p', title: '116' },
-					{ id: 'q', title: '117' },
-					{ id: 'r', title: '118' },
-					{ id: 's', title: '119' },
-					{ id: 't', title: '120' },
-					{ id: 'u', title: '121' },
-					{ id: 'v', title: '122' },
-					{ id: 'w', title: '123' },
-					{ id: 'x', title: '124' },
-					{ id: 'y', title: '125' },
-					{ id: 'z', title: '126' }
+					{ id: '101', title: '101' },
+					{ id: '102', title: '102', eventColor: 'green' },
+					{ id: '103', title: '103', eventColor: 'orange' },
+					{ id: '104', title: '104', eventColor: 'blue' },
+					{ id: '105', title: '105' },
+					{ id: '106', title: '106', eventColor: 'red' },
+					{ id: '107', title: '107' },
+					{ id: '108', title: '108' },
+					{ id: '109', title: '109' },
+					{ id: '110', title: '110' },
+					{ id: '111', title: '111' },
+					{ id: '112', title: '112' },
+					{ id: '113', title: '113' },
+					{ id: '114', title: '114' },
+					{ id: '115', title: '115' },
+					{ id: '116', title: '116' },
+					{ id: '117', title: '117' },
+					{ id: '118', title: '118' },
+					{ id: '119', title: '119' },
+					{ id: '120', title: '120' },
+					{ id: '121', title: '121' },
+					{ id: '122', title: '122' },
+					{ id: '123', title: '123' },
+					{ id: '124', title: '124' },
+					{ id: '125', title: '125' },
+					{ id: '126', title: '126' }
 				],
 				events: [
-					{ id: '1', resourceId: 'b', start: '2024-01-25T02:00:00', end: '2024-01-25T07:00:00', title: 'Đào Công Tuấn' },
-					{ id: '2', resourceId: 'c', start: '2024-01-25T05:00:00', end: '2024-01-25T22:00:00', title: 'Nguyễn Thành An' },
-					{ id: '3', resourceId: 'd', start: '2024-01-24', end: '2023-01-28', title: 'Nguyễn Văn Xên' },
-					{ id: '4', resourceId: 'e', start: '2024-01-25T03:00:00', end: '2024-01-25T08:00:00', title: 'Diệp Minh Quân' },
-					{ id: '5', resourceId: 'f', start: '2024-01-25T00:30:00', end: '2024-01-25T02:30:00', title: 'Bùi Thanh Tùng' }
+					{ id: '1', resourceId: '102', start: '2024-01-02', end: '2024-01-02', title: 'Đào Công Tuấn' },
+					{ id: '2', resourceId: '103', start: '2024-01-02', end: '2024-01-02', title: 'Nguyễn Thành An' },
+					{ id: '3', resourceId: '104', start: '2024-01-01', end: '2024-01-03', title: 'Nguyễn Văn Xên' },
+					{ id: '4', resourceId: '105', start: '2024-01-02', end: '2024-01-02', title: 'Diệp Minh Quân' },
+					{ id: '5', resourceId: '108', start: '2024-01-02', end: '2024-01-04', title: 'Bùi Thanh Tùng' }
 				]
 			});
 

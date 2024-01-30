@@ -6771,6 +6771,8 @@ h3.page-sub-title {
     display: flex;
     align-items: center;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-line {

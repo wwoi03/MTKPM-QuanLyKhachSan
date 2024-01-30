@@ -2,7 +2,6 @@
 	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 	var roomTypes = ViewBag.roomTypes;
 	var rooms = ViewBag.rooms;
-
 }
 
 <div class="main-container d-flex">
@@ -48,7 +47,7 @@
 						{
 							if (@roomType.RoomTypeId == @room.RoomTypeId)
 							{
-								<div class="col-2-4 pl-2 pr-2 pt-4 ">
+								<div class="col-3 pl-2 pr-2 pt-4 ">
 									<div class="custom-card">
 										<div class="custom-card-header">
 											<span class="title">@room.Name</span>
