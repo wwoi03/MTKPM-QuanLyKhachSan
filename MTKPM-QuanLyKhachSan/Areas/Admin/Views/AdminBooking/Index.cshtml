@@ -2,6 +2,42 @@
 	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
+<style>
+	p {
+		text-align: center;
+	}
+
+	#calendar {
+		max-width: 100%;
+
+	}
+
+	.fc-datagrid-body td {
+		cursor: pointer;
+	}
+
+	#calendar > .fc-header-toolbar.fc-toolbar.fc-toolbar-ltr {
+		padding: 0;
+	}
+
+	.fc .fc-button-primary {
+		background-color: #007CF9;
+		border-color: #007CF9;
+		color: #fff;
+	}
+
+	.fc .fc-button-primary:hover {
+		background: #0069D4;
+		border-color: #0069D4;
+	}
+
+	.fc .fc-button-primary:disabled {
+		background-color: #59AAFB;
+		border-color: #59AAFB;
+		color: #F7FBFF;
+	}
+</style>
+
 <div class="main-container d-flex">
 	<!-- Nội dung bên trái -->
 	<div class="left-panel col-8 pl-0 pr-0">
@@ -10,12 +46,12 @@
 			<ul class="d-flex flex-row justify-content-between nav-container">
 				<li class="nav-item active" id="month-view">
 					<i class="fa-solid fa-bed nav-icon" style="color: #68CBF8"></i>
-					<span class="">Xem theo tháng</span>
+					<span class="">Lịch theo phòng</span>
 				</li>
 
 				<li class="nav-item" id="week-view">
 					<i class="fa-solid fa-calendar-week nav-icon" style="color: #66C0B8"></i>
-					<span class="">Lịch theo tuần</span>
+					<span class="">Lịch theo tháng</span>
 				</li>
 
 				<li class="nav-item" id="day-view">
@@ -33,7 +69,9 @@
 		</nav>
 
 		<!-- THE CALENDAR -->
-		<div id="calendar"></div>
+		<div style="padding: 24px">
+			<div id="calendar" style="margin: 0px"></div>
+		</div>
 	</div>
 
 	<!-- Nội dung bên phải -->
@@ -44,7 +82,7 @@
 				<span>Thêm mới</span>
 
 				<div class="">
-					<input type="submit" value="Lưu"/>
+					<input type="submit" value="Lưu" />
 				</div>
 			</div>
 
@@ -88,13 +126,13 @@
 					<!-- Tiền trả trước -->
 					<div class="panel-form-item">
 						<h5 class="panel-form-title">Tiền trả trước</h5>
-						<input class="panel-form-input" type="number" name="PrePayment" placeholder="0.000 đ"/>
+						<input class="panel-form-input" type="number" name="PrePayment" placeholder="0.000 đ" />
 					</div>
 
 					<!-- Ghi chú -->
 					<div class="panel-form-item">
 						<h5 class="panel-form-title">Ghi chú</h5>
-						<input class="panel-form-input" type="text" name="Note" value="" placeholder=""/>
+						<input class="panel-form-input" type="text" name="Note" value="" placeholder="" />
 					</div>
 				</div>
 
@@ -106,7 +144,7 @@
 						<div class="panel-form-add-room">
 							<i class="fa-solid fa-square-plus"></i>
 							<p class="panel-form-room-btn">Thêm phòng</p>
-							<input id="list-room-string" hidden name="listRoomString"/>
+							<input id="list-room-string" hidden name="listRoomString" />
 						</div>
 					</div>
 				</div>
@@ -164,4 +202,139 @@
 			</div>
 		</form>
 	</div>
-</div>	
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		main();
+
+		function main() {
+			switchTabs();
+			renderFullCallendar(null);
+		}
+
+		// M: Xử lý chuyển tab
+		function switchTabs(calendar) {
+			var tabActive = document.querySelector(".nav-item.active");
+			var navLine = document.querySelector(".panel-navbar .nav-line");
+
+			// Chuyển line
+			function LineUpdate(tab) {
+				navLine.style.left = tab.offsetLeft + "px";
+				navLine.style.width = tab.offsetWidth + "px";
+			}
+
+			LineUpdate(tabActive);
+
+			$(".nav-container .nav-item").click(function () {
+				document.querySelector(".nav-item.active").classList.remove("active");
+
+				LineUpdate(this);
+
+				this.classList.add("active");
+			});
+
+			// Bắt sự kiện click của các item trong navbar
+			$(".nav-container li").click(function () {
+				// Lấy id của item được click
+				var view = $(this).attr("id");
+
+				// Th	ay đổi hiển thị của FullCalendar tùy theo trạng thái mới
+				if (view === "month-view") {
+					calendar.changeView("resourceTimelineMonth");
+				} else if (view === "week-view") {
+					calendar.changeView("dayGridMonth");
+				} else if (view === "day-view") {
+					calendar.changeView("timeGridWeek");
+				}
+			});
+		}
+
+		// hiển thị giao diện Calendar
+		function renderFullCallendar(data) {
+			var calendarEl = document.getElementById('calendar');
+
+			var calendar = new FullCalendar.Calendar(calendarEl, {
+				schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+				now: new Date(),
+				aspectRatio: 1.8,
+				scrollTime: '00:00',
+				editable: true,
+				locale: 'vi',
+				initialView: 'resourceTimelineMonth',
+				initialDate: new Date(),
+				resourceAreaHeaderContent: 'Phòng',
+				themeSystem: 'bootstrap', // Sử dụng chủ đề Bootstrap (hoặc sử dụng 'standard', 'jquery-ui', 'bootstrap',...)
+				headerToolbar: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'promptResource'
+					//right: 'resourceTimelineMonth,resourceTimelineThreeDays,timeGridWeek,dayGridMonth'
+				},
+				buttonText: {
+					today: 'Hôm nay',
+				},
+				resourceAreaWidth: '10%', // Chỉnh độ rộng của khu vực resource
+				customButtons: {
+					promptResource: {
+						text: 'Đặt phòng',
+						click: function() {
+							var title = prompt('Room name');
+							if (title) {
+								calendar.addResource({ title: title });
+							}
+						}
+					}
+				},
+				resourceLabelDidMount: function(arg) {
+					var resource = arg.resource;
+
+					arg.el.addEventListener('click', function() {
+						if (confirm('Are you sure you want to delete ' + resource.title + '?')) {
+							resource.remove();
+							}
+						});
+				},
+				resources: [
+					{ id: 'a', title: '101' },
+					{ id: 'b', title: '102', eventColor: 'green' },
+					{ id: 'c', title: '103', eventColor: 'orange' },
+					{ id: 'd', title: '104' },
+					{ id: 'e', title: '105' },
+					{ id: 'f', title: '106', eventColor: 'red' },
+					{ id: 'g', title: '107' },
+					{ id: 'h', title: '108' },
+					{ id: 'i', title: '109' },
+					{ id: 'j', title: '110' },
+					{ id: 'k', title: '111' },
+					{ id: 'l', title: '112' },
+					{ id: 'm', title: '113' },
+					{ id: 'n', title: '114' },
+					{ id: 'o', title: '115' },
+					{ id: 'p', title: '116' },
+					{ id: 'q', title: '117' },
+					{ id: 'r', title: '118' },
+					{ id: 's', title: '119' },
+					{ id: 't', title: '120' },
+					{ id: 'u', title: '121' },
+					{ id: 'v', title: '122' },
+					{ id: 'w', title: '123' },
+					{ id: 'x', title: '124' },
+					{ id: 'y', title: '125' },
+					{ id: 'z', title: '126' }
+				],
+				events: [
+					{ id: '1', resourceId: 'b', start: '2024-01-25T02:00:00', end: '2024-01-25T07:00:00', title: 'Đào Công Tuấn' },
+					{ id: '2', resourceId: 'c', start: '2024-01-25T05:00:00', end: '2024-01-25T22:00:00', title: 'Nguyễn Thành An' },
+					{ id: '3', resourceId: 'd', start: '2024-01-24', end: '2023-01-28', title: 'Nguyễn Văn Xên' },
+					{ id: '4', resourceId: 'e', start: '2024-01-25T03:00:00', end: '2024-01-25T08:00:00', title: 'Diệp Minh Quân' },
+					{ id: '5', resourceId: 'f', start: '2024-01-25T00:30:00', end: '2024-01-25T02:30:00', title: 'Bùi Thanh Tùng' }
+				]
+			});
+
+			switchTabs(calendar);
+
+			calendar.render();
+		}
+	});
+</script>
