@@ -43,3 +43,8 @@
 #calendar .fc-theme-standard th {
     border: 1px solid var(--fc-border-color) !important;
 }
+
+.fc .fc-datagrid-cell-cushion {
+    width: 100%;
+    text-align: center;
+}

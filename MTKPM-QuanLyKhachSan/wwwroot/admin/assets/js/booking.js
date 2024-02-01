@@ -8,6 +8,9 @@
 			success: function (data) {
 				var dataResources = JSON.parse(data.resources);
 				var dataEvents = JSON.parse(data.events);
+
+				console.log(dataResources);
+				console.log(dataEvents);
 				renderFullCallendar(dataResources, dataEvents);
 			},
 			error: function () {
@@ -63,28 +66,36 @@
 			aspectRatio: 1.8,
 			scrollTime: '00:00',
 			editable: true,
+			selectTable: true,
 			locale: 'vi',
 			initialView: 'resourceTimelineMonth',
 			initialDate: new Date(),
+			resources: dataResources,
+			events: dataEvents,
 			resourceAreaHeaderContent: 'Phòng',
+			resourceAreaWidth: '10%', // Chỉnh độ rộng của khu vực resource
 			headerToolbar: {
 				left: 'prev,next today',
 				center: 'title',
 				right: 'btnExportFileExcel btnBooking'
 				//right: 'resourceTimelineMonth,resourceTimelineThreeDays,timeGridWeek,dayGridMonth'
 			},
+			views: {
+				resourceTimelineMonth: {
+					slotLabelFormat: [
+						{ weekday: 'short', day: '2-digit' }, // lower level of text
+					],
+					initialDate: new Date().toISOString()
+				},
+			},
 			buttonText: {
 				today: 'Hôm nay',
 			},
-			resourceAreaWidth: '10%', // Chỉnh độ rộng của khu vực resource
 			customButtons: {
 				btnBooking: {
 					text: 'Đặt phòng',
 					click: function () {
-						var title = prompt('Room name');
-						if (title) {
-							calendar.addResource({ title: title });
-						}
+						booking();
 					}
 				},
 				btnExportFileExcel: {
@@ -107,61 +118,43 @@
 				});
 			},
 			eventClick: function (info) {
-				alert(
-					'Title: ' + info.event.title + '\n' +
-					'Start: ' + info.event.start + '\n' +
-					'End: ' + info.event.end);
-
-				// change the border color just for fun
-				info.el.style.borderColor = 'red';
+				bookingDetails(info.event.id);
 			},
-			resources: dataResources,
-			events: dataEvents,
+			dateClick: function (info) {
+				console.log(info.resource.id)
+			},
 		});
 
 		switchTabs(calendar);
 
 		calendar.render();
 	}
+
+	// đặt phòng
+	function booking() {
+		$.ajax({
+			type: "GET",
+			url: "/Admin/AdminBooking/Booking",
+			success: function (data) {
+				$(".right-panel").html(data);
+			},
+			error: function () {
+
+            }
+		});
+	}
+
+	// chi tiết đặt phòng
+	function bookingDetails(bookingId) {
+		$.ajax({
+			type: "GET",
+			url: "/Admin/AdminBooking/BookingDetails?bookingId=" + bookingId,
+			success: function (data) {
+				$(".right-panel").html(data);
+			},
+			error: function () {
+
+			}
+		});
+	}
 });
-
-/*
- [
-	{ id: '101', title: '101' },
-	{ id: '102', title: '102', eventColor: 'green' },
-	{ id: '103', title: '103', eventColor: 'orange' },
-	{ id: '104', title: '104', eventColor: 'blue' },
-	{ id: '105', title: '105' },
-	{ id: '106', title: '106', eventColor: 'red' },
-	{ id: '107', title: '107' },
-	{ id: '108', title: '108' },
-	{ id: '109', title: '109' },
-	{ id: '110', title: '110' },
-	{ id: '111', title: '111' },
-	{ id: '112', title: '112' },
-	{ id: '113', title: '113' },
-	{ id: '114', title: '114' },
-	{ id: '115', title: '115' },
-	{ id: '116', title: '116' },
-	{ id: '117', title: '117' },
-	{ id: '118', title: '118' },
-	{ id: '119', title: '119' },
-	{ id: '120', title: '120' },
-	{ id: '121', title: '121' },
-	{ id: '122', title: '122' },
-	{ id: '123', title: '123' },
-	{ id: '124', title: '124' },
-	{ id: '125', title: '125' },
-	{ id: '126', title: '126' }
-],
-
-
-[
-	{ id: '1', resourceId: '102', start: '2024-01-02', end: '2024-01-02', title: 'Đào Công Tuấn' },
-	{ id: '2', resourceId: '103', start: '2024-01-02', end: '2024-01-02', title: 'Nguyễn Thành An' },
-	{ id: '3', resourceId: '104', start: '2024-01-01', end: '2024-01-03', title: 'Nguyễn Văn Xên' },
-	{ id: '4', resourceId: '105', start: '2024-01-02', end: '2024-01-02', title: 'Diệp Minh Quân' },
-	{ id: '5', resourceId: '108', start: '2024-01-02', end: '2024-01-04', title: 'Bùi Thanh Tùng' }
-]
- 
- */

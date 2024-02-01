@@ -20,8 +20,6 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            
-
             return View();
         }
 
@@ -41,9 +39,10 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             {
                 id = (booking.BookRoomId).ToString(),
                 resourceId = (booking.RoomId).ToString(),
-                start = (booking.CheckIn).ToString(),
-                end = (booking.CheckOut).ToString(),
+                start = DateTime.Parse(booking.CheckIn.ToString()).ToString("yyyy-MM-dd"),
+                end = DateTime.Parse(booking.CheckOut.ToString()).ToString("yyyy-MM-dd"),
                 title = booking.Customer.Name,
+                color = "#2BA5F0",
             }).ToList();
 
             // Chuyển đổi danh sách RoomTitleVM sang chuỗi JSON
@@ -55,6 +54,29 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
                 resources = roomTitleVMJsons,
                 events = bookingEventVMsJsons,
             });
+        }
+
+        public IActionResult Booking()
+        {
+            return PartialView();
+        }
+
+        public IActionResult BookingDetails(int bookingId)
+        {
+            BookRoom bookRoom = bookRoomDao.GetBookRoomById(bookingId);
+
+            BookingDetailsVM bookingDetailsVM = new BookingDetailsVM()
+            {
+                BookRoomId = bookRoom.BookRoomId,
+                Name = bookRoom.Customer.Name,
+                Phone = bookRoom.Customer.Phone,
+                CheckIn = bookRoom.CheckIn.ToString(),
+                CheckOut = bookRoom.CheckOut.ToString(),
+                Note = bookRoom.Note,
+                CIC = "12345678910",
+            };
+
+            return PartialView();
         }
     }
 }

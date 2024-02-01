@@ -24,5 +24,11 @@ namespace MTKPM_QuanLyKhachSan.Daos
         {
             return context.BookRooms.Include(i => i.Customer).Include(i => i.Room).ToList();
         } 
+
+        // lấy booking theo id
+        public BookRoom GetBookRoomById(int bookingId)
+        {
+            return context.BookRooms.Where(i => i.BookRoomId == bookingId).Include(i => i.Customer).FirstOrDefault();
+        }
     }
 }
