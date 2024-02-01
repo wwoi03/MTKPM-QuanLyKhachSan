@@ -10,5 +10,6 @@ namespace MTKPM_QuanLyKhachSan.Models
         public int Status { get; set; }
         public int RoomTypeId { get; set; }
         public RoomType RoomType { get; set; }
+        public int Tidy { get; set; }
     }
 }

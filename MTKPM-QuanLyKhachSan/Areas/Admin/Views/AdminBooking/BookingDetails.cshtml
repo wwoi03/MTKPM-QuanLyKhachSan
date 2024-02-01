@@ -1,0 +1,102 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper AuthoringTagHelpers.TagHelpers.EmailTagHelper, AuthoringTagHelpers
+@using MTKPM_QuanLyKhachSan.ViewModels
+@{
+	var bookingDetails = ViewBag.bookingDetails;
+}
+@model BookingDetailsVM
+
+
+<form id="form-book-room" method="post">
+	<!-- Lưu đặt phòng -->
+	<div class="panel-save d-flex justify-content-between align-items-center">
+		<span>Chỉnh sửa</span>
+
+		<div class="">
+			<input type="submit" id="edit-booking" value="Lưu"/>
+			<input hidden name="BookRoomId" value="${bookRoom.bookRoomId}" />
+		</div>
+	</div>
+
+	<!-- Form -->
+	<div class="panel-form">
+		<!-- Thông tin -->
+		<div class="panel-form-info">
+			<!-- Tên khách hàng -->
+			<div class="panel-form-item">
+				<h5 class="panel-form-title">Họ và tên khách hàng</h5>
+				<input class="panel-form-input" name="Name" asp-for="Name" type="text" value="@Model.Name" required/>
+			</div>
+
+			<!-- Số điện thoại -->
+			<div class="panel-form-item">
+				<h5 class="panel-form-title">Số điện thoại</h5>
+				<input class="panel-form-input" name="Phone" asp-for="Phone" type="number" value="@Model.Phone" required/>
+			</div>
+
+			<!-- CCCD -->
+			<div class="panel-form-item">
+				<h5 class="panel-form-title">Căn cước công dân</h5>
+				<input class="panel-form-input" name="CIC" asp-area="Admin" asp-for="CIC" type="number" value="@Model.CIC" required/>
+			</div>
+
+			<!-- Ngày -->
+			<div class="panel-form-item">
+				<div class="panel-form-height">
+					<div class="panel-form-height-item">
+						<h5 class="panel-form-title">Ngày nhận phòng</h5>
+						<input class="panel-form-input" name="CheckIn" type="datetime-local" value="@Model.CheckIn" required/>
+					</div>
+
+					<div class="panel-form-height-item">
+						<h5 class="panel-form-title">Ngày trả phòng</h5>
+						<input class="panel-form-input" name="CheckOut" type="datetime-local" value="@Model.CheckOut" required/>
+					</div>
+				</div>
+			</div>
+
+			<!-- Ghi chú -->
+			<div class="panel-form-item">
+				<h5 class="panel-form-title">Ghi chú</h5>
+				<input class="panel-form-input" type="text" name="Note" value="@Model.Note" placeholder="" />
+			</div>
+		</div>
+
+		<!-- Phòng -->
+		<div class="panel-form-room">
+			<div class="panel-form-room-item">
+				<h5 class="panel-form-title">Thêm phòng</h5>
+
+				<div class="panel-form-add-room">
+					<i class="fa-solid fa-square-plus"></i>
+					<p class="panel-form-room-btn">Thêm phòng</p>
+					<input id="list-room-string" hidden name="listRoomString" />
+				</div>
+			</div>
+		</div>
+
+		<!-- Danh sách phòng theo loại-->
+		<div class="panel-form-roomtype">
+			<div class="panel-form-roomtype-item">
+				<div class="panel-form-roomtype-title">${itemRT.name}</div>
+
+				<div class="panel-form-roomtype-render">
+					<div class="d-flex">
+						<div class="row p-0 container-fluid panel-form-roomtype-render-list">
+							<div value="${itemR.roomId}" class="col-2 panel-form-roomtype-render-item active">
+								${itemR.roomId}
+							</div>
+							<div value="${itemR.roomId}" class="col-2 panel-form-roomtype-render-item">
+								${itemR.roomId}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel-cancel-room">
+		<input id="book-room-delete" readonly value="Hủy đặt phòng">
+	</div>
+</form>

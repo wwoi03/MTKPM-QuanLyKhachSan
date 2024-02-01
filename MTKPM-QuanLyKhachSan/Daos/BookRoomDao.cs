@@ -1,4 +1,5 @@
-﻿using MTKPM_QuanLyKhachSan.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MTKPM_QuanLyKhachSan.Models;
 
 namespace MTKPM_QuanLyKhachSan.Daos
 {
@@ -17,5 +18,11 @@ namespace MTKPM_QuanLyKhachSan.Daos
             context.BookRooms.Add(bookRoom);
             context.SaveChanges();
 		}
+
+        // lấy booking theo id
+        public BookRoom GetBookRoomById(int bookingId)
+        {
+            return context.BookRooms.Where(i => i.BookRoomId == bookingId).Include(i => i.Customer).FirstOrDefault();
+        }
     }
 }
