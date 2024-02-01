@@ -2,7 +2,18 @@
 	main();
 
 	function main() {
-		renderFullCallendar(null);
+		$.ajax({
+			type: "GET",
+			url: "/Admin/AdminBooking/GetBooking",
+			success: function (data) {
+				var dataResources = JSON.parse(data.resources);
+				var dataEvents = JSON.parse(data.events);
+				renderFullCallendar(dataResources, dataEvents);
+			},
+			error: function () {
+
+            }
+		});
 	}
 
 	// M: Xử lý chuyển tab
@@ -43,7 +54,7 @@
 	}
 
 	// hiển thị giao diện Calendar
-	function renderFullCallendar(resources, events) {
+	function renderFullCallendar(dataResources, dataEvents) {
 		var calendarEl = document.getElementById('calendar');
 
 		var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -104,8 +115,8 @@
 				// change the border color just for fun
 				info.el.style.borderColor = 'red';
 			},
-			resources: resources,
-			events: events,
+			resources: dataResources,
+			events: dataEvents,
 		});
 
 		switchTabs(calendar);

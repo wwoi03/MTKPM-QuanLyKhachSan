@@ -1,4 +1,5 @@
-﻿using MTKPM_QuanLyKhachSan.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MTKPM_QuanLyKhachSan.Models;
 
 namespace MTKPM_QuanLyKhachSan.Daos
 {
@@ -17,5 +18,11 @@ namespace MTKPM_QuanLyKhachSan.Daos
             context.BookRooms.Add(bookRoom);
             context.SaveChanges();
 		}
+
+        // lấy danh sách phòng đặt
+        public List<BookRoom> GetBookRooms()
+        {
+            return context.BookRooms.Include(i => i.Customer).Include(i => i.Room).ToList();
+        } 
     }
 }
