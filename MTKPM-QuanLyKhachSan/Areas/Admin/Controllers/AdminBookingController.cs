@@ -11,11 +11,13 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
     {
         RoomDao roomDao;
         BookRoomDao bookRoomDao;
+        BookRoomDetailsDao bookRoomDetailsDao;
 
         public AdminBookingController(DatabaseContext context)
         {
             roomDao = new RoomDao(context);
             bookRoomDao = new BookRoomDao(context);
+            bookRoomDetailsDao = new BookRoomDetailsDao(context);
         }
 
         public IActionResult Index()
@@ -26,7 +28,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         public IActionResult GetBooking()
         {
             var rooms = roomDao.GetRooms();
-            var bookings = bookRoomDao.GetBookRooms();
+            var bookings = bookRoomDetailsDao.GetBookRoomDetails();
 
             // Chuyển đổi từ Room sang RoomTitleVM
             List<RoomTitleVM> roomTitleVMs = rooms.Select(room => new RoomTitleVM
@@ -37,11 +39,11 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
             List<BookingEventVM> bookingEventVMs = bookings.Select(booking => new BookingEventVM
             {
-                id = (booking.BookRoomId).ToString(),
+                id = (booking.BookRoomDetailsId).ToString(),
                 resourceId = (booking.RoomId).ToString(),
                 start = DateTime.Parse(booking.CheckIn.ToString()).ToString("yyyy-MM-dd"),
                 end = DateTime.Parse(booking.CheckOut.ToString()).ToString("yyyy-MM-dd"),
-                title = booking.Customer.Name,
+                title = booking.BookRoom.Customer.Name,
                 color = "#2BA5F0",
             }).ToList();
 
@@ -61,22 +63,56 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             return PartialView();
         }
 
-        public IActionResult BookingDetails(int bookingId)
+        [HttpPost]
+        public IActionResult BookingDetails(int bookRoomDetailsId)
         {
-            BookRoom bookRoom = bookRoomDao.GetBookRoomById(bookingId);
+            BookRoomDetails bookRoomDetails = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
 
             BookingDetailsVM bookingDetailsVM = new BookingDetailsVM()
             {
-                BookRoomId = bookRoom.BookRoomId,
-                Name = bookRoom.Customer.Name,
-                Phone = bookRoom.Customer.Phone,
-                CheckIn = bookRoom.CheckIn.ToString(),
-                CheckOut = bookRoom.CheckOut.ToString(),
-                Note = bookRoom.Note,
-                CIC = "12345678910",
+                BookRoomId = bookRoomDetails.BookRoomId,
+                Name = bookRoomDetails.BookRoom.Customer.Name,
+                Phone = bookRoomDetails.BookRoom.Customer.Phone,
+                CheckIn = bookRoomDetails.CheckIn.ToString(),
+                CheckOut = bookRoomDetails.CheckOut.ToString(),
+                Note = bookRoomDetails.Note,
+                CIC = bookRoomDetails.BookRoom.Customer.CIC,
             };
 
-            return PartialView();
+            return PartialView("BookingDetails", bookingDetailsVM);
+        }
+
+        [HttpPost]
+        public IActionResult EditBooking(BookingDetailsVM bookingDetailsVM)
+        {
+            ExecuteOperation executeOperation;
+
+            if (int.Parse(bookingDetailsVM.Phone) <= 0 || bookingDetailsVM.Phone.Length > 10)
+            {
+                executeOperation = new ExecuteOperation()
+                {
+                    Result = false,
+                    Mess = "Vui lòng nhập đúng định dạng số điện thoại.",
+                };
+            }
+            else if (bookingDetailsVM.CheckDate() == false)
+            {
+                executeOperation = new ExecuteOperation()
+                {
+                    Result = false,
+                    Mess = "Ngày đi phải nhỏ hơn ngày tới.",
+                };
+            }
+            else
+            {
+                executeOperation = new ExecuteOperation()
+                {
+                    Result = true,
+                    Mess = "Chỉnh sửa đặt phòng thành công.",
+                };
+            }
+
+            return Json(executeOperation);
         }
     }
 }

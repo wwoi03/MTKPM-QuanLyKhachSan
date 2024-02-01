@@ -19,12 +19,6 @@ namespace MTKPM_QuanLyKhachSan.Daos
             context.SaveChanges();
 		}
 
-        // lấy danh sách phòng đặt
-        public List<BookRoom> GetBookRooms()
-        {
-            return context.BookRooms.Include(i => i.Customer).Include(i => i.Room).ToList();
-        } 
-
         // lấy booking theo id
         public BookRoom GetBookRoomById(int bookingId)
         {

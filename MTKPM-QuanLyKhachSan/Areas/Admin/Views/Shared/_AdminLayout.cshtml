@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -83,7 +85,7 @@
                         <li class="list-divider"></li>
 
                         <li> 
-                            <a href="/Admin/AdminBooking/Index" id="click-book-room">
+                            <a asp-area="Admin" asp-controller="AdminBooking" asp-action="Index"  id="click-book-room">
                                 <i class="fas fa-suitcase"></i> 
                                 <span>Đặt phòng</span>
                             </a> 
@@ -140,5 +142,7 @@
     @*<script src="~/admin/assets/assets2/dist/js/adminlte.min.js"></script>*@
     <!-- AdminLTE for demo purposes -->
     <script src="~/admin/assets/assets2/dist/js/demo.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

@@ -1,6 +1,4 @@
-﻿import { toast } from '../../lib/toast/toast.js';
-
-document.addEventListener('DOMContentLoaded', function () {
+﻿document.addEventListener('DOMContentLoaded', function () {
 	main();
 
 	// main
@@ -57,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					url: "../../PublicRoom/Booking",
 					data: bookingVM,
 					success: function (data) {
-						if (data.type == 1) {
+						if (data.result == true) {
 							success(data.mess, "Chuyển tới trang đặt phòng?", bookingHistory);
 						}
 						else {

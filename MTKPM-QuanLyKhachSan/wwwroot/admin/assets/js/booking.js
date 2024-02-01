@@ -145,16 +145,70 @@
 	}
 
 	// chi tiết đặt phòng
-	function bookingDetails(bookingId) {
+	function bookingDetails(bookRoomDetailsId) {
 		$.ajax({
-			type: "GET",
-			url: "/Admin/AdminBooking/BookingDetails?bookingId=" + bookingId,
+			type: "POST",
+			url: "/Admin/AdminBooking/BookingDetails?bookRoomDetailsId=" + bookRoomDetailsId,
 			success: function (data) {
 				$(".right-panel").html(data);
+
+				editBooking();
 			},
 			error: function () {
 
 			}
 		});
+	}
+
+	// chỉnh sửa đặt phòng
+	function editBooking() {
+		document.getElementById('form-book-room').addEventListener('submit', function (e) {
+			e.preventDefault(); // Ngăn chặn việc tải lại trang
+
+			$.ajax({
+				type: "POST",
+				url: "/Admin/AdminBooking/EditBooking",
+				data: $(this).serialize(),
+				success: function (data) {
+					if (data.result == true) 
+						success(data.mess, "", null);
+					else {
+						error(data.mess);
+						editBooking();
+					}
+				},
+				error: function () {
+
+				}
+			});
+        })
+	}
+
+	// alert success
+	function success(title, text, functionResult) {
+		Swal.fire({
+			title: title,
+			text: text,
+			icon: "success",
+			confirmButtonColor: "#1577BD",
+			cancelButtonColor: "#999999",
+			showCancelButton: true,
+			reverseButtons: true,
+		}).then((result) => {
+			if (result.isConfirmed) {
+				functionResult();
+			} else {
+				location.reload();
+			}
+		});
+	}
+
+	// alert error
+	function error(title) {
+		Swal.fire({
+			title: title,
+			icon: "error",
+			confirmButtonColor: "#1577BD",
+		})
 	}
 });

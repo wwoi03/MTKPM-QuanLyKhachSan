@@ -2,7 +2,7 @@
 {
     public class ExecuteOperation
     {
-        public int Type { get; set; }
+        public bool Result { get; set; }
         public string Mess { get; set; }
     }
 }

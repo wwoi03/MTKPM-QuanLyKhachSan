@@ -10,12 +10,14 @@ namespace MTKPM_QuanLyKhachSan.Controllers
         RoomTypeDao roomTypeDao;
         RoomDao roomDao;
         BookRoomDao bookRoomDao;
+        BookRoomDetailsDao bookRoomDetailsDao;
 
         public PublicRoomController(DatabaseContext context)
         {
             roomTypeDao = new RoomTypeDao(context);
             roomDao = new RoomDao(context);
             bookRoomDao = new BookRoomDao(context);
+            bookRoomDetailsDao = new BookRoomDetailsDao(context);
         }
 
         public IActionResult Index(SearchRoomTypeVM searchRoomTypeVM)
@@ -66,13 +68,13 @@ namespace MTKPM_QuanLyKhachSan.Controllers
         {
             ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
 
-            ExecuteOperation executeOperation = new ExecuteOperation();
+            ExecuteOperation executeOperation;
 
             if (roomDao.RoomStatus(bookingVM.RoomId) != 0)
             {
                 executeOperation = new ExecuteOperation()
                 {
-                    Type = 2,
+                    Result = false,
                     Mess = "Phòng đã có người đặt. Vui lòng chọn phòng khác.",
                 };
             } 
@@ -80,7 +82,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             {
                 executeOperation = new ExecuteOperation()
                 {
-                    Type = 2,
+                    Result = false,
                     Mess = "Vui lòng nhập đúng định dạng số điện thoại.",
                 };
             }
@@ -88,7 +90,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             {
                 executeOperation = new ExecuteOperation()
                 {
-                    Type = 2,
+                    Result = false,
                     Mess = "Ngày đi phải nhỏ hơn ngày tới.",
                 };
             }
@@ -96,19 +98,27 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             {
                 BookRoom bookRoom = new BookRoom()
                 {
-                    CheckIn = bookingVM.ConvertDateTime(bookingVM.CheckIn),
-                    CheckOut = bookingVM.ConvertDateTime(bookingVM.CheckOut),
                     CustomerId = (int)HttpContext.Session.GetInt32("CustomerId"),
-                    RoomId = bookingVM.RoomId,
                     Note = bookingVM.Note,
-                    IsPayment = false,
+                    NumAdult = bookingVM.NumAdult,
+                    NumChildren = bookingVM.NumChildren,
                 };
 
                 bookRoomDao.Booking(bookRoom);
 
+                BookRoomDetails bookRoomDetails = new BookRoomDetails()
+                {
+                    BookRoomId = bookRoom.BookRoomId,
+                    RoomId = bookingVM.RoomId,
+                    CheckIn = bookingVM.ConvertDateTime(bookingVM.CheckIn),
+                    CheckOut = bookingVM.ConvertDateTime(bookingVM.CheckOut),
+                };
+
+                bookRoomDetailsDao.AddBookRoomDetails(bookRoomDetails);
+
                 executeOperation = new ExecuteOperation()
                 {
-                    Type = 1,
+                    Result = true,
                     Mess = "Đã đặt phòng thành công.",
                 };
             }
