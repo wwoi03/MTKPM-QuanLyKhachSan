@@ -43,7 +43,7 @@
 	}
 
 	// hiển thị giao diện Calendar
-	function renderFullCallendar(data) {
+	function renderFullCallendar(resources, events) {
 		var calendarEl = document.getElementById('calendar');
 
 		var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -104,41 +104,8 @@
 				// change the border color just for fun
 				info.el.style.borderColor = 'red';
 			},
-			resources: [
-				{ id: '101', title: '101' },
-				{ id: '102', title: '102', eventColor: 'green' },
-				{ id: '103', title: '103', eventColor: 'orange' },
-				{ id: '104', title: '104', eventColor: 'blue' },
-				{ id: '105', title: '105' },
-				{ id: '106', title: '106', eventColor: 'red' },
-				{ id: '107', title: '107' },
-				{ id: '108', title: '108' },
-				{ id: '109', title: '109' },
-				{ id: '110', title: '110' },
-				{ id: '111', title: '111' },
-				{ id: '112', title: '112' },
-				{ id: '113', title: '113' },
-				{ id: '114', title: '114' },
-				{ id: '115', title: '115' },
-				{ id: '116', title: '116' },
-				{ id: '117', title: '117' },
-				{ id: '118', title: '118' },
-				{ id: '119', title: '119' },
-				{ id: '120', title: '120' },
-				{ id: '121', title: '121' },
-				{ id: '122', title: '122' },
-				{ id: '123', title: '123' },
-				{ id: '124', title: '124' },
-				{ id: '125', title: '125' },
-				{ id: '126', title: '126' }
-			],
-			events: [
-				{ id: '1', resourceId: '102', start: '2024-01-02', end: '2024-01-02', title: 'Đào Công Tuấn' },
-				{ id: '2', resourceId: '103', start: '2024-01-02', end: '2024-01-02', title: 'Nguyễn Thành An' },
-				{ id: '3', resourceId: '104', start: '2024-01-01', end: '2024-01-03', title: 'Nguyễn Văn Xên' },
-				{ id: '4', resourceId: '105', start: '2024-01-02', end: '2024-01-02', title: 'Diệp Minh Quân' },
-				{ id: '5', resourceId: '108', start: '2024-01-02', end: '2024-01-04', title: 'Bùi Thanh Tùng' }
-			]
+			resources: resources,
+			events: events,
 		});
 
 		switchTabs(calendar);
@@ -146,3 +113,44 @@
 		calendar.render();
 	}
 });
+
+/*
+ [
+	{ id: '101', title: '101' },
+	{ id: '102', title: '102', eventColor: 'green' },
+	{ id: '103', title: '103', eventColor: 'orange' },
+	{ id: '104', title: '104', eventColor: 'blue' },
+	{ id: '105', title: '105' },
+	{ id: '106', title: '106', eventColor: 'red' },
+	{ id: '107', title: '107' },
+	{ id: '108', title: '108' },
+	{ id: '109', title: '109' },
+	{ id: '110', title: '110' },
+	{ id: '111', title: '111' },
+	{ id: '112', title: '112' },
+	{ id: '113', title: '113' },
+	{ id: '114', title: '114' },
+	{ id: '115', title: '115' },
+	{ id: '116', title: '116' },
+	{ id: '117', title: '117' },
+	{ id: '118', title: '118' },
+	{ id: '119', title: '119' },
+	{ id: '120', title: '120' },
+	{ id: '121', title: '121' },
+	{ id: '122', title: '122' },
+	{ id: '123', title: '123' },
+	{ id: '124', title: '124' },
+	{ id: '125', title: '125' },
+	{ id: '126', title: '126' }
+],
+
+
+[
+	{ id: '1', resourceId: '102', start: '2024-01-02', end: '2024-01-02', title: 'Đào Công Tuấn' },
+	{ id: '2', resourceId: '103', start: '2024-01-02', end: '2024-01-02', title: 'Nguyễn Thành An' },
+	{ id: '3', resourceId: '104', start: '2024-01-01', end: '2024-01-03', title: 'Nguyễn Văn Xên' },
+	{ id: '4', resourceId: '105', start: '2024-01-02', end: '2024-01-02', title: 'Diệp Minh Quân' },
+	{ id: '5', resourceId: '108', start: '2024-01-02', end: '2024-01-04', title: 'Bùi Thanh Tùng' }
+]
+ 
+ */
