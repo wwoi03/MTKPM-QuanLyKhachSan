@@ -58,12 +58,15 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             });
         }
 
+        // Đặt phòng
+        [HttpGet]
         public IActionResult Booking()
         {
             return PartialView();
         }
 
-        [HttpPost]
+        // chi tiết đặt phòng
+        [HttpGet]
         public IActionResult BookingDetails(int bookRoomDetailsId)
         {
             BookRoomDetails bookRoomDetails = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
@@ -82,6 +85,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             return PartialView("BookingDetails", bookingDetailsVM);
         }
 
+        // sửa đặt phòng
         [HttpPost]
         public IActionResult EditBooking(BookingDetailsVM bookingDetailsVM)
         {
