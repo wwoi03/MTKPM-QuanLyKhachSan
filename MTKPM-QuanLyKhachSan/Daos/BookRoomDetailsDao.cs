@@ -35,6 +35,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
                 .Where(i => i.BookRoomDetailsId == bookRoomDetailsId)
                 .Include(i => i.BookRoom.Customer)
                 .Include(i => i.Room)
+                .Include(i => i.BookRoom)
                 .FirstOrDefault();
         }
     }
