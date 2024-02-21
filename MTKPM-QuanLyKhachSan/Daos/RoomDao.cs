@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MTKPM_QuanLyKhachSan.Models;
+using System.Linq;
 
 namespace MTKPM_QuanLyKhachSan.Daos
 {
@@ -27,7 +28,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
         // lấy danh sách phòng
         public List<Room> GetRooms()
         {
-            return context.Rooms.ToList();
+            return context.Rooms.OrderByDescending(i => Convert.ToInt32(i.Name)).ToList();
         }
     }
 }

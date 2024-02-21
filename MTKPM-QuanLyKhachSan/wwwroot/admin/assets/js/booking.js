@@ -9,8 +9,6 @@
 				var dataResources = JSON.parse(data.resources);
 				var dataEvents = JSON.parse(data.events);
 
-				console.log(dataResources);
-				console.log(dataEvents);
 				renderFullCallendar(dataResources, dataEvents);
 			},
 			error: function () {
@@ -19,42 +17,7 @@
 		});
 	}
 
-	// M: Xử lý chuyển tab
-	function switchTabs(calendar) {
-		var tabActive = document.querySelector(".nav-item.active");
-		var navLine = document.querySelector(".panel-navbar .nav-line");
-
-		// Chuyển line
-		function LineUpdate(tab) {
-			navLine.style.left = tab.offsetLeft + "px";
-			navLine.style.width = tab.offsetWidth + "px";
-		}
-
-		LineUpdate(tabActive);
-
-		$(".nav-container .nav-item").click(function () {
-			document.querySelector(".nav-item.active").classList.remove("active");
-
-			LineUpdate(this);
-
-			this.classList.add("active");
-		});
-
-		// Bắt sự kiện click của các item trong navbar
-		$(".nav-container li").click(function () {
-			// Lấy id của item được click
-			var view = $(this).attr("id");
-
-			// Th	ay đổi hiển thị của FullCalendar tùy theo trạng thái mới
-			if (view === "month-view") {
-				calendar.changeView('resourceTimelineMonth');
-			} else if (view === "week-view") {
-				calendar.changeView('dayGridWeek');
-			} else if (view === "day-view") {
-				calendar.changeView('listDay');
-			}
-		});
-	}
+	
 
 	// hiển thị giao diện Calendar
 	function renderFullCallendar(dataResources, dataEvents) {
@@ -137,6 +100,8 @@
 			url: "/Admin/AdminBooking/Booking",
 			success: function (data) {
 				$(".right-panel").html(data);
+
+				addRoomBooking();
 			},
 			error: function () {
 
@@ -147,12 +112,13 @@
 	// chi tiết đặt phòng
 	function bookingDetails(bookRoomDetailsId) {
 		$.ajax({
-			type: "POST",
+			type: "GET",
 			url: "/Admin/AdminBooking/BookingDetails?bookRoomDetailsId=" + bookRoomDetailsId,
 			success: function (data) {
 				$(".right-panel").html(data);
 
 				editBooking();
+				addRoomBooking();
 			},
 			error: function () {
 
@@ -182,6 +148,83 @@
 				}
 			});
         })
+	}
+
+	// thêm phòng
+	function addRoomBooking() {
+		var roomContainer = document.querySelector('.custom-room-container');
+
+		document.querySelector('.panel-form-add-room').addEventListener('click', function () {
+			roomContainer.classList.add('active');
+		})
+
+		document.querySelector('.custom-overlay').addEventListener('click', function () {
+			roomContainer.classList.remove('active');
+		});
+
+		switchTabRoom();
+	}
+
+	// chuyển tab room
+	function switchTabRoom() {
+		var tabActive = document.querySelector(".custom-tab-link.active");
+		var navLine = document.querySelector(".custom-tab-container .nav-line");
+
+		LineUpdate(tabActive);
+
+		// Chuyển line
+		function LineUpdate(tab) {
+			navLine.style.left = tab.offsetLeft + "px";
+			navLine.style.width = tab.offsetWidth + "px";
+		}
+
+		// xử lý nhấn chuyển tab
+		document.querySelectorAll('.custom-tab-link').forEach(function (tab, index) {
+			tab.addEventListener('click', function () {
+				LineUpdate(this);
+				tab.classList.remove("active");
+				document.querySelector(".custom-tab-content.active").classList.remove("active");
+				document.querySelectorAll(".custom-tab-content")[index].classList.add("active");
+			});
+		});
+	}
+
+	// M: Xử lý chuyển tab
+	function switchTabs(calendar) {
+		var tabActive = document.querySelector(".nav-item.active");
+		var navLine = document.querySelector(".panel-navbar .nav-line");
+
+		LineUpdate(tabActive);
+
+		// xử lý nhấn chuyển tab
+		$(".nav-container .nav-item").click(function () {
+			document.querySelector(".nav-item.active").classList.remove("active");
+
+			LineUpdate(this);
+
+			this.classList.add("active");
+		});
+
+		// Bắt sự kiện click của các item trong navbar
+		$(".nav-container li").click(function () {
+			// Lấy id của item được click
+			var view = $(this).attr("id");
+
+			// Th	ay đổi hiển thị của FullCalendar tùy theo trạng thái mới
+			if (view === "month-view") {
+				calendar.changeView('resourceTimelineMonth');
+			} else if (view === "week-view") {
+				calendar.changeView('dayGridWeek');
+			} else if (view === "day-view") {
+				calendar.changeView('listDay');
+			}
+		});
+
+		// Chuyển line
+		function LineUpdate(tab) {
+			navLine.style.left = tab.offsetLeft + "px";
+			navLine.style.width = tab.offsetWidth + "px";
+		}
 	}
 
 	// alert success
