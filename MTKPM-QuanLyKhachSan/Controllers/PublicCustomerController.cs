@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
 using MTKPM_QuanLyKhachSan.ViewModels;
@@ -159,11 +160,13 @@ namespace MTKPM_QuanLyKhachSan.Controllers
         {
 			ModelState.Remove("Password");
 			ModelState.Remove("CustomerId");
-			if (!ModelState.IsValid)
-			{			
-				return View(customerVM);
-			}
-			Customer newCustomer = new Customer()
+			ModelState.Remove("Username");
+			ModelState.Remove("VerifyPassword");
+            if (!ModelState.IsValid)
+            {
+                return View(customerVM);
+            }
+            Customer newCustomer = new Customer()
             {
 				CustomerId = (int)HttpContext.Session.GetInt32("CustomerId"),
 				Username = customerVM.Username,
@@ -174,7 +177,9 @@ namespace MTKPM_QuanLyKhachSan.Controllers
                 Email = customerVM.Email,
                 Address = customerVM.Address,
             };
-            customerDao.EditInformation(newCustomer);
+            HttpContext.Session.SetString("Name", newCustomer.Name);
+
+			customerDao.EditInformation(newCustomer);
 			return RedirectToAction("Information");
 		}
 
@@ -218,11 +223,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 			ModelState.Remove("Phone");
 			ModelState.Remove("Email");
 			ModelState.Remove("Address");
-			if (!ModelState.IsValid)
-			{
-				return View(customerVM);
-			}
-
+			
 			if (customerVM.Password.Equals(customerVM.VerifyPassword))
 			{	
 				Customer newCustomer = new Customer()
