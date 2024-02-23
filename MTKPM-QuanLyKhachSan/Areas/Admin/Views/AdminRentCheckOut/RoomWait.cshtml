@@ -1,0 +1,58 @@
+﻿@{
+	var roomTypes = ViewBag.roomTypes;
+	var rooms = ViewBag.rooms;
+}
+
+@foreach (var roomType in roomTypes)
+{
+	<div class="custom-room-type-item">
+		<div class="custom-room-type-title">
+			<p>@roomType.Name</p>
+		</div>
+
+		<div class="d-flex flex-xl-wrap ml-xl-n2 mr-xl-n2">
+			@foreach (var room in rooms)
+			{
+				if (@roomType.RoomTypeId == @room.RoomTypeId)
+				{
+					<div class="col-3 pl-2 pr-2 pt-4 ">
+						<div class="custom-card">
+							<div class="custom-card-header">
+								<span class="title">@room.Name</span>
+								<i class="custom-icon fa-solid fa-ellipsis-vertical icon-menu"></i>
+							</div>
+							<div class="custom-card-content">
+								<div class="date block">
+									<i class="custom-icon fa-solid fa-person-walking icon"></i>
+									<span class="custom-text">10 ngày trước</span>
+								</div>
+								<div class="status block">
+									<i class="custom-icon fa-solid fa-xmark icon"></i>
+									<span class="custom-text">Chưa dọn phòng</span>
+								</div>
+							</div>
+
+							<div id="myDropdown" class="custom-dropdown-menu">
+								<div class="custom-dropdown-menu-item">
+									<i class="custom-icon fa-solid fa-key"></i>
+									<p>Nhận phòng</p>
+								</div>
+
+								<div class="custom-dropdown-menu-item">
+									<i class="custom-icon fa-solid fa-circle-xmark"></i>
+									<p>Hủy phòng</p>
+								</div>
+
+								<div class="custom-dropdown-menu-item">
+									<i class="custom-icon fa-solid fa-tag"></i>
+									<p>Yêu cầu dọn phòng</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+
+			}
+		</div>
+	</div>
+}

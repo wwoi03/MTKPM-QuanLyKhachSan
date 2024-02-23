@@ -12,11 +12,21 @@ namespace MTKPM_QuanLyKhachSan.Daos
             this.context = context;
         }
 
-        // lấy danh sách phòng đặt
+        // lấy danh sách phòng đặt chưa nhận
         public List<BookRoomDetails> GetBookRoomDetails()
         {
             return context.BookRoomDetails
                 .Include(i => i.BookRoom.Customer)
+                .Include(i => i.Room)
+                .ToList();
+        }
+
+        // lấy danh sách phòng đã nhận
+        public List<BookRoomDetails> GetBookRoomDetailsReceive()
+        {
+            return context.BookRoomDetails
+                .Where(i => i.Status == 1)
+                .Include(i => i.BookRoom)
                 .Include(i => i.Room)
                 .ToList();
         }

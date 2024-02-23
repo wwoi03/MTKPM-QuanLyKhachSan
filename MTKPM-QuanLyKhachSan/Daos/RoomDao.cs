@@ -36,5 +36,14 @@ namespace MTKPM_QuanLyKhachSan.Daos
         {
             return context.Rooms.Where(i => i.Status == 0).Include(i => i.RoomType).ToList();
         }
+
+        // lấy danh sách phòng cần dọn
+        public List<Room> GetCleanRooms()
+        {
+            return context.Rooms
+                .Where(i => i.Tidy == 1)
+                .OrderByDescending(i => Convert.ToInt32(i.Name))
+                .ToList();
+        }
     }
 }

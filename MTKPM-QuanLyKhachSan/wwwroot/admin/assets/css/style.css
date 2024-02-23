@@ -7777,3 +7777,23 @@ ul.custom-tabs {
 .custom-tab-container {
     position: relative;
 }
+
+/* Loading */
+.cotent-left-panel {
+    position: relative;
+}
+
+#loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.7);
+    font-size: 20px;
+    color: #000;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

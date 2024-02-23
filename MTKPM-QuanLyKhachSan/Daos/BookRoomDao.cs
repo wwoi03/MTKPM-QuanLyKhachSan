@@ -24,5 +24,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
         {
             return context.BookRooms.Where(i => i.BookRoomId == bookingId).Include(i => i.Customer).FirstOrDefault();
         }
+
+        //
     }
 }

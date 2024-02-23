@@ -1,0 +1,84 @@
+﻿@{
+	var roomTypes = ViewBag.roomTypes;
+	var roomRents = ViewBag.roomRents;
+}
+
+@foreach (var roomType in roomTypes)
+{
+	<div class="custom-room-type-item">
+		<div class="custom-room-type-title">
+			<p>@roomType.Name</p>
+		</div>
+
+		<div class="d-flex flex-xl-wrap ml-xl-n2 mr-xl-n2">
+			@foreach (var room in roomRents)
+			{
+				if (@roomType.RoomTypeId == @room.RoomTypeId)
+				{
+					<div class="col-3 pl-2 pr-2 pt-4 ">
+						<div class="custom-card">
+							<div class="custom-card-header">
+								<span class="title">@room.Room.Name</span>
+								<i class="custom-icon fa-solid fa-ellipsis-vertical icon-menu"></i>
+							</div>
+							<div class="custom-card-content">
+								<div class="date block">
+									<i class="fa-solid fa-clock"></i>
+									<span class="custom-text">10 ngày 21 giờ</span>
+								</div>
+
+								<div class="status block">
+									<i class="custom-icon fa-solid fa-burger"></i>
+									<span class="custom-text">10</span>
+								</div>
+
+								<div class="status block">
+									<i class="fa-solid fa-dollar-sign"></i>
+									<span class="custom-text">1.000.000 VNĐ ~</span>
+								</div>
+
+								<div class="status block">
+									<i class="fa-solid fa-comment"></i>
+									<span class="custom-text">Không có ghi chú</span>
+								</div>
+							</div>
+
+							<div id="myDropdown" class="custom-dropdown-menu">
+								<div class="custom-dropdown-menu-item">
+									<i class="custom-icon fa-solid fa-pen-to-square"></i>
+									<p>Chỉnh sửa</p>
+								</div>
+
+								<div class="custom-dropdown-menu-item">
+									<i class="custom-icon fa-solid fa-burger"></i>
+									<p>Thêm menu</p>
+								</div>
+
+								<div class="custom-dropdown-menu-item">
+									<i class="custom-icon fa-solid fa-reply"></i>
+									<p>Trả phòng</p>
+								</div>
+
+								<div class="custom-dropdown-menu-item">
+									<i class="custom-icon fa-solid fa-repeat"></i>
+									<p>Đổi phòng</p>
+								</div>
+
+								<div class="custom-dropdown-menu-item">
+									<i class="custom-icon fa-solid fa-tag"></i>
+									<p>Yêu cầu dọn phòng</p>
+								</div>
+
+								<div class="custom-dropdown-menu-item">
+									<i class="custom-icon fa-solid fa-trash"></i>
+									<p>Xóa</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+
+			}
+		</div>
+	</div>
+}
