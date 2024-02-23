@@ -9,10 +9,12 @@ namespace MTKPM_QuanLyKhachSan.Controllers
     public class PublicCustomerController : Controller
     {
         CustomerDao customerDao;
+        BookRoomDao bookRoomDao;
 
         public PublicCustomerController(DatabaseContext context)
         {
             customerDao = new CustomerDao(context);
+            bookRoomDao = new BookRoomDao(context);
         }
 
         //Đăng nhập
@@ -185,7 +187,26 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 
         public IActionResult HistoryBooking()
         {
-            return View();
+            // Kiểm tra xem khách hàng đã đăng nhập chưa
+            if (HttpContext.Session.GetInt32("CustomerId") == null)
+            {
+                return RedirectToAction("Login", "PublicCustomer");
+            }
+
+            // Lấy Id của khách hàng từ session
+            int customerId = HttpContext.Session.GetInt32("CustomerId").Value;
+
+            // Lấy lịch sử đặt phòng của khách hàng từ cơ sở dữ liệu
+            var bookingHistory = bookRoomDao.GetBookingHistory(customerId);
+
+            // Khởi tạo view model và truyền dữ liệu
+            var viewModel = new BookingHistory
+            {
+                BookingList = bookingHistory
+            };
+
+            // Trả về view với dữ liệu
+            return View(viewModel);
         }
 
         public IActionResult ChangePassword()

@@ -38,3 +38,4 @@ app.MapControllerRoute(
     pattern: "{controller=PublicHome}/{action=Index}/{id?}");
 
 app.Run();
+
