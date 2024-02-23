@@ -1,6 +1,6 @@
 ﻿@{
 	var roomTypes = ViewBag.roomTypes;
-	var rooms = ViewBag.rooms;
+	var rooms = ViewBag.roomCleans;
 }
 
 @foreach (var roomType in roomTypes)
@@ -33,12 +33,12 @@
 								{
 									<div class="status block">
 										<i class="custom-icon fa-solid fa-hourglass-start"></i>
-										<span class="custom-text">Phòng chờ</span>
+										<span class="custom-text custom-color-green">Phòng chờ</span>
 									</div>
 								}
 
 								<div class="date block">
-									<i class="custom-icon fa-solid fa-person-walking icon"></i>
+									<i class="custom-icon fa-solid fa-clock"></i>
 									<span class="custom-text">10 ngày trước</span>
 								</div>
 							</div>

@@ -29,7 +29,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         public IActionResult RoomWait()
         {
             ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
-            ViewBag.rooms = roomDao.GetRooms();
+            ViewBag.roomWaits = roomDao.GetEmptyRooms();
 
             return PartialView();
         }
@@ -46,7 +46,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // danh sách phòng cần dọn
         public IActionResult RoomClean()
         {
-            ViewBag.rooms = roomDao.GetCleanRooms();
+            ViewBag.roomCleans = roomDao.GetCleanRooms();
             ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
 
             return PartialView();

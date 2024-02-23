@@ -1,6 +1,6 @@
 ﻿@{
 	var roomTypes = ViewBag.roomTypes;
-	var rooms = ViewBag.rooms;
+	var rooms = ViewBag.roomWaits;
 }
 
 @foreach (var roomType in roomTypes)
@@ -24,12 +24,24 @@
 							<div class="custom-card-content">
 								<div class="date block">
 									<i class="custom-icon fa-solid fa-person-walking icon"></i>
-									<span class="custom-text">10 ngày trước</span>
+									<span class="custom-text custom-color-text">10 ngày trước</span>
 								</div>
-								<div class="status block">
-									<i class="custom-icon fa-solid fa-xmark icon"></i>
-									<span class="custom-text">Chưa dọn phòng</span>
-								</div>
+
+								@if (room.Tidy == 1)
+								{
+									<div class="status block">
+										<i class="custom-icon fa-solid fa-xmark icon"></i>
+										<span class="custom-text">Chưa dọn phòng</span>
+									</div>
+								}
+								else
+								{
+									<div class="status block">
+										<i class="custom-icon fa-solid fa-check custom-color-green"></i>
+										<span class="custom-text custom-color-text">Đã dọn phòng</span>
+									</div>
+								}
+
 							</div>
 
 							<div id="myDropdown" class="custom-dropdown-menu">

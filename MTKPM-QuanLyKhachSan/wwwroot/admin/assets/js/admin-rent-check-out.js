@@ -85,7 +85,7 @@
     function roomHistory() {
         $.ajax({
             type: "GET",
-            url: "/Admin/AdminRentCheckOut/RoomClean",
+            url: "/Admin/AdminRentCheckOut/RoomHistory",
             beforeSend: function () {
                 // Hành động trước khi gửi yêu cầu, ví dụ: hiển thị hình ảnh loading
                 $('#loading').css('display', 'flex');

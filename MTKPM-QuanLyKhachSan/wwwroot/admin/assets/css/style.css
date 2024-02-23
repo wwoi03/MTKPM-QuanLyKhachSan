@@ -7598,14 +7598,23 @@ h3.page-sub-title {
         padding-bottom: 0;
     }
 
+.custom-icon.custom-color-green {
+    color: #52AF58 !important;
+}
 
 .custom-icon {
-    font-size: 20px;
+    font-size: 18px;
     margin-right: 16px;
+    width: 18px;
+    text-align: center;
 }
 
 .custom-text {
     font-size: 14px;
+}
+
+.custom-text.custom-color-text {
+    color: #000 !important;
 }
 
 .custom-card-header .icon-menu {
@@ -7639,7 +7648,7 @@ h3.page-sub-title {
     box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
     width: 220px;
     right: -100%;
-    top: 37%;
+    top: 46px;
     padding: 8px 0;
     display: none;
     z-index: 9999;

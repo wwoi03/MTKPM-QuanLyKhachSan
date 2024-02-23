@@ -13,7 +13,7 @@
 		<div class="d-flex flex-xl-wrap ml-xl-n2 mr-xl-n2">
 			@foreach (var room in roomRents)
 			{
-				if (@roomType.RoomTypeId == @room.RoomTypeId)
+				if (@roomType.RoomTypeId == @room.Room.RoomTypeId)
 				{
 					<div class="col-3 pl-2 pr-2 pt-4 ">
 						<div class="custom-card">
@@ -23,29 +23,29 @@
 							</div>
 							<div class="custom-card-content">
 								<div class="date block">
-									<i class="fa-solid fa-clock"></i>
+									<i class="custom-icon fa-solid fa-clock"></i>
 									<span class="custom-text">10 ngày 21 giờ</span>
 								</div>
 
-								<div class="status block">
+								<div class="date block">
 									<i class="custom-icon fa-solid fa-burger"></i>
 									<span class="custom-text">10</span>
 								</div>
 
-								<div class="status block">
-									<i class="fa-solid fa-dollar-sign"></i>
+								<div class="date block">
+									<i class="custom-icon fa-solid fa-dollar-sign"></i>
 									<span class="custom-text">1.000.000 VNĐ ~</span>
 								</div>
 
-								<div class="status block">
-									<i class="fa-solid fa-comment"></i>
+								<div class="date block">
+									<i class="custom-icon fa-solid fa-comment"></i>
 									<span class="custom-text">Không có ghi chú</span>
 								</div>
 							</div>
 
 							<div id="myDropdown" class="custom-dropdown-menu">
 								<div class="custom-dropdown-menu-item">
-									<i class="custom-icon fa-solid fa-pen-to-square"></i>
+									<i class="custom-icon custom-icon fa-solid fa-pen-to-square"></i>
 									<p>Chỉnh sửa</p>
 								</div>
 
