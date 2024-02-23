@@ -13,11 +13,11 @@
             url: "/Admin/AdminRentCheckOut/RoomWait",
             beforeSend: function () {
                 // Hành động trước khi gửi yêu cầu, ví dụ: hiển thị hình ảnh loading
-                $('#loading').show();
+                $('#loaderBar').show();
             },
             complete: function () {
                 // Hành động sau khi yêu cầu hoàn thành, ví dụ: ẩn hình ảnh loading
-                $('#loading').hide();
+                $('#loaderBar').hide();
             },
             success: function (data) {
                 $('#section-left-panel').html(data);
@@ -38,11 +38,11 @@
             url: "/Admin/AdminRentCheckOut/RoomRent",
             beforeSend: function () {
                 // Hành động trước khi gửi yêu cầu, ví dụ: hiển thị hình ảnh loading
-                $('#loading').css('display', 'flex');
+                $('#loaderBar').show();
             },
             complete: function () {
                 // Hành động sau khi yêu cầu hoàn thành, ví dụ: ẩn hình ảnh loading
-                $('#loading').hide();
+                $('#loaderBar').hide();
             },
             success: function (data) {
                 $('#section-left-panel').html(data);
@@ -63,11 +63,11 @@
             url: "/Admin/AdminRentCheckOut/RoomClean",
             beforeSend: function () {
                 // Hành động trước khi gửi yêu cầu, ví dụ: hiển thị hình ảnh loading
-                $('#loading').css('display', 'flex');
+                $('#loaderBar').show();
             },
             complete: function () {
                 // Hành động sau khi yêu cầu hoàn thành, ví dụ: ẩn hình ảnh loading
-                $('#loading').hide();
+                $('#loaderBar').hide();
             },
             success: function (data) {
                 $('#section-left-panel').html(data);
@@ -88,11 +88,11 @@
             url: "/Admin/AdminRentCheckOut/RoomHistory",
             beforeSend: function () {
                 // Hành động trước khi gửi yêu cầu, ví dụ: hiển thị hình ảnh loading
-                $('#loading').css('display', 'flex');
+                $('#loaderBar').show();
             },
             complete: function () {
                 // Hành động sau khi yêu cầu hoàn thành, ví dụ: ẩn hình ảnh loading
-                $('#loading').hide();
+                $('#loaderBar').hide();
             },
             success: function (data) {
                 $('#section-left-panel').html(data);

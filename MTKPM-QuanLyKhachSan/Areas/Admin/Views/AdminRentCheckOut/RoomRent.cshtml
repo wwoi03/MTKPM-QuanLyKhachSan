@@ -15,11 +15,18 @@
 			{
 				if (@roomType.RoomTypeId == @room.Room.RoomTypeId)
 				{
-					<div class="col-3 pl-2 pr-2 pt-4 ">
+					<div class="col-4 pl-2 pr-2 pt-4 ">
 						<div class="custom-card">
 							<div class="custom-card-header">
 								<span class="title">@room.Room.Name</span>
-								<i class="custom-icon fa-solid fa-ellipsis-vertical icon-menu"></i>
+
+								<div class="">
+									@if (@room.Room.Tidy == 1)
+									{
+										<i class="custom-icon fa-solid fa-tag custom-color-red"></i>
+									}
+									<i class="custom-icon fa-solid fa-ellipsis-vertical icon-menu"></i>
+								</div>
 							</div>
 							<div class="custom-card-content">
 								<div class="date block">
@@ -27,16 +34,18 @@
 									<span class="custom-text">10 ngày 21 giờ</span>
 								</div>
 
-								<div class="date block">
-									<i class="custom-icon fa-solid fa-burger"></i>
-									<span class="custom-text">10</span>
-								</div>
+								<div style="display: flex; justify-content: space-between">
+									<div class="date block">
+										<i class="custom-icon fa-solid fa-burger"></i>
+										<span class="custom-text">10</span>
+									</div>
 
-								<div class="date block">
-									<i class="custom-icon fa-solid fa-dollar-sign"></i>
-									<span class="custom-text">1.000.000 VNĐ ~</span>
+									<div class="date block">
+										<i class="custom-icon fa-solid fa-dollar-sign"></i>
+										<span class="custom-text">1.000.000 VNĐ ~</span>
+									</div>
 								</div>
-
+								
 								<div class="date block">
 									<i class="custom-icon fa-solid fa-comment"></i>
 									<span class="custom-text">Không có ghi chú</span>
@@ -64,9 +73,17 @@
 									<p>Đổi phòng</p>
 								</div>
 
-								<div class="custom-dropdown-menu-item">
+								<div class="custom-dropdown-menu-item not-allowed">
 									<i class="custom-icon fa-solid fa-tag"></i>
-									<p>Yêu cầu dọn phòng</p>
+
+									@if (@room.Room.Tidy == 1)
+									{
+										<p class="custom-color-nomal">Yêu cầu dọn phòng</p>
+									}
+									else
+									{
+										<p>Yêu cầu dọn phòng</p>
+									}
 								</div>
 
 								<div class="custom-dropdown-menu-item">
