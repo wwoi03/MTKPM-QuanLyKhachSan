@@ -21,8 +21,11 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 			// Xử lý logic để gửi email
 			SendEmail(name, email, subject, message);
 
-			// Có thể chuyển hướng hoặc trả về thông báo gửi thành công
-			return RedirectToAction("Contact");
+            // Đặt thông điệp vào TempData
+            TempData["SuccessMessage"] = "Thông tin của bạn đã được gửi đến email của chúng tôi thành công!";
+
+            // Có thể chuyển hướng hoặc trả về thông báo gửi thành công
+            return RedirectToAction("Contact");
 		}
 		//Xử lý form thông tin
 		private void SendEmail(string name, string email, string subject, string message)
@@ -68,7 +71,12 @@ namespace MTKPM_QuanLyKhachSan.Controllers
         }
 		
 		public IActionResult Contact()
-		{ 
+		{
+            // Kiểm tra xem có thông điệp thành công không
+            if (TempData.ContainsKey("SuccessMessage"))
+            {
+                ViewBag.SuccessMessage = TempData["SuccessMessage"];
+            }
             return View();
         }
     }

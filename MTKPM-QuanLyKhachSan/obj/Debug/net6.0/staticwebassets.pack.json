@@ -8701,24 +8701,12 @@
       "PackagePath": "staticwebassets\\customer\\lib\\wow\\wow.min.js"
     },
     {
-      "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\login\\css\\.DS_Store",
-      "PackagePath": "staticwebassets\\customer\\login\\css\\.DS_Store"
-    },
-    {
       "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\login\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\customer\\login\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\login\\css\\bootstrap\\.DS_Store",
-      "PackagePath": "staticwebassets\\customer\\login\\css\\bootstrap\\.DS_Store"
-    },
-    {
       "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\login\\css\\bootstrap\\_media.css",
       "PackagePath": "staticwebassets\\customer\\login\\css\\bootstrap\\_media.css"
-    },
-    {
-      "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\login\\css\\bootstrap\\mixins\\.DS_Store",
-      "PackagePath": "staticwebassets\\customer\\login\\css\\bootstrap\\mixins\\.DS_Store"
     },
     {
       "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\login\\css\\bootstrap\\mixins\\_border-radius.css",
@@ -8749,20 +8737,8 @@
       "PackagePath": "staticwebassets\\customer\\login\\css\\style.css"
     },
     {
-      "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\login\\fonts\\.DS_Store",
-      "PackagePath": "staticwebassets\\customer\\login\\fonts\\.DS_Store"
-    },
-    {
-      "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\login\\images\\.DS_Store",
-      "PackagePath": "staticwebassets\\customer\\login\\images\\.DS_Store"
-    },
-    {
       "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\login\\images\\bg.jpg",
       "PackagePath": "staticwebassets\\customer\\login\\images\\bg.jpg"
-    },
-    {
-      "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\login\\js\\.DS_Store",
-      "PackagePath": "staticwebassets\\customer\\login\\js\\.DS_Store"
     },
     {
       "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\login\\js\\bootstrap.min.js",
@@ -8779,14 +8755,6 @@
     {
       "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\login\\js\\popper.js",
       "PackagePath": "staticwebassets\\customer\\login\\js\\popper.js"
-    },
-    {
-      "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\login\\scss\\.DS_Store",
-      "PackagePath": "staticwebassets\\customer\\login\\scss\\.DS_Store"
-    },
-    {
-      "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\login\\scss\\bootstrap\\.DS_Store",
-      "PackagePath": "staticwebassets\\customer\\login\\scss\\bootstrap\\.DS_Store"
     },
     {
       "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\customer\\login\\scss\\bootstrap\\_alert.scss",

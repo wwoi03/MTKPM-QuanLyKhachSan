@@ -65,6 +65,13 @@
 							</div>
 						</div>
 					</form>
+					<!-- Hiển thị thông báo gửi email thành công -->
+					@if (ViewBag.SuccessMessage != null)
+					{
+						<div class="alert alert-success mt-3" role="alert">
+							@ViewBag.SuccessMessage
+						</div>
+					}
 				</div>
 			</div>
 		</div>

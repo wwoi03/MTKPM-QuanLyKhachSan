@@ -568,9 +568,10 @@ C:\Users\acer\Desktop\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0
 C:\Users\acer\Desktop\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\acer\Desktop\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0\scopedcss\bundle\MTKPM-QuanLyKhachSan.styles.css
 C:\Users\acer\Desktop\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0\scopedcss\projectbundle\MTKPM-QuanLyKhachSan.bundle.scp.css
-C:\Users\acer\Desktop\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0\MTKPM-QuanLyKhachSan.csproj.CopyComplete
 C:\Users\acer\Desktop\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0\MTKPM-QuanLyKhachSan.dll
 C:\Users\acer\Desktop\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0\refint\MTKPM-QuanLyKhachSan.dll
 C:\Users\acer\Desktop\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0\MTKPM-QuanLyKhachSan.pdb
 C:\Users\acer\Desktop\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0\MTKPM-QuanLyKhachSan.genruntimeconfig.cache
 C:\Users\acer\Desktop\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0\ref\MTKPM-QuanLyKhachSan.dll
+C:\Users\acer\Desktop\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0\MTKPM-QuanLyKhachSan.sourcelink.json
+C:\Users\acer\Desktop\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0\MTKPM-Qu.815B6A1D.Up2Date
