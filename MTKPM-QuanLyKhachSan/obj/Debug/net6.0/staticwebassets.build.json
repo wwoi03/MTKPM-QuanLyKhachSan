@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "imNvqFETeL0aI5reCysnQZx5tnMcPO5gvDCFGZWrGnQ=",
+  "Hash": "/ni48ZgVLfDSOhhVYbu0imWNwWuGCLYtd7vBECZ5fSU=",
   "Source": "MTKPM-QuanLyKhachSan",
   "BasePath": "_content/MTKPM-QuanLyKhachSan",
   "Mode": "Default",
@@ -4843,23 +4843,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\admin\\assets\\js\\admin-rent-check-out.js"
-    },
-    {
-      "Identity": "D:\\Huflit_Study_Material\\Project\\course-projects\\DA-MTKPM-WebQuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\admin\\assets\\js\\admin-rent-check-out-ui.js",
-      "SourceId": "MTKPM-QuanLyKhachSan",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Huflit_Study_Material\\Project\\course-projects\\DA-MTKPM-WebQuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\",
-      "BasePath": "_content/MTKPM-QuanLyKhachSan",
-      "RelativePath": "admin/assets/js/admin-rent-check-out-ui.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\admin\\assets\\js\\admin-rent-check-out-ui.js"
     },
     {
       "Identity": "D:\\Huflit_Study_Material\\Project\\course-projects\\DA-MTKPM-WebQuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\admin\\assets\\js\\booking.js",

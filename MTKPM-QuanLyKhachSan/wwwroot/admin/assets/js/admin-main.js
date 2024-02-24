@@ -1,6 +1,4 @@
-﻿(function ($) {
-    "use strict";
-
+﻿$(document).ready(function () {
     // Datepicker
     jQuery.datetimepicker.setLocale('vi');
 
@@ -21,6 +19,14 @@
         minDate: 0,
         format: 'd.m.Y H:i'
     });
+
+    main();
+
+    function main() {
+        switchTabs();
+        openDropdownMenu();
+        closeDropdownMenu();
+    }
 
     switchTabs();
 
@@ -51,4 +57,38 @@
             });
         }
     }
-})(jQuery);
+
+    // mở DropdownMenu khi bấm icon menu
+    function openDropdownMenu() {
+        // Sử dụng Event Delegation để gắn sự kiện click cho tất cả các phần tử
+        $(document).on('click', '.icon-menu', function () {
+            // Hành động bạn muốn thực hiện khi phần tử được click
+            var card = $(this).closest('.custom-card')
+            var dropdownMenu = card.find('.custom-dropdown-menu');
+            var menuActive = $('.custom-dropdown-menu.active');
+
+            // đóng menu hiện tại đang mở
+            if (menuActive.length) {
+                menuActive.removeClass('active');
+            }
+
+            // kiểm tra menu đang bấm có đang mở
+            if (dropdownMenu.hasClass('active')) {
+                dropdownMenu.removeClass('active');
+            } else {
+                dropdownMenu.addClass('active');
+            }
+        });
+    }
+
+    // đóng DropdownMenu khi bấm ra ngoài
+    function closeDropdownMenu() {
+        $(document).click(function (event) {
+            // Kiểm tra nếu click không phải trên menu đang mở và không phải trên phần tử kích hoạt menu
+            if (!$(event.target).closest('.custom-dropdown-menu').length && !$(event.target).hasClass('icon-menu')) {
+                // Đóng tất cả các menu đang mở
+                $('.custom-dropdown-menu.active').removeClass('active');
+            }
+        });
+    }
+});

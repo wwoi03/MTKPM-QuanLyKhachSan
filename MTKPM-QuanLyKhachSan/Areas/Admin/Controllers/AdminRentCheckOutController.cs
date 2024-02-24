@@ -12,6 +12,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         RoomDao roomDao;
         BookRoomDao bookRoomDao;
         BookRoomDetailsDao bookRoomDetailsDao;
+        BillDao billDao;
 
         public AdminRentCheckOutController(DatabaseContext context)
         {
@@ -19,6 +20,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             roomDao = new RoomDao(context);
             bookRoomDao = new BookRoomDao(context);
             bookRoomDetailsDao = new BookRoomDetailsDao(context);
+            billDao = new BillDao(context);
         }
 
         public IActionResult Index()
@@ -53,6 +55,15 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             return PartialView();
         }
 
+        // lịch sử phòng
+        public IActionResult RoomHistory()
+        {
+            ViewBag.roomHistory = billDao.GetBills();
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+
+            return PartialView();
+        }
+
         // dọn phòng
         [HttpPost]
         public IActionResult CleanRoom(int roomId)
@@ -73,6 +84,31 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
                 return RedirectToAction("RoomRent", "AdminRentCheckOut", new { area = "Admin" });
             else
                 return RedirectToAction("RoomWait", "AdminRentCheckOut", new { area = "Admin" });
+        }
+
+        // đổi phòng
+        [HttpGet]
+        public IActionResult ChangeRoom(int roomId)
+        {
+            ViewBag.roomChange = roomDao.GetRoomById(roomId);
+            ViewBag.roomWaits = roomDao.GetEmptyRooms();
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+
+            return PartialView();
+        }
+
+        // đổi phòng
+        [HttpPost]
+        public IActionResult ChangeRoom(int roomIdOld, int roomIdNew, bool isCleanRoom = false)
+        {
+            bookRoomDetailsDao.ChangeRoom(roomIdOld, roomIdNew);
+
+            if (isCleanRoom)
+            {
+                roomDao.CleanRoom(roomIdNew);
+            }
+
+            return RedirectToAction("RoomRent", "AdminRentCheckOut", new { area = "Admin" });
         }
     }
 }
