@@ -18,7 +18,7 @@
 					<div class="col-4 pl-2 pr-2 pt-4 ">
 						<div class="custom-card">
 							<div class="custom-card-header">
-								<span class="title">@room.Room.Name</span>
+								<span class="title custom-color-red">@room.Room.Name</span>
 
 								<div class="">
 									@if (@room.Room.Tidy == 1)
@@ -82,7 +82,7 @@
 								}
 								else
 								{
-									<div class="custom-dropdown-menu-item">
+									<div class="custom-dropdown-menu-item btn-request-clean-room" data-roomId="@room.Room.RoomId">
 										<i class="custom-icon fa-solid fa-tag"></i>
 										<p>Yêu cầu dọn phòng</p>
 									</div>
@@ -96,8 +96,9 @@
 						</div>
 					</div>
 				}
-
 			}
 		</div>
 	</div>
 }
+
+<script src="~/admin/assets/js/admin-rent-check-out-ui.js"></script>

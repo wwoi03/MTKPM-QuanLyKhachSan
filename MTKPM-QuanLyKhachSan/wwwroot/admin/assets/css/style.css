@@ -7584,7 +7584,7 @@ h3.page-sub-title {
 }
 
     .custom-card-header .title {
-        color: green !important;
+        color: green;
     }
 
 .custom-card-content .block {

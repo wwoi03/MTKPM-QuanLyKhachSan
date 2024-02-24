@@ -5,6 +5,7 @@ using MTKPM_QuanLyKhachSan.Models;
 namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Route("Admin/[controller]/[action]")]
     public class AdminRentCheckOutController : Controller
     {
         RoomTypeDao roomTypeDao;
@@ -57,7 +58,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         public IActionResult CleanRoom(int roomId)
         {
             roomDao.CleanRoom(roomId);
-            return Json(true);
+            return RedirectToAction("RoomClean", "AdminRentCheckOut", new { area = "Admin" });
         }
 
         // yêu cầu dọn phòng
@@ -65,7 +66,13 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         public IActionResult RequestCleanRoom(int roomId)
         {
             roomDao.RequestCleanRoom(roomId);
-            return Json(true);
+
+            Room room = roomDao.GetRoomById(roomId);
+
+            if (room.Status == 1) 
+                return RedirectToAction("RoomRent", "AdminRentCheckOut", new { area = "Admin" });
+            else
+                return RedirectToAction("RoomWait", "AdminRentCheckOut", new { area = "Admin" });
         }
     }
 }

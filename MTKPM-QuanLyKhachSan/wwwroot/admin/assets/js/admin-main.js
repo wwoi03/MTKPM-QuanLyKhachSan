@@ -21,4 +21,34 @@
         minDate: 0,
         format: 'd.m.Y H:i'
     });
+
+    switchTabs();
+
+    // M: Xử lý chuyển tab
+    function switchTabs() {
+        // Xử animation chuyển tab
+        var tabActive = document.querySelector(".nav-item.active");
+        var navLine = document.querySelector(".panel-navbar .nav-line");
+        var navItem = document.querySelectorAll(".nav-container .nav-item");
+
+        if (tabActive != null) {
+            // Cập nhật lại đường line khi chuyển tab
+            function LineUpdate(tab) {
+                navLine.style.left = tab.offsetLeft + "px";
+                navLine.style.width = tab.offsetWidth + "px";
+            }
+
+            // line cho tab đầu tiên
+            LineUpdate(tabActive);
+
+            // bắt sự kiện click trên mỗi tab
+            navItem.forEach((item, index) => {
+                item.addEventListener('click', function () {
+                    document.querySelector(".nav-item.active").classList.remove("active");
+                    LineUpdate(this);
+                    this.classList.add("active");
+                });
+            });
+        }
+    }
 })(jQuery);
