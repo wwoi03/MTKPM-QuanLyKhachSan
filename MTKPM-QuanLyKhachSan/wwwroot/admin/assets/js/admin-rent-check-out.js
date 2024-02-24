@@ -74,6 +74,7 @@
 
                 closeDropdownMenu();
                 openDropdownMenu();
+                cleanRoom();
             },
             error: function () {
 
@@ -103,6 +104,38 @@
             error: function () {
 
             }
+        });
+    }
+
+    // dọn phòng
+    function cleanRoom() {
+        var btnCleanRooms = document.querySelectorAll('.btn-clean-room');
+
+        btnCleanRooms.forEach((item, index) => {
+            item.addEventListener('click', function () {
+                // lấy roomId
+                var roomId = item.getAttribute('data-roomId');
+
+                $.ajax({
+                    type: "GET",
+                    url: "/Admin/AdminRentCheckOut/CleanRoom",
+                    data: { roomId: roomId },
+                    beforeSend: function () {
+                        $('#loaderBar').show();
+                    },
+                    complete: function () {
+                        $('#loaderBar').hide();
+                    },
+                    success: function (data) {
+                        if (data) {
+                            roomClean();
+                        }
+                    },
+                    error: function () {
+
+                    }
+                });
+            })
         });
     }
 

@@ -45,5 +45,14 @@ namespace MTKPM_QuanLyKhachSan.Daos
                 .OrderByDescending(i => Convert.ToInt32(i.Name))
                 .ToList();
         }
+
+        // dọn phòng
+        public void CleanRoom(int roomId)
+        {
+            Room room = context.Rooms.FirstOrDefault(i => i.RoomId == roomId);
+            room.Tidy = 0;
+            context.Rooms.Update(room);
+            context.SaveChanges();
+        }
     }
 }

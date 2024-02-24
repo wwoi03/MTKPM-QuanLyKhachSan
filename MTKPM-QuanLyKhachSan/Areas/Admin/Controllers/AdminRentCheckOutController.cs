@@ -51,5 +51,12 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
             return PartialView();
         }
+
+        // dọn phòng
+        public IActionResult CleanRoom(int roomId)
+        {
+            roomDao.CleanRoom(roomId);
+            return Json(true);
+        }
     }
 }
