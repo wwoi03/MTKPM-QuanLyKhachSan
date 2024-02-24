@@ -53,9 +53,18 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         }
 
         // dọn phòng
+        [HttpPost]
         public IActionResult CleanRoom(int roomId)
         {
             roomDao.CleanRoom(roomId);
+            return Json(true);
+        }
+
+        // yêu cầu dọn phòng
+        [HttpPost]
+        public IActionResult RequestCleanRoom(int roomId)
+        {
+            roomDao.RequestCleanRoom(roomId);
             return Json(true);
         }
     }

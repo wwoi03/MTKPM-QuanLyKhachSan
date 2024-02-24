@@ -55,10 +55,20 @@
 									<p>Hủy phòng</p>
 								</div>
 
-								<div class="custom-dropdown-menu-item">
-									<i class="custom-icon fa-solid fa-tag"></i>
-									<p>Yêu cầu dọn phòng</p>
-								</div>
+								@if (@room.Tidy == 1)
+								{
+									<div class="custom-dropdown-menu-item not-allowed">
+										<i class="custom-icon fa-solid fa-tag"></i>
+										<p class="custom-color-nomal">Yêu cầu dọn phòng</p>
+									</div>
+								}
+								else
+								{
+									<div class="custom-dropdown-menu-item btn-request-clean-room" data-roomId="@room.RoomId">
+										<i class="custom-icon fa-solid fa-tag"></i>
+										<p>Yêu cầu dọn phòng</p>
+									</div>
+								}
 							</div>
 						</div>
 					</div>

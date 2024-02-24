@@ -73,19 +73,21 @@
 									<p>Đổi phòng</p>
 								</div>
 
-								<div class="custom-dropdown-menu-item not-allowed">
-									<i class="custom-icon fa-solid fa-tag"></i>
-
-									@if (@room.Room.Tidy == 1)
-									{
+								@if (@room.Room.Tidy == 1)
+								{
+									<div class="custom-dropdown-menu-item not-allowed">
+										<i class="custom-icon fa-solid fa-tag"></i>
 										<p class="custom-color-nomal">Yêu cầu dọn phòng</p>
-									}
-									else
-									{
+									</div>
+								}
+								else
+								{
+									<div class="custom-dropdown-menu-item">
+										<i class="custom-icon fa-solid fa-tag"></i>
 										<p>Yêu cầu dọn phòng</p>
-									}
-								</div>
-
+									</div>
+								}
+								
 								<div class="custom-dropdown-menu-item">
 									<i class="custom-icon fa-solid fa-trash"></i>
 									<p>Xóa</p>

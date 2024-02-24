@@ -24,6 +24,7 @@
 
                 closeDropdownMenu();
                 openDropdownMenu();
+                requestCleanRoom();
             },
             error: function () {
 
@@ -117,7 +118,7 @@
                 var roomId = item.getAttribute('data-roomId');
 
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     url: "/Admin/AdminRentCheckOut/CleanRoom",
                     data: { roomId: roomId },
                     beforeSend: function () {
@@ -129,6 +130,37 @@
                     success: function (data) {
                         if (data) {
                             roomClean();
+                        }
+                    },
+                    error: function () {
+
+                    }
+                });
+            })
+        });
+    }
+
+    function requestCleanRoom() {
+        var btnRequestCleanRooms = document.querySelectorAll('.btn-request-clean-room');
+
+        btnRequestCleanRooms.forEach((item, index) => {
+            item.addEventListener('click', function () {
+                // lấy roomId
+                var roomId = item.getAttribute('data-roomId');
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/AdminRentCheckOut/RequestCleanRoom",
+                    data: { roomId: roomId },
+                    beforeSend: function () {
+                        $('#loaderBar').show();
+                    },
+                    complete: function () {
+                        $('#loaderBar').hide();
+                    },
+                    success: function (data) {
+                        if (data) {
+                            roomWait();
                         }
                     },
                     error: function () {
