@@ -15,7 +15,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
         // Lấy danh sách loại phòng
         public List<RoomType> GetRoomTypes()
         {
-            return context.RoomTypes.ToList();
+            return context.RoomTypes.OrderByDescending(p => p.RoomTypeId).ToList();
         }
 
         // lấy loại phòng theo Id
@@ -24,9 +24,8 @@ namespace MTKPM_QuanLyKhachSan.Daos
             RoomType roomType = context.RoomTypes.FirstOrDefault(r => r.RoomTypeId == RoomTypeId);
             return roomType;
         }
-
-        // tìm kiếm loại phòng
-        public List<RoomType> SearchRoomType(DateTime checkIn, DateTime checkOut, int numAdult, int numChildren)
+		// tìm kiếm loại phòng
+		public List<RoomType> SearchRoomType(DateTime checkIn, DateTime checkOut, int numAdult, int numChildren)
         {
             List<RoomType> roomTypes;
             if (numAdult > numChildren)
