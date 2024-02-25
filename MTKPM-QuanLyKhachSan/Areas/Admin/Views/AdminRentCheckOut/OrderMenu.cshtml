@@ -1,0 +1,57 @@
+﻿@using MTKPM_QuanLyKhachSan.Common
+@{
+	var services = ViewBag.services;
+	var bookRoomDetails = ViewBag.bookRoomDetails;
+}
+
+<form id="form-book-room" method="post">
+	<!-- Lưu đặt phòng -->
+	<div class="panel-save d-flex justify-content-between align-items-center">
+		<div>
+			<i style="font-size: 22px;" class="custom-icon fa-solid fa-burger custom-color-red"></i>
+			<span style="font-size: 20px">@bookRoomDetails.Room.Name</span>
+		</div>
+
+		<div class="">
+			<input type="submit" id="edit-booking" value="Lưu" />
+			<input hidden name="BookRoomId" value="" />
+		</div>
+	</div>
+
+	<!-- Form -->
+	<div class="panel-form">
+		<!-- Thông tin -->
+		<div class="panel-form-info">
+			<div class="custom-menu-search-box">
+				<input id="input-search-menu" type="text" placeholder="Tìm menu">
+			</div>
+
+			<div class="list-menu-container">
+				<ul class="custom-menu-list">
+					@foreach (var item in services)
+					{
+						<li class="custom-menu-list-item">
+							<div class="custom-menu-list-content">
+								<div class="dot-icon">
+									<div class="dot-icon2">
+										<i class="fa-solid fa-minus"></i>
+									</div>
+								</div>
+								<p>@item.Name</p>
+								<div class="dot-icon">
+									<div class="dot-icon2">
+										<i class="fa-solid fa-plus"></i>
+									</div>
+								</div>
+							</div>
+
+							<div class="custom-menu-list-quantity">
+								100
+							</div>
+						</li>
+					}
+				</ul>
+			</div>
+		</div>
+	</div>
+</form>

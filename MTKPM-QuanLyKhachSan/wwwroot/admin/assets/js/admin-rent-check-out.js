@@ -11,6 +11,7 @@
     function view() {
         viewRoomWait();
         viewRoomChange();
+        viewOrderMenu();
     }
 
     // chức năng
@@ -19,6 +20,7 @@
         cleanRoom();
         requestCleanRoom();
         changeRoom();
+        searchMenu();
     }
 
     // xử lý chuyển view
@@ -98,12 +100,28 @@
     function viewRoomChange() {
         $('#section-left-panel').on('click', '.btn-change-room-view', function () {
             // lấy roomId
-            var roomId = $(this).data('room-id');
+            var id = $(this).data('bookroom-details-id');
 
             ajaxCall(
                 'GET',
                 '/Admin/AdminRentCheckOut/ChangeRoom',
-                { roomId: roomId },
+                { bookRoomDetailsId: id },
+                function (data) {
+                    $('.right-panel').html(data);
+                }
+            )
+        });
+    }
+
+    // view thêm menu
+    function viewOrderMenu() {
+        $('#section-left-panel').on('click', '.btn-order-menu-view', function () {
+            var id = $(this).data('bookroom-details-id');
+
+            ajaxCall(
+                'GET',
+                '/Admin/AdminRentCheckOut/OrderMenu',
+                { bookRoomDetailsId: id },
                 function (data) {
                     $('.right-panel').html(data);
                 }
@@ -160,6 +178,21 @@
                 function (data) {
                     $('.right-panel').html('');
                     $('#section-left-panel').html(data);
+                }
+            )
+        });
+    }
+
+    // tìm kiếm  menu
+    function searchMenu() {
+        $('.right-panel').on('input', '#input-search-menu', function () {
+            console.log($(this).val())
+            ajaxCall(
+                'POST',
+                '/Admin/AdminRentCheckOut/SearchMenu',
+                { menuName: $(this).val() },
+                function (data) {
+                    $('.list-menu-container').html(data);
                 }
             )
         });

@@ -7886,3 +7886,124 @@ ul.custom-tabs {
     justify-content: center;
     align-items: center;
 }
+
+/* Order menu */
+.custom-menu-search-box {
+    margin-bottom: 24px;
+}
+
+    .custom-menu-search-box input {
+        font-size: 18px;
+        border: none;
+        border-bottom: 1px solid #495057;
+        width: 100%;
+        padding: 0 0 3px 0;
+        color: #495057;
+    }
+
+.custom-menu-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.custom-menu-list-item {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.custom-menu-list-item .dot-icon {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 100%;
+    position: relative;
+}
+
+    .custom-menu-list-item .dot-icon i {
+    }
+
+.custom-menu-list-item .dot-icon2 {
+    width: 18px;
+    height: 18px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-menu-list-item .dot-icon:active:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 100%;
+    background: #E9E9E9;
+    animation: ripple-animation 0.08s linear;
+    z-index: 1;
+}
+
+/* .custom-menu-list-item .dot-icon:hover {
+        animation: ripple-animation 0.6s linear;
+    } */
+
+@keyframes ripple-animation {
+    0% {
+        transform: scale(0);
+    }
+
+    25% {
+        transform: scale(0.25);
+    }
+
+    50% {
+        transform: scale(0.5);
+    }
+
+    75% {
+        transform: scale(0.75);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.custom-menu-list-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .custom-menu-list-content p {
+        padding: 0 6px;
+        margin: 0;
+        font-size: 16px;
+        color: red;
+    }
+
+.custom-menu-list-quantity {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-radius: 100%;
+    background-color: #3A51B1;
+    bottom: calc(100% - 10px);
+    left: calc(100% - 10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+    z-index: 99999999999;
+}

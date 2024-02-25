@@ -15,6 +15,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         BookRoomDetailsDao bookRoomDetailsDao;
         BillDao billDao;
         OrderDao orderDao;
+        ServiceDao serviceDao;
 
         public AdminRentCheckOutController(DatabaseContext context)
         {
@@ -24,6 +25,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             bookRoomDetailsDao = new BookRoomDetailsDao(context);
             billDao = new BillDao(context);
             orderDao = new OrderDao(context);
+            serviceDao = new ServiceDao(context);
         }
 
         public IActionResult Index()
@@ -113,9 +115,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
         // đổi phòng
         [HttpGet]
-        public IActionResult ChangeRoom(int roomId)
+        public IActionResult ChangeRoom(int bookRoomDetailsId)
         {
-            ViewBag.roomChange = roomDao.GetRoomById(roomId);
+            ViewBag.roomChange = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
             ViewBag.roomWaits = roomDao.GetEmptyRooms();
             ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
 
@@ -134,6 +136,25 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             }
 
             return RedirectToAction("RoomRent", "AdminRentCheckOut", new { area = "Admin" });
+        }
+
+        // thêm menu
+        [HttpGet]
+        public IActionResult OrderMenu(int bookRoomDetailsId)
+		{
+            ViewBag.bookRoomDetails = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
+            ViewBag.services = serviceDao.GetServices();
+
+            return PartialView();
+		}
+
+        // tìm kiếm menu
+        [HttpPost]
+        public IActionResult SearchMenu(string menuName = "")
+        {
+            ViewBag.services = serviceDao.SearchServices(menuName);
+
+            return PartialView();
         }
     }
 }

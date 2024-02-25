@@ -36,12 +36,12 @@
 								</div>
 
 								<div style="display: flex;">
-									<div class="date block" style="flex: 1;">
+									<div class="date block" style="flex: 1.5;">
 										<i class="custom-icon fa-solid fa-burger"></i>
 										<span class="custom-text">@room.QuantityMenu</span>
 									</div>
 
-									<div class="date block" style="flex: 1;">
+									<div class="date block" style="flex: 2;">
 										<i class="custom-icon fa-solid fa-dollar-sign"></i>
 										<span class="custom-text">@room.FormatMoney()</span>
 									</div>
@@ -67,7 +67,7 @@
 									<p>Chỉnh sửa</p>
 								</div>
 
-								<div class="custom-dropdown-menu-item">
+								<div class="custom-dropdown-menu-item btn-order-menu-view" data-bookroom-details-id="@room.BookRoomDetailsId">
 									<i class="custom-icon fa-solid fa-burger"></i>
 									<p>Thêm menu</p>
 								</div>
@@ -77,7 +77,7 @@
 									<p>Trả phòng</p>
 								</div>
 
-								<div class="custom-dropdown-menu-item btn-change-room-view" data-room-id="@room.RoomId">
+								<div class="custom-dropdown-menu-item btn-change-room-view" data-bookroom-details-id="@room.BookRoomDetailsId">
 									<i class="custom-icon fa-solid fa-repeat"></i>
 									<p>Đổi phòng</p>
 								</div>
