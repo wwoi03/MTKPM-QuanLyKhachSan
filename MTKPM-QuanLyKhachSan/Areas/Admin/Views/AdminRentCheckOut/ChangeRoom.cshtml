@@ -1,4 +1,5 @@
-﻿@{
+﻿@using MTKPM_QuanLyKhachSan.Common
+@{
 	var roomChange = ViewBag.roomChange;
 	var roomTypes = ViewBag.roomTypes;
 	var rooms = ViewBag.roomWaits;
@@ -34,7 +35,7 @@
 									</div>
 
 									<div class="custom-card-content">
-										@if (room.Tidy == 1)
+										@if ((RoomTidy)room.Tidy == RoomTidy.NotCleaned)
 										{
 											<div class="status block">
 												<i class="custom-icon fa-solid fa-xmark icon"></i>
@@ -51,12 +52,12 @@
 									</div>
 
 									<div id="myDropdown" class="custom-dropdown-menu">
-										<div class="custom-dropdown-menu-item btn-change-room1" data-roomIdOld="@roomChange.RoomId" data-roomIdNew="@room.RoomId">
+										<div class="custom-dropdown-menu-item btn-change-room" data-room-id-old="@roomChange.RoomId" data-room-id-new="@room.RoomId" data-is-clean-room="fasle">
 											<i class="custom-icon fa-solid fa-repeat"></i>
 											<p>Đổi phòng</p>
 										</div>
 
-										<div class="custom-dropdown-menu-item btn-change-room2" data-roomIdOld="@roomChange.RoomId" data-roomIdNew="@room.RoomId">
+										<div class="custom-dropdown-menu-item btn-change-room" data-room-id-old="@roomChange.RoomId" data-room-id-new="@room.RoomId" data-is-clean-room="true">
 											<i class="custom-icon fa-solid fa-tag"></i>
 											<p>Đổi phòng và yêu cầu dọn phòng</p>
 										</div>

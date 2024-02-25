@@ -3,258 +3,178 @@
 
     function main() {
         changeView();
-        roomWait();
+        cleanRoom();
+        requestCleanRoom();
+        changeRoom();
     }
 
     // xử lý chuyển view
     function changeView() {
+        viewRoomWait();
+        viewRoomChange();
+
         // bắt sự kiện click trên mỗi tab
         $('.nav-container .nav-item').on('click', function () {
             // Lấy id của item được click
-            var view = $(this).attr("id");
+            var view = $(this).attr('id');
 
             // Thay đổi hiển thị của FullCalendar tùy theo trạng thái mới
-            if (view === "room-wait") {
-                roomWait();
-            } else if (view === "room-rent") {
-                roomRent();
-            } else if (view === "room-clean") {
-                roomClean();
-            } else if (view === "room-history") {
-                roomHistory();
+            switch (view) {
+                case 'room-wait':
+                    viewRoomWait();
+                    break;
+                case 'room-rent':
+                    viewRoomRent();
+                    break;
+                case 'room-clean':
+                    viewRoomClean();
+                    break;
+                case 'room-history':
+                    viewRoomHistory();
+                    break;
             }
         });
     }
 
     // render phòng chờ
-    function roomWait() {
-        $.ajax({
-            type: "GET",
-            url: "/Admin/AdminRentCheckOut/RoomWait",
-            beforeSend: function () {
-                // Hành động trước khi gửi yêu cầu, ví dụ: hiển thị hình ảnh loading
-                $('#loaderBar').show();
-            },
-            complete: function () {
-                // Hành động sau khi yêu cầu hoàn thành, ví dụ: ẩn hình ảnh loading
-                $('#loaderBar').hide();
-            },
-            success: function (data) {
+    function viewRoomWait() {
+        ajaxCall(
+            'GET',
+            '/Admin/AdminRentCheckOut/RoomWait',
+            null,
+            function (data) {
                 $('#section-left-panel').html(data);
-
-                requestCleanRoom();
-            },
-            error: function () {
-
             }
-        });
+        )
     }
 
     // render phòng đã đặt
-    function roomRent() {
-        $.ajax({
-            type: "GET",
-            url: "/Admin/AdminRentCheckOut/RoomRent",
-            beforeSend: function () {
-                // Hành động trước khi gửi yêu cầu, ví dụ: hiển thị hình ảnh loading
-                $('#loaderBar').show();
-            },
-            complete: function () {
-                // Hành động sau khi yêu cầu hoàn thành, ví dụ: ẩn hình ảnh loading
-                $('#loaderBar').hide();
-            },
-            success: function (data) {
+    function viewRoomRent() {
+        ajaxCall(
+            'GET',
+            '/Admin/AdminRentCheckOut/RoomRent',
+            null,
+            function (data) {
                 $('#section-left-panel').html(data);
-
-                requestCleanRoom();
-                changeRoom();
-            },
-            error: function () {
-
             }
-        });
+        )
     }
 
-    // render phòng đã đặt
-    function roomClean() {
-        $.ajax({
-            type: "GET",
-            url: "/Admin/AdminRentCheckOut/RoomClean",
-            beforeSend: function () {
-                // Hành động trước khi gửi yêu cầu, ví dụ: hiển thị hình ảnh loading
-                $('#loaderBar').show();
-            },
-            complete: function () {
-                // Hành động sau khi yêu cầu hoàn thành, ví dụ: ẩn hình ảnh loading
-                $('#loaderBar').hide();
-            },
-            success: function (data) {
+    // render phòng cần dọn
+    function viewRoomClean() {
+        ajaxCall(
+            'GET',
+            '/Admin/AdminRentCheckOut/RoomClean',
+            null,
+            function (data) {
                 $('#section-left-panel').html(data);
-
-                cleanRoom();
-            },
-            error: function () {
-
             }
-        });
+        )
     }
 
-    // render phòng đã đặt
-    function roomHistory() {
-        $.ajax({
-            type: "GET",
-            url: "/Admin/AdminRentCheckOut/RoomHistory",
-            beforeSend: function () {
-                // Hành động trước khi gửi yêu cầu, ví dụ: hiển thị hình ảnh loading
-                $('#loaderBar').show();
-            },
-            complete: function () {
-                // Hành động sau khi yêu cầu hoàn thành, ví dụ: ẩn hình ảnh loading
-                $('#loaderBar').hide();
-            },
-            success: function (data) {
+    // render lịch sử phòng
+    function viewRoomHistory() {
+        ajaxCall(
+            'GET',
+            '/Admin/AdminRentCheckOut/RoomHistory',
+            null,
+            function (data) {
                 $('#section-left-panel').html(data);
-            },
-            error: function () {
-
             }
+        )
+    }
+
+    // view đổi phòng
+    function viewRoomChange() {
+        $('#section-left-panel').on('click', '.btn-change-room-view', function () {
+            // lấy roomId
+            var roomId = $(this).data('room-id');
+
+            ajaxCall(
+                'GET',
+                '/Admin/AdminRentCheckOut/ChangeRoom',
+                { roomId: roomId },
+                function (data) {
+                    $('.right-panel').html(data);
+                }
+            )
         });
     }
 
     // dọn phòng
     function cleanRoom() {
-        $('.btn-clean-room').on('click', function () {
+        $('#section-left-panel').on('click', '.btn-clean-room', null, function () {
             // lấy roomId
-            var roomId = $(this).attr('data-roomId');
+            var roomId = $(this).data('room-id');
 
-            $.ajax({
-                type: "POST",
-                url: "/Admin/AdminRentCheckOut/CleanRoom",
-                data: { roomId: roomId },
-                beforeSend: function () {
-                    $('#loaderBar').show();
-                },
-                complete: function () {
-                    $('#loaderBar').hide();
-                },
-                success: function (data) {
+            ajaxCall(
+                'POST',
+                '/Admin/AdminRentCheckOut/CleanRoom',
+                { roomId: roomId },
+                function (data) {
                     $('#section-left-panel').html(data);
-                },
-                error: function () {
-
                 }
-            });
+            )
         })
     }
 
     // yêu cầu dọn phòng
     function requestCleanRoom() {
-        $('.btn-request-clean-room').on('click', function () {
+        $('#section-left-panel').on('click', '.btn-request-clean-room', function () {
             // lấy roomId
-            var roomId = $(this).attr('data-roomId');
+            var roomId = $(this).data('room-id');
 
-            $.ajax({
-                type: "POST",
-                url: "/Admin/AdminRentCheckOut/RequestCleanRoom",
-                data: { roomId: roomId },
-                beforeSend: function () {
-                    $('#loaderBar').show();
-                },
-                complete: function () {
-                    $('#loaderBar').hide();
-                },
-                success: function (data) {
+            ajaxCall(
+                'POST',
+                '/Admin/AdminRentCheckOut/RequestCleanRoom',
+                { roomId: roomId },
+                function (data) {
                     $('#section-left-panel').html(data);
-                },
-                error: function () {
-
                 }
-            });
+            )
         })
     }
 
     // đổi phòng
     function changeRoom() {
-        $('.btn-change-room').on('click', function () {
+        $('.right-panel').on('click', '.btn-change-room', function () {
             // lấy roomId
-            var roomId = $(this).attr('data-roomId');
+            var roomIdOld = $(this).data('room-id-old');
+            var roomIdNew = $(this).data('room-id-new');
+            var isCleanRoom = $(this).data('is-clean-room');
 
-            $.ajax({
-                type: "GET",
-                url: "/Admin/AdminRentCheckOut/ChangeRoom",
-                data: { roomId: roomId },
-                beforeSend: function () {
-                    $('#loaderBar').show();
-                },
-                complete: function () {
-                    $('#loaderBar').hide();
-                },
-                success: function (data) {
-                    $('.right-panel').html(data);
+            console.log(roomIdOld)
+            console.log(roomIdNew)
+            console.log(isCleanRoom)
 
-                    postChangeRoom1();
-                    postChangeRoom2();
-                },
-                error: function () {
-
+            ajaxCall(
+                'POST',
+                '/Admin/AdminRentCheckOut/ChangeRoom',
+                { roomIdOld: roomIdOld, roomIdNew: roomIdNew, isCleanRoom: isCleanRoom },
+                function (data) {
+                    $('.right-panel').html('');
+                    $('#section-left-panel').html(data);
                 }
-            });
+            )
         });
+    }
 
-        function postChangeRoom1() {
-            $('.btn-change-room1').on('click', function () {
-                // lấy roomId
-                var roomIdOld = $(this).attr('data-roomIdOld');
-                var roomIdNew = $(this).attr('data-roomIdNew');
-
-                $.ajax({
-                    type: "POST",
-                    url: "/Admin/AdminRentCheckOut/ChangeRoom",
-                    data: { roomIdOld: roomIdOld, roomIdNew: roomIdNew },
-                    beforeSend: function () {
-                        $('#loaderBar').show();
-                    },
-                    complete: function () {
-                        $('#loaderBar').hide();
-                    },
-                    success: function (data) {
-                        $('.right-panel').html("");
-
-                        $('#section-left-panel').html(data);
-                    },
-                    error: function () {
-
-                    }
-                });
-            });
-        }
-
-        function postChangeRoom2() {
-            $('.btn-change-room2').on('click', function () {
-                // lấy roomId
-                var roomIdOld = $(this).attr('data-roomIdOld');
-                var roomIdNew = $(this).attr('data-roomIdNew');
-
-                $.ajax({
-                    type: "POST",
-                    url: "/Admin/AdminRentCheckOut/ChangeRoom",
-                    data: { roomIdOld: roomIdOld, roomIdNew: roomIdNew, isCleanRoom: true },
-                    beforeSend: function () {
-                        $('#loaderBar').show();
-                    },
-                    complete: function () {
-                        $('#loaderBar').hide();
-                    },
-                    success: function (data) {
-                        $('.right-panel').html("");
-
-                        $('#section-left-panel').html(data);
-                    },
-                    error: function () {
-
-                    }
-                });
-            });
-        }
+    // xử lý ajax
+    function ajaxCall(type, url, data, successCallback) {
+        $.ajax({
+            type: type,
+            url: url,
+            data: data,
+            beforeSend: function () {
+                $('#loaderBar').show();
+            },
+            complete: function () {
+                $('#loaderBar').hide();
+            },
+            success: successCallback,
+            error: function () {
+                alert('Có lỗi xảy ra, vui lòng thử lại.');
+            }
+        });
     }
 });

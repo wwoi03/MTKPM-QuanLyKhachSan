@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MTKPM_QuanLyKhachSan.Common;
 using MTKPM_QuanLyKhachSan.Models;
 
 namespace MTKPM_QuanLyKhachSan.Daos
@@ -25,9 +26,14 @@ namespace MTKPM_QuanLyKhachSan.Daos
         public List<BookRoomDetails> GetBookRoomDetailsReceive()
         {
             return context.BookRoomDetails
-                .Where(i => i.Status == 1)
                 .Include(i => i.BookRoom)
-                .Include(i => i.Room)
+                .Include(i  => i.Room)
+                .Join(context.Rooms, 
+                    brd => brd.RoomId, // Khóa ngoại từ BookRoomDetails
+                    room => room.RoomId, // Khóa chính từ Room
+                    (brd, room) => new { brd, room }) // Kết quả kết hợp)
+                .Where(i => (RoomStatus)i.brd.Status == RoomStatus.RoomOccupied)
+                .Select(i => i.brd)
                 .ToList();
         }
 

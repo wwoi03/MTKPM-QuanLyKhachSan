@@ -1,4 +1,5 @@
-﻿@{
+﻿@using MTKPM_QuanLyKhachSan.Common
+@{
 	var roomTypes = ViewBag.roomTypes;
 	var roomRents = ViewBag.roomRents;
 }
@@ -21,7 +22,7 @@
 								<span class="title custom-color-red">@room.Room.Name</span>
 
 								<div class="">
-									@if (@room.Room.Tidy == 1)
+									@if ((RoomTidy)room.Room.Tidy == RoomTidy.NotCleaned)
 									{
 										<i class="custom-icon fa-solid fa-tag custom-color-red"></i>
 									}
@@ -68,12 +69,12 @@
 									<p>Trả phòng</p>
 								</div>
 
-								<div class="custom-dropdown-menu-item btn-change-room" data-roomId="@room.Room.RoomId">
+								<div class="custom-dropdown-menu-item btn-change-room-view" data-room-id="@room.Room.RoomId">
 									<i class="custom-icon fa-solid fa-repeat"></i>
 									<p>Đổi phòng</p>
 								</div>
 
-								@if (@room.Room.Tidy == 1)
+								@if ((RoomTidy)room.Room.Tidy == RoomTidy.NotCleaned)
 								{
 									<div class="custom-dropdown-menu-item not-allowed">
 										<i class="custom-icon fa-solid fa-tag"></i>
@@ -82,7 +83,7 @@
 								}
 								else
 								{
-									<div class="custom-dropdown-menu-item btn-request-clean-room" data-roomId="@room.Room.RoomId">
+									<div class="custom-dropdown-menu-item btn-request-clean-room" data-room-id="@room.Room.RoomId">
 										<i class="custom-icon fa-solid fa-tag"></i>
 										<p>Yêu cầu dọn phòng</p>
 									</div>
