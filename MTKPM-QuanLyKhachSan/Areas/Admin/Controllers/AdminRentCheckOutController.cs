@@ -147,14 +147,5 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
             return PartialView();
 		}
-
-        // tìm kiếm menu
-        [HttpPost]
-        public IActionResult SearchMenu(string menuName = "")
-        {
-            ViewBag.services = serviceDao.SearchServices(menuName);
-
-            return PartialView();
-        }
     }
 }
