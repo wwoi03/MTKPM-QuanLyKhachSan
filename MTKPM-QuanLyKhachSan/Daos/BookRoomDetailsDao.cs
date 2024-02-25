@@ -33,7 +33,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
                     brd => brd.RoomId, // Khóa ngoại từ BookRoomDetails
                     room => room.RoomId, // Khóa chính từ Room
                     (brd, room) => new { brd, room }) // Kết quả kết hợp)
-                .Where(i => (RoomStatus)i.brd.Status == RoomStatus.RoomOccupied)
+                .Where(i => (RoomStatusType)i.brd.Status == RoomStatusType.RoomOccupied)
                 .Select(i => i.brd)
                 .ToList();
         }

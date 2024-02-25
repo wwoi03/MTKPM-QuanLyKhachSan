@@ -34,8 +34,17 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // danh sách phòng chờ
         public IActionResult RoomWait()
         {
+            var roomWaits = roomDao.GetEmptyRooms();
+
             ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
-            ViewBag.roomWaits = roomDao.GetEmptyRooms();
+            ViewBag.roomWaits = roomWaits.Select(roomWait => new RoomWaitVM
+            {
+                RoomId = roomWait.RoomId,
+                RoomTypeId = roomWait.RoomTypeId,
+                RoomName = roomWait.Name,
+                Status = roomWait.Status,
+                Tidy = roomWait.Tidy,
+            });
 
             return PartialView();
         }

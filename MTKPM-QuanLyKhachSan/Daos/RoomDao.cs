@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MTKPM_QuanLyKhachSan.Common;
 using MTKPM_QuanLyKhachSan.Models;
 using System.Linq;
 
@@ -34,7 +35,9 @@ namespace MTKPM_QuanLyKhachSan.Daos
         // lấy danh sách phòng trống
         public List<Room> GetEmptyRooms()
         {
-            return context.Rooms.Where(i => i.Status == 0).Include(i => i.RoomType).ToList();
+            return context.Rooms.
+                Where(i => (RoomStatusType)i.Status == RoomStatusType.RoomAvailable || (RoomStatusType)i.Status == RoomStatusType.RoomPending).
+                Include(i => i.RoomType).ToList();
         }
 
         // lấy danh sách phòng cần dọn

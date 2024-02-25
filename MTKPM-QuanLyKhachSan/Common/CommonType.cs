@@ -1,7 +1,7 @@
 ﻿namespace MTKPM_QuanLyKhachSan.Common
 {
     // Trạng thái phòng
-    public enum RoomStatus : int
+    public enum RoomStatusType : int
     {
         RoomAvailable = 0,   // Phòng trống
         RoomOccupied = 1,    // Phòng đang được thuê
@@ -9,7 +9,7 @@
     }
 
     // Trạng thái dọn phòng
-    public enum RoomTidy : int
+    public enum RoomTidyType : int
     {
         Cleaned = 0, // đã dọn phòng
         NotCleaned = 1, // chưa dọn phòng

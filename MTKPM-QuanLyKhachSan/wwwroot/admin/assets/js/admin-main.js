@@ -23,12 +23,27 @@
     main();
 
     function main() {
+        switchPage();
         switchTabs();
         openDropdownMenu();
         closeDropdownMenu();
     }
 
-    switchTabs();
+    function switchPage() {
+        $('.sidebar-page-item').each(function () {
+            var sidebarPageLink = $(this).find('.sidebar-page-link');
+            var sidebarPageItemActive = $('.sidebar-page-item.active');
+
+            if (sidebarPageLink.attr('href') === window.location.pathname) {
+                // đóng active hiện tại
+                if (sidebarPageItemActive.length) {
+                    sidebarPageItemActive.removeClass('active');
+                }
+
+                $(this).addClass('active');
+            }
+        });
+    }
 
     // M: Xử lý chuyển tab
     function switchTabs() {

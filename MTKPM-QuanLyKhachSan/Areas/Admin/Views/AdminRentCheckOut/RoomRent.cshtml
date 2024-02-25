@@ -22,7 +22,7 @@
 								<span class="title custom-color-red">@room.RoomName</span>
 
 								<div class="">
-									@if ((RoomTidy)room.Tidy == RoomTidy.NotCleaned)
+									@if ((RoomTidyType)room.Tidy == RoomTidyType.NotCleaned)
 									{
 										<i class="custom-icon fa-solid fa-tag custom-color-red"></i>
 									}
@@ -35,13 +35,13 @@
 									<span class="custom-text">@room.CalcTimeStay()</span>
 								</div>
 
-								<div style="display: flex; justify-content: space-between">
-									<div class="date block">
+								<div style="display: flex;">
+									<div class="date block" style="flex: 1;">
 										<i class="custom-icon fa-solid fa-burger"></i>
 										<span class="custom-text">@room.QuantityMenu</span>
 									</div>
 
-									<div class="date block">
+									<div class="date block" style="flex: 1;">
 										<i class="custom-icon fa-solid fa-dollar-sign"></i>
 										<span class="custom-text">@room.FormatMoney()</span>
 									</div>
@@ -82,7 +82,7 @@
 									<p>Đổi phòng</p>
 								</div>
 
-								@if ((RoomTidy)room.Tidy == RoomTidy.NotCleaned)
+								@if ((RoomTidyType)room.Tidy == RoomTidyType.NotCleaned)
 								{
 									<div class="custom-dropdown-menu-item not-allowed">
 										<i class="custom-icon fa-solid fa-tag"></i>

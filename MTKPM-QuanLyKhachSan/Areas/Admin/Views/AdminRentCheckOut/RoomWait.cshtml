@@ -1,4 +1,5 @@
-﻿@{
+﻿@using MTKPM_QuanLyKhachSan.Common
+@{
 	var roomTypes = ViewBag.roomTypes;
 	var rooms = ViewBag.roomWaits;
 }
@@ -18,27 +19,33 @@
 					<div class="col-3 pl-2 pr-2 pt-4 ">
 						<div class="custom-card">
 							<div class="custom-card-header">
-								<span class="title">@room.Name</span>
+								<span class="title">@room.RoomName</span>
 								<i class="custom-icon fa-solid fa-ellipsis-vertical icon-menu"></i>
 							</div>
 							<div class="custom-card-content">
 								<div class="date block">
 									<i class="custom-icon fa-solid fa-person-walking icon"></i>
-									<span class="custom-text custom-color-text">10 ngày trước</span>
+									@if ((RoomStatusType)room.Status == RoomStatusType.RoomPending)
+									{
+										<span class="custom-text" style="color: #2BA5F0 !important">@room.ViewStatus()</span>
+									} else
+									{
+										<span class="custom-text custom-color-text">@room.ViewStatus()</span>
+									}
 								</div>
 
-								@if (room.Tidy == 1)
+								@if ((RoomTidyType)room.Tidy == RoomTidyType.NotCleaned)
 								{
 									<div class="status block">
 										<i class="custom-icon fa-solid fa-xmark icon"></i>
-										<span class="custom-text">Chưa dọn phòng</span>
+										<span class="custom-text">@room.ViewTidy()</span>
 									</div>
 								}
 								else
 								{
 									<div class="status block">
 										<i class="custom-icon fa-solid fa-check custom-color-green"></i>
-										<span class="custom-text custom-color-text">Đã dọn phòng</span>
+										<span class="custom-text custom-color-text">@room.ViewTidy()</span>
 									</div>
 								}
 
@@ -55,7 +62,7 @@
 									<p>Hủy phòng</p>
 								</div>
 
-								@if (@room.Tidy == 1)
+								@if ((RoomTidyType)room.Tidy == RoomTidyType.NotCleaned)
 								{
 									<div class="custom-dropdown-menu-item not-allowed">
 										<i class="custom-icon fa-solid fa-tag"></i>
