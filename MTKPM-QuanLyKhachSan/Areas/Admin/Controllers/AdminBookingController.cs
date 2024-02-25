@@ -10,12 +10,14 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
     public class AdminBookingController : Controller
     {
         RoomDao roomDao;
+        RoomTypeDao roomTypeDao;
         BookRoomDao bookRoomDao;
         BookRoomDetailsDao bookRoomDetailsDao;
 
         public AdminBookingController(DatabaseContext context)
         {
             roomDao = new RoomDao(context);
+            roomTypeDao = new RoomTypeDao(context);
             bookRoomDao = new BookRoomDao(context);
             bookRoomDetailsDao = new BookRoomDetailsDao(context);
         }
@@ -62,7 +64,33 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Booking()
         {
-            return PartialView();
+            return PartialView("Booking", new BookingAdminVM());
+        }
+
+        [HttpPost]
+        public IActionResult Booking(BookingAdminVM bookingAdminVM)
+        {
+            ExecutionOutcome executionOutcome;
+            string error;
+
+            if (bookingAdminVM.Validation(out error) == true)
+            {
+                executionOutcome = new ViewModels.ExecutionOutcome()
+                {
+                    Result = true,
+                    Mess = "Đặt phòng thành công.",
+                };
+            }
+            else
+            {
+                executionOutcome = new ViewModels.ExecutionOutcome()
+                {
+                    Result = false,
+                    Mess = error,
+                };
+            }
+
+            return Json(executionOutcome);
         }
 
         // chi tiết đặt phòng
@@ -71,15 +99,16 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         {
             BookRoomDetails bookRoomDetails = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
 
-            BookingDetailsVM bookingDetailsVM = new BookingDetailsVM()
+            BookingAdminVM bookingDetailsVM = new BookingAdminVM()
             {
                 BookRoomId = bookRoomDetails.BookRoomId,
                 Name = bookRoomDetails.BookRoom.Customer.Name,
                 Phone = bookRoomDetails.BookRoom.Customer.Phone,
                 CheckIn = bookRoomDetails.CheckIn.ToString(),
                 CheckOut = bookRoomDetails.CheckOut.ToString(),
-                Note = bookRoomDetails.Note,
+                Note = bookRoomDetails.BookRoom.Note,
                 CIC = bookRoomDetails.BookRoom.Customer.CIC,
+                Rooms = roomDao.GetRooms()
             };
 
             return PartialView("BookingDetails", bookingDetailsVM);
@@ -87,36 +116,38 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
         // sửa đặt phòng
         [HttpPost]
-        public IActionResult EditBooking(BookingDetailsVM bookingDetailsVM)
+        public IActionResult EditBooking(BookingAdminVM bookingAdminVM)
         {
-            ExecuteOperation executeOperation;
+            ExecutionOutcome executionOutcome;
+            string error;
 
-            if (int.Parse(bookingDetailsVM.Phone) <= 0 || bookingDetailsVM.Phone.Length > 10)
+            if (bookingAdminVM.Validation(out error) == true)
             {
-                executeOperation = new ExecuteOperation()
-                {
-                    Result = false,
-                    Mess = "Vui lòng nhập đúng định dạng số điện thoại.",
-                };
-            }
-            else if (bookingDetailsVM.CheckDate() == false)
-            {
-                executeOperation = new ExecuteOperation()
-                {
-                    Result = false,
-                    Mess = "Ngày đi phải nhỏ hơn ngày tới.",
-                };
-            }
-            else
-            {
-                executeOperation = new ExecuteOperation()
+                executionOutcome = new ViewModels.ExecutionOutcome()
                 {
                     Result = true,
                     Mess = "Chỉnh sửa đặt phòng thành công.",
                 };
             }
+            else
+            {
+                executionOutcome = new ViewModels.ExecutionOutcome()
+                {
+                    Result = false,
+                    Mess = error,
+                };
+            }
 
-            return Json(executeOperation);
+            return Json(executionOutcome);
+        }
+
+        // Chọn phòng đặt
+        public IActionResult ChooseRoom()
+        {
+            ViewBag.rooms = roomDao.GetEmptyRooms();
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+
+            return PartialView();
         }
     }
 }

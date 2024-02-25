@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MTKPM_QuanLyKhachSan.ViewModels
 {
-    public class BookingDetailsVM
+    public class BookingAdminVM
     {
         public int BookRoomId { get; set; }
 
@@ -14,7 +14,7 @@ namespace MTKPM_QuanLyKhachSan.ViewModels
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập CCCD.")]
-        public string CIC { get; set; }
+        public string CIC { get; set; } = null!;
 
 
         [Required(ErrorMessage = "Vui lòng nhập ngày nhận phòng.")]
@@ -51,6 +51,37 @@ namespace MTKPM_QuanLyKhachSan.ViewModels
             if (ConvertDateTime(CheckIn) > ConvertDateTime(CheckOut))
                 return false;
             return true;
+        }
+
+        // Kiểm tra ràng buộc
+        public bool Validation(out string error)
+        {
+            if (int.Parse(Phone) <= 0 || Phone.Length > 10)
+            {
+                error = "Vui lòng nhập đúng định dạng số điện thoại.";
+                return false;
+            }
+            else if (CheckDate() == false)
+            {
+                error = "Ngày đi phải nhỏ hơn ngày tới.";
+                return false;
+            }
+            else
+            {
+                error = "";
+                return true;
+            }
+        }
+
+        // chuyển đổi sang model
+        public BookRoom ConvertModel()
+        {
+            BookRoom bookRoom = new BookRoom()
+            {
+                //CustomerId = this.Bo
+            };
+
+            return bookRoom;
         }
     }
 }

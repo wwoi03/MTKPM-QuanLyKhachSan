@@ -6740,6 +6740,7 @@ h3.page-sub-title {
     padding-top: 14px;
     border-right: 1px solid var(--line-color);
     min-height: calc(100vh - 80px);
+    position: relative;
 }
 
 .panel-navbar {
@@ -7560,9 +7561,7 @@ h3.page-sub-title {
 
 /*-------------------------------------------- Thuê - trả phòng ------------------------------*/
 .custom-card {
-    /* border: 1px solid #ccc; */
     border-radius: 4px;
-    /*width: 180px;*/
     box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
     font-family: Arial, sans-serif;
     position: relative;
@@ -7585,7 +7584,7 @@ h3.page-sub-title {
 }
 
     .custom-card-header .title {
-        color: green !important;
+        color: green;
     }
 
 .custom-card-content .block {
@@ -7598,14 +7597,35 @@ h3.page-sub-title {
         padding-bottom: 0;
     }
 
+.custom-color-green {
+    color: #52AF58 !important;
+}
+
+.custom-color-red {
+    color: #f44336 !important;
+}
+
+.custom-color-nomal {
+    color: #00000061 !important;
+}
+
+.custom-dropdown-menu-item.not-allowed:hover {
+    cursor: not-allowed;
+}
 
 .custom-icon {
-    font-size: 20px;
-    margin-right: 16px;
+    font-size: 18px;
+    margin-right: 10px;
+    width: 18px;
+    text-align: center;
 }
 
 .custom-text {
     font-size: 14px;
+}
+
+.custom-color-text {
+    color: #000 !important;
 }
 
 .custom-card-header .icon-menu {
@@ -7614,6 +7634,7 @@ h3.page-sub-title {
     padding-left: 10px;
     color: #000000B3;
     margin: 0;
+    cursor: pointer;
 }
 
 .custom-card-content {
@@ -7637,13 +7658,27 @@ h3.page-sub-title {
     background: #fff;
     border-radius: 4px;
     box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
-    width: 220px;
     right: -100%;
-    top: 37%;
+    left: 80%;
+    top: 46px;
+    max-width: 188px;
     padding: 8px 0;
     display: none;
     z-index: 9999;
+    animation: scale-up 0.15s forwards;
 }
+
+@keyframes scale-up {
+    0% {
+        transform: scale(0);
+        transform-origin: top left; /* Đặt gốc của phóng to là góc trên bên trái */
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 
     .custom-dropdown-menu.active {
         display: block;
@@ -7659,15 +7694,18 @@ h3.page-sub-title {
 
     .custom-dropdown-menu-item:hover {
         background-color: #F5F5F5;
+        cursor: pointer;
     }
 
     .custom-dropdown-menu-item i {
         font-size: 18px;
         margin-right: 16px;
+        color: #4C4C4C;
     }
 
     .custom-dropdown-menu-item p {
         margin: 0;
+        color: #4C4C4C;
     }
 
 .custom-room-type-item {
@@ -7776,4 +7814,196 @@ ul.custom-tabs {
 
 .custom-tab-container {
     position: relative;
+}
+
+/* Loading */
+#loaderBar {
+    position: absolute;
+    top: -1px;
+    height: 2px;
+    width: 100%;
+    z-index: 9999;
+    background: #F9F9F9;
+    overflow: hidden;
+    display: none;
+}
+
+    #loaderBar::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        border-radius: 5px;
+        background: repeating-linear-gradient(45deg, #0031F2 0 30px, #006DFE 0 40px) right/200% 100%;
+        animation: fillProgress 3s ease-in-out infinite, lightEffect 0.5s infinite linear;
+        animation-fill-mode: forwards;
+    }
+
+@keyframes fillProgress {
+    0% {
+        width: 0;
+    }
+
+    33% {
+        width: 33.333%;
+    }
+
+    66% {
+        width: 66.67%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes lightEffect {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        background: repeating-linear-gradient(45deg, #0031F2 0 30px, #006DFE 0 40px) right/200% 100%;
+    }
+
+    10%, 30%, 50%, 70%, 90% {
+        background: repeating-linear-gradient(45deg, #0031F2 0 30px, #006DFE 0 40px, rgba(255, 255, 255, 0.3) 0 40px) right/200% 100%;
+    }
+}
+
+.cotent-left-panel {
+    position: relative;
+}
+
+#loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.7);
+    font-size: 20px;
+    color: #000;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Order menu */
+.custom-menu-search-box {
+    margin-bottom: 24px;
+}
+
+    .custom-menu-search-box input {
+        font-size: 18px;
+        border: none;
+        border-bottom: 1px solid #495057;
+        width: 100%;
+        padding: 0 0 3px 0;
+        color: #495057;
+    }
+
+.custom-menu-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.custom-menu-list-item {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.custom-menu-list-item .dot-icon {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 100%;
+    position: relative;
+}
+
+    .custom-menu-list-item .dot-icon i {
+    }
+
+.custom-menu-list-item .dot-icon2 {
+    width: 18px;
+    height: 18px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-menu-list-item .dot-icon:active:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 100%;
+    background: #E9E9E9;
+    animation: ripple-animation 0.08s linear;
+    z-index: 1;
+}
+
+/* .custom-menu-list-item .dot-icon:hover {
+        animation: ripple-animation 0.6s linear;
+    } */
+
+@keyframes ripple-animation {
+    0% {
+        transform: scale(0);
+    }
+
+    25% {
+        transform: scale(0.25);
+    }
+
+    50% {
+        transform: scale(0.5);
+    }
+
+    75% {
+        transform: scale(0.75);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.custom-menu-list-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .custom-menu-list-content p {
+        padding: 0 6px;
+        margin: 0;
+        font-size: 16px;
+        color: red;
+    }
+
+.custom-menu-list-quantity {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-radius: 100%;
+    background-color: #3A51B1;
+    bottom: calc(100% - 10px);
+    left: calc(100% - 10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+    z-index: 99999999999;
 }
