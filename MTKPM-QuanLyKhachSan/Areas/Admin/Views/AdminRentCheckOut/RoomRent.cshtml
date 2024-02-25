@@ -14,15 +14,15 @@
 		<div class="d-flex flex-xl-wrap ml-xl-n2 mr-xl-n2">
 			@foreach (var room in roomRents)
 			{
-				if (@roomType.RoomTypeId == @room.Room.RoomTypeId)
+				if (@roomType.RoomTypeId == @room.RoomTypeId)
 				{
 					<div class="col-4 pl-2 pr-2 pt-4 ">
 						<div class="custom-card">
 							<div class="custom-card-header">
-								<span class="title custom-color-red">@room.Room.Name</span>
+								<span class="title custom-color-red">@room.RoomName</span>
 
 								<div class="">
-									@if ((RoomTidy)room.Room.Tidy == RoomTidy.NotCleaned)
+									@if ((RoomTidy)room.Tidy == RoomTidy.NotCleaned)
 									{
 										<i class="custom-icon fa-solid fa-tag custom-color-red"></i>
 									}
@@ -32,24 +32,32 @@
 							<div class="custom-card-content">
 								<div class="date block">
 									<i class="custom-icon fa-solid fa-clock"></i>
-									<span class="custom-text">10 ngày 21 giờ</span>
+									<span class="custom-text">@room.CalcTimeStay()</span>
 								</div>
 
 								<div style="display: flex; justify-content: space-between">
 									<div class="date block">
 										<i class="custom-icon fa-solid fa-burger"></i>
-										<span class="custom-text">10</span>
+										<span class="custom-text">@room.QuantityMenu</span>
 									</div>
 
 									<div class="date block">
 										<i class="custom-icon fa-solid fa-dollar-sign"></i>
-										<span class="custom-text">1.000.000 VNĐ ~</span>
+										<span class="custom-text">@room.FormatMoney()</span>
 									</div>
 								</div>
 								
 								<div class="date block">
 									<i class="custom-icon fa-solid fa-comment"></i>
-									<span class="custom-text">Không có ghi chú</span>
+
+									@if (room.Note == null || room.Note.Equals("")) 
+									{
+										<span class="custom-text">Không có ghi chú</span>
+									}
+									else
+									{
+										<span class="custom-text">@room.Note</span>
+									}
 								</div>
 							</div>
 
@@ -69,12 +77,12 @@
 									<p>Trả phòng</p>
 								</div>
 
-								<div class="custom-dropdown-menu-item btn-change-room-view" data-room-id="@room.Room.RoomId">
+								<div class="custom-dropdown-menu-item btn-change-room-view" data-room-id="@room.RoomId">
 									<i class="custom-icon fa-solid fa-repeat"></i>
 									<p>Đổi phòng</p>
 								</div>
 
-								@if ((RoomTidy)room.Room.Tidy == RoomTidy.NotCleaned)
+								@if ((RoomTidy)room.Tidy == RoomTidy.NotCleaned)
 								{
 									<div class="custom-dropdown-menu-item not-allowed">
 										<i class="custom-icon fa-solid fa-tag"></i>
@@ -83,7 +91,7 @@
 								}
 								else
 								{
-									<div class="custom-dropdown-menu-item btn-request-clean-room" data-room-id="@room.Room.RoomId">
+									<div class="custom-dropdown-menu-item btn-request-clean-room" data-room-id="@room.RoomId">
 										<i class="custom-icon fa-solid fa-tag"></i>
 										<p>Yêu cầu dọn phòng</p>
 									</div>

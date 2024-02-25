@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
+using MTKPM_QuanLyKhachSan.ViewModels;
 
 namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 {
@@ -13,6 +14,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         BookRoomDao bookRoomDao;
         BookRoomDetailsDao bookRoomDetailsDao;
         BillDao billDao;
+        OrderDao orderDao;
 
         public AdminRentCheckOutController(DatabaseContext context)
         {
@@ -21,6 +23,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             bookRoomDao = new BookRoomDao(context);
             bookRoomDetailsDao = new BookRoomDetailsDao(context);
             billDao = new BillDao(context);
+            orderDao = new OrderDao(context);
         }
 
         public IActionResult Index()
@@ -40,8 +43,21 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // danh sách phòng đang thuê
         public IActionResult RoomRent()
         {
-            ViewBag.roomRents = bookRoomDetailsDao.GetBookRoomDetailsReceive();
+            var roomRents = bookRoomDetailsDao.GetBookRoomDetailsReceive();
+
             ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+            ViewBag.roomRents = roomRents.Select(roomRent => new RoomRentVM
+			{
+                BookRoomDetailsId = roomRent.BookRoomDetailsId,
+                RoomId = roomRent.RoomId,
+                RoomTypeId = roomRent.Room.RoomTypeId,
+                RoomName = roomRent.Room.Name,
+                Tidy = roomRent.Room.Tidy,
+                Note = roomRent.BookRoom.Note,
+                CheckIn = roomRent.CheckIn,
+                TotalPrice = orderDao.CalcOrderPrice(roomRent.BookRoomDetailsId) + roomRent.Room.RoomType.Price,
+                QuantityMenu = orderDao.CalcOrderQuantity(roomRent.BookRoomDetailsId),
+            }).ToList();
 
             return PartialView();
         }

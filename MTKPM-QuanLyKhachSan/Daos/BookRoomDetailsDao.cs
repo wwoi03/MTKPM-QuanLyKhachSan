@@ -28,6 +28,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
             return context.BookRoomDetails
                 .Include(i => i.BookRoom)
                 .Include(i  => i.Room)
+                .Include(i  => i.Room.RoomType)
                 .Join(context.Rooms, 
                     brd => brd.RoomId, // Khóa ngoại từ BookRoomDetails
                     room => room.RoomId, // Khóa chính từ Room

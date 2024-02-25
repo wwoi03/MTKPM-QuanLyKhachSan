@@ -1,7 +1,20 @@
 ﻿$(document).ready(function () {
     main();
 
+    // main
     function main() {
+        view();
+        feature();
+    }
+
+    // view
+    function view() {
+        viewRoomWait();
+        viewRoomChange();
+    }
+
+    // chức năng
+    function feature() {
         changeView();
         cleanRoom();
         requestCleanRoom();
@@ -10,9 +23,6 @@
 
     // xử lý chuyển view
     function changeView() {
-        viewRoomWait();
-        viewRoomChange();
-
         // bắt sự kiện click trên mỗi tab
         $('.nav-container .nav-item').on('click', function () {
             // Lấy id của item được click
@@ -143,10 +153,6 @@
             var roomIdNew = $(this).data('room-id-new');
             var isCleanRoom = $(this).data('is-clean-room');
 
-            console.log(roomIdOld)
-            console.log(roomIdNew)
-            console.log(isCleanRoom)
-
             ajaxCall(
                 'POST',
                 '/Admin/AdminRentCheckOut/ChangeRoom',
@@ -159,7 +165,7 @@
         });
     }
 
-    // xử lý ajax
+    // call ajax
     function ajaxCall(type, url, data, successCallback) {
         $.ajax({
             type: type,
