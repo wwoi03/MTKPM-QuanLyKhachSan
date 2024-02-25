@@ -186,15 +186,19 @@
     // tìm kiếm  menu
     function searchMenu() {
         $('.right-panel').on('input', '#input-search-menu', function () {
-            console.log($(this).val())
-            ajaxCall(
-                'POST',
-                '/Admin/AdminRentCheckOut/SearchMenu',
-                { menuName: $(this).val() },
-                function (data) {
-                    $('.list-menu-container').html(data);
+            var value = $(this).val().toLowerCase();
+
+            $('.custom-menu-list-item').each(function () {
+                // Lấy nội dung của mục menu và chuyển đổi thành chữ thường
+                var itemName = $(this).find('.menu-item-name').text().toLowerCase(); 
+
+                // Kiểm tra xem giá trị tìm kiếm có tồn tại trong nội dung của mục menu không
+                if (itemName.indexOf(value) === -1) {
+                    $(this).removeClass('active'); // Nếu không tìm thấy, loại bỏ lớp 'active'
+                } else {
+                    $(this).addClass('active'); // Nếu tìm thấy, thêm lớp 'active'
                 }
-            )
+            });
         });
     }
 

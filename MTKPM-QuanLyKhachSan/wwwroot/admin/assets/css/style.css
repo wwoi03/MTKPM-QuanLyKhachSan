@@ -7917,14 +7917,19 @@ ul.custom-tabs {
     border-radius: 4px;
     margin-right: 20px;
     margin-bottom: 20px;
+    display: none;
 }
 
-.custom-menu-list-item .dot-icon {
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 100%;
-    position: relative;
-}
+    .custom-menu-list-item.active {
+        display: block;
+    }
+
+    .custom-menu-list-item .dot-icon {
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 100%;
+        position: relative;
+    }
 
     .custom-menu-list-item .dot-icon i {
     }
