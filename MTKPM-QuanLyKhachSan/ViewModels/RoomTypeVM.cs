@@ -10,5 +10,8 @@
 		public int? NumAdult { get; set; }
 		public int? NumChildren { get; set; }
 		public int? NumView { get; set; }
+		public string? Image { get; set; }
+
+		public IFormFile ImageFile { get; set; }
 	}
 }

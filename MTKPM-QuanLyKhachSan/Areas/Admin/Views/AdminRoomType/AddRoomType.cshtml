@@ -1,4 +1,5 @@
-﻿﻿﻿@using MTKPM_QuanLyKhachSan.ViewModels
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using MTKPM_QuanLyKhachSan.ViewModels
 @model RoomTypeVM
 
 <!DOCTYPE html>
@@ -24,7 +25,7 @@
     <div class="main">
 
         <div class="container">
-            <form method="POST" id="signup-form" class="signup-form" action="#">
+            <form method="POST" id="signup-form" class="signup-form" asp-controller="AdminRoomType" asp-action="AddRoomType" asp-area="Admin">
                 <div>
                     <h3>Loại Phòng </h3>
                     <fieldset>
@@ -34,11 +35,11 @@
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <label class="form-label">Tên</label>
-                                        <input type="text" name="first_name" id="first_name" asp-for="Name" /> 
+                                        <input type="text"  id="first_name" asp-for="Name"/>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Giá</label>
-                                        <input type="text" name="last_name" id="last_name" asp-for="Price"/>
+                                        <input type="text"  id="last_name" asp-for="Price"  />
                                     </div>
                                 </div>
                             </div>     
@@ -47,15 +48,15 @@
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <label class="form-label">Tổng số giường</label>
-                                        <input type="text" name="first_name" id="first_name" asp-for="Numbed" />
+                                        <input type="text" id="first_name" asp-for="NumBed" />
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Giường người lớn</label>
-                                        <input type="text" name="last_name" id="last_name" asp-for="NumAdult" />
+                                        <input type="text"  id="last_name" asp-for="NumAdult" type="number" />
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Giường em bé</label>
-                                        <input type="text" name="last_name" id="last_name" asp-for="NumChildren" />
+                                        <input type="text"  id="last_name" asp-for="NumChildren" type="number" />
                                     </div>           
                                 </div>
                             </div>
@@ -66,7 +67,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="ssn" class="form-label">Mô tả</label>
-                                    <textarea name="message" class="form-control" id="message" cols="30" rows="7" asp-for="Description"></textarea>
+                                    <textarea class="form-control" id="message" cols="30" rows="7" asp-for="Description" type="text"></textarea>
                                 </div>
                             </div>
                         </div>
