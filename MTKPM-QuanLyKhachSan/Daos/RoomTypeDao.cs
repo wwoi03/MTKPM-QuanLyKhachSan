@@ -17,9 +17,13 @@ namespace MTKPM_QuanLyKhachSan.Daos
         {
             return context.RoomTypes.OrderByDescending(p => p.RoomTypeId).ToList();
         }
+		public List<RoomType> GetRoomTypes1()
+		{
+			return context.RoomTypes.OrderByDescending(p => p.RoomTypeId).ToList();
+		}
 
-        // lấy loại phòng theo Id
-        public RoomType GetRoomTypeById(int RoomTypeId)
+		// lấy loại phòng theo Id
+		public RoomType GetRoomTypeById(int RoomTypeId)
         {
             RoomType roomType = context.RoomTypes.FirstOrDefault(r => r.RoomTypeId == RoomTypeId);
             return roomType;
@@ -38,5 +42,10 @@ namespace MTKPM_QuanLyKhachSan.Daos
             }
             return roomTypes;
         }
-    }
+		public void InsertRoomType(RoomType newRoomType)
+		{
+			context.RoomTypes.Add(newRoomType);
+			context.SaveChanges();
+		}
+	}
 }

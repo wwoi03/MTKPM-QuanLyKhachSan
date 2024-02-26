@@ -1,13 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MTKPM_QuanLyKhachSan.Daos;
+using MTKPM_QuanLyKhachSan.Models;
 
 namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class AdminRoomController : Controller
     {
-        public IActionResult Index()
+        RoomDao roomDao;
+		public AdminRoomController(DatabaseContext context)
+		{
+			roomDao = new RoomDao(context);
+		}
+		public IActionResult Index()
         {
-            return View();
+            ViewBag.Room = roomDao.GetRoom();
+            return View();  
         }
     }
 }

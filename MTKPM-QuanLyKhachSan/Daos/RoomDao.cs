@@ -12,9 +12,13 @@ namespace MTKPM_QuanLyKhachSan.Daos
         {
             this.context = context;
         }
+		public List<Room> GetRoom()
+		{
+			return context.Rooms.OrderByDescending(p => p.RoomId).ToList();
+		}
 
-        // lấy danh sách phòng trống theo loại phòng
-        public List<Room> GetEmptyRoomByType(int roomTypeId)
+		// lấy danh sách phòng trống theo loại phòng
+		public List<Room> GetEmptyRoomByType(int roomTypeId)
         {
             return context.Rooms.Where(i => i.RoomTypeId == roomTypeId && i.Status == 0).Include(i => i.RoomType).ToList();
         }

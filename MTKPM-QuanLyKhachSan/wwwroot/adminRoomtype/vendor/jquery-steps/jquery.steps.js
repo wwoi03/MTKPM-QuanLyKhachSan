@@ -267,13 +267,28 @@ function destroy(wizard, options)
 }
 
 /**
+ * Triggers the onFinishing and onFinished event.
  *
  * @static
  * @private
+ * @method finishStep
  * @param wizard {Object} The jQuery wizard object
  * @param state {Object} The state container of the current wizard
  **/
+function finishStep(wizard, state)
+{
+    var currentStep = wizard.find(".steps li").eq(state.currentIndex);
 
+    if (wizard.triggerHandler("finishing", [state.currentIndex]))
+    {
+        currentStep.addClass("done").removeClass("error");
+        wizard.triggerHandler("finished", [state.currentIndex]);
+    }
+    else
+    {
+        currentStep.addClass("error");
+    }
+}
 
 /**
  * Gets or creates if not exist an unique event namespace for the given wizard instance.
@@ -778,6 +793,9 @@ function paginationClickHandler(event)
             cancel(wizard);
             break;
 
+        case "finish":
+            finishStep(wizard, state);
+            break;
 
         case "next":
             goToNextStep(wizard, options, state);
@@ -799,32 +817,32 @@ function paginationClickHandler(event)
  * @param options {Object} Settings of the current wizard
  * @param state {Object} The state container of the current wizard
  */
-//function refreshPagination(wizard, options, state)
-//{
-//    if (options.enablePagination)
-//    {
-//        var finish = wizard.find(".actions a[href$='#finish']").parent(),
-//            next = wizard.find(".actions a[href$='#next']").parent();
+function refreshPagination(wizard, options, state)
+{
+    if (options.enablePagination)
+    {
+        var finish = wizard.find(".actions a[href$='#finish']").parent(),
+            next = wizard.find(".actions a[href$='#next']").parent();
 
-//        if (!options.forceMoveForward)
-//        {
-//            var previous = wizard.find(".actions a[href$='#previous']").parent();
-//            previous._enableAria(state.currentIndex > 0);
-//        }
+        if (!options.forceMoveForward)
+        {
+            var previous = wizard.find(".actions a[href$='#previous']").parent();
+            previous._enableAria(state.currentIndex > 0);
+        }
 
-//        if (options.enableFinishButton && options.showFinishButtonAlways)
-//        {
-//            finish._enableAria(state.stepCount > 0);
-//            next._enableAria(state.stepCount > 1 && state.stepCount > (state.currentIndex + 1));
-//        }
-//        else
-//        {
-//            finish._showAria(options.enableFinishButton && state.stepCount === (state.currentIndex + 1));
-//            next._showAria(state.stepCount === 0 || state.stepCount > (state.currentIndex + 1)).
-//                _enableAria(state.stepCount > (state.currentIndex + 1) || !options.enableFinishButton);
-//        }
-//    }
-//}
+        if (options.enableFinishButton && options.showFinishButtonAlways)
+        {
+            finish._enableAria(state.stepCount > 0);
+            next._enableAria(state.stepCount > 1 && state.stepCount > (state.currentIndex + 1));
+        }
+        else
+        {
+            finish._showAria(options.enableFinishButton && state.stepCount === (state.currentIndex + 1));
+            next._showAria(state.stepCount === 0 || state.stepCount > (state.currentIndex + 1)).
+                _enableAria(state.stepCount > (state.currentIndex + 1) || !options.enableFinishButton);
+        }
+    }
+}
 
 /**
  * Refreshs the visualization state for the step navigation (tabs).
@@ -892,8 +910,8 @@ function registerEvents(wizard, options)
 
     wizard.bind("canceled" + eventNamespace, options.onCanceled);
     wizard.bind("contentLoaded" + eventNamespace, options.onContentLoaded);
-    //wizard.bind("finishing" + eventNamespace, options.onFinishing);
-    //wizard.bind("finished" + eventNamespace, options.onFinished);
+    wizard.bind("finishing" + eventNamespace, options.onFinishing);
+    wizard.bind("finished" + eventNamespace, options.onFinished);
     wizard.bind("init" + eventNamespace, options.onInit);
     wizard.bind("stepChanging" + eventNamespace, options.onStepChanging);
     wizard.bind("stepChanged" + eventNamespace, options.onStepChanged);
@@ -1047,7 +1065,10 @@ function renderPagination(wizard, options, state)
 
         buttons += buttonTemplate.format("next", options.labels.next);
 
-      
+        if (options.enableFinishButton)
+        {
+            buttons += buttonTemplate.format("finish", options.labels.finish);
+        }
 
         if (options.enableCancelButton)
         {
@@ -1330,7 +1351,15 @@ $.fn.steps.destroy = function ()
     return destroy(this, getOptions(this));
 };
 
-
+/**
+ * Triggers the onFinishing and onFinished event.
+ *
+ * @method finish
+ **/
+$.fn.steps.finish = function ()
+{
+    finishStep(this, getState(this));
+};
 
 /**
  * Gets the current step index.
@@ -1767,7 +1796,15 @@ var defaults = $.fn.steps.defaults = {
      **/
     enableCancelButton: false,
 
-   
+    /**
+     * Shows the finish button if enabled.
+     *
+     * @property enableFinishButton
+     * @type Boolean
+     * @default true
+     * @for defaults
+     **/
+    enableFinishButton: true,
 
     /**
      * Not yet implemented.
@@ -1788,6 +1825,7 @@ var defaults = $.fn.steps.defaults = {
      * @default false
      * @for defaults
      **/
+    showFinishButtonAlways: false,
 
     /**
      * Prevents jumping to a previous step.
@@ -1879,7 +1917,26 @@ var defaults = $.fn.steps.defaults = {
      **/
     onCanceled: function (event) { },
 
-   
+    /**
+     * Fires before finishing and can be used to prevent completion by returning `false`. 
+     * Very useful for form validation. 
+     *
+     * @property onFinishing
+     * @type Event
+     * @default function (event, currentIndex) { return true; }
+     * @for defaults
+     **/
+    onFinishing: function (event, currentIndex) { return true; },
+
+    /**
+     * Fires after completion. 
+     *
+     * @property onFinished
+     * @type Event
+     * @default function (event, currentIndex) { }
+     * @for defaults
+     **/
+    onFinished: function (event, currentIndex) { },
 
     /**
      * Fires after async content is loaded. 
@@ -1941,7 +1998,15 @@ var defaults = $.fn.steps.defaults = {
          **/
         pagination: "Pagination",
 
-     
+        /**
+         * Label for the finish button.
+         *
+         * @property finish
+         * @type String
+         * @default "Finish"
+         * @for defaults
+         **/
+        finish: "Finish",
 
         /**
          * Label for the next button.

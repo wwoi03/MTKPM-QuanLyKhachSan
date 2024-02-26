@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿@using MTKPM_QuanLyKhachSan.ViewModels
+@model RoomTypeVM
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -31,11 +34,11 @@
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <label class="form-label">Tên</label>
-                                        <input type="text" name="first_name" id="first_name" /> 
+                                        <input type="text" name="first_name" id="first_name" asp-for="Name" /> 
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Giá</label>
-                                        <input type="text" name="last_name" id="last_name" />
+                                        <input type="text" name="last_name" id="last_name" asp-for="Price"/>
                                     </div>
                                 </div>
                             </div>     
@@ -44,26 +47,26 @@
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <label class="form-label">Tổng số giường</label>
-                                        <input type="text" name="first_name" id="first_name" />
+                                        <input type="text" name="first_name" id="first_name" asp-for="Numbed" />
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Giường người lớn</label>
-                                        <input type="text" name="last_name" id="last_name" />
+                                        <input type="text" name="last_name" id="last_name" asp-for="NumAdult" />
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Giường em bé</label>
-                                        <input type="text" name="last_name" id="last_name" />
+                                        <input type="text" name="last_name" id="last_name" asp-for="NumChildren" />
                                     </div>           
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label  for="ssn" class="form-label">Hình ảnh</label>
-                                <input width: 300px type="text" name="ssn" id="ssn" />
+                                @*<label  for="ssn" class="form-label">Hình ảnh</label>
+                                <input width: 300px type="text" name="ssn" id="ssn" />*@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="ssn" class="form-label">Mô tả</label>
-                                    <textarea name="message" class="form-control" id="message" cols="30" rows="7"></textarea>
+                                    <textarea name="message" class="form-control" id="message" cols="30" rows="7" asp-for="Description"></textarea>
                                 </div>
                             </div>
                         </div>
