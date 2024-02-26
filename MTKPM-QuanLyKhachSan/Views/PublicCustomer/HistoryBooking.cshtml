@@ -5,75 +5,61 @@
     var BookingList = Model.BookingList;
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Lịch sử đặt phòng</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Include các file CSS cần thiết -->
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/customer/Information/css/style.css">
-</head>
-<body>
-    <section class="ftco-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12 text-center mb-5">
-                    <h2 class="heading-section">Lịch sử đặt phòng</h2>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-12">
-                    @if (BookingList.Any())
-                    {
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>ID Đặt phòng</th>
-                                    <th>ID Khách hàng</th>
-                                    <th>ID Nhân viên</th>
-                                    <th>Số lượng Người lớn</th>
-                                    <th>Số lượng Trẻ nhỏ</th>
-                                    <th>Ghi chú</th>
-                                    <th>Thời gian Check In</th>
-                                    <th>Thời gian Check Out</th>
-                                    <th>Trạng thái thanh toán</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var booking in BookingList)
-                                {
-                                    <tr>
-                                        <td>@booking.BookRoomId</td>
-                                        <td>@booking.CustomerId</td>
-                                        <td>@booking.EmployeeId</td>
-                                        <td>@booking.NumAdult</td>
-                                        <td>@booking.NumChildren</td>
-                                        <td>@booking.Note</td>
-                                        <td>@booking.CheckIn</td>
-                                        <td>@booking.CheckOut</td>
-                                        <td>@booking.IsPayment</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    }
-                    else
-                    {
-                        <p>Không tìm thấy lịch sử đặt phòng.</p>
-                    }
-                </div>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 text-center mb-5">
+                <h2 class="heading-section">Lịch sử đặt phòng</h2>
             </div>
         </div>
-    </section>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                @if (BookingList.Any())
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID Đặt phòng</th>
+                                <th>ID Khách hàng</th>
+                                <th>ID Nhân viên</th>
+                                <th>Số lượng Người lớn</th>
+                                <th>Số lượng Trẻ nhỏ</th>
+                                <th>Ghi chú</th>
+                                <th>Thời gian Check In</th>
+                                <th>Thời gian Check Out</th>
+                                <th>Trạng thái thanh toán</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var booking in BookingList)
+                            {
+                                <tr>
+                                    <td>@booking.BookRoomId</td>
+                                    <td>@booking.CustomerId</td>
+                                    <td>@booking.EmployeeId</td>
+                                    <td>@booking.NumAdult</td>
+                                    <td>@booking.NumChildren</td>
+                                    <td>@booking.Note</td>
+                                    <td>@booking.CheckIn</td>
+                                    <td>@booking.CheckOut</td>
+                                    <td>@booking.IsPayment</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p>Không tìm thấy lịch sử đặt phòng.</p>
+                }
+            </div>
+        </div>
+    </div>
+</section>
 
-    <!-- Include các file script JS cần thiết -->
-    <script src="~/customer/Information/js/jquery.min.js"></script>
-    <script src="~/customer/Information/js/popper.js"></script>
-    <script src="~/customer/Information/js/bootstrap.min.js"></script>
-    <script src="~/customer/Information/js/jquery.validate.min.js"></script>
-    <script src="~/customer/Information/js/main.js"></script>
-</body>
-</html>
+<!-- Include các file script JS cần thiết -->
+<script src="~/customer/Information/js/jquery.min.js"></script>
+<script src="~/customer/Information/js/popper.js"></script>
+<script src="~/customer/Information/js/bootstrap.min.js"></script>
+<script src="~/customer/Information/js/jquery.validate.min.js"></script>
+<script src="~/customer/Information/js/main.js"></script>
