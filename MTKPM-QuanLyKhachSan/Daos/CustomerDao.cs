@@ -20,5 +20,12 @@ namespace MTKPM_QuanLyKhachSan.Daos
             context.Customers.Add(customer);
             context.SaveChanges();
         }
+
+        // cập nhật thông tin khách hàng
+        public void UpdateCustomer(Customer customer)
+        {
+            context.Customers.Update(customer);
+            context.SaveChanges();
+        }
     }
 }

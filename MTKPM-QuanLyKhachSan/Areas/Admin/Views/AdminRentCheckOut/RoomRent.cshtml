@@ -31,6 +31,11 @@
 							</div>
 							<div class="custom-card-content">
 								<div class="date block">
+									<i class="custom-icon fa-solid fa-face-smile"></i>
+									<span class="custom-text">@room.CustomerName</span>
+								</div>
+
+								<div class="date block">
 									<i class="custom-icon fa-solid fa-clock"></i>
 									<span class="custom-text">@room.CalcTimeStay()</span>
 								</div>
@@ -62,7 +67,7 @@
 							</div>
 
 							<div id="myDropdown" class="custom-dropdown-menu">
-								<div class="custom-dropdown-menu-item">
+								<div class="custom-dropdown-menu-item btn-edit-room-rent-view" data-bookroom-details-id="@room.BookRoomDetailsId">
 									<i class="custom-icon custom-icon fa-solid fa-pen-to-square"></i>
 									<p>Chỉnh sửa</p>
 								</div>

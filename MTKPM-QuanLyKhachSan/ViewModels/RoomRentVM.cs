@@ -5,6 +5,7 @@ namespace MTKPM_QuanLyKhachSan.ViewModels
 {
     public class RoomRentVM
     {
+        public string CustomerName { get; set; }
         public int BookRoomDetailsId { get; set; }
         public int RoomId { get; set; }
         public int RoomTypeId { get; set; }

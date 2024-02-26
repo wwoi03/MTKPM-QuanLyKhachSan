@@ -1,10 +1,12 @@
 ﻿@using MTKPM_QuanLyKhachSan.Common
+@using MTKPM_QuanLyKhachSan.ViewModels
 @{
 	var services = ViewBag.services;
 	var bookRoomDetails = ViewBag.bookRoomDetails;
 }
+@model OrderMenuAdminVM
 
-<form id="form-book-room" method="post">
+<form id="form-order-menu" method="post">
 	<!-- Lưu đặt phòng -->
 	<div class="panel-save d-flex justify-content-between align-items-center">
 		<div>
@@ -14,7 +16,7 @@
 
 		<div class="">
 			<input type="submit" id="edit-booking" value="Lưu" />
-			<input hidden name="BookRoomId" value="" />
+			<input hidden name="BookRoomDetailsId" value="@bookRoomDetails.BookRoomDetailsId" />
 		</div>
 	</div>
 
@@ -28,7 +30,7 @@
 
 			<div class="list-menu-container">
 				<ul class="custom-menu-list">
-					@foreach (var item in services)
+					@for (int i = 0; i < services.Count; i++)
 					{
 						<li class="custom-menu-list-item active">
 							<div class="custom-menu-list-content">
@@ -37,13 +39,18 @@
 										<i class="fa-solid fa-minus"></i>
 									</div>
 								</div>
-								<p class="menu-item-name">@item.Name</p>
+								<p class="menu-item-name">@services[i].Name</p>
 								<div class="dot-icon">
 									<div class="dot-icon2">
 										<i class="fa-solid fa-plus"></i>
 									</div>
 								</div>
 							</div>
+
+							<input type="hidden" name="Orders[@i].ServiceId" value="@Model.Orders[i].ServiceId" />
+							<input type="hidden" name="Orders[@i].Quantity" value="2" />
+							@*<input type="hidden" id="order-data" name="Orders" />*@
+
 
 							<div class="custom-menu-list-quantity">
 								100

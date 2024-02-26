@@ -12,6 +12,7 @@
         viewRoomWait();
         viewRoomChange();
         viewOrderMenu();
+        viewEditRoomRent();
     }
 
     // chức năng
@@ -21,6 +22,8 @@
         requestCleanRoom();
         changeRoom();
         searchMenu();
+        editRoomRent();
+        orderMenu();
     }
 
     // xử lý chuyển view
@@ -113,22 +116,6 @@
         });
     }
 
-    // view thêm menu
-    function viewOrderMenu() {
-        $('#section-left-panel').on('click', '.btn-order-menu-view', function () {
-            var id = $(this).data('bookroom-details-id');
-
-            ajaxCall(
-                'GET',
-                '/Admin/AdminRentCheckOut/OrderMenu',
-                { bookRoomDetailsId: id },
-                function (data) {
-                    $('.right-panel').html(data);
-                }
-            )
-        });
-    }
-
     // dọn phòng
     function cleanRoom() {
         $('#section-left-panel').on('click', '.btn-clean-room', null, function () {
@@ -183,6 +170,22 @@
         });
     }
 
+    // view thêm menu
+    function viewOrderMenu() {
+        $('#section-left-panel').on('click', '.btn-order-menu-view', function () {
+            var id = $(this).data('bookroom-details-id');
+
+            ajaxCall(
+                'GET',
+                '/Admin/AdminRentCheckOut/OrderMenu',
+                { bookRoomDetailsId: id },
+                function (data) {
+                    $('.right-panel').html(data);
+                }
+            )
+        });
+    }
+
     // tìm kiếm  menu
     function searchMenu() {
         $('.right-panel').on('input', '#input-search-menu', function () {
@@ -199,6 +202,118 @@
                     $(this).addClass('active'); // Nếu tìm thấy, thêm lớp 'active'
                 }
             });
+        });
+    }
+
+    // thêm menu
+    function orderMenu() {
+        $('.right-panel').on('submit', '#form-order-menu', function (e) {
+            e.preventDefault(); // Ngăn chặn việc tải lại trang
+
+            /*var orderItem = [
+                {
+                    ServiceId: 1,
+                    Quantity: 2,
+                },
+                {
+                    ServiceId: 2,
+                    Quantity: 3,
+                }
+            ];
+
+            $(this).serialize().Orders = orderItem;
+
+            console.log($(this).serialize());
+            console.log(JSON.stringify(orderItem));*/
+
+            // Tạo đối tượng orderItem
+            var orderItem = [
+                {
+                    ServiceId: 1,
+                    Quantity: 2,
+                },
+                {
+                    ServiceId: 2,
+                    Quantity: 3,
+                }
+            ];
+
+
+            console.log($(this).serialize())
+
+            /*// Serialize form và chuyển đổi thành đối tượng JavaScript
+            var formData = $(this).serializeArray(); // Tạo mảng từ dữ liệu form
+
+            var formObject = {};
+            $.each(formData, function (i, v) {
+                formObject[v.name] = v.value;
+            });
+
+            // Thêm orderItem vào đối tượng
+            formObject['Orders'] = orderItem;*/
+
+            ajaxCall(
+                'POST',
+                '/Admin/AdminRentCheckOut/OrderMenu',
+                $(this).serialize(),
+                function (data) {
+                    if (data.result == true) {
+                        success({
+                            title: "Thành công",
+                            text: data.mess,
+                        })
+
+                        viewRoomRent();
+                    } else {
+                        error({
+                            title: data.mess
+                        })
+                    }
+                }
+            )
+        });
+    }
+
+    // view chỉnh sửa phòng thuê
+    function viewEditRoomRent() {
+        $('#section-left-panel').on('click', '.btn-edit-room-rent-view', function () {
+            var bookRoomDetailsId = $(this).data('bookroom-details-id');
+
+            ajaxCall(
+                'GET',
+                '/Admin/AdminRentCheckOut/EditBookRoomDetails',
+                { bookRoomDetailsId: bookRoomDetailsId },
+                function (data) {
+                    $('.right-panel').html(data);
+                }
+            )
+        });
+    }
+
+    // chỉnh sửa phòng
+    function editRoomRent() {
+        $('.right-panel').on('submit', '#form-book-room-details', function (e) {
+            e.preventDefault(); // Ngăn chặn việc tải lại trang
+
+            ajaxCall(
+                'POST',
+                '/Admin/AdminRentCheckOut/EditBookRoomDetails',
+                $(this).serialize(),
+                function (data) {
+                    if (data.result == true) {
+                        success({
+                            title: "Thành công",
+                            text: data.mess,
+                        })
+
+                        viewRoomRent();
+                    } else {
+                        error({
+                            title: data.mess
+                        })
+                    }
+                }
+            )
         });
     }
 

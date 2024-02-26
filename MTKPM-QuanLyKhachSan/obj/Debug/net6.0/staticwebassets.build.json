@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/ni48ZgVLfDSOhhVYbu0imWNwWuGCLYtd7vBECZ5fSU=",
+  "Hash": "RG4dgHeLKgOZy8GTCcQlhGRW8r+kAHi4JKWuXYdeXvg=",
   "Source": "MTKPM-QuanLyKhachSan",
   "BasePath": "_content/MTKPM-QuanLyKhachSan",
   "Mode": "Default",
@@ -5013,6 +5013,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\admin\\assets\\js\\select2.min.js"
+    },
+    {
+      "Identity": "D:\\Huflit_Study_Material\\Project\\course-projects\\DA-MTKPM-WebQuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\admin\\assets\\js\\toast.js",
+      "SourceId": "MTKPM-QuanLyKhachSan",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Huflit_Study_Material\\Project\\course-projects\\DA-MTKPM-WebQuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\",
+      "BasePath": "_content/MTKPM-QuanLyKhachSan",
+      "RelativePath": "admin/assets/js/toast.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\admin\\assets\\js\\toast.js"
     },
     {
       "Identity": "D:\\Huflit_Study_Material\\Project\\course-projects\\DA-MTKPM-WebQuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\admin\\assets\\plugins\\datatables\\datatables.min.css",

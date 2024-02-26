@@ -27,6 +27,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
         {
             return context.BookRoomDetails
                 .Include(i => i.BookRoom)
+                .Include(i => i.BookRoom.Customer)
                 .Include(i  => i.Room)
                 .Include(i  => i.Room.RoomType)
                 .Join(context.Rooms, 
@@ -61,6 +62,13 @@ namespace MTKPM_QuanLyKhachSan.Daos
         {
             BookRoomDetails bookRoomDetails = GetBookRoomDetailsById(roomIdOld);
             bookRoomDetails.RoomId = roomIdNew;
+            context.Update(bookRoomDetails);
+            context.SaveChanges();
+        }
+
+        // cập nhật chi tiết đặt phòng
+        public void UpdateBookRoomDetails(BookRoomDetails bookRoomDetails)
+        {
             context.Update(bookRoomDetails);
             context.SaveChanges();
         }

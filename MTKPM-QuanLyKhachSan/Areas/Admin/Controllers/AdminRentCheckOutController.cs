@@ -16,6 +16,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         BillDao billDao;
         OrderDao orderDao;
         ServiceDao serviceDao;
+        CustomerDao customerDao;
 
         public AdminRentCheckOutController(DatabaseContext context)
         {
@@ -26,6 +27,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             billDao = new BillDao(context);
             orderDao = new OrderDao(context);
             serviceDao = new ServiceDao(context);
+            customerDao = new CustomerDao(context);
         }
 
         public IActionResult Index()
@@ -59,12 +61,13 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
             ViewBag.roomRents = roomRents.Select(roomRent => new RoomRentVM
 			{
+                CustomerName = roomRent.BookRoom.Customer.Name,
                 BookRoomDetailsId = roomRent.BookRoomDetailsId,
                 RoomId = roomRent.RoomId,
                 RoomTypeId = roomRent.Room.RoomTypeId,
                 RoomName = roomRent.Room.Name,
                 Tidy = roomRent.Room.Tidy,
-                Note = roomRent.BookRoom.Note,
+                Note = roomRent.Note,
                 CheckIn = roomRent.CheckIn,
                 TotalPrice = orderDao.CalcOrderPrice(roomRent.BookRoomDetailsId) + roomRent.Room.RoomType.Price,
                 QuantityMenu = orderDao.CalcOrderQuantity(roomRent.BookRoomDetailsId),
@@ -144,8 +147,84 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 		{
             ViewBag.bookRoomDetails = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
             ViewBag.services = serviceDao.GetServices();
+            var services = serviceDao.GetServices();
 
-            return PartialView();
+            OrderMenuAdminVM orderMenuAdminVM = new OrderMenuAdminVM
+            {
+                BookRoomDetailsId = bookRoomDetailsId,
+                Orders = services.Select(service => new Order
+                {
+                    ServiceId = service.ServiceId,
+                }).ToList(),
+            };
+
+            return PartialView(orderMenuAdminVM);
 		}
+
+        // thêm menu
+        [HttpPost]
+        public IActionResult OrderMenu(OrderMenuAdminVM orderMenuAdminVM)
+        {
+            return PartialView(orderMenuAdminVM);
+        }
+
+        // chỉnh sửa phòng
+        [HttpGet]
+        public IActionResult EditBookRoomDetails(int bookRoomDetailsId)
+        {
+            var bookRoomDetails = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
+
+            BookRoomDetailsAdminVM bookRoomDetailsAdminVM = new BookRoomDetailsAdminVM
+            {
+                CustomerName = bookRoomDetails.BookRoom.Customer.Name,
+                Phone = bookRoomDetails.BookRoom.Customer.Phone,
+                CIC = bookRoomDetails.BookRoom.Customer.CIC,
+                BookRoomDetailsId = bookRoomDetails.BookRoomDetailsId,
+                RoomName = bookRoomDetails.Room.Name,
+                CheckIn = bookRoomDetails.CheckIn,
+                Note = bookRoomDetails.Note,
+                Orders = null,
+            };
+
+            return PartialView(bookRoomDetailsAdminVM);
+        }
+
+        // chỉnh sửa phòng
+        [HttpPost]
+        public IActionResult EditBookRoomDetails(BookRoomDetailsAdminVM bookRoomDetailsAdminVM)
+        {
+            string error = "";
+            bool result = bookRoomDetailsAdminVM.IsValid(out error);
+
+            if (result)
+            {
+                // cập nhật lại chi tiết đặt phòng
+                BookRoomDetails bookRoomDetails = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsAdminVM.BookRoomDetailsId);
+                bookRoomDetails.CheckIn = bookRoomDetailsAdminVM.CheckIn;
+                bookRoomDetails.Note = bookRoomDetailsAdminVM.Note;
+                bookRoomDetailsDao.UpdateBookRoomDetails(bookRoomDetails);
+
+                // cập nhật lại thông tin khách hàng
+                Customer customer = bookRoomDetails.BookRoom.Customer;
+                customer.CIC = bookRoomDetailsAdminVM.CIC;
+                customer.Phone = bookRoomDetailsAdminVM.Phone;
+                customer.Name = bookRoomDetailsAdminVM.CustomerName;
+                customerDao.UpdateCustomer(customer);
+
+                return Json(new ExecutionOutcome
+                {
+                    Mess = "Chỉnh sửa thành công.",
+                    Result = true,
+                });
+            } 
+            else
+            {
+                return Json(new ExecutionOutcome
+                {
+                    Mess = error,
+                    Result = false,
+                });
+            }
+        }
     }
 }
