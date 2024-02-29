@@ -207,55 +207,60 @@
 
     // thêm menu
     function orderMenu() {
+        var orders = [];
+
+        addMenu();
+        deleteMenu();
+
+        // thêm số lượng
+        function addMenu() {
+            $('.right-panel').on('click', '.btn-add-menu', function () {
+                var parent = $(this).closest('.custom-menu-list-content');
+                var serviceId = parent.data('service-id');
+                var viewQuantity = $(this).closest('li').find('.custom-menu-list-quantity');
+
+                var item = orders.find(item => item.ServiceId == serviceId);
+
+                if (item) {
+                    item.Quantity++;
+                } else {
+                    orders.push({
+                        ServiceId: serviceId,
+                        Quantity: 1
+                    })
+                }
+
+                viewQuantity.html(item == undefined ? 1 : item.Quantity);
+            });
+        }
+
+        // giảm số lượng
+        function deleteMenu() {
+            $('.right-panel').on('click', '.btn-delete-menu', function () {
+                var parent = $(this).closest('.custom-menu-list-content');
+                var serviceId = parent.data('service-id');
+                var viewQuantity = $(this).closest('li').find('.custom-menu-list-quantity');
+
+                var item = orders.find(item => item.ServiceId == serviceId);
+
+                if (item) {
+                    if (item.Quantity > 0) {
+                        item.Quantity--;
+                    };
+                }
+
+                viewQuantity.html(item == undefined ? 0 : item.Quantity);
+            });
+        }
+
         $('.right-panel').on('submit', '#form-order-menu', function (e) {
             e.preventDefault(); // Ngăn chặn việc tải lại trang
-
-            /*var orderItem = [
-                {
-                    ServiceId: 1,
-                    Quantity: 2,
-                },
-                {
-                    ServiceId: 2,
-                    Quantity: 3,
-                }
-            ];
-
-            $(this).serialize().Orders = orderItem;
-
-            console.log($(this).serialize());
-            console.log(JSON.stringify(orderItem));*/
-
-            // Tạo đối tượng orderItem
-            var orderItem = [
-                {
-                    ServiceId: 1,
-                    Quantity: 2,
-                },
-                {
-                    ServiceId: 2,
-                    Quantity: 3,
-                }
-            ];
-
-
-            console.log($(this).serialize())
-
-            /*// Serialize form và chuyển đổi thành đối tượng JavaScript
-            var formData = $(this).serializeArray(); // Tạo mảng từ dữ liệu form
-
-            var formObject = {};
-            $.each(formData, function (i, v) {
-                formObject[v.name] = v.value;
-            });
-
-            // Thêm orderItem vào đối tượng
-            formObject['Orders'] = orderItem;*/
+            var bookRoomDetailsId = $(this).data('bookroom-details-id');
 
             ajaxCall(
                 'POST',
                 '/Admin/AdminRentCheckOut/OrderMenu',
-                $(this).serialize(),
+                { bookRoomDetailsId: bookRoomDetailsId, orders: orders},
                 function (data) {
                     if (data.result == true) {
                         success({

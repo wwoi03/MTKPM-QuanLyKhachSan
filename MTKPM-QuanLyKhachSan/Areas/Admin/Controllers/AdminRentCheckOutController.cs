@@ -163,9 +163,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
         // thêm menu
         [HttpPost]
-        public IActionResult OrderMenu(OrderMenuAdminVM orderMenuAdminVM)
+        public IActionResult OrderMenu(int bookRoomDetailsId, List<Order> orders)
         {
-            return PartialView(orderMenuAdminVM);
+            return PartialView();
         }
 
         // chỉnh sửa phòng
