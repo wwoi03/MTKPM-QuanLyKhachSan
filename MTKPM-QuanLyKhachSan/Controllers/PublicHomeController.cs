@@ -18,10 +18,14 @@ namespace MTKPM_QuanLyKhachSan.Controllers
         }
         public IActionResult Index()
         {
+            //Tiêu đề trang
             ViewBag.PageTitle = "Trang chủ";
-            ViewBag.employees = employeeDao.GetQuantityOfEmployee();
-            ViewBag.customers = customerDao.GetQuantityOfCustomer();
-            ViewBag.rooms = roomDao.GetQuantityOfRoom();
+			//Hiển thị số lượng nhân viên lên trang chủ
+			ViewBag.employees = employeeDao.GetQuantityOfEmployee();
+			//Hiển thị số lượng khách hàng lên trang chủ
+			ViewBag.customers = customerDao.GetQuantityOfCustomer();
+			//Hiển thị số lượng phòng lên trang chủ
+			ViewBag.rooms = roomDao.GetQuantityOfRoom();             
             return View();
         }
 
