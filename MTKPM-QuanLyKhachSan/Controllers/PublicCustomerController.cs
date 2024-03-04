@@ -185,6 +185,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 			return RedirectToAction("Information");
 		}
 
+        //Hàm thực hiện chức năng 'Xem lịch sử đặt phòng'
         public IActionResult HistoryBooking()
         {
             // Kiểm tra xem khách hàng đã đăng nhập chưa
