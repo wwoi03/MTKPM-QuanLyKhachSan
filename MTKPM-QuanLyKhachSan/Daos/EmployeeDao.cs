@@ -4,8 +4,10 @@ namespace MTKPM_QuanLyKhachSan.Daos
 {
     public class EmployeeDao
     {
+        //Khai báo biến context
         DatabaseContext context;
 
+        //Tạo hàm EmployeeDao để tham chiếu biến context
         public EmployeeDao(DatabaseContext context)
         {
             this.context = context;

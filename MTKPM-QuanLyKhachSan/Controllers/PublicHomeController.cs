@@ -6,10 +6,12 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 {
     public class PublicHomeController : Controller
     {
+        //Khai báo các biến 
         EmployeeDao employeeDao;
         CustomerDao customerDao;
         RoomDao roomDao;
 
+        //Tạo controller
         public PublicHomeController(DatabaseContext context)
         {
             employeeDao = new EmployeeDao(context);
