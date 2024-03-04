@@ -182,12 +182,6 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 			customerDao.EditInformation(newCustomer);
 			return RedirectToAction("Information");
 		}
-
-        public IActionResult HistoryBooking()
-        {
-            return View();
-        }
-
         public IActionResult ChangePassword()
         {
 			ViewData["PageTitle"] = "Edit Information";
