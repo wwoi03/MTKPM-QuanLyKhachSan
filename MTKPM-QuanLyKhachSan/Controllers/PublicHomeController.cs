@@ -7,8 +7,9 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 {
     public class PublicHomeController : Controller
     {
+        //Khai báo biến roomtypeDao
 		RoomTypeDao roomTypeDao;
-
+        //Tạo controller 
 		public PublicHomeController(DatabaseContext context)
 		{
 			roomTypeDao = new RoomTypeDao(context);
@@ -16,8 +17,11 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 		//Hiển thị 3 loại phòng lên trang chủ
 		public IActionResult Index(int roomTypeId)
         {
+            //Tiêu đề trang
 			ViewBag.PageTitle = "Trang chủ";
+            //Hiển thị danh sách loại phòng lên trang chủ
             ViewBag.hotRooms = roomTypeDao.GetRoomTypes();
+            //Hiển thị chi tiết loại phòng dựa vào Id loại phòng
 			ViewBag.roomTypeDetails = roomTypeDao.GetRoomTypeById(roomTypeId);
 			return View();
         }

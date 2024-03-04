@@ -5,8 +5,10 @@ namespace MTKPM_QuanLyKhachSan.Daos
 {
     public class RoomTypeDao
     {
+        //Khai báo biến context
         DatabaseContext context;
 
+        //Tạo hàm RoomTypeDao chứa biến context
         public RoomTypeDao(DatabaseContext context)
         {
             this.context = context;

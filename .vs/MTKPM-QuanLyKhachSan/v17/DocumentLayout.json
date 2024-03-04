@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\views\\publichome\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\views\\publichome\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\daos\\roomdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\daos\\roomdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\controllers\\publichomecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\controllers\\publichomecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\daos\\roomtypedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\daos\\roomtypedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\views\\shared\\_testimonialpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\views\\shared\\_testimonialpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\views\\shared\\_teampartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\views\\shared\\_teampartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\views\\publichome\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\views\\publichome\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\controllers\\publichomecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\controllers\\publichomecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\views\\publicroom\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -30,11 +38,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "RoomDao.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Daos\\RoomDao.cs",
+              "RelativeDocumentMoniker": "MTKPM-QuanLyKhachSan\\Daos\\RoomDao.cs",
+              "ToolTip": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Daos\\RoomDao.cs",
+              "RelativeToolTip": "MTKPM-QuanLyKhachSan\\Daos\\RoomDao.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-04T09:32:30.196Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RoomTypeDao.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Daos\\RoomTypeDao.cs",
+              "RelativeDocumentMoniker": "MTKPM-QuanLyKhachSan\\Daos\\RoomTypeDao.cs",
+              "ToolTip": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Daos\\RoomTypeDao.cs",
+              "RelativeToolTip": "MTKPM-QuanLyKhachSan\\Daos\\RoomTypeDao.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAAAB4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-04T09:28:21.981Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "_TestimonialPartial.cshtml",
               "DocumentMoniker": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Views\\Shared\\_TestimonialPartial.cshtml",
               "RelativeDocumentMoniker": "MTKPM-QuanLyKhachSan\\Views\\Shared\\_TestimonialPartial.cshtml",
@@ -47,7 +81,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "_TeamPartial.cshtml",
               "DocumentMoniker": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Views\\Shared\\_TeamPartial.cshtml",
               "RelativeDocumentMoniker": "MTKPM-QuanLyKhachSan\\Views\\Shared\\_TeamPartial.cshtml",
@@ -55,12 +89,11 @@
               "RelativeToolTip": "MTKPM-QuanLyKhachSan\\Views\\Shared\\_TeamPartial.cshtml",
               "ViewState": "AQIAACEAAAAAAAAAAAAvwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-04T07:49:40.814Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-04T07:49:40.814Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Views\\PublicRoom\\Index.cshtml",
               "RelativeDocumentMoniker": "MTKPM-QuanLyKhachSan\\Views\\PublicRoom\\Index.cshtml",
@@ -72,7 +105,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Views\\PublicHome\\Index.cshtml",
               "RelativeDocumentMoniker": "MTKPM-QuanLyKhachSan\\Views\\PublicHome\\Index.cshtml",
@@ -85,13 +118,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "PublicHomeController.cs",
               "DocumentMoniker": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Controllers\\PublicHomeController.cs",
               "RelativeDocumentMoniker": "MTKPM-QuanLyKhachSan\\Controllers\\PublicHomeController.cs",
               "ToolTip": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Controllers\\PublicHomeController.cs",
               "RelativeToolTip": "MTKPM-QuanLyKhachSan\\Controllers\\PublicHomeController.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAAAA8AAAAnAAAA",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAAABsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-01-20T11:52:09.77Z",
               "EditorCaption": ""
