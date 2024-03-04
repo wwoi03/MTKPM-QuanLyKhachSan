@@ -11,14 +11,14 @@ namespace MTKPM_QuanLyKhachSan.Controllers
         //Khai báo các biến
         CustomerDao customerDao;
         BookRoomDao bookRoomDao;
+
         //Tạo controller
         public PublicCustomerController(DatabaseContext context)
         {
             customerDao = new CustomerDao(context);
             bookRoomDao = new BookRoomDao(context);
         }
-
-        //Đăng nhập
+        //Tạo view đăng nhập
         [HttpGet]
         public IActionResult Login()
         {
@@ -31,6 +31,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
                 return RedirectToAction("Index", "PublicHome");
             }
         }
+        //Thực hiện chức năng đăng nhập
         [HttpPost]
         public IActionResult Login(CustomerVM customerVM)
         {
@@ -58,13 +59,13 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             }
             return View();
         }
-        //Đăng ký
+        //Tạo view đăng ký
         [HttpGet]
-
         public IActionResult Register()
         {
             return View();
         }
+        //Thực hiện chức năng đăng ký
         [HttpPost]
         public IActionResult Register(CustomerVM customerVM)
         {
@@ -90,9 +91,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
                             Name = customerVM.Name,
                             Password = customerVM.Password
                         };
-
                         customerDao.CreateCustomer(customer);
-
                         return RedirectToAction("Login");
                     }
                     else
@@ -107,7 +106,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             }
             return View();
         }
-
+        //Thực hiện chức năng đăng xuất
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("Username");
@@ -120,7 +119,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             HttpContext.Session.Remove("CustomerId");
             return RedirectToAction("Login", "PublicCustomer");
         }
-
+        //Tạo view thông tin
         public IActionResult Information()
         {
 			ViewBag.PageHeader = "Thông Tin Khách Hàng";
@@ -131,7 +130,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 			ViewBag.Information = customerDao.GetCustomerbyId(HttpContext.Session.GetInt32("CustomerId"));
 			return View(); ;
         }
-
+        //Tạo view chỉnh sửa thông tin
         public IActionResult EditInformation()
         {       
 			ViewData["PageTitle"] = "Edit Information";
@@ -139,7 +138,6 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 			{
 				return RedirectToAction("Login", "PublicCustomer");
 			}
-
 			Customer customer = customerDao.GetCustomerbyId(HttpContext.Session.GetInt32("CustomerId"));
 			CustomerVM customerVM = new CustomerVM()
 			{
@@ -151,13 +149,12 @@ namespace MTKPM_QuanLyKhachSan.Controllers
                 Phone = customer.Phone,
                 Email   = customer.Email,
                 Address = customer.Address,
-
 			};
-
 			if (customerVM == null)
 				return NotFound();
 			return View(customerVM);
 		}
+        //Thực hiện chức năng chỉnh sửa thông tin
         [HttpPost]
         public IActionResult EditInformation(CustomerVM customerVM)
         {
@@ -185,7 +182,6 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 			customerDao.EditInformation(newCustomer);
 			return RedirectToAction("Information");
 		}
-
         //Hàm thực hiện chức năng 'Xem lịch sử đặt phòng'
         public IActionResult HistoryBooking()
         {
@@ -206,7 +202,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             // Trả về view với dữ liệu
             return View(viewModel);
         }
-
+        //View đổi mật khẩu
         public IActionResult ChangePassword()
         {
 			ViewData["PageTitle"] = "Edit Information";
@@ -232,6 +228,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 				return NotFound();
 			return View(customerVM);
 		}
+        //Thực hiện chức năng đổi mật khẩu
 		[HttpPost]
         public IActionResult ChangePassword(CustomerVM customerVM)
         {
@@ -264,7 +261,6 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 				ViewBag.messageError = "Mật khẩu xác nhận không khớp";
 			}
             return View(customerVM);
-
 		}
 	}
 }

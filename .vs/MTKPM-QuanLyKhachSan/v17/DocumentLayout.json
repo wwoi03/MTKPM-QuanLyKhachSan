@@ -3,35 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\daos\\customerdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\daos\\customerdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\viewmodels\\bookinghistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\viewmodels\\bookinghistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\daos\\bookroomdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\daos\\bookroomdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\daos\\customerdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\daos\\customerdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\controllers\\publiccustomercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\controllers\\publiccustomercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\views\\publiccustomer\\historybooking.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\views\\publiccustomer\\historybooking.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\acer\\AppData\\Local\\SourceServer\\325a83d17d5b5945c37d947a0a1930419b9d3ed2a17cc1883c4653a94510b205\\MTKPM-QuanLyKhachSan\\Controllers\\PublicCustomerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\models\\bookroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\models\\bookroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\viewmodels\\bookinghistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\viewmodels\\bookinghistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|c:\\users\\acer\\desktop\\mtkpm-quanlykhachsan\\mtkpm-quanlykhachsan\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{237A6031-00B9-4BC2-99EA-DB64877E697F}|MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj|solutionrelative:mtkpm-quanlykhachsan\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -41,44 +26,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PublicCustomerController.cs",
-              "DocumentMoniker": "C:\\Users\\acer\\AppData\\Local\\SourceServer\\325a83d17d5b5945c37d947a0a1930419b9d3ed2a17cc1883c4653a94510b205\\MTKPM-QuanLyKhachSan\\Controllers\\PublicCustomerController.cs",
-              "RelativeDocumentMoniker": "..\\..\\AppData\\Local\\SourceServer\\325a83d17d5b5945c37d947a0a1930419b9d3ed2a17cc1883c4653a94510b205\\MTKPM-QuanLyKhachSan\\Controllers\\PublicCustomerController.cs",
-              "ToolTip": "C:\\Users\\acer\\AppData\\Local\\SourceServer\\325a83d17d5b5945c37d947a0a1930419b9d3ed2a17cc1883c4653a94510b205\\MTKPM-QuanLyKhachSan\\Controllers\\PublicCustomerController.cs [Read Only]",
-              "RelativeToolTip": "..\\..\\AppData\\Local\\SourceServer\\325a83d17d5b5945c37d947a0a1930419b9d3ed2a17cc1883c4653a94510b205\\MTKPM-QuanLyKhachSan\\Controllers\\PublicCustomerController.cs [Read Only]",
-              "ViewState": "AQIAABcAAAAAAAAAAAAwwCIAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-04T07:37:24.893Z",
-              "EditorCaption": " [Read Only]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "BookRoom.cs",
-              "DocumentMoniker": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Models\\BookRoom.cs",
-              "RelativeDocumentMoniker": "MTKPM-QuanLyKhachSan\\Models\\BookRoom.cs",
-              "ToolTip": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Models\\BookRoom.cs",
-              "RelativeToolTip": "MTKPM-QuanLyKhachSan\\Models\\BookRoom.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAAAA8AAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-04T07:29:28.155Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "BookingHistory.cs",
               "DocumentMoniker": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\ViewModels\\BookingHistory.cs",
               "RelativeDocumentMoniker": "MTKPM-QuanLyKhachSan\\ViewModels\\BookingHistory.cs",
               "ToolTip": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\ViewModels\\BookingHistory.cs",
               "RelativeToolTip": "MTKPM-QuanLyKhachSan\\ViewModels\\BookingHistory.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAApAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-23T17:58:32.315Z"
+              "WhenOpened": "2024-03-04T11:30:16.223Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CustomerDao.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Daos\\CustomerDao.cs",
+              "RelativeDocumentMoniker": "MTKPM-QuanLyKhachSan\\Daos\\CustomerDao.cs",
+              "ToolTip": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Daos\\CustomerDao.cs",
+              "RelativeToolTip": "MTKPM-QuanLyKhachSan\\Daos\\CustomerDao.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-04T11:28:51.597Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -88,60 +62,22 @@
               "RelativeDocumentMoniker": "MTKPM-QuanLyKhachSan\\Daos\\BookRoomDao.cs",
               "ToolTip": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Daos\\BookRoomDao.cs",
               "RelativeToolTip": "MTKPM-QuanLyKhachSan\\Daos\\BookRoomDao.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAAABkAAAAAAAAA",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-23T17:57:24.385Z",
+              "WhenOpened": "2024-03-04T11:28:21.175Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "HistoryBooking.cshtml",
-              "DocumentMoniker": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Views\\PublicCustomer\\HistoryBooking.cshtml",
-              "RelativeDocumentMoniker": "MTKPM-QuanLyKhachSan\\Views\\PublicCustomer\\HistoryBooking.cshtml",
-              "ToolTip": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Views\\PublicCustomer\\HistoryBooking.cshtml",
-              "RelativeToolTip": "MTKPM-QuanLyKhachSan\\Views\\PublicCustomer\\HistoryBooking.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACgAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-02-23T17:55:45.462Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Program.cs",
-              "RelativeDocumentMoniker": "MTKPM-QuanLyKhachSan\\Program.cs",
-              "ToolTip": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Program.cs",
-              "RelativeToolTip": "MTKPM-QuanLyKhachSan\\Program.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAACkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-23T17:51:45.868Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "PublicCustomerController.cs",
               "DocumentMoniker": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Controllers\\PublicCustomerController.cs",
               "RelativeDocumentMoniker": "MTKPM-QuanLyKhachSan\\Controllers\\PublicCustomerController.cs",
               "ToolTip": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Controllers\\PublicCustomerController.cs",
               "RelativeToolTip": "MTKPM-QuanLyKhachSan\\Controllers\\PublicCustomerController.cs",
-              "ViewState": "AQIAALsAAAAAAAAAAAAAANAAAAAAAAAA",
+              "ViewState": "AQIAAPIAAAAAAAAAAAAAAAIBAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-23T17:51:45.872Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CustomerDao.cs",
-              "DocumentMoniker": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Daos\\CustomerDao.cs",
-              "RelativeDocumentMoniker": "MTKPM-QuanLyKhachSan\\Daos\\CustomerDao.cs",
-              "ToolTip": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\Daos\\CustomerDao.cs",
-              "RelativeToolTip": "MTKPM-QuanLyKhachSan\\Daos\\CustomerDao.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-23T17:51:45.876Z",
               "EditorCaption": ""
             }
           ]
