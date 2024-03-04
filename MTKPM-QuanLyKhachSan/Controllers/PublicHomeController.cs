@@ -8,8 +8,9 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 {
     public class PublicHomeController : Controller
     {
+		//Khai báo biến _configuration
 		private readonly IConfiguration _configuration;
-
+		//Tạo controller
 		public PublicHomeController(IConfiguration configuration)
 		{
 			//Tạo dịch vụ configuration cho chức năng gửi email
@@ -80,7 +81,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
         {
             return View();
         }
-		
+		//Chức năng trang liên hệ
 		public IActionResult Contact()
 		{
             // Kiểm tra xem có thông điệp thành công không

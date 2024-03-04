@@ -7,8 +7,10 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 {
     public class PublicCustomerController : Controller
     {
+        //Khai báo biến customerDao
         CustomerDao customerDao;
 
+        //Tạo controller
         public PublicCustomerController(DatabaseContext context)
         {
             customerDao = new CustomerDao(context);
