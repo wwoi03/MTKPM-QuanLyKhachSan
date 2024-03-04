@@ -13,7 +13,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 		{
 			roomTypeDao = new RoomTypeDao(context);
 		}
-		
+		//Hiển thị 3 loại phòng lên trang chủ
 		public IActionResult Index(int roomTypeId)
         {
 			ViewBag.PageTitle = "Trang chủ";
