@@ -13,6 +13,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         RoomTypeDao roomTypeDao;
         BookRoomDao bookRoomDao;
         BookRoomDetailsDao bookRoomDetailsDao;
+        CustomerDao customerDao;
 
         public AdminBookingController(DatabaseContext context)
         {
@@ -20,6 +21,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             roomTypeDao = new RoomTypeDao(context);
             bookRoomDao = new BookRoomDao(context);
             bookRoomDetailsDao = new BookRoomDetailsDao(context);
+            customerDao = new CustomerDao(context);
         }
 
         public IActionResult Index()
@@ -68,14 +70,57 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Booking(BookingAdminVM bookingAdminVM)
+        public IActionResult Booking(BookingAdminVM bookingAdminVM, List<int> rooms)
         {
             ExecutionOutcome executionOutcome;
             string error;
+            bool status = bookingAdminVM.Validation(out error);
 
-            if (bookingAdminVM.Validation(out error) == true)
+            if (status)
             {
-                executionOutcome = new ViewModels.ExecutionOutcome()
+                // tạo khách hàng nếu chưa tồn tại
+                int customerId = customerDao.GetCustomerIdByPhoneOrCIC(bookingAdminVM.Phone, bookingAdminVM.CIC);
+                if (customerId > 0)
+                {
+                    Customer newCustomer = new Customer
+                    {
+                        Phone = bookingAdminVM.Phone,
+                        CIC = bookingAdminVM.CIC,
+                        Name = bookingAdminVM.Name
+                    };
+
+                    customerDao.CreateCustomer(newCustomer);
+
+                    customerId = newCustomer.CustomerId;
+                }
+
+                // Tạo phiếu đặt phòng
+                BookRoom newBookRoom = new BookRoom
+                {
+                    CustomerId = customerId,
+                    EmployeeId = null,
+                    Note = bookingAdminVM.Note,
+                };
+
+                // tạo phiếu chi tiết đặt phòng
+                foreach (var roomId in rooms)
+                {
+                    // kiểm tra phòng trống
+                    if (roomDao.IsRoomAvailable(roomId)) 
+                    {
+                        // tạo phòng
+                        BookRoomDetails newBookRoomDetails = new BookRoomDetails
+                        {
+                            BookRoomId = newBookRoom.BookRoomId,
+                            RoomId = roomId,
+                            CheckIn = bookingAdminVM.ConvertDateTime(bookingAdminVM.CheckIn),
+                            CheckOut = bookingAdminVM.ConvertDateTime(bookingAdminVM.CheckOut),
+                            Note = newBookRoom.Note
+                        };
+                    }
+                }
+
+                executionOutcome = new ExecutionOutcome()
                 {
                     Result = true,
                     Mess = "Đặt phòng thành công.",
@@ -83,7 +128,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             }
             else
             {
-                executionOutcome = new ViewModels.ExecutionOutcome()
+                executionOutcome = new ExecutionOutcome()
                 {
                     Result = false,
                     Mess = error,

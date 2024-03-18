@@ -26,6 +26,16 @@ namespace MTKPM_QuanLyKhachSan.Daos
             return context.Rooms.FirstOrDefault(i => i.RoomId == roomId).Status;
         }
 
+        // kiểm tra phòng trống
+        public bool IsRoomAvailable(int roomId)
+        {
+            var status = RoomStatus(roomId);
+
+            if ((RoomStatusType)status == RoomStatusType.RoomAvailable)
+               return true;
+            return false;
+        }
+
         // lấy danh sách phòng
         public List<Room> GetRooms()
         {

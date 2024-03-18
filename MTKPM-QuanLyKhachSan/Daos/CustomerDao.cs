@@ -15,6 +15,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
             return context.Customers.Where(item => item.Username.Equals(username)).FirstOrDefault();
         }
 
+        // tạo khách hàng
         public void CreateCustomer(Customer customer)
         {
             context.Customers.Add(customer);
@@ -26,6 +27,12 @@ namespace MTKPM_QuanLyKhachSan.Daos
         {
             context.Customers.Update(customer);
             context.SaveChanges();
+        }
+
+        // kiểm tra khách hàng đã tồn tại với SĐT hoặc CCCD
+        public int GetCustomerIdByPhoneOrCIC(string phone, string cic)
+        {
+            return context.Customers.FirstOrDefault(i => i.Phone.Equals(phone) || i.CIC.Equals(cic)).CustomerId;
         }
     }
 }
