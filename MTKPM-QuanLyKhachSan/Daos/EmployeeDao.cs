@@ -1,4 +1,5 @@
-﻿using MTKPM_QuanLyKhachSan.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MTKPM_QuanLyKhachSan.Models;
 
 namespace MTKPM_QuanLyKhachSan.Daos
 {
@@ -16,6 +17,6 @@ namespace MTKPM_QuanLyKhachSan.Daos
 		{
             context.Employees.Add(employee);
             context.SaveChanges();
-		}
+        }
     }
 }

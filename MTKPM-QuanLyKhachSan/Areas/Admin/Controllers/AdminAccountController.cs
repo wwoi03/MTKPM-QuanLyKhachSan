@@ -77,7 +77,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
                 {
                     EmployeePermission employeePermission = new EmployeePermission()
                     {
-                        EmployeeId = 1,
+                        EmployeeId = employee.EmployeeId,
                         PermissionId = item.ToString(),
                     };
 

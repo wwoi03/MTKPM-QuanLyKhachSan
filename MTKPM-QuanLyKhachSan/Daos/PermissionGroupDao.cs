@@ -3,8 +3,8 @@ using MTKPM_QuanLyKhachSan.Models;
 
 namespace MTKPM_QuanLyKhachSan.Daos
 {
-	public class PermissionGroupDao
-	{
+    public class PermissionGroupDao
+    {
         DatabaseContext context;
 
         public PermissionGroupDao(DatabaseContext context)
@@ -13,7 +13,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
         }
 
         public List<PermissionGroup> GetPermissionGroups(int hotelId)
-		{
+        {
             return context.PermissionGroups
                 .Include(i => i.Permission)
                 .Where(x => x.HotelId == hotelId || x.HotelId == null || x.HotelId == 0)
