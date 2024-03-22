@@ -14,5 +14,7 @@ namespace MTKPM_QuanLyKhachSan.Models
         public DateTime CheckOut { get; set; }
         public string? Note { get; set; } = "";
         public int Status { get; set; }
+        public int HotelId { get; set; }
+        public Hotel Hotel { get; set; }
     }
 }

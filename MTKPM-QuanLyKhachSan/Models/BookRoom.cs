@@ -13,6 +13,8 @@ namespace MTKPM_QuanLyKhachSan.Models
         public int? NumAdult { get; set; }
         public int? NumChildren { get; set; }
         public string? Note { get; set; }
+        public int HotelId { get; set; }
+        public Hotel Hotel { get; set; }
 
         public DateTime ConvertDateTime(string dateTimeStr)
         {

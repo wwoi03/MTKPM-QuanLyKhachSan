@@ -46,8 +46,9 @@ namespace MTKPM_QuanLyKhachSan.Daos
         public List<Room> GetEmptyRooms()
         {
             return context.Rooms.
-                Where(i => (RoomStatusType)i.Status == RoomStatusType.RoomAvailable || (RoomStatusType)i.Status == RoomStatusType.RoomPending).
-                Include(i => i.RoomType).ToList();
+                Where(i => (RoomStatusType)i.Status == RoomStatusType.RoomAvailable || (RoomStatusType)i.Status == RoomStatusType.RoomPending)
+                .Include(i => i.RoomType)
+                .ToList();
         }
 
         // lấy danh sách phòng cần dọn
