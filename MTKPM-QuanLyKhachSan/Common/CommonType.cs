@@ -14,4 +14,8 @@
         Cleaned = 0, // đã dọn phòng
         NotCleaned = 1, // chưa dọn phòng
     }
+    public enum PermissionBookingType 
+    {
+        CreateRoom, DeleteRoom, EditRoom, DetailsRoom
+    }
 }
