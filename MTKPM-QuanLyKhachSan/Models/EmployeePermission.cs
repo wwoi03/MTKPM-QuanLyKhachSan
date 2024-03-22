@@ -2,11 +2,11 @@
 
 namespace MTKPM_QuanLyKhachSan.Models
 {
-    public class EmployeeRole
+    public class EmployeePermission
     {
         [Key]
-        public int RoleId { get; set; }
-        public Role Role { get; set; }
+        public string PermissionId { get; set; }
+        public Permission Permission { get; set; }
         [Key]
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
