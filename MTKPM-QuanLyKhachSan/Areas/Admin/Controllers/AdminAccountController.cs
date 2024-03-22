@@ -9,5 +9,10 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
     }
 }
