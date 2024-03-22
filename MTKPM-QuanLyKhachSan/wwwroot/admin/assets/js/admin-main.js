@@ -1,5 +1,5 @@
 ﻿// alert success
-function success({ title = "", text = "", funcConfirm = null, funcCancel = null }) {
+function success({ title = "Thành công", text = "", funcConfirm = null, funcCancel = null }) {
     Swal.fire({
         title: title,
         text: text,
@@ -18,7 +18,7 @@ function success({ title = "", text = "", funcConfirm = null, funcCancel = null 
 }
 
 // alert error
-function error({ title = "" }) {
+function error({ title = "Thành bại" }) {
     Swal.fire({
         title: title,
         icon: "error",

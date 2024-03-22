@@ -1,0 +1,161 @@
+﻿@using MTKPM_QuanLyKhachSan.ViewModels
+@{
+	Layout = null;
+	var roles = ViewBag.roles;
+	var permissionGroups = ViewBag.permissionGroups;
+}
+@model EmployeeVM
+
+<form id="form-create-account">
+	<!-- Lưu đặt phòng -->
+	<div class="panel-save d-flex justify-content-between align-items-center">
+		<span>Thêm mới</span>
+
+		<div class="">
+			<input type="submit" value="Lưu" />
+		</div>
+	</div>
+
+	<!-- Form -->
+	<div class="panel-form">
+		<!-- Thông tin -->
+		<div class="panel-form-info">
+			<!-- Tên tài khoản -->
+			<div class="panel-form-item">
+				<h5 class="panel-form-title">Tên tài khoản</h5>
+				<input class="panel-form-input" type="text" name="Name" value="@Model.Name" required />
+			</div>
+
+			<!-- Tên tài khoản -->
+			<a class="panel-form-item">
+				<h5 class="panel-form-title">Tên nhân viên</h5>
+				<input class="panel-form-input" type="text" name="Username" value="@Model.Username" required />
+			</a>
+
+			<!-- Mật khẩu -->
+			<div class="panel-form-item">
+				<div class="panel-form-height">
+					<div class="panel-form-height-item">
+						<h5 class="panel-form-title">Mật khẩu</h5>
+						<input type="password" class="panel-form-input" name="Password" value="@Model.Password" required />
+					</div>
+
+					<div class="panel-form-height-item">
+						<h5 class="panel-form-title">Xác nhận mật khẩu</h5>
+						<input type="password" class="panel-form-input" name="PasswordConfirm" value="@Model.PasswordConfirm" required />
+					</div>
+				</div>
+			</div>
+
+			<div class="setting-account">
+				<div class="setting-account-title">
+					<i class="fa-solid fa-gear"></i>
+					<span>Thiết lập quyền hạn</span>
+				</div>
+
+				@foreach (var role in roles)
+				{
+					<div class="setting-account-item">
+						<input name="" type="checkbox" id="@role.RoleId" value="" />
+						<label for="@role.RoleId">@role.Name</label>
+					</div>
+
+					<div class="setting-account-power">
+						<div class="setting-account-list">
+							@foreach (var permissionGroup in permissionGroups)
+							{
+								@if (role.RoleId.Equals(permissionGroup.RoleId))
+								{
+									@*@if (Model.Permissions.Contains("CreateRoom"))
+									{
+										<div class="setting-account-item item-permission">
+											<input type="checkbox" checked name="Permissions" value="EditRoom" />
+											<label for="CreateRoom" class="">Sửa phòng</label>
+										</div>
+									}
+									else
+									{
+										<div class="setting-account-item item-permission">
+											<input type="checkbox" />
+											<label for="CreateRoom" class="">Tạo phòng</label>
+										</div>
+									}*@
+
+									<div class="setting-account-item item-permission">
+										<input type="checkbox" id="@permissionGroup.Permission.Name" value="@permissionGroup.Permission.Name" />
+										<label for="@permissionGroup.Permission.Name" class="">Tạo phòng</label>
+									</div>
+								}
+							}
+
+							<div class="setting-account-item item-permission">
+								<input type="checkbox" value="EditRoom" class="item-permission-checkbox"/>
+								<label for="CreateRoom" class="">Sửa phòng</label>
+							</div>
+
+							<div class="setting-account-item item-permission">
+								<input type="checkbox" value="CreateRoom" class="item-permission-checkbox"/>
+								<label for="CreateRoom" class="">Sửa phòng</label>
+							</div>
+
+							<div class="setting-account-item item-permission">
+								<input type="checkbox" value="DetailsRoom" class="item-permission-checkbox"/>
+								<label for="CreateRoom" class="">Sửa phòng</label>
+							</div>
+
+
+							@*@if (Model.Permissions.Contains("CreateRoom"))
+							{
+								<div class="setting-account-item item-permission">
+									<input type="checkbox" checked name="Permissions" value="EditRoom" />
+									<label for="CreateRoom" class="">Sửa phòng</label>
+								</div>
+							}
+							else
+							{
+								<div class="setting-account-item item-permission">
+									<input type="checkbox" />
+									<label for="CreateRoom" class="">Tạo phòng</label>
+								</div>
+							}*@
+
+						</div>
+					</div>
+
+					break;
+				}
+
+
+				@*<!-- Tên tài khoản -->
+					<div class="panel-form-item">
+					<h5 class="panel-form-title">Giới tính</h5>
+					<input class="panel-form-input" type="text" />
+					</div>
+
+					<!-- Tên tài khoản -->
+					<div class="panel-form-item">
+					<h5 class="panel-form-title">Ngày sinh</h5>
+					<input class="panel-form-input" type="text" />
+					</div>
+
+					<!-- Tên tài khoản -->
+					<div class="panel-form-item">
+					<h5 class="panel-form-title">Số điện thoại</h5>
+					<input class="panel-form-input" type="text" />
+					</div>
+
+					<!-- Tên tài khoản -->
+					<div class="panel-form-item">
+					<h5 class="panel-form-title">Địa chỉ</h5>
+					<input class="panel-form-input" type="text" />
+					</div>
+
+					<!-- Tên tài khoản -->
+					<div class="panel-form-item">
+					<h5 class="panel-form-title">Email</h5>
+					<input class="panel-form-input" type="text" />
+					</div>*@
+			</div>
+		</div>
+	</div>
+</form>

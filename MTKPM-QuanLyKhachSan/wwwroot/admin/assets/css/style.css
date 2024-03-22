@@ -7462,6 +7462,7 @@ h3.page-sub-title {
     display: flex;
     align-items: center;
     margin-bottom: 16px;
+    cursor: pointer;
 }
 
     .setting-account-item input {

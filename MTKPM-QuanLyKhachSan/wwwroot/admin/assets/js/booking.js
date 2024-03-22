@@ -1,4 +1,6 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+﻿const { title } = require("process");
+
+document.addEventListener('DOMContentLoaded', function () {
 	main();
 
 	function main() {
@@ -160,9 +162,15 @@
 				data: $(this).serialize(),
 				success: function (data) {
 					if (data.result == true) {
-						success(data.mess, "", null);
+						success(
+							title = data.mess,
+							"",
+							null
+						);
                     } else {
-						error(data.mess);
+						error(
+							title = data.mess
+						);
 						editBooking();
 					}
 				},

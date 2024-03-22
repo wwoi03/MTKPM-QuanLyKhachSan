@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Huflit_Study_Material\Project\course-projects\DA-MTKPM-WebQuanLyKhachSan\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminAccount/CreateAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5BY2NvdW50XENyZWF0ZUFjY291bnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminAccount/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5BY2NvdW50XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
