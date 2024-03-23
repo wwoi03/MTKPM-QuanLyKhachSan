@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "o6d90nMSGgAb7ocYRSxGg/hmLl+/j+vdyhAWn/72K2Y=",
+  "Hash": "VCDLgPHPBJx47YaZPQ2KXdCTOkLnUjQPScsdrqQjRFs=",
   "Source": "MTKPM-QuanLyKhachSan",
   "BasePath": "_content/MTKPM-QuanLyKhachSan",
   "Mode": "Default",
@@ -4843,6 +4843,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\admin\\assets\\js\\admin-rent-check-out.js"
+    },
+    {
+      "Identity": "H:\\HK2nam3\\MauThietKeChoPM\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\admin\\assets\\js\\alert.js",
+      "SourceId": "MTKPM-QuanLyKhachSan",
+      "SourceType": "Discovered",
+      "ContentRoot": "H:\\HK2nam3\\MauThietKeChoPM\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\",
+      "BasePath": "_content/MTKPM-QuanLyKhachSan",
+      "RelativePath": "admin/assets/js/alert.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\admin\\assets\\js\\alert.js"
     },
     {
       "Identity": "H:\\HK2nam3\\MauThietKeChoPM\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\admin\\assets\\js\\booking.js",

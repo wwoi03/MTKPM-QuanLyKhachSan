@@ -46,8 +46,10 @@ app.UseEndpoints(endpoints =>
 
     endpoints.MapControllerRoute(
       name: "Admin",
-      pattern: "{area:exists}/{controller=AdminBooking}/{action=Index}/{id?}"
+      pattern: "{area:exists}/{controller=ProxyBooking}/{action=Index}/{id?}"
     );
+   
+
 });
 
 app.Run();

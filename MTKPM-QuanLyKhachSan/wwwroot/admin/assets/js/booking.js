@@ -4,7 +4,7 @@
 	function main() {
 		$.ajax({
 			type: "GET",
-			url: "/Admin/AdminBooking/GetBooking",
+			url: "/Admin/ProxyBooking/GetBooking",
 			success: function (data) {
 				var dataResources = JSON.parse(data.resources);
 				var dataEvents = JSON.parse(data.events);
@@ -95,7 +95,7 @@
 	function booking() {
 		$.ajax({
 			type: "GET",
-			url: "/Admin/AdminBooking/Booking",
+			url: "/Admin/ProxyBooking/Booking",
 			success: function (data) {
 				$(".right-panel").html(data);
 
@@ -134,7 +134,7 @@
 	function bookingDetails(bookRoomDetailsId) {
 		$.ajax({
 			type: "GET",
-			url: "/Admin/AdminBooking/BookingDetails?bookRoomDetailsId=" + bookRoomDetailsId,
+			url: "/Admin/ProxyBooking/BookingDetails?bookRoomDetailsId=" + bookRoomDetailsId,
 			success: function (data) {
 				$(".right-panel").html(data);
 
@@ -156,7 +156,7 @@
 
 			$.ajax({
 				type: "POST",
-				url: "/Admin/AdminBooking/EditBooking",
+				url: "/Admin/ProxyBooking/EditBooking",
 				data: $(this).serialize(),
 				success: function (data) {
 					if (data.result == true) {
@@ -178,7 +178,7 @@
 		document.querySelector('.panel-form-add-room').addEventListener('click', function () {
 			$.ajax({
 				type: "POST",
-				url: "/Admin/AdminBooking/ChooseRoom",
+				url: "/Admin/ProxyBooking/ChooseRoom",
 				success: function (data) {
 					$('#choose-room').html(data);
 

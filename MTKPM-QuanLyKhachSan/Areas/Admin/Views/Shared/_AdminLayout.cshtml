@@ -1,5 +1,7 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
+@{
+    var AlertMessage = @ViewBag.AlertMessage;
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +18,7 @@
     <link rel="stylesheet" href="~/admin/assets/plugins/morris/morris.css">
     <link rel="stylesheet" href="~/admin/assets/css/base.css">
     <link rel="stylesheet" href="~/admin/assets/css/style.css">
+
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -50,6 +53,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/admin/assets/assets2/plugins/jquery/jquery.min.js"></script>
     <script src="~/admin/assets/assets2/plugins/jquery-ui/jquery-ui.min.js"></script>
+   @*jjjjjjjjjjjjjjjjjjjjjjj*@
+    <script type="text/javascript" src="~/admin/assets/js/alert.js"></script>
+
 </head>
 
 <body>
@@ -87,7 +93,15 @@
                     </form>
                 </div>
             }
-			
+            @****************************************************@
+            @if (@AlertMessage != null )
+            {
+                <div class="alert alert-danger" role="alert" style="width: fit-content;margin: auto;" id="alert">
+                    @AlertMessage
+                    <button onclick="Hide()" type="button" class="btn btn-warning">Xác nhận</button>
+                </div>
+            }
+            @**********************************************************@
             <a class="mobile_btn" id="mobile_btn"> 
                 <i class="fas fa-bars"></i> 
             </a>
@@ -113,7 +127,7 @@
                         </li>
 
                         <li class="sidebar-page-item"> 
-                            <a class="sidebar-page-link" href="/Admin/ProxyBooking/Index">
+                            <a class="sidebar-page-link" href="/Admin/AdminRentCheckOut/Index">
                                 <i class="fas fa-key"></i> 
                                 <span>Thuê - trả phòng</span>
                             </a> 
@@ -155,5 +169,14 @@
 
     <script src="~/admin/assets/js/admin-main.js"></script>
     <script src="~/admin/assets/js/admin-rent-check-out.js"></script>
+    <script>
+        function Hide(){
+            var hide = document.getElementById("alert");
+            if(hide){
+                hide.style.display = "none";
+            }
+        }
+    </script>
+
 </body>
 </html>

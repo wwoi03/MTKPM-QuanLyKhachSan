@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Route("Admin/[controller]/[action]")]
     public class AdminBookingController : Controller, IBooking
     {
         RoomDao roomDao;
@@ -27,6 +28,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetString("Alert") != null)
+                    ViewBag.AlertMessage = HttpContext.Session.GetString("Alert");
             return View();
         }
 

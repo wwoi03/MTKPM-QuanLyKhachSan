@@ -16,6 +16,6 @@
     }
     public enum PermissionBookingType 
     {
-        CreateRoom, DeleteRoom, EditRoom, DetailsRoom
+        CreateBooking, DeleteBooking, EditBooking, DetailsBooking, ViewBooking
     }
 }
