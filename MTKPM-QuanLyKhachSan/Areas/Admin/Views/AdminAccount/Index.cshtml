@@ -1,5 +1,6 @@
 ﻿@{
 	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+	var employees = ViewBag.employees;
 }
 
 <div class="main-container d-flex">
@@ -39,34 +40,58 @@
 									</thead>
 
 									<tbody>
-										<tr>
-											<td>tuandao228</td>
+										@foreach (var item in employees)
+										{
+											<tr>
+												<td>@item.Username</td>
 
-											<td>Đào Công Tuấn</td>
+												<td>@item.Name</td>
 
-											<td>
-												<i class="fa-solid fa-circle" style="color: #42B72A; margin-right: 5px; font-size: 12px;"></i>
-												@*<i class="fa-solid fa-circle" style="color: #85817C; margin-right: 5px; font-size: 12px;"></i>*@
-												Đang hoạt động
-											</td>
+												<td>
+													@if (item.Status == 0)
+													{
+														
+														<i class="fa-solid fa-circle" style="color: #42B72A; margin-right: 5px; font-size: 12px;"></i>
+														<span>Đang hoạt động</span>
+													}
+													else
+													{
+														<i class="fa-solid fa-circle" style="color: red; margin-right: 5px; font-size: 12px;"></i>
+														<span>Đang khóa</span>
+													}
+												</td>
 
-											<td class="justify-content-between">
-												<a data-staff-id="1" class="account-details btn btn-info btn-sm">
-													<i class="fas fa-folder"></i>
-													Chi tiết
-												</a>
+												<td class="justify-content-between">
+													<a data-employee-id="@item.EmployeeId" class="account-edit btn btn-primary btn-sm">
+														<i class="fas fa-pencil-alt"></i>
+														Chỉnh sửa
+													</a>
 
-												<a data-staff-id="1" class="account-edit btn btn-primary btn-sm">
-													<i class="fas fa-pencil-alt"></i>
-													Chỉnh sửa
-												</a>
+													
 
-												<a data-staff-id="1" class="account-delete btn btn-danger btn-sm">
-													<i class="fa-solid fa-key"></i>
-													Xóa
-												</a>
-											</td>
-										</tr>
+													@if (item.Status == 0)
+													{
+														
+														<a data-employee-id="@item.EmployeeId" data-username="@item.Username" class="lock-account btn btn-danger btn-sm">
+															<i class="fa-solid fa-key"></i>
+															Khóa
+														</a>
+													}
+													else
+													{
+														<a data-employee-id="@item.EmployeeId" data-username="@item.Username" class="unlock-account btn btn-warning btn-sm">
+															<i class="fa-solid fa-key"></i>
+															Mở Khóa
+														</a>
+													}
+
+													<a data-employee-id="@item.EmployeeId" class="account-details btn btn-info btn-sm">
+														<i class="fas fa-trash"></i>
+														Xóa
+													</a>
+												</td>
+											</tr>
+										}
 									</tbody>
 								</table>
 							</div>
@@ -79,6 +104,5 @@
 
 	<!-- Nội dung bên phải -->
 	<div class="right-panel col-4 pl-0 pr-0">
-
 	</div>
 </div>

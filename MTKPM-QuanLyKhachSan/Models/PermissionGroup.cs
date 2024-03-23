@@ -11,8 +11,5 @@ namespace MTKPM_QuanLyKhachSan.Models
         [Key]
         public string RoleId { get; set; }
         public Role Role { get; set; }
-
-        public int? HotelId { get; set; }
-        public Hotel Hotel { get; set; }
     }
 }

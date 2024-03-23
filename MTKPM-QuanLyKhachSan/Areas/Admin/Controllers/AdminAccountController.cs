@@ -26,6 +26,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.employees = employeeDao.GetEmployees(1);
+
             return View();
         }
 
@@ -39,7 +41,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         public IActionResult CreateAccount()
         {
             ViewBag.roles = roleDao.GetRoles(1);
-            ViewBag.permissionGroups = permissionGroupDao.GetPermissionGroups(1);
+            ViewBag.permissionGroups = permissionGroupDao.GetPermissionGroups();
 
             EmployeeVM employeeVM = new EmployeeVM();
 
@@ -89,6 +91,76 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             {
                 Result = status,
                 Mess = string.IsNullOrEmpty(error) ? "Tạo tài khoản thành công." : error
+            };
+
+            return Json(executionOutcome);
+        }
+
+        // Tạo tài khoản phụ
+        [HttpGet]
+        public IActionResult EditAccount(int employeeId)
+        {
+            ViewBag.roles = roleDao.GetRoles(1);
+            ViewBag.permissionGroups = permissionGroupDao.GetPermissionGroups();
+
+            EmployeeVM employeeVM = new EmployeeVM();
+
+            return PartialView(employeeVM);
+        }
+
+        [HttpPost]
+        public IActionResult EditAccount(EmployeeVM employeeVM)
+        {
+            string error;
+            bool status = employeeVM.Validation(out error);
+
+            if (status)
+            {
+                // duyệt danh sách quyền
+                foreach (var item in employeeVM.Permissions)
+                {
+                    EmployeePermission employeePermission = new EmployeePermission()
+                    {
+                        //EmployeeId = employee.EmployeeId,
+                        PermissionId = item.ToString(),
+                    };
+
+                    employeePermissionDao.AddEmployeePermission(employeePermission);
+                }
+            }
+
+            ExecutionOutcome executionOutcome = new ExecutionOutcome()
+            {
+                Result = status,
+                Mess = string.IsNullOrEmpty(error) ? "Tạo tài khoản thành công." : error
+            };
+
+            return Json(executionOutcome);
+        }
+
+        [HttpPost]
+        public IActionResult LockAccount(int employeeId)
+		{
+            employeeDao.LockAccount(employeeId);
+
+            ExecutionOutcome executionOutcome = new ExecutionOutcome()
+            {
+                Result = true,
+                Mess = "Khóa tài khoản thành công."
+            };
+
+            return Json(executionOutcome);
+		}
+
+        [HttpPost]
+        public IActionResult UnLockAccount(int employeeId)
+        {
+            employeeDao.UnLockAccount(employeeId);
+
+            ExecutionOutcome executionOutcome = new ExecutionOutcome()
+            {
+                Result = true,
+                Mess = "Mở khóa tài khoản thành công."
             };
 
             return Json(executionOutcome);

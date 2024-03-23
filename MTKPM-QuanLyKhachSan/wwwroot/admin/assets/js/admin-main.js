@@ -7,7 +7,23 @@ function success({ title = "Thành công", text = "", funcConfirm = null, funcCa
         confirmButtonColor: "#1577BD",
         cancelButtonColor: "#999999",
         showCancelButton: true,
-        reverseButtons: true,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            funcConfirm();
+        } else {
+            funcCancel();
+        }
+    });
+}
+
+// alert comfirm
+function confirm({ title = "Xác nhận", text = "", funcConfirm = null, funcCancel = null }) {
+    Swal.fire({
+        title: title,
+        text: text,
+        confirmButtonColor: "#1577BD",
+        cancelButtonColor: "#999999",
+        showCancelButton: true,
     }).then((result) => {
         if (result.isConfirmed) {
             funcConfirm();

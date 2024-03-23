@@ -55,74 +55,27 @@
 
 				@foreach (var role in roles)
 				{
-					<div class="setting-account-item">
-						<input name="" type="checkbox" id="@role.RoleId" value="" />
-						<label for="@role.RoleId">@role.Name</label>
-					</div>
+					<div class="setting-account-item-container">
+						<div class="setting-account-item setting-account-item-title">
+							<input class="item-permission-title" type="checkbox" id="@role.RoleId" />
+							<label for="@role.RoleId">@role.Name</label>
+						</div>
 
-					<div class="setting-account-power">
-						<div class="setting-account-list">
-							@foreach (var permissionGroup in permissionGroups)
-							{
-								@if (role.RoleId.Equals(permissionGroup.RoleId))
+						<div class="setting-account-power d-flex ">
+							<div class="setting-account-list row w-100">
+								@foreach (var permissionGroup in permissionGroups)
 								{
-									@*@if (Model.Permissions.Contains("CreateRoom"))
+									@if (role.RoleId.Equals(permissionGroup.RoleId))
 									{
-										<div class="setting-account-item item-permission">
-											<input type="checkbox" checked name="Permissions" value="EditRoom" />
-											<label for="CreateRoom" class="">Sửa phòng</label>
+										<div class="setting-account-item item-permission col-6">
+											<input type="checkbox" class="item-permission-checkbox" id="@permissionGroup.Permission.PermissionId" value="@permissionGroup.Permission.PermissionId" />
+											<label for="@permissionGroup.Permission.PermissionId" class="">@permissionGroup.Permission.Name</label>
 										</div>
 									}
-									else
-									{
-										<div class="setting-account-item item-permission">
-											<input type="checkbox" />
-											<label for="CreateRoom" class="">Tạo phòng</label>
-										</div>
-									}*@
-
-									<div class="setting-account-item item-permission">
-										<input type="checkbox" id="@permissionGroup.Permission.Name" value="@permissionGroup.Permission.Name" />
-										<label for="@permissionGroup.Permission.Name" class="">Tạo phòng</label>
-									</div>
 								}
-							}
-
-							<div class="setting-account-item item-permission">
-								<input type="checkbox" id="EditRoom" value="EditRoom" class="item-permission-checkbox"/>
-								<label for="EditRoom" class="">Sửa phòng</label>
 							</div>
-
-							<div class="setting-account-item item-permission">
-								<input type="checkbox" id="CreateRoom" value="CreateRoom" class="item-permission-checkbox"/>
-								<label for="CreateRoom" class="">Thêm phòng</label>
-							</div>
-
-							<div class="setting-account-item item-permission">
-								<input type="checkbox" id="DetailRoom" value="DetailRoom" class="item-permission-checkbox"/>
-								<label for="DetailRoom" class="">Xem chi tiết phòng</label>
-							</div>
-
-
-							@*@if (Model.Permissions.Contains("CreateRoom"))
-							{
-								<div class="setting-account-item item-permission">
-									<input type="checkbox" checked name="Permissions" value="EditRoom" />
-									<label for="CreateRoom" class="">Sửa phòng</label>
-								</div>
-							}
-							else
-							{
-								<div class="setting-account-item item-permission">
-									<input type="checkbox" />
-									<label for="CreateRoom" class="">Tạo phòng</label>
-								</div>
-							}*@
-
 						</div>
 					</div>
-
-					break;
 				}
 
 

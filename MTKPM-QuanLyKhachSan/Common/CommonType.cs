@@ -14,4 +14,11 @@
         Cleaned = 0, // đã dọn phòng
         NotCleaned = 1, // chưa dọn phòng
     }
+
+    // trạng thái tài khoản
+    public enum EmployeeStatusType : int
+    {
+        UnLock = 0, // mở khóa
+        Lock = 1, // khóa
+    }
 }

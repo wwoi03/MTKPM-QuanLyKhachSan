@@ -7462,14 +7462,17 @@ h3.page-sub-title {
     display: flex;
     align-items: center;
     margin-bottom: 16px;
-    cursor: pointer;
 }
 
-    .setting-account-item input {
-        width: 16px;
-        height: 16px;
-        margin-right: 5px;
+    .setting-account-item * {
+        cursor: pointer !important;
     }
+
+.setting-account-item input {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
 
     .setting-account-item label {
         font-weight: 500 !important;

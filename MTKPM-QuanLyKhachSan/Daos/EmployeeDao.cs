@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MTKPM_QuanLyKhachSan.Common;
 using MTKPM_QuanLyKhachSan.Models;
 
 namespace MTKPM_QuanLyKhachSan.Daos
@@ -12,10 +13,42 @@ namespace MTKPM_QuanLyKhachSan.Daos
             this.context = context;
         }
 
+        // tìm nhân viên theo id
+        public Employee GetEmployeeById(int employeeId)
+		{
+            return context.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
+		}
+
+        // lấy danh sách tài khoản
+        public List<Employee> GetEmployees(int hotelId)
+        {
+            return context.Employees.Where(i => i.HotelId == hotelId).ToList();
+        }
+
         // tạo tài khoản 
         public void CreateAccount(Employee employee)
 		{
             context.Employees.Add(employee);
+            context.SaveChanges();
+        }
+
+        // Khóa tài khoản
+        public void LockAccount(int employeeId)
+		{
+            Employee employee = GetEmployeeById(employeeId);
+            employee.Status = (int)EmployeeStatusType.Lock;
+
+            context.Employees.Update(employee);
+            context.SaveChanges();
+		}
+
+        // Mở Khóa tài khoản
+        public void UnLockAccount(int employeeId)
+        {
+            Employee employee = GetEmployeeById(employeeId);
+            employee.Status = (int)EmployeeStatusType.UnLock;
+
+            context.Employees.Update(employee);
             context.SaveChanges();
         }
     }
