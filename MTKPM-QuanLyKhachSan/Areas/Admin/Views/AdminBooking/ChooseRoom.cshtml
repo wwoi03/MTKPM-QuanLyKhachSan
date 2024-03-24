@@ -1,0 +1,58 @@
+﻿@{
+	var rooms = ViewBag.rooms;
+	var roomTypes = ViewBag.roomTypes;
+}
+
+<div class="custom-room-container" id="custom-container">
+	<div class="custom-overlay"></div>
+
+    <div class="custom-slide-up-box">
+        <!-- Tabs for selecting room type -->
+		<div class="custom-tab-container">
+			<ul class="custom-tabs">
+				<li class="custom-tab-link active" data-tab="custom-tab-1">Tất cả</li>
+
+				@foreach (var item in roomTypes)
+				{
+					<li class="custom-tab-link">@item.Name</li>
+				}
+			</ul>
+
+			<div class="nav-line"></div>
+		</div>
+        
+		<!-- tất cả phòng -->
+		<div class="panel-form-roomtype-render custom-tab-content active">
+			<div class="d-flex">
+				<div class="row p-0 container-fluid panel-form-roomtype-render-list">
+					@foreach (var item in rooms)
+					{
+						<div value="105" class="col-1 panel-form-roomtype-render-item">
+							@item.Name
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+
+		<!-- phòng theo loại -->
+		@foreach (var roomType in roomTypes)
+		{
+			<div class="panel-form-roomtype-render custom-tab-content">
+				<div class="d-flex">
+					<div class="row p-0 container-fluid panel-form-roomtype-render-list">
+						@foreach (var room in rooms)
+						{
+							@if (roomType.RoomTypeId == room.RoomTypeId)
+							{
+								<div value="105" class="col-1 panel-form-roomtype-render-item">
+									@room.Name
+								</div>
+							}
+						}
+					</div>
+				</div>
+			</div>
+		}
+    </div>
+</div>

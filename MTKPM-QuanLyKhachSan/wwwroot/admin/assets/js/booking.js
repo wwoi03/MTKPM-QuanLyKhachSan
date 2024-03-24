@@ -4,11 +4,10 @@
 	function main() {
 		$.ajax({
 			type: "GET",
-			url: "/Admin/AdminBooking/GetBooking",
+			url: "/Admin/ProxyBooking/GetBooking",
 			success: function (data) {
 				var dataResources = JSON.parse(data.resources);
 				var dataEvents = JSON.parse(data.events);
-
 				renderFullCallendar(dataResources, dataEvents);
 			},
 			error: function () {
@@ -16,8 +15,6 @@
             }
 		});
 	}
-
-	
 
 	// hiển thị giao diện Calendar
 	function renderFullCallendar(dataResources, dataEvents) {
@@ -97,23 +94,46 @@
 	function booking() {
 		$.ajax({
 			type: "GET",
-			url: "/Admin/AdminBooking/Booking",
+			url: "/Admin/ProxyBooking/Booking",
 			success: function (data) {
 				$(".right-panel").html(data);
 
 				addRoomBooking();
+				postBooking();
 			},
 			error: function () {
 
             }
 		});
+
+		function postBooking() {
+			document.getElementById('form-book-room').addEventListener('submit', function (e) {
+				e.preventDefault(); // Ngăn chặn việc tải lại trang
+
+				$.ajax({
+					type: "POST",
+					url: "/Admin/AdminBooking/Booking",
+					data: $(this).serialize(),
+					success: function (data) {
+						if (data.result == true) {
+							success(data.mess, "", null);
+                        } else {
+							error(data.mess);
+						}
+					},
+					error: function () {
+
+					}
+				});
+			})
+        }
 	}
 
 	// chi tiết đặt phòng
 	function bookingDetails(bookRoomDetailsId) {
 		$.ajax({
 			type: "GET",
-			url: "/Admin/AdminBooking/BookingDetails?bookRoomDetailsId=" + bookRoomDetailsId,
+			url: "/Admin/ProxyBooking/BookingDetails?bookRoomDetailsId=" + bookRoomDetailsId,
 			success: function (data) {
 				$(".right-panel").html(data);
 
@@ -131,14 +151,16 @@
 		document.getElementById('form-book-room').addEventListener('submit', function (e) {
 			e.preventDefault(); // Ngăn chặn việc tải lại trang
 
+			console.log($(this).serialize())
+
 			$.ajax({
 				type: "POST",
-				url: "/Admin/AdminBooking/EditBooking",
+				url: "/Admin/ProxyBooking/EditBooking",
 				data: $(this).serialize(),
 				success: function (data) {
-					if (data.result == true) 
+					if (data.result == true) {
 						success(data.mess, "", null);
-					else {
+                    } else {
 						error(data.mess);
 						editBooking();
 					}
@@ -152,17 +174,28 @@
 
 	// thêm phòng
 	function addRoomBooking() {
-		var roomContainer = document.querySelector('.custom-room-container');
-
 		document.querySelector('.panel-form-add-room').addEventListener('click', function () {
-			roomContainer.classList.add('active');
+			$.ajax({
+				type: "POST",
+				url: "/Admin/ProxyBooking/ChooseRoom",
+				success: function (data) {
+					$('#choose-room').html(data);
+
+					var roomContainer = document.querySelector('.custom-room-container');
+
+					roomContainer.classList.add('active');
+
+					document.querySelector('.custom-overlay').addEventListener('click', function () {
+						roomContainer.classList.remove('active');
+					});
+
+					switchTabRoom();
+				},
+				error: function () {
+
+				}
+			});
 		})
-
-		document.querySelector('.custom-overlay').addEventListener('click', function () {
-			roomContainer.classList.remove('active');
-		});
-
-		switchTabRoom();
 	}
 
 	// chuyển tab room

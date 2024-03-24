@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Service;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
 using MTKPM_QuanLyKhachSan.ViewModels;
@@ -7,21 +9,28 @@ using Newtonsoft.Json;
 namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class AdminBookingController : Controller
+    [Route("Admin/[controller]/[action]")]
+    public class AdminBookingController : Controller, IBooking
     {
         RoomDao roomDao;
+        RoomTypeDao roomTypeDao;
         BookRoomDao bookRoomDao;
         BookRoomDetailsDao bookRoomDetailsDao;
+        CustomerDao customerDao;
 
         public AdminBookingController(DatabaseContext context)
         {
             roomDao = new RoomDao(context);
+            roomTypeDao = new RoomTypeDao(context);
             bookRoomDao = new BookRoomDao(context);
             bookRoomDetailsDao = new BookRoomDetailsDao(context);
+            customerDao = new CustomerDao(context);
         }
 
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetString("Alert") != null)
+                    ViewBag.AlertMessage = HttpContext.Session.GetString("Alert");
             return View();
         }
 
@@ -29,8 +38,11 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         {
             var rooms = roomDao.GetRooms();
             var bookings = bookRoomDetailsDao.GetBookRoomDetails();
+            //Kiểm tra thông báo quyền
 
-            // Chuyển đổi từ Room sang RoomTitleVM
+            //if (HttpContext.Session.GetString("AlertGetBooking") != null)
+            //    ViewBag.AlertMessage = HttpContext.Session.GetString("AlertGetBooking");
+            // Chuyển đổi từ Room sang RoomTitleVM 
             List<RoomTitleVM> roomTitleVMs = rooms.Select(room => new RoomTitleVM
             {
                 id = (room.RoomId).ToString(),
@@ -62,24 +74,100 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Booking()
         {
-            return PartialView();
+            if(HttpContext.Session.GetString("AlertBooking")!=null)
+                ViewBag.AlertMessage = HttpContext.Session.GetString("AlertBooking");
+            return PartialView("Booking", new BookingAdminVM());
+        }
+
+        [HttpPost]
+        public IActionResult Booking(BookingAdminVM bookingAdminVM, List<int> rooms)
+        {
+            ExecutionOutcome executionOutcome;
+            string error;
+            bool status = bookingAdminVM.Validation(out error);
+
+            if (status)
+            {
+                // tạo khách hàng nếu chưa tồn tại
+                int customerId = customerDao.GetCustomerIdByPhoneOrCIC(bookingAdminVM.Phone, bookingAdminVM.CIC);
+                if (customerId > 0)
+                {
+                    Customer newCustomer = new Customer
+                    {
+                        Phone = bookingAdminVM.Phone,
+                        CIC = bookingAdminVM.CIC,
+                        Name = bookingAdminVM.Name
+                    };
+
+                    customerDao.CreateCustomer(newCustomer);
+
+                    customerId = newCustomer.CustomerId;
+                }
+
+                // Tạo phiếu đặt phòng
+                BookRoom newBookRoom = new BookRoom
+                {
+                    CustomerId = customerId,
+                    EmployeeId = null,
+                    Note = bookingAdminVM.Note,
+                };
+
+                // tạo phiếu chi tiết đặt phòng
+                foreach (var roomId in rooms)
+                {
+                    // kiểm tra phòng trống
+                    if (roomDao.IsRoomAvailable(roomId)) 
+                    {
+                        // tạo phòng
+                        BookRoomDetails newBookRoomDetails = new BookRoomDetails
+                        {
+                            BookRoomId = newBookRoom.BookRoomId,
+                            RoomId = roomId,
+                            CheckIn = bookingAdminVM.ConvertDateTime(bookingAdminVM.CheckIn),
+                            CheckOut = bookingAdminVM.ConvertDateTime(bookingAdminVM.CheckOut),
+                            Note = newBookRoom.Note
+                        };
+                    }
+                }
+
+                executionOutcome = new ExecutionOutcome()
+                {
+                    Result = true,
+                    Mess = "Đặt phòng thành công.",
+                };
+            }
+            else
+            {
+                executionOutcome = new ExecutionOutcome()
+                {
+                    Result = false,
+                    Mess = error,
+                };
+            }
+
+            return Json(executionOutcome);
         }
 
         // chi tiết đặt phòng
         [HttpGet]
         public IActionResult BookingDetails(int bookRoomDetailsId)
         {
+            //Thong bao
+            if(HttpContext.Session.GetString("AlertBookingDetails")!=null)
+                ViewBag.AlertMessage = HttpContext.Session.GetString("AlertBookingDetails");
+
             BookRoomDetails bookRoomDetails = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
 
-            BookingDetailsVM bookingDetailsVM = new BookingDetailsVM()
+            BookingAdminVM bookingDetailsVM = new BookingAdminVM()
             {
                 BookRoomId = bookRoomDetails.BookRoomId,
                 Name = bookRoomDetails.BookRoom.Customer.Name,
                 Phone = bookRoomDetails.BookRoom.Customer.Phone,
                 CheckIn = bookRoomDetails.CheckIn.ToString(),
                 CheckOut = bookRoomDetails.CheckOut.ToString(),
-                Note = bookRoomDetails.Note,
+                Note = bookRoomDetails.BookRoom.Note,
                 CIC = bookRoomDetails.BookRoom.Customer.CIC,
+                Rooms = roomDao.GetRooms()
             };
 
             return PartialView("BookingDetails", bookingDetailsVM);
@@ -87,36 +175,38 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
         // sửa đặt phòng
         [HttpPost]
-        public IActionResult EditBooking(BookingDetailsVM bookingDetailsVM)
+        public IActionResult EditBooking(BookingAdminVM bookingAdminVM)
         {
-            ExecuteOperation executeOperation;
+            ExecutionOutcome executionOutcome;
+            string error;
 
-            if (int.Parse(bookingDetailsVM.Phone) <= 0 || bookingDetailsVM.Phone.Length > 10)
+            if (bookingAdminVM.Validation(out error) == true)
             {
-                executeOperation = new ExecuteOperation()
-                {
-                    Result = false,
-                    Mess = "Vui lòng nhập đúng định dạng số điện thoại.",
-                };
-            }
-            else if (bookingDetailsVM.CheckDate() == false)
-            {
-                executeOperation = new ExecuteOperation()
-                {
-                    Result = false,
-                    Mess = "Ngày đi phải nhỏ hơn ngày tới.",
-                };
-            }
-            else
-            {
-                executeOperation = new ExecuteOperation()
+                executionOutcome = new ViewModels.ExecutionOutcome()
                 {
                     Result = true,
                     Mess = "Chỉnh sửa đặt phòng thành công.",
                 };
             }
+            else
+            {
+                executionOutcome = new ViewModels.ExecutionOutcome()
+                {
+                    Result = false,
+                    Mess = error,
+                };
+            }
 
-            return Json(executeOperation);
+            return Json(executionOutcome);
+        }
+
+        // Chọn phòng đặt
+        public IActionResult ChooseRoom()
+        {
+            ViewBag.rooms = roomDao.GetEmptyRooms();
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+
+            return PartialView();
         }
     }
 }

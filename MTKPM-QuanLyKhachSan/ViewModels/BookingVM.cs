@@ -51,5 +51,25 @@ namespace MTKPM_QuanLyKhachSan.ViewModels
                 return false;
             return true;
         }
+
+        // Kiểm tra ràng buộc
+        public bool Validation(out string error)
+        {
+            if (int.Parse(Phone) <= 0 || Phone.Length > 10)
+            {
+                error = "Vui lòng nhập đúng định dạng số điện thoại.";
+                return false;
+            }
+            else if (CheckDate() == false)
+            {
+                error = "Ngày đi phải nhỏ hơn ngày tới.";
+                return false;
+            }
+            else
+            {
+                error = "";
+                return true;
+            }
+        }
     }
 }

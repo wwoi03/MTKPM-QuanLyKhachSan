@@ -1,194 +1,58 @@
 ﻿@{
 	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-	var roomTypes = ViewBag.roomTypes;
-	var rooms = ViewBag.rooms;
 }
 
 <div class="main-container d-flex">
 	<!-- Nội dung bên trái -->
 	<div class="left-panel col-8 pl-0 pr-0">
+		<!-- loading -->
+		<div class="loaderBar" id="loaderBar"></div>
+
 		<!-- Thanh navbar -->
 		<nav class="panel-navbar">
 			<ul class="d-flex flex-row justify-content-between nav-container">
-				<li class="nav-item active" id="WaitRoom">
+				<li class="nav-item active" id="room-wait">
 					<i class="fa-solid fa-door-open nav-icon" style="color: #009688;"></i>
 					<span class="">Phòng chờ</span>
 				</li>
 
-				<li class="nav-item" id="RentRoom">
-					<i class="fa-solid fa-door-closed nav-icon" style="color: #66C0B8;"></i>
+				<li class="nav-item" id="room-rent">
+					<i class="fa-solid fa-door-closed nav-icon" style="color: #FF9985;"></i>
 					<span class="">Phòng đang thuê</span>
 				</li>
 
-				<li class="nav-item" id="CleanRoom">
+				<li class="nav-item" id="room-clean">
 					<i _ngcontent-c5="" class="fas fa-broom fa-lg text-danger ng-star-inserted nav-icon"></i>
 					<span class="">Phòng cần dọn</span>
 				</li>
 
-				<li class="nav-item">
+				<li class="nav-item" id="room-history">
 					<i class="fa-solid fa-clock-rotate-left nav-icon" style="color: #68CBF8;"></i>
 					<span class="">Lịch sử</span>
 				</li>
+
+				@*<li class="nav-item" id="room-history">
+					<i class="fa-solid fa-magnifying-glass nav-icon" style="color: #66CBF5;"></i>
+					<span class="">Tìm kiếm</span>
+					</li>*@
 			</ul>
 
 			<div class="nav-line"></div>
 		</nav>
 
-		<section class="custom-section-left-panel">
-			@foreach (var roomType in roomTypes)
-			{
-				<div class="custom-room-type-item">
-					<div class="custom-room-type-title">
-						<p>@roomType.Name</p>
-					</div>
+		<div class="cotent-left-panel">
+			@*<!-- render thuê trả phòng -->
+				<div id="loading">
+				Đang tải...
+				</div>*@
 
-					<div class="d-flex flex-xl-wrap ml-xl-n2 mr-xl-n2">
-						@foreach (var room in rooms)
-						{
-							if (@roomType.RoomTypeId == @room.RoomTypeId)
-							{
-								<div class="col-3 pl-2 pr-2 pt-4 ">
-									<div class="custom-card">
-										<div class="custom-card-header">
-											<span class="title">@room.Name</span>
-											<i class="custom-icon fa-solid fa-ellipsis-vertical icon-menu"></i>
-										</div>
-										<div class="custom-card-content">
-											<div class="date block">
-												<i class="custom-icon fa-solid fa-person-walking icon"></i>
-												<span class="custom-text">10 ngày trước</span>
-											</div>
-											<div class="status block">
-												<i class="custom-icon fa-solid fa-xmark icon"></i>
-												<span class="custom-text">Chưa dọn phòng</span>
-											</div>
-										</div>
-
-										<div id="myDropdown" class="custom-dropdown-menu">
-											<div class="custom-dropdown-menu-item">
-												<i class="custom-icon fa-solid fa-key"></i>
-												<p>Nhận phòng</p>
-											</div>
-
-											<div class="custom-dropdown-menu-item">
-												<i class="custom-icon fa-regular fa-calendar"></i>
-												<p>Nhận phòng trước</p>
-											</div>
-
-											<div class="custom-dropdown-menu-item">
-												<i class="custom-icon fa-solid fa-tag"></i>
-												<p>Yêu cầu dọn phòng</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							}
-
-						}
-					</div>
-				</div>
-			}
-		</section>
+			<!-- render thuê trả phòng -->
+			<section id="section-left-panel" class="custom-section-left-panel">
+			</section>
+		</div>
 	</div>
 
 	<!-- Nội dung bên phải -->
-	<div class="right-panel col-4 pl-0 pr-0">
-	</div>
+	<div class="right-panel col-4 pl-0 pr-0"></div>
 </div>
 
-<script>
-	main();
-
-	function main() {
-		switchTabs();
-		closeDropdownMenu();
-		openDropdownMenu();
-	}
-
-	// M: Xử lý chuyển tab
-	function switchTabs() {
-		// Xử animation chuyển tab
-		var tabActive = document.querySelector(".nav-item.active");
-		var navLine = document.querySelector(".panel-navbar .nav-line");
-		var navItem = document.querySelectorAll(".nav-container .nav-item");
-
-		if (tabActive != null) {
-			// Cập nhật lại đường line khi chuyển tab
-			function LineUpdate(tab) {
-				navLine.style.left = tab.offsetLeft + "px";
-				navLine.style.width = tab.offsetWidth + "px";
-			}
-
-			// line cho tab đầu tiên
-			LineUpdate(tabActive);
-
-			// bắt sự kiện click trên mỗi tab
-
-			navItem.forEach((item, index) => {
-				item.addEventListener('click', function () {
-					document.querySelector(".nav-item.active").classList.remove("active");
-
-					LineUpdate(this);
-
-					this.classList.add("active");
-				});
-			});
-		}
-	}
-
-	// đóng DropdownMenu khi bấm ra ngoài
-	function closeDropdownMenu() {
-		// Lấy danh sách tất cả các card trong tài liệu
-		const cards = document.querySelectorAll(".custom-card");
-
-		// Lắng nghe sự kiện click trên toàn bộ tài liệu
-		document.addEventListener('click', function(event) {
-			// Kiểm tra xem sự kiện click có xảy ra bên ngoài dropdown-menu không
-			cards.forEach((card, index) => {
-				const dropdownMenu = card.querySelector(".custom-dropdown-menu");
-				const iconMenu = card.querySelector(".icon-menu");
-
-				if (
-					!event.target.classList.contains('icon-menu') && // Không phải icon-menu
-					!dropdownMenu.contains(event.target) && // Không nằm trong dropdown-menu
-					dropdownMenu.classList.contains('active') // Dropdown-menu đang mở
-				) {
-					dropdownMenu.classList.remove('active'); // Đóng dropdown-menu
-				}
-			});
-		});
-	}
-	
-	// mở DropdownMenu khi bấm icon menu
-	function openDropdownMenu() {
-		// Lấy danh sách tất cả các card trong tài liệu
-		const cards = document.querySelectorAll(".custom-card");
-
-		// Lặp qua từng card để thêm sự kiện khi icon-menu được bấm
-		cards.forEach((card, index) => {
-			const iconMenu = card.querySelector(".icon-menu");
-			const dropdownMenu = card.querySelector(".custom-dropdown-menu");
-
-			// Thêm sự kiện click cho icon-menu
-			iconMenu.addEventListener('click', function(event) {
-				// Xác định trạng thái hiện tại của dropdown-menu
-				const isActive = dropdownMenu.classList.contains('active');
-
-				// Đóng tất cả các dropdown-menu khác nếu chúng đang mở
-				cards.forEach((otherCard, otherIndex) => {
-					const otherDropdownMenu = otherCard.querySelector(".custom-dropdown-menu");
-					if (otherIndex !== index && otherDropdownMenu.classList.contains('active')) {
-						otherDropdownMenu.classList.remove('active');
-					}
-				});
-
-				// Nếu dropdown-menu đang mở, đóng nó; ngược lại, mở nó
-				if (isActive) {
-					dropdownMenu.classList.remove('active');
-				} else {
-					dropdownMenu.classList.add('active');
-				}
-			});
-		});
-	}
-</script>
