@@ -72,5 +72,15 @@ namespace MTKPM_QuanLyKhachSan.Daos
             context.Update(bookRoomDetails);
             context.SaveChanges();
         }
+        //Tìm kiếm lịch sử đặt phòng theo ngày/tháng/năm
+        internal object Search(DateTime startDate, DateTime endDate)
+        {
+            throw new NotImplementedException();
+        }
+        //Xóa lịch sử đặt phòng
+        internal void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

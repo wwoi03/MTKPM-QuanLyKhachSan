@@ -1,3 +1,152 @@
-﻿@{
-	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+﻿@model List<MTKPM_QuanLyKhachSan.Models.BookRoomDetails>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+
+<div class="main-container d-flex">
+    <div class="left-panel col-8 pl-0 pr-0">
+        <!-- Header title -->
+        <div class="custom-header-title">
+            <div class="d-flex justify-content-between">
+                <h4 class="card-title float-left mt-2" style="font-size: 24px">Quản lý lịch sử</h4>
+            </div>
+        </div>
+
+        <!-- Search -->
+        <div class="custom-bulkhead">
+            <form method="post" action="@Url.Action("Search", "AdminHistoryBooking")">
+                <div class="form-group">
+                    <label for="startDate">Từ ngày:</label>
+                    <input type="date" id="startDate" name="startDate" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="endDate">Đến ngày:</label>
+                    <input type="date" id="endDate" name="endDate" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+            </form>
+        </div>
+
+        <!-- Main body -->
+        <div class="content container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table">
+                        <div class="card-body booking_card">
+                            <div class="table-responsive">
+                                <table class="datatable table table-stripped table table-hover table-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10%" class="custom-text-center">Mã đặt phòng</th>
+                                            <th style="width: 10%" class="custom-text-center">Mã khách hàng</th>
+                                            <th style="width: 10%" class="custom-text-center">Tên khách hàng</th>
+                                            <th style="width: 10%" class="custom-text-center">Mã nhân viên</th>
+                                            <th style="width: 10%" class="custom-text-center">Mã phòng</th>
+                                            <th style="width: 10%" class="custom-text-center">Phòng</th>
+                                            <th style="width: 10%" class="custom-text-center">Người lớn</th>
+                                            <th style="width: 10%" class="custom-text-center">Trẻ em</th>
+                                            <th style="width: 10%" class="custom-text-center">Ghi chú</th>
+                                            <th style="width: 10%" class="custom-text-center">Thời gian nhận phòng</th>
+                                            <th style="width: 10%" class="custom-text-center">Thời gian trả phòng</th>
+                                            <th style="width: 10%" class="custom-text-center">Trạng thái</th>
+                                            <th style="width: 39%">Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tbody-share">
+                                        @foreach (var booking in Model)
+                                        {
+                                            <tr>
+                                                <td class="custom-text-center">@booking.BookRoomId</td>
+                                                <td class="custom-text-center">@booking.BookRoom.CustomerId</td>
+                                                <td class="custom-text-center">@booking.BookRoom.Customer.Name</td>
+                                                <td class="custom-text-center">@booking.BookRoom.EmployeeId</td>
+                                                <td class="custom-text-center">@booking.RoomId</td>
+                                                <td class="custom-text-center">@booking.Room.Name</td>
+                                                <td class="custom-text-center">@booking.BookRoom.NumAdult</td>
+                                                <td class="custom-text-center">@booking.BookRoom.NumChildren</td>
+                                                <td class="custom-text-center">@booking.BookRoom.Note</td>
+                                                <td class="custom-text-center">@booking.CheckIn</td>
+                                                <td class="custom-text-center">@booking.CheckOut</td>
+                                                <td class="custom-text-center">@booking.Status</td>
+                                                <td>
+                                                    <a asp-action="Detail" asp-route-id="@booking.BookRoomDetailsId" class="btn btn-info">Chi tiết</a>
+                                                    <a asp-action="Edit" asp-route-id="@booking.BookRoomDetailsId" class="btn btn-warning">Chỉnh sửa</a>
+                                                    <a asp-action="Delete" asp-route-id="@booking.BookRoomDetailsId" class="btn btn-danger">Xóa</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="right-panel col-4 pl-0 pr-0">
+        <div class="panel-save d-flex justify-content-between align-items-center">
+            <span>Chi tiết đặt phòng</span>
+            <div class="">
+                <input id="submit-input" type="submit" value="Lưu" />
+            </div>
+        </div>
+        <!-- Form -->
+        <form method="post" action="@Url.Action("Save", "AdminHistoryBooking")">
+            <div class="panel-form">
+                <div class="panel-form-info">
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Mã đặt phòng</h5>
+                        <input class="panel-form-input" type="text" name="BookRoomId" />
+                    </div>
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Mã khách hàng</h5>
+                        <input class="panel-form-input" type="text" name="CustomerId" />
+                    </div>
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Tên khách hàng</h5>
+                        <input class="panel-form-input" type="text" name="CustomerName" />
+                    </div>
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Mã nhân viên</h5>
+                        <input class="panel-form-input" type="text" name="EmployeeId" />
+                    </div>
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Mã phòng</h5>
+                        <input class="panel-form-input" type="text" name="RoomId" />
+                    </div>
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Phòng</h5>
+                        <input class="panel-form-input" type="text" name="RoomName" />
+                    </div>
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Người lớn</h5>
+                        <input class="panel-form-input" type="text" name="NumAdult" />
+                    </div>
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Trẻ em</h5>
+                        <input class="panel-form-input" type="text" name="NumChildren" />
+                    </div>
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Ghi chú</h5>
+                        <input class="panel-form-input" type="text" name="Note" />
+                    </div>
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Thời gian nhận phòng</h5>
+                        <input class="panel-form-input" type="datetime-local" name="CheckIn" />
+                    </div>
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Thời gian trả phòng</h5>
+                        <input class="panel-form-input" type="datetime-local" name="CheckOut" />
+                    </div>
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Trạng thái</h5>
+                        <input class="panel-form-input" type="text" name="Status" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

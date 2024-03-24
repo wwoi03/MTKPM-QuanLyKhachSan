@@ -1,0 +1,22 @@
+﻿@model MTKPM_QuanLyKhachSan.Models.Service
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Chỉnh sửa Menu";
+}
+
+<div class="main-container">
+    <h2>Chỉnh sửa Menu</h2>
+    <form asp-action="Edit" asp-controller="AdminService" method="post">
+        <input type="hidden" asp-for="ServiceId" />
+        <div class="form-group">
+            <label>Tên menu:</label>
+            <input type="text" class="form-control" asp-for="Name" />
+        </div>
+        <div class="form-group">
+            <label>Giá bán:</label>
+            <input type="number" class="form-control" asp-for="Price" />
+        </div>
+        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+    </form>
+</div>

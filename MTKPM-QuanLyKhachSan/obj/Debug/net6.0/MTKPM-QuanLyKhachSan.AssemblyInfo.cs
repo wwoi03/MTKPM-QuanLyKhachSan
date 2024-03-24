@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MTKPM-QuanLyKhachSan")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e71040a5ec53db9b9fae0eb03812909fca15b705")]
 [assembly: System.Reflection.AssemblyProductAttribute("MTKPM-QuanLyKhachSan")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MTKPM-QuanLyKhachSan")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

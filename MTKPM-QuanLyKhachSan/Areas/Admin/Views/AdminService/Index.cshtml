@@ -1,3 +1,120 @@
-﻿@{
-	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+﻿@model IEnumerable<MTKPM_QuanLyKhachSan.Models.Service>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Quản lý Menu";
 }
+
+<div class="main-container d-flex">
+    <!-- Nội dung bên trái -->
+    <div class="left-panel col-8 pl-0 pr-0">
+        <!-- Header title -->
+        <div class="custom-header-title">
+            <div class="d-flex justify-content-between">
+                <h4 class="card-title float-left mt-2" style="font-size: 24px">Quản lý Menu</h4>
+                <a class="btn btn-primary veiwbutton" href="/Admin/AdminService/Create">Thêm menu mới</a>
+            </div>
+        </div>
+
+        <!-- Search -->
+        <div class="custom-bulkhead">
+            <form asp-controller="AdminService" asp-action="Index" method="get" style="position: relative">
+                <input id="search-input" type="text" class="form-control" placeholder="Tìm kiếm theo tên menu" name="searchString">
+                <button id="submit-button" class="btn" type="submit" style="position: absolute; top: 0; right: 0"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+
+        <!-- Main body -->
+        <div class="content container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table">
+                        <div class="card-body booking_card">
+                            <div class="table-responsive">
+                                <table class="datatable table table-stripped table table-hover table-center mb-0">
+                                    <!-- Title -->
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10%" class="custom-text-center">Mã menu</th>
+                                            <th style="width: 30%">Tên menu</th>
+                                            <th style="width: 20%" class="custom-text-center">Giá bán</th>
+                                            <th style="width: 40%">Chức năng</th>
+                                        </tr>
+                                    </thead>
+
+                                    <!-- Render data -->
+                                    <tbody class="tbody-share">
+                                        @foreach (var item in Model)
+                                        {
+
+                                            <tr>
+                                                <td class="custom-text-center">@item.ServiceId</td>
+                                                <td>@item.Name</td>
+                                                <td class="custom-text-center">@item.Price</td>
+                                                <td>
+
+                                                    <a href="/Admin/AdminService/Edit/@item.ServiceId" class="btn btn-info btn-sm">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                        Chỉnh sửa
+                                                    </a>
+
+                                                    <form asp-action="Delete" asp-controller="AdminService" method="post" class="d-inline">
+                                                        <input type="hidden" name="id" value="@item.ServiceId" />
+                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                            Xóa
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Nội dung bên phải -->
+    <div class="right-panel col-4 pl-0 pr-0">
+        <form method="post" asp-action="Create" asp-controller="AdminService" enctype="multipart/form-data">
+            <!-- Lưu menu mới -->
+            <div class="panel-save d-flex justify-content-between align-items-center">
+                <span>Thêm menu mới</span>
+
+                <div class="">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="panel-form">
+                <!-- Thông tin -->
+                <div class="panel-form-info">
+                    <!-- Mã menu -->
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Mã menu</h5>
+                        <input class="panel-form-input" type="text" name="ServiceId" />
+                    </div>
+
+                    <!-- Tên menu -->
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Tên menu</h5>
+                        <input class="panel-form-input" type="text" name="Name" />
+                    </div>
+
+                    <!-- Giá menu -->
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Giá bán</h5>
+                        <input class="panel-form-input" type="number" name="Price" placeholder="0.000 đ" />
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,12 @@ builder.Services.AddDbContext<DatabaseContext>(x => x.UseSqlServer(builder.Confi
 
 // Kích hoạt Session
 builder.Services.AddSession();
+
+//Kích hoạt dịch vụ cho ServiceDao, BookRoomDao, BookRoomDetailsDao
+builder.Services.AddScoped<ServiceDao>();
+builder.Services.AddScoped<BookRoomDetailsDao>();
+builder.Services.AddScoped<BookRoomDao>();
+///
 
 var app = builder.Build();
 
@@ -49,5 +56,16 @@ app.UseEndpoints(endpoints =>
       pattern: "{area:exists}/{controller=AdminBooking}/{action=Index}/{id?}"
     );*/
 });
+
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "areaRoute",
+		pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+	endpoints.MapControllerRoute(
+		name: "default",
+		pattern: "{controller=Home}/{action=Index}/{id?}");
+});
+
 
 app.Run();

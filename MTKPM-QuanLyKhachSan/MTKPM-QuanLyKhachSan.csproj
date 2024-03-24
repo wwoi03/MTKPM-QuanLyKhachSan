@@ -15,6 +15,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Areas\Admin\Views\AdminService\Create.cshtml" />
+    <Content Remove="Areas\Admin\Views\AdminService\CreateMenu.cshtml" />
+    <Content Remove="Areas\Admin\Views\AdminService\Delete.cshtml" />
+    <Content Remove="Areas\Admin\Views\AdminService\Edit.cshtml" />
+    <Content Remove="Areas\Admin\Views\AdminService\EditMenu.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.11.57" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.15">
