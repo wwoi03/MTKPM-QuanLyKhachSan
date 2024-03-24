@@ -1,0 +1,81 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using MTKPM_QuanLyKhachSan.ViewModels
+@model RoomVM
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="colorlib.com">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/admin/assets/adminRoomtype/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="~/admin/assets/adminRoomtype/vendor/nouislider/nouislider.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/admin/assets/adminRoomtype/css/style.css">
+</head>
+
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            <form method="POST" id="signup-form" class="signup-form" asp-controller="AdminRoom" asp-action="AddRoom" asp-area="Admin">
+                <div>
+                    <h3>Phòng </h3>
+                    <fieldset>
+                        <h2>Thêm Loại Phòng</h2>
+                        <div class="fieldset-content">
+                            <div class="form-row">
+                                <div class="form-flex">
+                                    <div class="form-group">
+                                        <label class="form-label">Tên</label>
+                                        <input type="number" id="first_name" asp-for="Name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Loại Phòng</label>
+                                        <input type="number" id="last_name" asp-for="RoomTypeId" />
+                                    </div>
+                                </div>
+                            </div>       
+                            <div class="form-group">
+                                @*<label  for="ssn" class="form-label">Hình ảnh</label>
+                                <input width: 300px type="text" name="ssn" id="ssn" />*@
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Trạng Thái phòng</label>
+                                <input type="number" id="last_name" asp-for="Status" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Dọn Dẹp</label>
+                                <input type="number" id="last_name" asp-for="Tidy " />
+                            </div>
+                        </div>
+                        <div class="">
+                            <input id="submit-input" type="submit" value="Lưu">
+                        </div>
+                    </fieldset>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="~/admin/assets/adminRoomtype/vendor/jquery/jquery.min.js"></script>
+    <script src="~/admin/assets/adminRoomtype/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/admin/assets/adminRoomtype/vendor/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="~/admin/assets/adminRoomtype/vendor/jquery-steps/jquery.steps.min.js"></script>
+    <script src="~/admin/assets/adminRoomtype/vendor/minimalist-picker/dobpicker.js"></script>
+    <script src="~/admin/assets/adminRoomtype/vendor/nouislider/nouislider.min.js"></script>
+    <script src="~/admin/assets/adminRoomtype/vendor/wnumb/wNumb.js"></script>
+    <script src="~/admin/assets/adminRoomtype/js/main.js"></script>*
+</body>
+
+</html>
