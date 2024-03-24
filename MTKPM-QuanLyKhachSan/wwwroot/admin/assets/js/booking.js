@@ -1,6 +1,4 @@
-﻿const { title } = require("process");
-
-document.addEventListener('DOMContentLoaded', function () {
+﻿document.addEventListener('DOMContentLoaded', function () {
 	main();
 
 	function main() {
