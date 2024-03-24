@@ -7468,6 +7468,12 @@ h3.page-sub-title {
         cursor: pointer !important;
     }
 
+.setting-account-item-title {
+    border-bottom: 1px solid #949494;
+    border-top: 1px solid #949494;
+    padding: 12px 0;
+}
+
 .setting-account-item input {
     width: 16px;
     height: 16px;
