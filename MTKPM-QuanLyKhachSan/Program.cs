@@ -9,9 +9,11 @@ builder.Services.AddControllersWithViews();
 
 // Kết nối đến database
 builder.Services.AddDbContext<DatabaseContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("DbContext")));
+//builder.Services.Configure<PaypalSettings>(builder.Configuration.GetSection("PaypalSettings"));
 
 // Kích hoạt Session
 builder.Services.AddSession();
+
 
 var app = builder.Build();
 
