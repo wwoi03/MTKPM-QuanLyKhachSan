@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Service;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
@@ -37,8 +38,11 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         {
             var rooms = roomDao.GetRooms();
             var bookings = bookRoomDetailsDao.GetBookRoomDetails();
+            //Kiểm tra thông báo quyền
 
-            // Chuyển đổi từ Room sang RoomTitleVM
+            //if (HttpContext.Session.GetString("AlertGetBooking") != null)
+            //    ViewBag.AlertMessage = HttpContext.Session.GetString("AlertGetBooking");
+            // Chuyển đổi từ Room sang RoomTitleVM 
             List<RoomTitleVM> roomTitleVMs = rooms.Select(room => new RoomTitleVM
             {
                 id = (room.RoomId).ToString(),
@@ -70,6 +74,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Booking()
         {
+            if(HttpContext.Session.GetString("AlertBooking")!=null)
+                ViewBag.AlertMessage = HttpContext.Session.GetString("AlertBooking");
             return PartialView("Booking", new BookingAdminVM());
         }
 
@@ -146,6 +152,10 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult BookingDetails(int bookRoomDetailsId)
         {
+            //Thong bao
+            if(HttpContext.Session.GetString("AlertBookingDetails")!=null)
+                ViewBag.AlertMessage = HttpContext.Session.GetString("AlertBookingDetails");
+
             BookRoomDetails bookRoomDetails = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
 
             BookingAdminVM bookingDetailsVM = new BookingAdminVM()

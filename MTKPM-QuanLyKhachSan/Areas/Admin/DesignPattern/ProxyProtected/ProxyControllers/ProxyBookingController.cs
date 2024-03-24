@@ -43,17 +43,17 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.ProxyCon
         }
         public IActionResult Index()
         {
+            //if (TempData["Alert"] != null)
+            //{
+            //    HttpContext.Session.SetString("Alert", TempData["Alert"].ToString());
+            //}
             if (employee != null)
             {
-                if (TempData["Alert"] != null)
-                {
-                    HttpContext.Session.SetString("Alert", TempData["Alert"].ToString());
-                }
                 return RedirectToAction("Index", "AdminBooking");
             }
             else
             {
-                HttpContext.Session.SetString("Alert", "Bạn không có quyền truy cập vào trang quản lý");
+                //HttpContext.Session.SetString("Alert", TempData["Alert"].ToString());
                 return RedirectToAction("Index", "PublicHome");
             }
         }
@@ -66,24 +66,33 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.ProxyCon
                 if (item.PermissionId == PermissionBookingType.ViewBooking.ToString())
                     return adminBooking.GetBooking();
             }
-            TempData["Alert"] = "Bạn không có quyền xem đặt phòng";
-            return RedirectToAction("Index", "ProxyBooking");
+            //HttpContext.Session.SetString("AlertGetBooking", "Bạn không có quyền xem đặt phòng");
+            //ViewBag.AlertMessage = HttpContext.Session.GetString("AlertGetBooking");
+            //return adminBooking.GetBooking();
+            return RedirectToAction("Index", "AdminBooking");
         }
 
         [HttpGet]
         public IActionResult Booking()
         {
+            //foreach (var item in listPermission)
+            //{
+            //    if (item.PermissionId == "555")
+            //        return RedirectToAction("Booking", "AdminBooking");
+            //}
+            //HttpContext.Session.SetString("AlertBooking", "Bạn không có quyền đặt phòng");
+            //return RedirectToAction("Index", "ProxyBooking");
             foreach (var item in listPermission)
             {
                 if (item.PermissionId == PermissionBookingType.CreateBooking.ToString())
                     return RedirectToAction("Booking", "AdminBooking");
             }
-            TempData["Alert"] = "Bạn không có quyền đặt phòng";
-            return RedirectToAction("Index", "ProxyBooking");
+            HttpContext.Session.SetString("AlertBooking", "Bạn không có quyền đặt phòng");
+            return RedirectToAction("Booking", "AdminBooking");
         }
-      
 
-            
+
+
         [HttpGet]
         public IActionResult BookingDetails(int Id)
         {
@@ -92,8 +101,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.ProxyCon
                 if (item.PermissionId == PermissionBookingType.DetailsBooking.ToString())
                     return RedirectToAction("BookingDetails", "AdminBooking", new { bookRoomDetailsId = Id});
             }
-            TempData["Alert"] = "Bạn không có quyền xem chi tiết đặt phòng";
-            return RedirectToAction("Index", "ProxyBooking");
+            HttpContext.Session.SetString("AlertBookingDetails", "Bạn không có quyền xem chi tiết đặt phòng");
+            return RedirectToAction("BookingDetails", "AdminBooking", new { bookRoomDetailsId = Id });
         }
 
         public IActionResult EditBooking(BookingAdminVM bookingAdminVM)
@@ -103,7 +112,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.ProxyCon
                 if (item.PermissionId == PermissionBookingType.EditBooking.ToString())
                     return adminBooking.EditBooking(bookingAdminVM);
             }
-            TempData["Alert"] = "Bạn không có quyền sửa đặt phòng";
+            //HttpContext.Session.SetString("AlertEditBooking", "Bạn không có quyền sửa đặt phòng");
             return RedirectToAction("Index", "ProxyBooking");
         }
 

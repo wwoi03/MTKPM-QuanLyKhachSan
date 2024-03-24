@@ -8,7 +8,6 @@
 			success: function (data) {
 				var dataResources = JSON.parse(data.resources);
 				var dataEvents = JSON.parse(data.events);
-
 				renderFullCallendar(dataResources, dataEvents);
 			},
 			error: function () {
