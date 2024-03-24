@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Service;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
 using MTKPM_QuanLyKhachSan.ViewModels;
@@ -7,7 +8,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/[controller]/[action]")]
-    public class AdminRentCheckOutController : Controller
+    public class AdminRentCheckOutController : Controller,IRentCheckOut
     {
         RoomTypeDao roomTypeDao;
         RoomDao roomDao;
@@ -36,6 +37,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             HttpContext.Session.SetInt32("EmployeeId", 1);
             HttpContext.Session.SetString("EmployeeName", "Đào Công Tuấn");
             HttpContext.Session.SetInt32("HotelId", 1);
+            //thong bao
+            if (HttpContext.Session.GetString("Alert") != null)
+                ViewBag.AlertMessage = HttpContext.Session.GetString("Alert");
 
             return View();
         }
@@ -43,6 +47,13 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // danh sách phòng chờ
         public IActionResult RoomWait()
         {
+            //thong bao
+            if (HttpContext.Session.GetString("AlertRequestCleanRoom") != null)
+            {
+                ViewBag.AlertMessage = HttpContext.Session.GetString("AlertRequestCleanRoom");
+                HttpContext.Session.Remove("AlertRequestCleanRoom");
+            }
+
             var roomWaits = roomDao.GetEmptyRooms(HttpContext.Session.GetInt32("HotelId"));
 
             ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
@@ -61,6 +72,13 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // danh sách phòng đang thuê
         public IActionResult RoomRent()
         {
+            //thong bao
+            if (HttpContext.Session.GetString("AlertRequestCleanRoom") != null)
+            {
+                ViewBag.AlertMessage = HttpContext.Session.GetString("AlertRequestCleanRoom");
+                HttpContext.Session.Remove("AlertRequestCleanRoom");
+            }
+
             ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
 
             var roomRents = bookRoomDetailsDao.GetBookRoomDetailsReceive(HttpContext.Session.GetInt32("HotelId"));
@@ -85,6 +103,13 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // danh sách phòng cần dọn
         public IActionResult RoomClean()
         {
+            //thong bao
+            if (HttpContext.Session.GetString("AlertCleanRoom") != null)
+            {
+                ViewBag.AlertMessage = HttpContext.Session.GetString("AlertCleanRoom");
+                HttpContext.Session.Remove("AlertCleanRoom");
+            }
+
             ViewBag.roomCleans = roomDao.GetCleanRooms(HttpContext.Session.GetInt32("HotelId"));
             ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
 
@@ -129,7 +154,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             ViewBag.roomChange = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
             ViewBag.roomWaits = roomDao.GetEmptyRooms(HttpContext.Session.GetInt32("HotelId"));
             ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
-
+            //Thong bao 
+            if (HttpContext.Session.GetString("AlertChangeRoom") != null)
+                ViewBag.AlertMessage = HttpContext.Session.GetString("AlertChangeRoom");
             return PartialView();
         }
 
@@ -171,6 +198,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult OrderMenu(int bookRoomDetailsId, List<Order> orders)
         {
+            //Thong bao 
+            if (HttpContext.Session.GetString("AlertOrderMenu") != null)
+                ViewBag.AlertMessage = HttpContext.Session.GetString("AlertOrderMenu");
             return PartialView();
         }
 
@@ -178,6 +208,10 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult EditBookRoomDetails(int bookRoomDetailsId)
         {
+            //Thong bao 
+            if (HttpContext.Session.GetString("AlertEditBookRoomDetails") != null)
+                ViewBag.AlertMessage = HttpContext.Session.GetString("AlertEditBookRoomDetails");
+
             var bookRoomDetails = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
 
             BookRoomDetailsAdminVM bookRoomDetailsAdminVM = new BookRoomDetailsAdminVM

@@ -1,5 +1,7 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
+@{
+    var AlertMessage = @ViewBag.AlertMessage;
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,7 +89,15 @@
                     </form>
                 </div>
             }
-			
+            @****************************************************@
+            @if (@AlertMessage != null)
+            {
+                <div class="alert alert-danger" role="alert" style="width: fit-content;margin: auto;" id="alert">
+                    @AlertMessage
+                    <button onclick="Hide()" type="button" class="btn btn-warning">Xác nhận</button>
+                </div>
+            }
+            @**********************************************************@
             <a class="mobile_btn" id="mobile_btn"> 
                 <i class="fas fa-bars"></i> 
             </a>
@@ -106,14 +116,14 @@
                         <li class="list-divider"></li>
 
                         <li class="sidebar-page-item active"> 
-                            <a class="sidebar-page-link" href="/Admin/AdminBooking/Index" id="click-book-room">
+                            <a class="sidebar-page-link" href="/Admin/ProxyBooking/Index" id="click-book-room">
                                 <i class="fas fa-suitcase"></i> 
                                 <span>Đặt phòng</span>
                             </a> 
                         </li>
 
                         <li class="sidebar-page-item"> 
-                            <a class="sidebar-page-link" href="/Admin/AdminRentCheckOut/Index">
+                            <a class="sidebar-page-link" href="/Admin/ProxyRentCheckOut/Index">
                                 <i class="fas fa-key"></i> 
                                 <span>Thuê - trả phòng</span>
                             </a> 
@@ -127,7 +137,7 @@
                         </li>
 
                         <li class="sidebar-page-item"> 
-                            <a class="sidebar-page-link" href="/Admin/AdminAccount/Index">
+                            <a class="sidebar-page-link" href="/Admin/ProxyAccount/Index">
                                 <i class="fas fa-user"></i> 
                                 <span>Tài khoản</span>
                             </a> 
@@ -156,5 +166,16 @@
     <script src="~/admin/assets/js/admin-main.js"></script>
     <script src="~/admin/assets/js/admin-rent-check-out.js"></script>
     <script src="~/admin/assets/js/admin-account.js"></script>
+
+
+     <script>
+        function Hide(){
+            var hide = document.getElementById("alert");
+            if(hide){
+                hide.style.display = "none";
+            }
+        }
+    </script>
+
 </body>
 </html>

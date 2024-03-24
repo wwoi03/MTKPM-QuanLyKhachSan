@@ -1,6 +1,21 @@
 ﻿@using MTKPM_QuanLyKhachSan.ViewModels
 @model BookingAdminVM
+@{
+    var AlertMessage = @ViewBag.AlertMessage;
+}
+@****************************************************@
+@if (@AlertMessage != null)
+{
+	<div class="alert alert-danger" role="alert" style="width: fit-content;margin: auto;" id="alert">
+		@AlertMessage
+		<button onclick="Hide()" type="button" class="btn btn-warning">Xác nhận</button>
+	</div>
+}
+@**********************************************************@
 
+
+@if(@AlertMessage == null) 
+{
 
 <form id="form-book-room" method="post">
 	<!-- Lưu đặt phòng -->
@@ -75,3 +90,4 @@
 		<input id="book-room-delete" readonly value="Hủy đặt phòng">
 	</div>
 </form>
+}

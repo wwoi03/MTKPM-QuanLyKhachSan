@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Service;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
 using MTKPM_QuanLyKhachSan.ViewModels;
@@ -7,7 +8,7 @@ using Newtonsoft.Json;
 namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class AdminBookingController : Controller
+    public class AdminBookingController : Controller,IBooking
     {
         RoomDao roomDao;
         RoomTypeDao roomTypeDao;
@@ -30,7 +31,12 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             HttpContext.Session.SetString("EmployeeName", "Đào Công Tuấn");
             HttpContext.Session.SetInt32("HotelId", 1);
 
+
+            if (HttpContext.Session.GetString("Alert") != null)
+                ViewBag.AlertMessage = HttpContext.Session.GetString("Alert");
+
             return View();
+
         }
 
         public IActionResult GetBooking()
@@ -70,6 +76,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Booking()
         {
+            if (HttpContext.Session.GetString("AlertBooking") != null)
+                ViewBag.AlertMessage = HttpContext.Session.GetString("AlertBooking");
             return PartialView("Booking", new BookingAdminVM());
         }
 
@@ -146,6 +154,10 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult BookingDetails(int bookRoomDetailsId)
         {
+            //Thong bao
+            if (HttpContext.Session.GetString("AlertBookingDetails") != null)
+                ViewBag.AlertMessage = HttpContext.Session.GetString("AlertBookingDetails");
+
             BookRoomDetails bookRoomDetails = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
 
             BookingAdminVM bookingDetailsVM = new BookingAdminVM()

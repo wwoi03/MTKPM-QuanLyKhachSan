@@ -2,7 +2,17 @@
 @{
 	var roomTypes = ViewBag.roomTypes;
 	var roomRents = ViewBag.roomRents;
+	var AlertMessage = @ViewBag.AlertMessage;
 }
+@****************************************************@
+@if (@AlertMessage != null)
+{
+	<div class="alert alert-danger" role="alert" style="width: fit-content;margin: auto;" id="alert">
+		@AlertMessage
+		<button onclick="Hide()" type="button" class="btn btn-warning">Xác nhận</button>
+	</div>
+}
+@**********************************************************@
 
 @foreach (var roomType in roomTypes)
 {

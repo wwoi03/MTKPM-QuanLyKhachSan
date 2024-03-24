@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Service;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
 using MTKPM_QuanLyKhachSan.ViewModels;
@@ -9,7 +10,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
     [Area("Admin")]
     [Route("Admin/[controller]/[action]")]
 
-    public class AdminAccountController : Controller
+    public class AdminAccountController : Controller, IAccount
     {
         RoleDao roleDao;
         PermissionGroupDao permissionGroupDao;

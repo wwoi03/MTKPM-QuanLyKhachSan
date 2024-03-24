@@ -1,82 +1,95 @@
 ﻿@using MTKPM_QuanLyKhachSan.ViewModels
 @model BookRoomDetailsAdminVM
 @{
-
+	var AlertMessage = @ViewBag.AlertMessage;
 }
-
-<form id="form-book-room-details" method="post">
-	<!-- Lưu đặt phòng -->
-	<div class="panel-save d-flex justify-content-between align-items-center">
-		<div>
-			<i style="font-size: 20px;" class="custom-icon fa-solid fa-pen custom-color-red"></i>
-			<span style="font-size: 16px">@Model.RoomName</span>
-		</div>
-
-		<div class="">
-			<input type="submit" id="edit-booking" value="Lưu" />
-			<input hidden name="BookRoomDetailsId" value="@Model.BookRoomDetailsId" />
-		</div>
+@****************************************************@
+@if (@AlertMessage != null)
+{
+	<div class="alert alert-danger" role="alert" style="width: fit-content;margin: auto;" id="alert">
+		@AlertMessage
+		<button onclick="Hide()" type="button" class="btn btn-warning">Xác nhận</button>
 	</div>
+}
+@**********************************************************@
 
-	<!-- Form -->
-	<div class="panel-form">
-		<!-- Thông tin -->
-		<div class="panel-form-info">
-			<!-- Tên khách hàng -->
-			<div class="mess-validation">@ViewBag.messValid</div>
 
-			<!-- Tên khách hàng -->
-			<div class="panel-form-item">
-				<h5 class="panel-form-title">Họ và tên khách hàng</h5>
-				<input class="panel-form-input" name="CustomerName" type="text" value="@Model.CustomerName" required/>
+@if (@AlertMessage == null)
+{
+
+	<form id="form-book-room-details" method="post">
+		<!-- Lưu đặt phòng -->
+		<div class="panel-save d-flex justify-content-between align-items-center">
+			<div>
+				<i style="font-size: 20px;" class="custom-icon fa-solid fa-pen custom-color-red"></i>
+				<span style="font-size: 16px">@Model.RoomName</span>
 			</div>
 
-			<!-- Số điện thoại -->
-			<div class="panel-form-item">
-				<h5 class="panel-form-title">Số điện thoại</h5>
-				<input class="panel-form-input" name="Phone" type="number" value="@Model.Phone" required/>
+			<div class="">
+				<input type="submit" id="edit-booking" value="Lưu" />
+				<input hidden name="BookRoomDetailsId" value="@Model.BookRoomDetailsId" />
 			</div>
+		</div>
 
-			<!-- CCCD -->
-			<div class="panel-form-item">
-				<h5 class="panel-form-title">Căn cước công dân</h5>
-				<input class="panel-form-input" name="CIC" type="number" value="@Model.CIC" required/>
-			</div>
+		<!-- Form -->
+		<div class="panel-form">
+			<!-- Thông tin -->
+			<div class="panel-form-info">
+				<!-- Tên khách hàng -->
+				<div class="mess-validation">@ViewBag.messValid</div>
 
-			<!-- Ngày -->
-			<div class="panel-form-item">
-				<div class="panel-form-height">
-					<div class="panel-form-height-item">
-						<h5 class="panel-form-title">Ngày nhận phòng</h5>
-						<input type="date" class="panel-form-input" name="CheckIn" value="@Model.ConvertDateTimeToDateTimeLocal()" required/>
+				<!-- Tên khách hàng -->
+				<div class="panel-form-item">
+					<h5 class="panel-form-title">Họ và tên khách hàng</h5>
+					<input class="panel-form-input" name="CustomerName" type="text" value="@Model.CustomerName" required/>
+				</div>
+
+				<!-- Số điện thoại -->
+				<div class="panel-form-item">
+					<h5 class="panel-form-title">Số điện thoại</h5>
+					<input class="panel-form-input" name="Phone" type="number" value="@Model.Phone" required/>
+				</div>
+
+				<!-- CCCD -->
+				<div class="panel-form-item">
+					<h5 class="panel-form-title">Căn cước công dân</h5>
+					<input class="panel-form-input" name="CIC" type="number" value="@Model.CIC" required/>
+				</div>
+
+				<!-- Ngày -->
+				<div class="panel-form-item">
+					<div class="panel-form-height">
+						<div class="panel-form-height-item">
+							<h5 class="panel-form-title">Ngày nhận phòng</h5>
+							<input type="date" class="panel-form-input" name="CheckIn" value="@Model.ConvertDateTimeToDateTimeLocal()" required/>
+						</div>
+
+						<div class="panel-form-height-item">
+							<h5 class="panel-form-title">Giờ nhận phòng</h5>
+							<input type="text" class="panel-form-input" name="CheckInTime" value="@Model.ViewCheckInTime()" required/>
+						</div>
 					</div>
+				</div>
 
-					<div class="panel-form-height-item">
-						<h5 class="panel-form-title">Giờ nhận phòng</h5>
-						<input type="text" class="panel-form-input" name="CheckInTime" value="@Model.ViewCheckInTime()" required/>
-					</div>
+				<!-- Ghi chú -->
+				<div class="panel-form-item">
+					<h5 class="panel-form-title">Ghi chú</h5>
+					<input class="panel-form-input" type="text" name="Note" value="@Model.Note" placeholder="Ghi chú (số lượng người,...)" />
 				</div>
 			</div>
 
-			<!-- Ghi chú -->
-			<div class="panel-form-item">
-				<h5 class="panel-form-title">Ghi chú</h5>
-				<input class="panel-form-input" type="text" name="Note" value="@Model.Note" placeholder="Ghi chú (số lượng người,...)" />
-			</div>
-		</div>
+			<!-- Phòng -->
+			<div class="panel-form-room">
+				<div class="panel-form-room-item">
+					<h5 class="panel-form-title">Menu sử dụng</h5>
 
-		<!-- Phòng -->
-		<div class="panel-form-room">
-			<div class="panel-form-room-item">
-				<h5 class="panel-form-title">Menu sử dụng</h5>
-
-				<div class="panel-form-add-room">
-					<i class="fa-solid fa-square-plus"></i>
-					<p class="panel-form-room-btn">Thêm</p>
-					<input id="list-room" hidden name="Rooms" />
+					<div class="panel-form-add-room">
+						<i class="fa-solid fa-square-plus"></i>
+						<p class="panel-form-room-btn">Thêm</p>
+						<input id="list-room" hidden name="Rooms" />
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</form>
-
+	</form>
+}

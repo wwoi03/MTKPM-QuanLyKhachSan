@@ -3,8 +3,22 @@
 	var roomChange = ViewBag.roomChange;
 	var roomTypes = ViewBag.roomTypes;
 	var rooms = ViewBag.roomWaits;
-}
+	var AlertMessage = @ViewBag.AlertMessage;
 
+}
+@****************************************************@
+@if (@AlertMessage != null)
+{
+	<div class="alert alert-danger" role="alert" style="width: fit-content;margin: auto;" id="alert">
+		@AlertMessage
+		<button onclick="Hide()" type="button" class="btn btn-warning">Xác nhận</button>
+	</div>
+}
+@**********************************************************@
+
+
+@if(@AlertMessage == null) 
+{
 <form id="form-book-room" method="post">
 	<!-- Lưu đặt phòng -->
 	<div class="panel-save d-flex align-items-center">
@@ -71,3 +85,4 @@
 		}
 	</div>
 </form>
+}

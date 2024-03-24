@@ -3,9 +3,23 @@
 @{
 	var services = ViewBag.services;
 	var bookRoomDetails = ViewBag.bookRoomDetails;
+	var AlertMessage = @ViewBag.AlertMessage;
+
 }
 @model OrderMenuAdminVM
+@****************************************************@
+@if (@AlertMessage != null)
+{
+	<div class="alert alert-danger" role="alert" style="width: fit-content;margin: auto;" id="alert">
+		@AlertMessage
+		<button onclick="Hide()" type="button" class="btn btn-warning">Xác nhận</button>
+	</div>
+}
+@**********************************************************@
 
+
+@if(@AlertMessage == null) 
+{
 <form id="form-order-menu" method="post" data-bookroom-details-id="@bookRoomDetails.BookRoomDetailsId">
 	<!-- Lưu đặt phòng -->
 	<div class="panel-save d-flex justify-content-between align-items-center">
@@ -59,3 +73,4 @@
 		</div>
 	</div>
 </form>
+}
