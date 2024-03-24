@@ -26,12 +26,16 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+            HttpContext.Session.SetInt32("EmployeeId", 1);
+            HttpContext.Session.SetString("EmployeeName", "Đào Công Tuấn");
+            HttpContext.Session.SetInt32("HotelId", 1);
+
             return View();
         }
 
         public IActionResult GetBooking()
         {
-            var rooms = roomDao.GetRooms();
+            var rooms = roomDao.GetRooms(HttpContext.Session.GetInt32("HotelId"));
             var bookings = bookRoomDetailsDao.GetBookRoomDetails();
 
             // Chuyển đổi từ Room sang RoomTitleVM
@@ -153,7 +157,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
                 CheckOut = bookRoomDetails.CheckOut.ToString(),
                 Note = bookRoomDetails.BookRoom.Note,
                 CIC = bookRoomDetails.BookRoom.Customer.CIC,
-                Rooms = roomDao.GetRooms()
+                Rooms = roomDao.GetRooms(HttpContext.Session.GetInt32("HotelId"))
             };
 
             return PartialView("BookingDetails", bookingDetailsVM);
@@ -189,8 +193,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // Chọn phòng đặt
         public IActionResult ChooseRoom()
         {
-            ViewBag.rooms = roomDao.GetEmptyRooms();
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+            ViewBag.rooms = roomDao.GetEmptyRooms(HttpContext.Session.GetInt32("HotelId"));
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
 
             return PartialView();
         }

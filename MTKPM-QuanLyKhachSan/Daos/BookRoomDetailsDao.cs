@@ -23,7 +23,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
         }
 
         // lấy danh sách phòng đã nhận
-        public List<BookRoomDetails> GetBookRoomDetailsReceive()
+        public List<BookRoomDetails> GetBookRoomDetailsReceive(int? hotelId)
         {
             return context.BookRoomDetails
                 .Include(i => i.BookRoom)
@@ -34,7 +34,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
                     brd => brd.RoomId, // Khóa ngoại từ BookRoomDetails
                     room => room.RoomId, // Khóa chính từ Room
                     (brd, room) => new { brd, room }) // Kết quả kết hợp)
-                .Where(i => (RoomStatusType)i.brd.Status == RoomStatusType.RoomOccupied)
+                .Where(i => i.room.Status == (int)RoomStatusType.RoomOccupied && i.brd.HotelId == hotelId)
                 .Select(i => i.brd)
                 .ToList();
         }

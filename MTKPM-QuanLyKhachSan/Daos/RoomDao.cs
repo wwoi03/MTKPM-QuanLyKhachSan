@@ -37,25 +37,28 @@ namespace MTKPM_QuanLyKhachSan.Daos
         }
 
         // lấy danh sách phòng
-        public List<Room> GetRooms()
+        public List<Room> GetRooms(int? hotelId)
         {
-            return context.Rooms.OrderByDescending(i => Convert.ToInt32(i.Name)).ToList();
+            return context.Rooms
+                .Where(i => i.HotelId == hotelId)
+                .OrderByDescending(i => Convert.ToInt32(i.Name))
+                .ToList();
         }
 
         // lấy danh sách phòng trống
-        public List<Room> GetEmptyRooms()
+        public List<Room> GetEmptyRooms(int? hotelId)
         {
-            return context.Rooms.
-                Where(i => (RoomStatusType)i.Status == RoomStatusType.RoomAvailable || (RoomStatusType)i.Status == RoomStatusType.RoomPending)
+            return context.Rooms
+                .Where(i => (RoomStatusType)i.Status == RoomStatusType.RoomAvailable || (RoomStatusType)i.Status == RoomStatusType.RoomPending && i.HotelId == hotelId)
                 .Include(i => i.RoomType)
                 .ToList();
         }
 
         // lấy danh sách phòng cần dọn
-        public List<Room> GetCleanRooms()
+        public List<Room> GetCleanRooms(int? hotelId)
         {
             return context.Rooms
-                .Where(i => i.Tidy == 1)
+                .Where(i => i.Tidy == 1 && i.HotelId == hotelId)
                 .OrderByDescending(i => Convert.ToInt32(i.Name))
                 .ToList();
         }

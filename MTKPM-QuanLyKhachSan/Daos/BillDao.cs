@@ -13,9 +13,10 @@ namespace MTKPM_QuanLyKhachSan.Daos
         }
 
         // lấy danh sách hóa đơn
-        public List<Bill> GetBills()
+        public List<Bill> GetBills(int? hotelId)
         {
             return context.Bills
+                .Where(i => i.HotelId == hotelId)
                 .Include(i => i.BookRoomDetails)
                 .Include(i => i.BookRoomDetails.Room)
                 .OrderBy(i => i.DatePayment)

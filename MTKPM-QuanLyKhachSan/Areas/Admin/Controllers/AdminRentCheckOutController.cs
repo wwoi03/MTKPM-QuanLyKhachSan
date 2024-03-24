@@ -18,6 +18,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         ServiceDao serviceDao;
         CustomerDao customerDao;
 
+
         public AdminRentCheckOutController(DatabaseContext context)
         {
             roomTypeDao = new RoomTypeDao(context);
@@ -32,15 +33,19 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+            HttpContext.Session.SetInt32("EmployeeId", 1);
+            HttpContext.Session.SetString("EmployeeName", "Đào Công Tuấn");
+            HttpContext.Session.SetInt32("HotelId", 1);
+
             return View();
         }
 
         // danh sách phòng chờ
         public IActionResult RoomWait()
         {
-            var roomWaits = roomDao.GetEmptyRooms();
+            var roomWaits = roomDao.GetEmptyRooms(HttpContext.Session.GetInt32("HotelId"));
 
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
             ViewBag.roomWaits = roomWaits.Select(roomWait => new RoomWaitVM
             {
                 RoomId = roomWait.RoomId,
@@ -56,9 +61,10 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // danh sách phòng đang thuê
         public IActionResult RoomRent()
         {
-            var roomRents = bookRoomDetailsDao.GetBookRoomDetailsReceive();
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
 
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+            var roomRents = bookRoomDetailsDao.GetBookRoomDetailsReceive(HttpContext.Session.GetInt32("HotelId"));
+
             ViewBag.roomRents = roomRents.Select(roomRent => new RoomRentVM
 			{
                 CustomerName = roomRent.BookRoom.Customer.Name,
@@ -79,8 +85,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // danh sách phòng cần dọn
         public IActionResult RoomClean()
         {
-            ViewBag.roomCleans = roomDao.GetCleanRooms();
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+            ViewBag.roomCleans = roomDao.GetCleanRooms(HttpContext.Session.GetInt32("HotelId"));
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
 
             return PartialView();
         }
@@ -88,8 +94,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // lịch sử phòng
         public IActionResult RoomHistory()
         {
-            ViewBag.roomHistory = billDao.GetBills();
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+            ViewBag.roomHistory = billDao.GetBills(HttpContext.Session.GetInt32("HotelId"));
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
 
             return PartialView();
         }
@@ -121,8 +127,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         public IActionResult ChangeRoom(int bookRoomDetailsId)
         {
             ViewBag.roomChange = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
-            ViewBag.roomWaits = roomDao.GetEmptyRooms();
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+            ViewBag.roomWaits = roomDao.GetEmptyRooms(HttpContext.Session.GetInt32("HotelId"));
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
 
             return PartialView();
         }

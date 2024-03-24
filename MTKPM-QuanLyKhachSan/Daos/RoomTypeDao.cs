@@ -13,9 +13,11 @@ namespace MTKPM_QuanLyKhachSan.Daos
         }
 
         // Lấy danh sách loại phòng
-        public List<RoomType> GetRoomTypes()
+        public List<RoomType> GetRoomTypes(int? hotelId)
         {
-            return context.RoomTypes.ToList();
+            return context.RoomTypes
+                .Where(i => i.HotelId == hotelId)
+                .ToList();
         }
 
         // lấy loại phòng theo Id

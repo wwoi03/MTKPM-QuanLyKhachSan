@@ -29,11 +29,19 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         {
             ViewBag.employees = employeeDao.GetEmployees(1);
 
+            HttpContext.Session.SetInt32("EmployeeId", 1);
+            HttpContext.Session.SetString("EmployeeName", "Đào Công Tuấn");
+            HttpContext.Session.SetInt32("HotelId", 1);
+
             return View();
         }
 
         public IActionResult Login()
         {
+            HttpContext.Session.SetInt32("EmployeeId", 1);
+            HttpContext.Session.SetString("EmployeeName", "Đào Công Tuấn");
+            HttpContext.Session.SetInt32("HotelId", 1);
+
             return View();
         }
 
