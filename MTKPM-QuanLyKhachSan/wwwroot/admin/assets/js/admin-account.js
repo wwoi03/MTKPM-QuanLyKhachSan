@@ -112,13 +112,11 @@
                             if (data.result == true) {
                                 success({
                                     title: data.mess,
-                                    text: "",
+                                    text: username,
                                     funcConfirm: function () {
                                         location.reload();
                                     },
-                                    funcCancel: function () {
-                                        location.reload();
-                                    },
+                                    showCancel: false
                                 });
                             } else {
                                 error({
@@ -150,13 +148,11 @@
                             if (data.result == true) {
                                 success({
                                     title: data.mess,
-                                    text: "",
+                                    text: username,
                                     funcConfirm: function () {
                                         location.reload();
                                     },
-                                    funcCancel: function () {
-                                        location.reload();
-                                    },
+                                    showCancel: false
                                 });
                             } else {
                                 error({

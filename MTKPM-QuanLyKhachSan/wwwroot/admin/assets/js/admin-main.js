@@ -1,12 +1,12 @@
 ﻿// alert success
-function success({ title = "Thành công", text = "", funcConfirm = null, funcCancel = null }) {
+function success({ title = "Thành công", text = "", funcConfirm = null, funcCancel = null, showCancel = true }) {
     Swal.fire({
         title: title,
         text: text,
         icon: "success",
         confirmButtonColor: "#1577BD",
         cancelButtonColor: "#999999",
-        showCancelButton: true,
+        showCancelButton: showCancel,
     }).then((result) => {
         if (result.isConfirmed) {
             funcConfirm();

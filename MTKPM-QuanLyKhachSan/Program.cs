@@ -41,13 +41,13 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=PublicHome}/{action=Index}/{id?}"
+        pattern: "{area=Admin}/{controller=AdminBooking}/{action=Index}/{id?}"
     );
 
-    endpoints.MapControllerRoute(
+    /*endpoints.MapControllerRoute(
       name: "Admin",
       pattern: "{area:exists}/{controller=AdminBooking}/{action=Index}/{id?}"
-    );
+    );*/
 });
 
 app.Run();

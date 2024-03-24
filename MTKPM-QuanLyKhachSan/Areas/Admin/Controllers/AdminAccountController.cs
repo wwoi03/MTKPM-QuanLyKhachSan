@@ -24,6 +24,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             employeePermissionDao = new EmployeePermissionDao(context);
 
         }
+
         public IActionResult Index()
         {
             ViewBag.employees = employeeDao.GetEmployees(1);
@@ -44,13 +45,6 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             ViewBag.permissionGroups = permissionGroupDao.GetPermissionGroups();
 
             EmployeeVM employeeVM = new EmployeeVM();
-
-            /*string employeeVMJson = TempData["EmployeeVM"] as string;
-
-            if (!string.IsNullOrEmpty(employeeVMJson))
-            {
-                employeeVM = JsonConvert.DeserializeObject<EmployeeVM>(employeeVMJson);
-            }*/
 
             return PartialView(employeeVM);
         }
@@ -181,5 +175,12 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
             return RedirectToAction("CreateAccount", "AdminAccount", new { area = "Admin"});
         }*/
+
+        /*string employeeVMJson = TempData["EmployeeVM"] as string;
+
+            if (!string.IsNullOrEmpty(employeeVMJson))
+            {
+                employeeVM = JsonConvert.DeserializeObject<EmployeeVM>(employeeVMJson);
+            }*/
     }
 }
