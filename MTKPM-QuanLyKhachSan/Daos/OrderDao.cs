@@ -26,5 +26,12 @@ namespace MTKPM_QuanLyKhachSan.Daos
                 .Where(i => i.BookRoomDetailsId == bookRoomDetailsId)
                 .Sum(i => i.Quantity * i.Price);
         }
+
+        // tạo order
+        public void CreateOrder(Order order)
+        {
+            context.Orders.Add(order);
+            context.SaveChanges();
+        }
     }
 }

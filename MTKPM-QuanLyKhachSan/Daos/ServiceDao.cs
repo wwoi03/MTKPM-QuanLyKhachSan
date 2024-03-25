@@ -25,5 +25,13 @@ namespace MTKPM_QuanLyKhachSan.Daos
             else
                 return context.Services.Where(i => i.Name.Contains(serviceName)).ToList();
         }
+
+        // lấy dịch vụ theo id
+        public Service GetServiceById(int serviceId)
+        {
+            return context.Services
+                .Where(i => i.ServiceId == serviceId)
+                .FirstOrDefault();
+        }
     }
 }

@@ -263,9 +263,11 @@
                 { bookRoomDetailsId: bookRoomDetailsId, orders: orders},
                 function (data) {
                     if (data.result == true) {
+                        $('.right-panel').html("");
+
                         success({
-                            title: "Thành công",
-                            text: data.mess,
+                            title: data.mess,
+                            showCancel: false
                         })
 
                         viewRoomRent();

@@ -171,7 +171,29 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult OrderMenu(int bookRoomDetailsId, List<Order> orders)
         {
-            return PartialView();
+            foreach (var order in orders)
+            {
+                var service = serviceDao.GetServiceById(order.ServiceId);
+
+                Order newOrder = new Order
+                {
+                    ServiceId = service.ServiceId,
+                    Quantity = order.Quantity,
+                    Price = service.Price,
+                    OrderDate = DateTime.Now,
+                    BookRoomDetailsId = bookRoomDetailsId,
+                };
+
+                orderDao.CreateOrder(newOrder);
+            }
+
+            ExecutionOutcome executionOutcome = new ExecutionOutcome
+            {
+                Mess = "Thêm menu thành công.",
+                Result = true
+            };
+
+            return PartialView(executionOutcome);
         }
 
         // chỉnh sửa phòng
