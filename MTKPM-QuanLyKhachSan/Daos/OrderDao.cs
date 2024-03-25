@@ -1,4 +1,5 @@
-﻿using MTKPM_QuanLyKhachSan.Models;
+﻿using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton;
+using MTKPM_QuanLyKhachSan.Models;
 
 namespace MTKPM_QuanLyKhachSan.Daos
 {
@@ -6,9 +7,9 @@ namespace MTKPM_QuanLyKhachSan.Daos
     {
         DatabaseContext context;
 
-        public OrderDao(DatabaseContext context)
+        public OrderDao()
         {
-            this.context = context;
+            context = SingletonDatabase.Instance;
         }
 
         // lấy số lượng order của một phòng

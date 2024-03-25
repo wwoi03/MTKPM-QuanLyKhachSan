@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton;
 using MTKPM_QuanLyKhachSan.Common;
 using MTKPM_QuanLyKhachSan.Models;
 
@@ -8,9 +9,10 @@ namespace MTKPM_QuanLyKhachSan.Daos
     {
         DatabaseContext context;
 
-        public BookRoomDetailsDao(DatabaseContext context)
+        public BookRoomDetailsDao()
         {
-            this.context = context;
+
+            context = SingletonDatabase.Instance;
         }
 
         // lấy danh sách phòng đặt chưa nhận
