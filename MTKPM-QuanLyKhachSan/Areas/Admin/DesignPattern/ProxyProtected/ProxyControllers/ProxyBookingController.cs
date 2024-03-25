@@ -20,7 +20,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.ProxyCon
         public ProxyBookingController(DatabaseContext context)
         {
             adminBooking = new AdminBookingController(context);
-            employeePermissionDao = new EmployeePermissionDao(context);
+            employeePermissionDao = new EmployeePermissionDao();
             //Gia bo
             employee = new Employee();
             employee.EmployeeId = 1;

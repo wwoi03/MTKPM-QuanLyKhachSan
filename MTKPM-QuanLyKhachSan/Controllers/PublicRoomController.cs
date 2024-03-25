@@ -16,7 +16,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
         {
             roomTypeDao = new RoomTypeDao(context);
             roomDao = new RoomDao(context);
-            bookRoomDao = new BookRoomDao(context);
+            bookRoomDao = new BookRoomDao();
             bookRoomDetailsDao = new BookRoomDetailsDao(context);
         }
 

@@ -20,7 +20,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.ProxyCon
         public ProxyAccountController(DatabaseContext context)
 		{
             adminAccount = new AdminAccountController(context);
-            employeePermissionDao = new EmployeePermissionDao(context);
+            employeePermissionDao = new EmployeePermissionDao();
             employee = new Employee();
             employee.EmployeeId = 1;
             listPermission = new List<EmployeePermission>();

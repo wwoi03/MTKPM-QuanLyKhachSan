@@ -22,7 +22,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             roleDao = new RoleDao(context);
             permissionGroupDao = new PermissionGroupDao(context);
             employeeDao = new EmployeeDao(context);
-            employeePermissionDao = new EmployeePermissionDao(context);
+            employeePermissionDao = new EmployeePermissionDao();
 
         }
 

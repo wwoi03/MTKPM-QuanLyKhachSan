@@ -24,9 +24,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         {
             roomTypeDao = new RoomTypeDao(context);
             roomDao = new RoomDao(context);
-            bookRoomDao = new BookRoomDao(context);
+            bookRoomDao = new BookRoomDao();
             bookRoomDetailsDao = new BookRoomDetailsDao(context);
-            billDao = new BillDao(context);
+            billDao = new BillDao();
             orderDao = new OrderDao(context);
             serviceDao = new ServiceDao(context);
             customerDao = new CustomerDao(context);
@@ -39,7 +39,10 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             HttpContext.Session.SetInt32("HotelId", 1);
             //thong bao
             if (HttpContext.Session.GetString("Alert") != null)
+            {
                 ViewBag.AlertMessage = HttpContext.Session.GetString("Alert");
+                HttpContext.Session.Remove("Alert");
+            }
 
             return View();
         }

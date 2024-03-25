@@ -2,13 +2,21 @@
 
 namespace MTKPM_QuanLyKhachSan.Models
 {
-    public class DatabaseContext : DbContext
+    public sealed class DatabaseContext : DbContext
     {
+        //public static DatabaseContext Instance { get; } = new DatabaseContext();
+
         public DatabaseContext(DbContextOptions options) : base(options)
         {
 
         }
-
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        optionsBuilder.UseSqlServer("Server=.;Database=HotelManager;Trusted_Connection=True;TrustServerCertificate=True");
+        //    }
+        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 			modelBuilder.Entity<PermissionGroup>()

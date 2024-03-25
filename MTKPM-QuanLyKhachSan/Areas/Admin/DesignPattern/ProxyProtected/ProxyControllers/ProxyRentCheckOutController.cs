@@ -25,7 +25,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.ProxyCon
             employee.EmployeeId = 1;
             //Giabo
             //listPermission = new List<EmployeePermission>();
-            employeePermissionDao = new EmployeePermissionDao(context);
+            employeePermissionDao = new EmployeePermissionDao();
             //listPermission = new List<EmployeePermission>();
             if (employee != null)
                 listPermission = employeePermissionDao.GetPermissionByEmployee(employee.EmployeeId);

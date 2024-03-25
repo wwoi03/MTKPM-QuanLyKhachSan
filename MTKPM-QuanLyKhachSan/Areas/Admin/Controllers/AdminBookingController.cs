@@ -20,7 +20,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         {
             roomDao = new RoomDao(context);
             roomTypeDao = new RoomTypeDao(context);
-            bookRoomDao = new BookRoomDao(context);
+            bookRoomDao = new BookRoomDao();
             bookRoomDetailsDao = new BookRoomDetailsDao(context);
             customerDao = new CustomerDao(context);
         }
@@ -33,7 +33,10 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
 
             if (HttpContext.Session.GetString("Alert") != null)
+            {
                 ViewBag.AlertMessage = HttpContext.Session.GetString("Alert");
+                HttpContext.Session.Remove("Alert");
+            }
 
             return View();
 
