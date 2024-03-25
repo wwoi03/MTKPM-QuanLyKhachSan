@@ -31,7 +31,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // Xử lý yêu cầu thêm menu (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name, Price")] Service service)
+        public async Task<IActionResult> Create([Bind("ServiceId, Name, Price")] Service service)
         {
             if (ModelState.IsValid)
             {
@@ -71,7 +71,15 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             {
                 try
                 {
-                    await _serviceDao.UpdateServiceAsync(service);
+                    // Lấy dịch vụ từ cơ sở dữ liệu dựa trên id
+                    var existingService = await _serviceDao.GetServiceByIdAsync(id);
+
+                    // Cập nhật thông tin từ form vào dịch vụ đã lấy
+                    existingService.Name = service.Name;
+                    existingService.Price = service.Price;
+
+                    // Gọi phương thức cập nhật dịch vụ trong ServiceDao
+                    await _serviceDao.UpdateServiceAsync(existingService);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -81,7 +89,22 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             }
             return View(service);
         }
+        // Xử lý xem chi tiết menu
+        public async Task<IActionResult> Detail(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var service = await _serviceDao.GetServiceByIdAsync(id.Value);
+            if (service == null)
+            {
+                return NotFound();
+            }
+
+            return View(service);
+        }
         // Xử lý yêu cầu xóa menu
         [HttpPost]
         [ValidateAntiForgeryToken]

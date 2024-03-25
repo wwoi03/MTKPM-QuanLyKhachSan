@@ -46,6 +46,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Cb29raW5nXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/acer/Desktop/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminHistoryBooking/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5IaXN0b3J5Qm9va2luZ1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/acer/Desktop/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminHistoryBooking/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5IaXN0b3J5Qm9va2luZ1xEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/acer/Desktop/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminHistoryBooking/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5IaXN0b3J5Qm9va2luZ1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/acer/Desktop/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminHistoryBooking/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5IaXN0b3J5Qm9va2luZ1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -92,6 +104,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/acer/Desktop/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRoom/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb29tXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/acer/Desktop/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminService/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5TZXJ2aWNlXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/acer/Desktop/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminService/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5TZXJ2aWNlXERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/acer/Desktop/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminService/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5TZXJ2aWNlXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/acer/Desktop/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminService/Index.cshtml]

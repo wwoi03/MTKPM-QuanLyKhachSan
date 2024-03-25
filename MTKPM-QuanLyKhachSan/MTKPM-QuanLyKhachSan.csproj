@@ -15,10 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="Areas\Admin\Views\AdminService\Create.cshtml" />
     <Content Remove="Areas\Admin\Views\AdminService\CreateMenu.cshtml" />
     <Content Remove="Areas\Admin\Views\AdminService\Delete.cshtml" />
-    <Content Remove="Areas\Admin\Views\AdminService\Edit.cshtml" />
     <Content Remove="Areas\Admin\Views\AdminService\EditMenu.cshtml" />
   </ItemGroup>
 

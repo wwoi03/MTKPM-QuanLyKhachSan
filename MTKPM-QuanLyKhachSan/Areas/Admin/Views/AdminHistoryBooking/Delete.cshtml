@@ -1,0 +1,37 @@
+﻿@model MTKPM_QuanLyKhachSan.Models.BookRoomDetails
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-container d-flex">
+    <div class="left-panel col-8 pl-0 pr-0">
+        <!-- Header title -->
+        <div class="custom-header-title">
+            <div class="d-flex justify-content-between">
+                <h4 class="card-title float-left mt-2" style="font-size: 24px">Xóa Lịch Sử Đặt Phòng</h4>
+                <a href="@Url.Action("Index", "AdminHistoryBooking")" class="btn btn-primary float-right mt-2">Quay lại</a>
+            </div>
+        </div>
+
+        <!-- Main body -->
+        <div class="content container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table">
+                        <div class="card-body booking_card">
+                            <div class="table-responsive">
+                                <p>Bạn có chắc chắn muốn xóa lịch sử đặt phòng này không?</p>
+                                <form method="post" action="@Url.Action("Delete", "AdminHistoryBooking")">
+                                    <input type="hidden" name="id" value="@Model.BookRoomDetailsId" />
+                                    <button type="submit" class="btn btn-danger">Xóa</button>
+                                    <a href="@Url.Action("Index", "AdminHistoryBooking")" class="btn btn-primary">Hủy</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+﻿@model MTKPM_QuanLyKhachSan.Models.Service
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Chi tiết Menu";
+}
+
+<div class="main-container d-flex">
+    <!-- Nội dung bên trái -->
+    <div class="left-panel col-8 pl-0 pr-0">
+        <!-- Header title -->
+        <div class="custom-header-title">
+            <div class="d-flex justify-content-between">
+                <h4 class="card-title float-left mt-2" style="font-size: 24px">Chi Tiết Menu</h4>
+                <!-- Nút 'Trở về' -->
+                <a href="javascript:history.back()" class="btn btn-danger float-right mt-2">Trở về</a>
+            </div>
+        </div>
+
+        <!-- Search -->
+        <div class="custom-bulkhead">
+            <form asp-controller="AdminService" asp-action="Index" method="get" style="position: relative">
+                <input id="search-input" type="text" class="form-control" placeholder="Tìm kiếm theo tên menu" name="searchString">
+                <button id="submit-button" class="btn btn-dark" type="submit" style="position: absolute; top: 0; right: 0"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+
+        <!-- Main body -->
+        <div class="content container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table">
+                        <div class="card-body booking_card">
+                            <div class="table-responsive">
+                                <table class="datatable table table-stripped table table-hover table-center mb-0" style="border: 2px solid black;">
+                                    <!-- Chi tiết menu -->
+                                    <tbody class="tbody-share">
+                                        <tr>
+                                            <th style="width: 30%; text-align: left; border-right: 2px solid black;">Mã menu</th>
+                                            <td style="text-align: left; border-right: 2px solid black;">@Model.ServiceId</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width: 30%; text-align: left; border-right: 2px solid black;">Tên menu</th>
+                                            <td style="text-align: left; border-right: 2px solid black;">@Model.Name</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width: 30%; text-align: left; border-right: 2px solid black;">Giá bán</th>
+                                            <td style="text-align: left; border-right: 2px solid black;">@Model.Price vnđ</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nội dung bên phải -->
+    <div class="right-panel col-4 pl-0 pr-0">
+        <!-- Không cần phải hiển thị gì ở bên phải -->
+    </div>
+</div>
