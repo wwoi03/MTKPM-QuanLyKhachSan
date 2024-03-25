@@ -69,7 +69,6 @@ namespace MTKPM_QuanLyKhachSan.Daos
             Room room = GetRoomById(roomId);
             room.Tidy = 0;
             context.Rooms.Update(room);
-            context.SaveChanges();
         }
 
         // dọn phòng
@@ -78,7 +77,6 @@ namespace MTKPM_QuanLyKhachSan.Daos
             Room room = GetRoomById(roomId);
             room.Tidy = 1;
             context.Rooms.Update(room);
-            context.SaveChanges();
         }
 
         // lấy phòng theo id

@@ -19,14 +19,12 @@ namespace MTKPM_QuanLyKhachSan.Daos
         public void CreateCustomer(Customer customer)
         {
             context.Customers.Add(customer);
-            context.SaveChanges();
         }
 
         // cập nhật thông tin khách hàng
         public void UpdateCustomer(Customer customer)
         {
             context.Customers.Update(customer);
-            context.SaveChanges();
         }
 
         // kiểm tra khách hàng đã tồn tại với SĐT hoặc CCCD

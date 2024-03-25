@@ -29,7 +29,6 @@ namespace MTKPM_QuanLyKhachSan.Daos
         public void CreateAccount(Employee employee)
 		{
             context.Employees.Add(employee);
-            context.SaveChanges();
         }
 
         // Khóa tài khoản
@@ -39,7 +38,6 @@ namespace MTKPM_QuanLyKhachSan.Daos
             employee.Status = (int)EmployeeStatusType.Lock;
 
             context.Employees.Update(employee);
-            context.SaveChanges();
 		}
 
         // Mở Khóa tài khoản
@@ -49,7 +47,6 @@ namespace MTKPM_QuanLyKhachSan.Daos
             employee.Status = (int)EmployeeStatusType.UnLock;
 
             context.Employees.Update(employee);
-            context.SaveChanges();
         }
     }
 }

@@ -15,7 +15,6 @@ namespace MTKPM_QuanLyKhachSan.Daos
         public void AddEmployeePermission(EmployeePermission employeePermission)
         {
             context.EmployeePermissions.Add(employeePermission);
-            context.SaveChanges();
         }
     }
 }

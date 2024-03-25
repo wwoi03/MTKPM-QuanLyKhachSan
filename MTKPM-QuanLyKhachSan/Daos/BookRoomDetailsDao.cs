@@ -43,7 +43,6 @@ namespace MTKPM_QuanLyKhachSan.Daos
         public void AddBookRoomDetails(BookRoomDetails bookRoomDetails)
         {
             context.BookRoomDetails.Add(bookRoomDetails);
-            context.SaveChanges();
         }
 
         // lấy bookingDetails theo id
@@ -63,14 +62,12 @@ namespace MTKPM_QuanLyKhachSan.Daos
             BookRoomDetails bookRoomDetails = GetBookRoomDetailsById(roomIdOld);
             bookRoomDetails.RoomId = roomIdNew;
             context.Update(bookRoomDetails);
-            context.SaveChanges();
         }
 
         // cập nhật chi tiết đặt phòng
         public void UpdateBookRoomDetails(BookRoomDetails bookRoomDetails)
         {
             context.Update(bookRoomDetails);
-            context.SaveChanges();
         }
     }
 }

@@ -31,7 +31,6 @@ namespace MTKPM_QuanLyKhachSan.Daos
         public void CreateOrder(Order order)
         {
             context.Orders.Add(order);
-            context.SaveChanges();
         }
     }
 }
