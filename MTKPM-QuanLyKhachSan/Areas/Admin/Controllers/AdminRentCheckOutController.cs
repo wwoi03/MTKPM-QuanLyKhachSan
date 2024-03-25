@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Prototype.OrderPrototype;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
 using MTKPM_QuanLyKhachSan.ViewModels;
@@ -171,20 +172,31 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult OrderMenu(int bookRoomDetailsId, List<Order> orders)
         {
+            Order newOrder = null;
+
             foreach (var order in orders)
             {
                 var service = serviceDao.GetServiceById(order.ServiceId);
 
-                Order newOrder = new Order
+                if (newOrder == null)
                 {
-                    ServiceId = service.ServiceId,
-                    Quantity = order.Quantity,
-                    Price = service.Price,
-                    OrderDate = DateTime.Now,
-                    BookRoomDetailsId = bookRoomDetailsId,
-                };
+                    newOrder = new Order
+                    {
+                        ServiceId = service.ServiceId,
+                        Quantity = order.Quantity,
+                        Price = service.Price,
+                        OrderDate = DateTime.Now,
+                        BookRoomDetailsId = bookRoomDetailsId,
+                    };
+                }
 
-                orderDao.CreateOrder(newOrder);
+                Order orderPrototype = (Order)newOrder.Clone();
+
+                orderPrototype.ServiceId = service.ServiceId;
+                orderPrototype.Quantity = order.Quantity;
+                orderPrototype.Price = service.Price;
+
+                orderDao.CreateOrder(orderPrototype);
             }
 
             ExecutionOutcome executionOutcome = new ExecutionOutcome
