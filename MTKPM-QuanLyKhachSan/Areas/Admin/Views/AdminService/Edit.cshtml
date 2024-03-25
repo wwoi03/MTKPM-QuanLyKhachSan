@@ -23,12 +23,8 @@
             </form>
         </div>
 
-    </div>
-
-    <!-- Nội dung bên phải -->
-    <div class="right-panel col-4 pl-0 pr-0">
+        <!-- Lưu menu chỉnh sửa -->
         <form method="post" asp-action="Edit" asp-controller="AdminService" asp-route-id="@Model.ServiceId" enctype="multipart/form-data">
-            <!-- Lưu menu chỉnh sửa -->
             <div class="panel-save d-flex justify-content-between align-items-center">
                 <span>Chỉnh Sửa Menu</span>
 
@@ -48,7 +44,7 @@
                     <!-- Mã menu -->
                     <div class="panel-form-item">
                         <h5 class="panel-form-title">Mã menu</h5>
-                        <input class="panel-form-input" type="text" name="ServiceId" value="@Model.ServiceId" />
+                        <input class="panel-form-input" type="text" name="ServiceId" value="@Model.ServiceId" readonly />
                     </div>
 
                     <!-- Tên menu -->
@@ -66,5 +62,10 @@
                 </div>
             </div>
         </form>
+    </div>
+
+    <!-- Nội dung bên phải -->
+    <div class="right-panel col-8 pl-0 pr-0">
+        <!-- Không cần hiển thị gì ở bên phải -->
     </div>
 </div>
