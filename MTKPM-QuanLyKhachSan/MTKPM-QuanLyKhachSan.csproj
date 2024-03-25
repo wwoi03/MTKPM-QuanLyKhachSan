@@ -8,9 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Admin\DesignPattern\ProxyProtected\NewFolder\**" />
+    <Compile Remove="Areas\Admin\DesignPattern\ProxyProtected\Services - Copy\**" />
     <Compile Remove="Areas\Admin\Views\NewFolder\**" />
+    <Content Remove="Areas\Admin\DesignPattern\ProxyProtected\NewFolder\**" />
+    <Content Remove="Areas\Admin\DesignPattern\ProxyProtected\Services - Copy\**" />
     <Content Remove="Areas\Admin\Views\NewFolder\**" />
+    <EmbeddedResource Remove="Areas\Admin\DesignPattern\ProxyProtected\NewFolder\**" />
+    <EmbeddedResource Remove="Areas\Admin\DesignPattern\ProxyProtected\Services - Copy\**" />
     <EmbeddedResource Remove="Areas\Admin\Views\NewFolder\**" />
+    <None Remove="Areas\Admin\DesignPattern\ProxyProtected\NewFolder\**" />
+    <None Remove="Areas\Admin\DesignPattern\ProxyProtected\Services - Copy\**" />
     <None Remove="Areas\Admin\Views\NewFolder\**" />
   </ItemGroup>
 
