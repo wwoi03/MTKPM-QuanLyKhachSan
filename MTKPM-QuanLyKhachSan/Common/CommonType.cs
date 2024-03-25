@@ -21,4 +21,16 @@
         UnLock = 0, // mở khóa
         Lock = 1, // khóa
     }
+    public enum PermissionBookingType
+    {
+        CreateBooking, DeleteBooking, EditBooking, DetailsBooking, ViewBooking
+    }
+    public enum PermissionRentCheckOutType
+    {
+        CreateRent, DeleteRent, EditRent, DetailsRent, ViewRent
+    }
+    public enum PermissionAccountType
+    {
+        Admin
+    }
 }

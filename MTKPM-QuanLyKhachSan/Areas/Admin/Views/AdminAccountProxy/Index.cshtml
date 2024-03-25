@@ -1,0 +1,108 @@
+﻿@{
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+	var employees = ViewBag.employees;
+}
+
+<div class="main-container d-flex">
+	<!-- Nội dung bên trái -->
+	<div class="left-panel col-8 pl-0 pr-0">
+		<!-- Header title -->
+		<div class="custom-header-title">
+			<div class="d-flex justify-content-between">
+				<h4 class="card-title float-left mt-2" style="font-size: 24px">Tất cả tài khoản</h4>
+				<a class="btn btn-primary veiwbutton" id="create">Thêm tài khoản</a>
+			</div>
+		</div>
+
+		<!-- Search -->
+		<div class="custom-bulkhead">
+			<form style="position: relative">
+				<input id="search-input" type="text" class="form-control" placeholder="Tìm kiếm tài khoản" name="searchString">
+				<p id="submit-button" class="btn" style="position: absolute; top: 0; right: 0"><i class="fas fa-search"></i></p>
+			</form>
+		</div>
+
+		<!-- Main body -->
+		<div class="content container-fluid">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="card card-table">
+						<div class="card-body booking_card">
+							<div class="table-responsive">
+								<table class="datatable table table-stripped table table-hover table-center mb-0">
+									<thead>
+										<tr>
+											<th style="width: 20%">Tên đăng nhập</th>
+											<th style="width: 20%">Tên nhân viên</th>
+											<th style="width: 20%">Trạng thái</th>
+											<th style="width: 40%">Chức năng</th>
+										</tr>
+									</thead>
+
+									<tbody>
+										@foreach (var item in employees)
+										{
+											<tr>
+												<td>@item.Username</td>
+
+												<td>@item.Name</td>
+
+												<td>
+													@if (item.Status == 0)
+													{
+														
+														<i class="fa-solid fa-circle" style="color: #42B72A; margin-right: 5px; font-size: 12px;"></i>
+														<span>Đang hoạt động</span>
+													}
+													else
+													{
+														<i class="fa-solid fa-circle" style="color: red; margin-right: 5px; font-size: 12px;"></i>
+														<span>Đang khóa</span>
+													}
+												</td>
+
+												<td class="justify-content-between">
+													<a data-employee-id="@item.EmployeeId" class="account-edit btn btn-primary btn-sm">
+														<i class="fas fa-pencil-alt"></i>
+														Chỉnh sửa
+													</a>
+
+													
+
+													@if (item.Status == 0)
+													{
+														
+														<a data-employee-id="@item.EmployeeId" data-username="@item.Username" class="lock-account btn btn-danger btn-sm">
+															<i class="fa-solid fa-key"></i>
+															Khóa
+														</a>
+													}
+													else
+													{
+														<a data-employee-id="@item.EmployeeId" data-username="@item.Username" class="unlock-account btn btn-warning btn-sm">
+															<i class="fa-solid fa-key"></i>
+															Mở Khóa
+														</a>
+													}
+
+													<a data-employee-id="@item.EmployeeId" class="account-details btn btn-info btn-sm">
+														<i class="fas fa-trash"></i>
+														Xóa
+													</a>
+												</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Nội dung bên phải -->
+	<div class="right-panel col-4 pl-0 pr-0">
+	</div>
+</div>

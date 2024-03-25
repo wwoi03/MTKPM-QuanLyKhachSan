@@ -1,0 +1,50 @@
+﻿@{
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-container d-flex">
+	<!-- Nội dung bên trái -->
+	<div class="left-panel col-8 pl-0 pr-0">
+		<!-- Thanh navbar -->
+		<nav class="panel-navbar">
+			<ul class="d-flex flex-row justify-content-between nav-container">
+				<li class="nav-item active" id="month-view">
+					<i class="fa-solid fa-bed nav-icon" style="color: #68CBF8"></i>
+					<span class="">Lịch theo phòng</span>
+				</li>
+
+				<li class="nav-item" id="week-view">
+					<i class="fa-solid fa-calendar-week nav-icon" style="color: #66C0B8"></i>
+					<span class="">Lịch theo tuần</span>
+				</li>
+
+				<li class="nav-item" id="day-view">
+					<i class="fa-solid fa-calendar-day nav-icon" style="color: #FF9A7A"></i>
+					<span class="">Lịch theo ngày</span>
+				</li>
+
+				<li class="nav-item">
+					<i class="fa-sharp fa-solid fa-magnifying-glass nav-icon" style="color: #68CBF8"></i>
+					<span class="">Tìm kiếm</span>
+				</li>
+			</ul>
+
+			<div class="nav-line"></div>
+		</nav>
+
+		<!-- THE CALENDAR -->
+		<div style="padding: 24px">
+			<div id="calendar" style="margin: 0px"></div>
+		</div>
+	</div>
+
+	<!-- Nội dung bên phải -->
+	<div class="right-panel col-4 pl-0 pr-0">
+		
+	</div>
+</div>
+
+<!-- Chọn phòng -->
+<div id="choose-room"></div>
+
+<script type="text/javascript" src="~/admin/assets/js/booking.js"></script>

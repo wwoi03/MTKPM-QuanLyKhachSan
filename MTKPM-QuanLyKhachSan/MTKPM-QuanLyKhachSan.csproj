@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Admin\DesignPattern\ProxyProtected\Services\**" />
     <Compile Remove="Areas\Admin\Views\NewFolder\**" />
+    <Content Remove="Areas\Admin\DesignPattern\ProxyProtected\Services\**" />
     <Content Remove="Areas\Admin\Views\NewFolder\**" />
+    <EmbeddedResource Remove="Areas\Admin\DesignPattern\ProxyProtected\Services\**" />
     <EmbeddedResource Remove="Areas\Admin\Views\NewFolder\**" />
+    <None Remove="Areas\Admin\DesignPattern\ProxyProtected\Services\**" />
     <None Remove="Areas\Admin\Views\NewFolder\**" />
   </ItemGroup>
 
@@ -32,7 +36,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\DesignPattern\ProxyProtected\Services\" />
     <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
 
