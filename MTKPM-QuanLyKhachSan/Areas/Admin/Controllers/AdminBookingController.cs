@@ -16,13 +16,13 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         BookRoomDetailsDao bookRoomDetailsDao;
         CustomerDao customerDao;
 
-        public AdminBookingController(DatabaseContext context)
+        public AdminBookingController()
         {
-            roomDao = new RoomDao(context);
-            roomTypeDao = new RoomTypeDao(context);
+            roomDao = new RoomDao();
+            roomTypeDao = new RoomTypeDao();
             bookRoomDao = new BookRoomDao();
-            bookRoomDetailsDao = new BookRoomDetailsDao(context);
-            customerDao = new CustomerDao(context);
+            bookRoomDetailsDao = new BookRoomDetailsDao();
+            customerDao = new CustomerDao();
         }
 
         public IActionResult Index()

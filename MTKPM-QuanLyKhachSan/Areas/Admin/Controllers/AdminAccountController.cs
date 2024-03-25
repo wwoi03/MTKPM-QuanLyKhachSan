@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facade;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Service;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
@@ -16,14 +17,14 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         PermissionGroupDao permissionGroupDao;
         EmployeeDao employeeDao;
         EmployeePermissionDao employeePermissionDao;
-
-        public AdminAccountController(DatabaseContext context)
+        FacadeDao facadeDao;
+        public AdminAccountController( )
         {
-            roleDao = new RoleDao(context);
-            permissionGroupDao = new PermissionGroupDao(context);
-            employeeDao = new EmployeeDao(context);
+            roleDao = new RoleDao();
+            permissionGroupDao = new PermissionGroupDao();
+            employeeDao = new EmployeeDao();
             employeePermissionDao = new EmployeePermissionDao();
-
+            facadeDao = new FacadeDao();
         }
 
         public IActionResult Index()
@@ -144,7 +145,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult LockAccount(int employeeId)
 		{
-            employeeDao.LockAccount(employeeId);
+            facadeDao.LockAccount(employeeId);
 
             ExecutionOutcome executionOutcome = new ExecutionOutcome()
             {
@@ -158,7 +159,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult UnLockAccount(int employeeId)
         {
-            employeeDao.UnLockAccount(employeeId);
+            facadeDao.UnLockAccount(employeeId);
 
             ExecutionOutcome executionOutcome = new ExecutionOutcome()
             {

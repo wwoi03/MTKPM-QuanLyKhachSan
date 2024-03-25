@@ -12,12 +12,12 @@ namespace MTKPM_QuanLyKhachSan.Controllers
         BookRoomDao bookRoomDao;
         BookRoomDetailsDao bookRoomDetailsDao;
 
-        public PublicRoomController(DatabaseContext context)
+        public PublicRoomController()
         {
-            roomTypeDao = new RoomTypeDao(context);
-            roomDao = new RoomDao(context);
+            roomTypeDao = new RoomTypeDao();
+            roomDao = new RoomDao();
             bookRoomDao = new BookRoomDao();
-            bookRoomDetailsDao = new BookRoomDetailsDao(context);
+            bookRoomDetailsDao = new BookRoomDetailsDao();
         }
 
         public IActionResult Index(SearchRoomTypeVM searchRoomTypeVM)

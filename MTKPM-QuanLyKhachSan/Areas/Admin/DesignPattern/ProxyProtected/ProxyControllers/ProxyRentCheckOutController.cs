@@ -16,10 +16,10 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.ProxyCon
         EmployeePermissionDao employeePermissionDao;
         List<EmployeePermission> listPermission;
         RoomDao roomDao;
-        public ProxyRentCheckOutController(DatabaseContext context)
+        public ProxyRentCheckOutController()
         {
-            adminRentCheckOut = new AdminRentCheckOutController(context);
-            roomDao = new RoomDao(context);
+            adminRentCheckOut = new AdminRentCheckOutController();
+            roomDao = new RoomDao();
             //GiaBo
             employee = new Employee();
             employee.EmployeeId = 1;

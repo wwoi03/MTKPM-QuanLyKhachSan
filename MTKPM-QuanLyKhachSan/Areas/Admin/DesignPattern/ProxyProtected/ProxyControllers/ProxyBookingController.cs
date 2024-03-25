@@ -17,9 +17,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.ProxyCon
         EmployeePermissionDao employeePermissionDao;
         List<EmployeePermission> listPermission;
 
-        public ProxyBookingController(DatabaseContext context)
+        public ProxyBookingController()
         {
-            adminBooking = new AdminBookingController(context);
+            adminBooking = new AdminBookingController();
             employeePermissionDao = new EmployeePermissionDao();
             //Gia bo
             employee = new Employee();

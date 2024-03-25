@@ -17,9 +17,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.ProxyCon
         List<EmployeePermission> listPermission;
 
 
-        public ProxyAccountController(DatabaseContext context)
+        public ProxyAccountController()
 		{
-            adminAccount = new AdminAccountController(context);
+            adminAccount = new AdminAccountController();
             employeePermissionDao = new EmployeePermissionDao();
             employee = new Employee();
             employee.EmployeeId = 1;

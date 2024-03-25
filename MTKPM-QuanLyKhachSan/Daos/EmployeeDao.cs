@@ -33,22 +33,10 @@ namespace MTKPM_QuanLyKhachSan.Daos
             context.SaveChanges();
         }
 
-        // Khóa tài khoản
-        public void LockAccount(int employeeId)
-		{
-            Employee employee = GetEmployeeById(employeeId);
-            employee.Status = (int)EmployeeStatusType.Lock;
-
-            context.Employees.Update(employee);
-            context.SaveChanges();
-		}
-
-        // Mở Khóa tài khoản
-        public void UnLockAccount(int employeeId)
+      
+        //Update Employee
+        public void UpdateEmployee(Employee employee)
         {
-            Employee employee = GetEmployeeById(employeeId);
-            employee.Status = (int)EmployeeStatusType.UnLock;
-
             context.Employees.Update(employee);
             context.SaveChanges();
         }

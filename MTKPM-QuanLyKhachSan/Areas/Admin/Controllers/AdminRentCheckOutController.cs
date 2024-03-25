@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facade;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Service;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
@@ -18,18 +19,19 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         OrderDao orderDao;
         ServiceDao serviceDao;
         CustomerDao customerDao;
+        FacadeDao facadeDao;
 
-
-        public AdminRentCheckOutController(DatabaseContext context)
+        public AdminRentCheckOutController()
         {
-            roomTypeDao = new RoomTypeDao(context);
-            roomDao = new RoomDao(context);
+            roomTypeDao = new RoomTypeDao();
+            roomDao = new RoomDao();
             bookRoomDao = new BookRoomDao();
-            bookRoomDetailsDao = new BookRoomDetailsDao(context);
+            bookRoomDetailsDao = new BookRoomDetailsDao();
             billDao = new BillDao();
-            orderDao = new OrderDao(context);
-            serviceDao = new ServiceDao(context);
-            customerDao = new CustomerDao(context);
+            orderDao = new OrderDao();
+            serviceDao = new ServiceDao();
+            customerDao = new CustomerDao();
+            facadeDao = new FacadeDao();
         }
 
         public IActionResult Index()
@@ -132,7 +134,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult CleanRoom(int roomId)
         {
-            roomDao.CleanRoom(roomId);
+            facadeDao.CleanRoom(roomId);
             return RedirectToAction("RoomClean", "AdminRentCheckOut", new { area = "Admin" });
         }
 
@@ -140,7 +142,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult RequestCleanRoom(int roomId)
         {
-            roomDao.RequestCleanRoom(roomId);
+            facadeDao.RequestCleanRoom(roomId);
 
             Room room = roomDao.GetRoomById(roomId);
 
@@ -167,11 +169,11 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult ChangeRoom(int roomIdOld, int roomIdNew, bool isCleanRoom = false)
         {
-            bookRoomDetailsDao.ChangeRoom(roomIdOld, roomIdNew);
+            facadeDao.ChangeRoom(roomIdOld, roomIdNew);
 
             if (isCleanRoom)
             {
-                roomDao.CleanRoom(roomIdNew);
+                facadeDao.CleanRoom(roomIdNew);
             }
 
             return RedirectToAction("RoomRent", "AdminRentCheckOut", new { area = "Admin" });

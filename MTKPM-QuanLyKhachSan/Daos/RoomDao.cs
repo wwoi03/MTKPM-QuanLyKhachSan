@@ -64,24 +64,13 @@ namespace MTKPM_QuanLyKhachSan.Daos
                 .ToList();
         }
 
-        // dọn phòng
-        public void CleanRoom(int roomId)
+     
+        //Update room
+        public void UpdateRoom(Room room)
         {
-            Room room = GetRoomById(roomId);
-            room.Tidy = 0;
             context.Rooms.Update(room);
             context.SaveChanges();
         }
-
-        // dọn phòng
-        public void RequestCleanRoom(int roomId)
-        {
-            Room room = GetRoomById(roomId);
-            room.Tidy = 1;
-            context.Rooms.Update(room);
-            context.SaveChanges();
-        }
-
         // lấy phòng theo id
         public Room GetRoomById(int roomId)
         {

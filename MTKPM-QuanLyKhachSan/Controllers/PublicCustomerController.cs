@@ -9,9 +9,9 @@ namespace MTKPM_QuanLyKhachSan.Controllers
     {
         CustomerDao customerDao;
 
-        public PublicCustomerController(DatabaseContext context)
+        public PublicCustomerController()
         {
-            customerDao = new CustomerDao(context);
+            customerDao = new CustomerDao();
         }
 
         //Đăng nhập

@@ -58,16 +58,6 @@ namespace MTKPM_QuanLyKhachSan.Daos
                 .Include(i => i.BookRoom)
                 .FirstOrDefault();
         }
-
-        // đổi phòng
-        public void ChangeRoom(int roomIdOld, int roomIdNew)
-        {
-            BookRoomDetails bookRoomDetails = GetBookRoomDetailsById(roomIdOld);
-            bookRoomDetails.RoomId = roomIdNew;
-            context.Update(bookRoomDetails);
-            context.SaveChanges();
-        }
-
         // cập nhật chi tiết đặt phòng
         public void UpdateBookRoomDetails(BookRoomDetails bookRoomDetails)
         {
