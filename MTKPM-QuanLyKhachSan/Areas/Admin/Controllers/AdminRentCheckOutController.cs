@@ -151,9 +151,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult OrderMenu(int bookRoomDetailsId)
 		{
-            ViewBag.bookRoomDetails = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
-            ViewBag.services = serviceDao.GetServices();
             var services = serviceDao.GetServices();
+            ViewBag.bookRoomDetails = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
+            ViewBag.services = services;
 
             OrderMenuAdminVM orderMenuAdminVM = new OrderMenuAdminVM
             {

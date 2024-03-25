@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dG1I+nglFa3Y3eZSg6E9bIEHuLkj80Uz090OnhAgyZM=",
+  "Hash": "sUpqk93ELHP9MWaKyq59ZaFKbBuBcwA0X4GEF3cxvKU=",
   "Source": "MTKPM-QuanLyKhachSan",
   "BasePath": "_content/MTKPM-QuanLyKhachSan",
   "Mode": "Default",
@@ -6339,6 +6339,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\admin\\assets\\js\\admin-account.js"
+    },
+    {
+      "Identity": "D:\\Huflit_Study_Material\\Project\\course-projects\\DA-MTKPM-WebQuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\admin\\assets\\js\\admin-booking.js",
+      "SourceId": "MTKPM-QuanLyKhachSan",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Huflit_Study_Material\\Project\\course-projects\\DA-MTKPM-WebQuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\",
+      "BasePath": "_content/MTKPM-QuanLyKhachSan",
+      "RelativePath": "admin/assets/js/admin-booking.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\admin\\assets\\js\\admin-booking.js"
     },
     {
       "Identity": "D:\\Huflit_Study_Material\\Project\\course-projects\\DA-MTKPM-WebQuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\admin\\assets\\js\\admin-login.js",

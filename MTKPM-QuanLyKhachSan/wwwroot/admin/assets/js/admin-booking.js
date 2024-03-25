@@ -1,21 +1,46 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+﻿$(document).ready(function () {
 	main();
 
+	// main
 	function main() {
-		$.ajax({
-			type: "GET",
-			url: "/Admin/AdminBooking/GetBooking",
-			success: function (data) {
-				var dataResources = JSON.parse(data.resources);
-				var dataEvents = JSON.parse(data.events);
-
-				renderFullCallendar(dataResources, dataEvents);
-			},
-			error: function () {
-
-            }
-		});
+		view();
+		feature();
 	}
+
+	// view
+	function view() {
+		viewFullCanlandar();
+	}
+
+	// chức năng
+	function feature() {
+		booking();
+		editBooking();
+		addRoomBooking();
+	}
+
+	// view 
+	function viewFullCanlandar() {
+		var path = window.location.pathname;
+
+		console.log(path)
+
+		if (path === '/' || path === '/Admin/AdminBooking/Index') {
+
+			ajaxCall(
+				'GET',
+				'/Admin/AdminBooking/GetBooking',
+				function (data) {
+					var dataResources = JSON.parse(data.resources);
+					var dataEvents = JSON.parse(data.events);
+
+					renderFullCallendar(dataResources, dataEvents);
+
+					console.log(1111)
+				}
+			)
+        }
+    }
 
 	// hiển thị giao diện Calendar
 	function renderFullCallendar(dataResources, dataEvents) {
@@ -79,7 +104,7 @@
 				});
 			},
 			eventClick: function (info) {
-				bookingDetails(info.event.id);
+				viewBookingDetails(info.event.id);
 			},
 			dateClick: function (info) {
 				console.log(info.resource.id)
@@ -91,101 +116,93 @@
 		calendar.render();
 	}
 
+	// view đặt phòng
+	function viewBooking() {
+		ajaxCall(
+			'GET',
+			'/Admin/AdminBooking/Booking',
+			null,
+			function (data) {
+				$(".right-panel").html(data);
+			}
+		)
+	}
+
 	// đặt phòng
 	function booking() {
-		$.ajax({
-			type: "GET",
-			url: "/Admin/AdminBooking/Booking",
-			success: function (data) {
-				$(".right-panel").html(data);
+		$('.right-panel').on('submit', '#form-book-room', function (e) {
+			e.preventDefault(); // Ngăn chặn việc tải lại trang
 
-				addRoomBooking();
-				postBooking();
-			},
-			error: function () {
-
-            }
-		});
-
-		function postBooking() {
-			document.getElementById('form-book-room').addEventListener('submit', function (e) {
-				e.preventDefault(); // Ngăn chặn việc tải lại trang
-
-				$.ajax({
-					type: "POST",
-					url: "/Admin/AdminBooking/Booking",
-					data: $(this).serialize(),
-					success: function (data) {
-						if (data.result == true) {
-							success(data.mess, "", null);
-                        } else {
-							error(data.mess);
-						}
-					},
-					error: function () {
-
+			ajaxCall(
+				'POST',
+				'/Admin/AdminBooking/Booking',
+				$(this).serialize(),
+				function (data) {
+					if (data.result == true) {
+						success({
+							title: data.mess,
+							funcConfirm: function () {
+								location.reload();
+							},
+							showCancel: false
+						});
+					} else {
+						error({
+							title: data.mess,
+						});
 					}
-				});
-			})
-        }
+				}
+			)
+		})
 	}
 
 	// chi tiết đặt phòng
-	function bookingDetails(bookRoomDetailsId) {
-		$.ajax({
-			type: "GET",
-			url: "/Admin/AdminBooking/BookingDetails?bookRoomDetailsId=" + bookRoomDetailsId,
-			success: function (data) {
+	function viewBookingDetails(bookRoomDetailsId) {
+		ajaxCall(
+			'GET',
+			'/Admin/AdminBooking/BookingDetails',
+			{ bookRoomDetailsId : bookRoomDetailsId },
+			function (data) {
 				$(".right-panel").html(data);
-
-				editBooking();
-				addRoomBooking();
-			},
-			error: function () {
-
 			}
-		});
+		)
 	}
 
 	// chỉnh sửa đặt phòng
 	function editBooking() {
-		document.getElementById('form-book-room').addEventListener('submit', function (e) {
+		$('.right-panel').on('submit', '#form-book-room', function (e) {
 			e.preventDefault(); // Ngăn chặn việc tải lại trang
 
-			console.log($(this).serialize())
-
-			$.ajax({
-				type: "POST",
-				url: "/Admin/AdminBooking/EditBooking",
-				data: $(this).serialize(),
-				success: function (data) {
+			ajaxCall(
+				'POST',
+				'/Admin/AdminBooking/EditBooking',
+				$(this).serialize(),
+				function (data) {
 					if (data.result == true) {
-						success(
-							title = data.mess,
-							"",
-							null
-						);
-                    } else {
-						error(
-							title = data.mess
-						);
-						editBooking();
+						success({
+							title: data.mess,
+							funcConfirm: function () {
+								location.reload();
+							},
+							showCancel: false
+						});
+					} else {
+						error({
+							title: data.mess,
+						});
 					}
-				},
-				error: function () {
-
 				}
-			});
-        })
+			)
+		})
 	}
 
 	// thêm phòng
 	function addRoomBooking() {
-		document.querySelector('.panel-form-add-room').addEventListener('click', function () {
-			$.ajax({
-				type: "POST",
-				url: "/Admin/AdminBooking/ChooseRoom",
-				success: function (data) {
+		$('.right-panel').on('click', '.panel-form-add-room', function (e) {
+			ajaxCall(
+				'POST',
+				'/Admin/AdminBooking/ChooseRoom',
+				function (data) {
 					$('#choose-room').html(data);
 
 					var roomContainer = document.querySelector('.custom-room-container');
@@ -197,11 +214,8 @@
 					});
 
 					switchTabRoom();
-				},
-				error: function () {
-
 				}
-			});
+			)
 		})
 	}
 
@@ -267,32 +281,22 @@
 		}
 	}
 
-	// alert success
-	function success(title, text, functionResult) {
-		Swal.fire({
-			title: title,
-			text: text,
-			icon: "success",
-			confirmButtonColor: "#1577BD",
-			cancelButtonColor: "#999999",
-			showCancelButton: true,
-			reverseButtons: true,
-		}).then((result) => {
-			if (result.isConfirmed) {
-				functionResult();
-			} else {
-				location.reload();
+	// call ajax
+	function ajaxCall(type, url, data, successCallback) {
+		$.ajax({
+			type: type,
+			url: url,
+			data: data,
+			beforeSend: function () {
+				$('#loaderBar').show();
+			},
+			complete: function () {
+				$('#loaderBar').hide();
+			},
+			success: successCallback,
+			error: function () {
+				alert('Có lỗi xảy ra, vui lòng thử lại.');
 			}
 		});
 	}
-
-	// alert error
-	function error(title) {
-		Swal.fire({
-			title: title,
-			icon: "error",
-			confirmButtonColor: "#1577BD",
-		})
-	}
 });
-

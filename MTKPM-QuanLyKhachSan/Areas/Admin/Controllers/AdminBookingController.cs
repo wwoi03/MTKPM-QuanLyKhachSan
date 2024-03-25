@@ -26,9 +26,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            HttpContext.Session.SetInt32("EmployeeId", 1);
+            /*HttpContext.Session.SetInt32("EmployeeId", 1);
             HttpContext.Session.SetString("EmployeeName", "Đào Công Tuấn");
-            HttpContext.Session.SetInt32("HotelId", 1);
+            HttpContext.Session.SetInt32("HotelId", 1);*/
 
             return View();
         }
@@ -74,7 +74,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Booking(BookingAdminVM bookingAdminVM, List<int> rooms)
+        public IActionResult Booking(BookingAdminVM bookingAdminVM)
         {
             ExecutionOutcome executionOutcome;
             string error;
@@ -107,37 +107,29 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
                 };
 
                 // tạo phiếu chi tiết đặt phòng
-                foreach (var roomId in rooms)
+                foreach (var room in bookingAdminVM.Rooms)
                 {
                     // kiểm tra phòng trống
-                    if (roomDao.IsRoomAvailable(roomId)) 
+                    if (roomDao.IsRoomAvailable(room.RoomId)) 
                     {
                         // tạo phòng
                         BookRoomDetails newBookRoomDetails = new BookRoomDetails
                         {
                             BookRoomId = newBookRoom.BookRoomId,
-                            RoomId = roomId,
+                            RoomId = room.RoomId,
                             CheckIn = bookingAdminVM.ConvertDateTime(bookingAdminVM.CheckIn),
                             CheckOut = bookingAdminVM.ConvertDateTime(bookingAdminVM.CheckOut),
                             Note = newBookRoom.Note
                         };
                     }
                 }
+            }
 
-                executionOutcome = new ExecutionOutcome()
-                {
-                    Result = true,
-                    Mess = "Đặt phòng thành công.",
-                };
-            }
-            else
+            executionOutcome = new ExecutionOutcome()
             {
-                executionOutcome = new ExecutionOutcome()
-                {
-                    Result = false,
-                    Mess = error,
-                };
-            }
+                Result = status,
+                Mess = string.IsNullOrEmpty(error) ? "Đặt phòng thành công." : error
+            };
 
             return Json(executionOutcome);
         }

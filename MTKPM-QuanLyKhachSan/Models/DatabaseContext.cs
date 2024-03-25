@@ -4,6 +4,18 @@ namespace MTKPM_QuanLyKhachSan.Models
 {
     public class DatabaseContext : DbContext
     {
+        /*private DatabaseContext _instance;
+
+        public DatabaseContext GetInstance(DbContextOptions options)
+        {
+            if (_instance == null)
+            {
+                _instance = new DatabaseContext(options);
+                Console.WriteLine("Init");
+            }
+            return _instance;
+        }*/
+
         public DatabaseContext(DbContextOptions options) : base(options)
         {
 

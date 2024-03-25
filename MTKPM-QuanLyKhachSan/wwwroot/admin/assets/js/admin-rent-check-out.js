@@ -262,9 +262,9 @@
                 '/Admin/AdminRentCheckOut/OrderMenu',
                 { bookRoomDetailsId: bookRoomDetailsId, orders: orders},
                 function (data) {
-                    if (data.result == true) {
-                        $('.right-panel').html("");
+                    $('.right-panel').html("");
 
+                    if (data.result == true) {
                         success({
                             title: data.mess,
                             showCancel: false
