@@ -3,9 +3,10 @@ using MTKPM_QuanLyKhachSan.ViewModels;
 
 namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Services
 {
-    public interface IBooking : IProxy
+    public interface IBooking
     {
         IActionResult Index();
+        IActionResult GetBooking();
 
         [HttpGet]
         IActionResult Booking();
@@ -18,5 +19,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Services
 
         [HttpPost]
         IActionResult EditBooking(BookingAdminVM bookingAdminVM);
+        IActionResult ChooseRoom();
+
     }
 }

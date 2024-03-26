@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Services;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
 using MTKPM_QuanLyKhachSan.ViewModels;
@@ -10,13 +13,25 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
     [Area("Admin")]
     [Route("Admin/[controller]/[action]")]
 
-    public class AdminAccountController : Controller
+    public class AdminAccountController : Controller, IAccountEmployee
     {
         RoleDao roleDao;
         PermissionGroupDao permissionGroupDao;
         EmployeeDao employeeDao;
         EmployeePermissionDao employeePermissionDao;
         AccountFacede accountFacede;
+
+        public AdminAccountController()
+        {
+            DatabaseContext context = SingletonDatabase.Instance;
+
+            roleDao = new RoleDao(context);
+            permissionGroupDao = new PermissionGroupDao(context);
+            employeeDao = new EmployeeDao(context);
+            employeePermissionDao = new EmployeePermissionDao(context);
+
+            accountFacede = new AccountFacede();
+        }
 
         public AdminAccountController(DatabaseContext context)
         {
@@ -31,11 +46,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         public IActionResult Index()
         {
             ViewBag.employees = employeeDao.GetEmployees(1);
-
-            HttpContext.Session.SetInt32("EmployeeId", 1);
-            HttpContext.Session.SetString("EmployeeName", "Đào Công Tuấn");
-            HttpContext.Session.SetInt32("HotelId", 1);
-
+           
             return View();
         }
 

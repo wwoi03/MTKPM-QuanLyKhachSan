@@ -14,7 +14,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
         }
 
         // tìm nhân viên theo id
-        public Employee GetEmployeeById(int employeeId)
+        public Employee GetEmployeeById(int? employeeId)
 		{
             return context.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
 		}
@@ -47,6 +47,12 @@ namespace MTKPM_QuanLyKhachSan.Daos
             employee.Status = (int)EmployeeStatusType.UnLock;
 
             context.Employees.Update(employee);
+        }
+
+        // đăng nhập
+        public Employee Login(string username, string password)
+        {
+            return context.Employees.FirstOrDefault(i => i.Username.ToLower().Equals(username.ToLower()) && i.Password.Equals(password));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MTKPM_QuanLyKhachSan.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MTKPM_QuanLyKhachSan.Models;
 
 namespace MTKPM_QuanLyKhachSan.Daos
 {
@@ -15,6 +16,15 @@ namespace MTKPM_QuanLyKhachSan.Daos
         public void AddEmployeePermission(EmployeePermission employeePermission)
         {
             context.EmployeePermissions.Add(employeePermission);
+        }
+
+        // lấy danh sách quyền của nhân viên
+        public List<EmployeePermission> GetPermissionByEmployee(int? employeeId)
+        {
+            List<EmployeePermission> listEmployeePermission = context.EmployeePermissions
+                .Where(i => i.EmployeeId == employeeId)
+                .Include(i => i.Permission).ToList();
+            return listEmployeePermission;
         }
     }
 }

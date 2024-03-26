@@ -21,4 +21,17 @@
         UnLock = 0, // mở khóa
         Lock = 1, // khóa
     }
+
+    public enum AccountType
+    {
+        ViewAccount,
+        CreateAccount,
+        EditAccount,
+        DeleteAccount,
+    }
+
+    public enum RentCheckOutType
+    {
+        RentCheckOutAll
+    }
 }

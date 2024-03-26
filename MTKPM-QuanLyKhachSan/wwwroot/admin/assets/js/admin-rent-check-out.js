@@ -55,7 +55,7 @@
     function viewRoomWait() {
         ajaxCall(
             'GET',
-            '/Admin/AdminRentCheckOut/RoomWait',
+            '/Admin/AdminRentCheckOutProxy/RoomWait',
             null,
             function (data) {
                 $('#section-left-panel').html(data);
@@ -67,7 +67,7 @@
     function viewRoomRent() {
         ajaxCall(
             'GET',
-            '/Admin/AdminRentCheckOut/RoomRent',
+            '/Admin/AdminRentCheckOutProxy/RoomRent',
             null,
             function (data) {
                 $('#section-left-panel').html(data);
@@ -79,7 +79,7 @@
     function viewRoomClean() {
         ajaxCall(
             'GET',
-            '/Admin/AdminRentCheckOut/RoomClean',
+            '/Admin/AdminRentCheckOutProxy/RoomClean',
             null,
             function (data) {
                 $('#section-left-panel').html(data);
@@ -91,7 +91,7 @@
     function viewRoomHistory() {
         ajaxCall(
             'GET',
-            '/Admin/AdminRentCheckOut/RoomHistory',
+            '/Admin/AdminRentCheckOutProxy/RoomHistory',
             null,
             function (data) {
                 $('#section-left-panel').html(data);
@@ -107,7 +107,7 @@
 
             ajaxCall(
                 'GET',
-                '/Admin/AdminRentCheckOut/ChangeRoom',
+                '/Admin/AdminRentCheckOutProxy/ChangeRoom',
                 { bookRoomDetailsId: id },
                 function (data) {
                     $('.right-panel').html(data);
@@ -124,7 +124,7 @@
 
             ajaxCall(
                 'POST',
-                '/Admin/AdminRentCheckOut/CleanRoom',
+                '/Admin/AdminRentCheckOutProxy/CleanRoom',
                 { roomId: roomId },
                 function (data) {
                     $('#section-left-panel').html(data);
@@ -141,7 +141,7 @@
 
             ajaxCall(
                 'POST',
-                '/Admin/AdminRentCheckOut/RequestCleanRoom',
+                '/Admin/AdminRentCheckOutProxy/RequestCleanRoom',
                 { roomId: roomId },
                 function (data) {
                     $('#section-left-panel').html(data);
@@ -160,7 +160,7 @@
 
             ajaxCall(
                 'POST',
-                '/Admin/AdminRentCheckOut/ChangeRoom',
+                '/Admin/AdminRentCheckOutProxy/ChangeRoom',
                 { roomIdOld: roomIdOld, roomIdNew: roomIdNew, isCleanRoom: isCleanRoom },
                 function (data) {
                     $('.right-panel').html('');
@@ -177,7 +177,7 @@
 
             ajaxCall(
                 'GET',
-                '/Admin/AdminRentCheckOut/OrderMenu',
+                '/Admin/AdminRentCheckOutProxy/OrderMenu',
                 { bookRoomDetailsId: id },
                 function (data) {
                     $('.right-panel').html(data);
@@ -259,7 +259,7 @@
 
             ajaxCall(
                 'POST',
-                '/Admin/AdminRentCheckOut/OrderMenu',
+                '/Admin/AdminRentCheckOutProxy/OrderMenu',
                 { bookRoomDetailsId: bookRoomDetailsId, orders: orders},
                 function (data) {
                     $('.right-panel').html("");
@@ -288,7 +288,7 @@
 
             ajaxCall(
                 'GET',
-                '/Admin/AdminRentCheckOut/EditBookRoomDetails',
+                '/Admin/AdminRentCheckOutProxy/EditBookRoomDetails',
                 { bookRoomDetailsId: bookRoomDetailsId },
                 function (data) {
                     $('.right-panel').html(data);
@@ -304,7 +304,7 @@
 
             ajaxCall(
                 'POST',
-                '/Admin/AdminRentCheckOut/EditBookRoomDetails',
+                '/Admin/AdminRentCheckOutProxy/EditBookRoomDetails',
                 $(this).serialize(),
                 function (data) {
                     if (data.result == true) {

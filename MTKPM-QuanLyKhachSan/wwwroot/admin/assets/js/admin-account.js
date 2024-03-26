@@ -26,7 +26,7 @@
         $('#create').on('click', function () {
             ajaxCall(
                 'GET',
-                '/Admin/AdminAccount/CreateAccount',
+                '/Admin/AdminAccountProxy/CreateAccount',
                 null,
                 function (data) {
                     $('.right-panel').html(data);
@@ -42,7 +42,7 @@
 
             ajaxCall(
                 'POST',
-                '/Admin/AdminAccount/CreateAccount',
+                '/Admin/AdminAccountProxy/CreateAccount',
                 $(this).serialize(),
                 function (data) {
                     if (data.result == true) {
@@ -56,10 +56,12 @@
                                 location.reload();
                             },
                         });
-                    } else {
+                    } else if (data.result == false) {
                         error({
                             title: data.mess,
                         });
+                    } else {
+                        $('.right-panel').html(data);
                     }
                 }
             )
@@ -106,7 +108,7 @@
                 funcConfirm: function () {
                     ajaxCall(
                         'POST',
-                        '/Admin/AdminAccount/LockAccount',
+                        '/Admin/AdminAccountProxy/LockAccount',
                         { employeeId: employeeId },
                         function (data) {
                             if (data.result == true) {
@@ -118,10 +120,12 @@
                                     },
                                     showCancel: false
                                 });
-                            } else {
+                            } else if (data.result == false) {
                                 error({
                                     title: data.mess,
                                 });
+                            } else {
+                                $('.right-panel').html(data);
                             }
                         }
                     )
@@ -142,7 +146,7 @@
                 funcConfirm: function () {
                     ajaxCall(
                         'POST',
-                        '/Admin/AdminAccount/UnLockAccount',
+                        '/Admin/AdminAccountProxy/UnLockAccount',
                         { employeeId: employeeId },
                         function (data) {
                             if (data.result == true) {
@@ -154,10 +158,12 @@
                                     },
                                     showCancel: false
                                 });
-                            } else {
+                            } else if (data.result == false) {
                                 error({
                                     title: data.mess,
                                 });
+                            } else {
+                                $('.right-panel').html(data);
                             }
                         }
                     )
@@ -192,7 +198,7 @@
 
     ajaxCall(
         'POST',
-        '/Admin/AdminAccount/SetPermission',
+        '/Admin/AdminAccountProxy/SetPermission',
         formData + '&permission=' + permission,
         function (data) {
             $('.right-panel').html(data);

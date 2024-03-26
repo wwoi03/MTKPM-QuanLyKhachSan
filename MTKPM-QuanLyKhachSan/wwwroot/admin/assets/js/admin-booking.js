@@ -19,27 +19,42 @@
 		addRoomBooking();
 	}
 
+	// xử lý chuyển view
+	function changeView(calendar) {
+		// bắt sự kiện click trên mỗi tab
+		$('.nav-container .nav-item').on('click', function () {
+			// Lấy id của item được click
+			var view = $(this).attr('id');
+
+			// Thay đổi hiển thị của FullCalendar tùy theo trạng thái mới
+			switch (view) {
+				case 'month-view':
+					calendar.changeView('resourceTimelineMonth');
+					break;
+				case 'week-view':
+					calendar.changeView('dayGridWeek');
+					break;
+				case 'day-view':
+					calendar.changeView('listDay');
+					break;
+			}
+		});
+	}
+
 	// view 
 	function viewFullCanlandar() {
-		var path = window.location.pathname;
+		ajaxCall(
+			'GET',
+			'/Admin/AdminBookingProxy/GetBooking',
+			function (data) {
+				var dataResources = JSON.parse(data.resources);
+				var dataEvents = JSON.parse(data.events);
 
-		console.log(path)
+				renderFullCallendar(dataResources, dataEvents);
 
-		if (path === '/' || path === '/Admin/AdminBooking/Index') {
-
-			ajaxCall(
-				'GET',
-				'/Admin/AdminBooking/GetBooking',
-				function (data) {
-					var dataResources = JSON.parse(data.resources);
-					var dataEvents = JSON.parse(data.events);
-
-					renderFullCallendar(dataResources, dataEvents);
-
-					console.log(1111)
-				}
-			)
-        }
+				console.log(1111)
+			}
+		)
     }
 
 	// hiển thị giao diện Calendar
@@ -111,7 +126,7 @@
 			},
 		});
 
-		switchTabs(calendar);
+		changeView(calendar);
 
 		calendar.render();
 	}
@@ -120,7 +135,7 @@
 	function viewBooking() {
 		ajaxCall(
 			'GET',
-			'/Admin/AdminBooking/Booking',
+			'/Admin/AdminBookingProxy/Booking',
 			null,
 			function (data) {
 				$(".right-panel").html(data);
@@ -135,7 +150,7 @@
 
 			ajaxCall(
 				'POST',
-				'/Admin/AdminBooking/Booking',
+				'/Admin/AdminBookingProxy/Booking',
 				$(this).serialize(),
 				function (data) {
 					if (data.result == true) {
@@ -160,7 +175,7 @@
 	function viewBookingDetails(bookRoomDetailsId) {
 		ajaxCall(
 			'GET',
-			'/Admin/AdminBooking/BookingDetails',
+			'/Admin/AdminBookingProxy/BookingDetails',
 			{ bookRoomDetailsId : bookRoomDetailsId },
 			function (data) {
 				$(".right-panel").html(data);
@@ -175,7 +190,7 @@
 
 			ajaxCall(
 				'POST',
-				'/Admin/AdminBooking/EditBooking',
+				'/Admin/AdminBookingProxy/EditBooking',
 				$(this).serialize(),
 				function (data) {
 					if (data.result == true) {
@@ -201,7 +216,7 @@
 		$('.right-panel').on('click', '.panel-form-add-room', function (e) {
 			ajaxCall(
 				'POST',
-				'/Admin/AdminBooking/ChooseRoom',
+				'/Admin/AdminBookingProxy/ChooseRoom',
 				function (data) {
 					$('#choose-room').html(data);
 

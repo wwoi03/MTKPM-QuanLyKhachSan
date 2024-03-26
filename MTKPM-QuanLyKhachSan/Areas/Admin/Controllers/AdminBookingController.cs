@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Services;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
 using MTKPM_QuanLyKhachSan.ViewModels;
@@ -31,10 +32,6 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            /*HttpContext.Session.SetInt32("EmployeeId", 1);
-            HttpContext.Session.SetString("EmployeeName", "Đào Công Tuấn");
-            HttpContext.Session.SetInt32("HotelId", 1);*/
-
             return View();
         }
 
