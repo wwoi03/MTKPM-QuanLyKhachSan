@@ -60,11 +60,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Thời gian nhận phòng:</label>
-                                        <input class="form-control" type="datetime-local" name="CheckIn" value="@Model.CheckIn"/>
+                                        <input class="form-control" type="datetime-local" name="CheckIn" value="@Model.CheckIn.ToString("yyyy-MM-ddTHH:mm")" />
                                     </div>
                                     <div class="form-group">
                                         <label>Thời gian trả phòng:</label>
-                                        <input class="form-control" type="datetime-local" name="CheckIn" value="@Model.CheckOut" />
+                                        <input class="form-control" type="datetime-local" name="CheckOut" value="@Model.CheckOut.ToString("yyyy-MM-ddTHH:mm")" />
                                     </div>
                                     <div class="form-group">
                                         <label>Trạng thái:</label>

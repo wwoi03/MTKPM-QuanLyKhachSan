@@ -5,7 +5,7 @@
 }
 
 <div class="main-container d-flex">
-    <div class="left-panel col-8 pl-0 pr-0">
+    <div class="left-panel col-12 pl-0 pr-0">
         <!-- Header title -->
         <div class="custom-header-title">
             <div class="d-flex justify-content-between">
@@ -14,7 +14,7 @@
         </div>
 
         <!-- Search -->
-        <div class="custom-bulkhead">
+        <div class="custom-bulkhead col-4">
             <form method="post" action="@Url.Action("Search", "AdminHistoryBooking")">
                 <div class="form-group">
                     <label for="startDate">Từ ngày:</label>
@@ -66,8 +66,8 @@
                                                 <td class="custom-text-center">@booking.BookRoom.NumAdult</td>
                                                 <td class="custom-text-center">@booking.BookRoom.NumChildren</td>
                                                 <td class="custom-text-center">@booking.BookRoom.Note</td>
-                                                <td class="custom-text-center">@booking.CheckIn</td>
-                                                <td class="custom-text-center">@booking.CheckOut</td>
+                                                <td class="custom-text-center">@booking.CheckIn.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                                                <td class="custom-text-center">@booking.CheckOut.ToString("dd/MM/yyyy HH:mm:ss")</td>
                                                 <td class="custom-text-center">@booking.Status</td>
                                                 <td>
                                                     <a href="/Admin/AdminHistoryBooking/Detail/@booking.BookRoomDetailsId" class="btn btn-info btn-sm">
@@ -95,67 +95,5 @@
         </div>
 
     </div>
-    <div class="right-panel col-4 pl-0 pr-0">
-        <div class="panel-save d-flex justify-content-between align-items-center">
-            <span>Chi tiết đặt phòng</span>
-            <div class="">
-                <input id="submit-input" type="submit" value="Lưu" />
-            </div>
-        </div>
-        <!-- Form -->
-        <form method="post" action="@Url.Action("Save", "AdminHistoryBooking")">
-            <div class="panel-form">
-                <div class="panel-form-info">
-                    <div class="panel-form-item">
-                        <h5 class="panel-form-title">Mã đặt phòng</h5>
-                        <input class="panel-form-input" type="text" name="BookRoomId" />
-                    </div>
-                    <div class="panel-form-item">
-                        <h5 class="panel-form-title">Mã khách hàng</h5>
-                        <input class="panel-form-input" type="text" name="CustomerId" />
-                    </div>
-                    <div class="panel-form-item">
-                        <h5 class="panel-form-title">Tên khách hàng</h5>
-                        <input class="panel-form-input" type="text" name="CustomerName" />
-                    </div>
-                    <div class="panel-form-item">
-                        <h5 class="panel-form-title">Mã nhân viên</h5>
-                        <input class="panel-form-input" type="text" name="EmployeeId" />
-                    </div>
-                    <div class="panel-form-item">
-                        <h5 class="panel-form-title">Mã phòng</h5>
-                        <input class="panel-form-input" type="text" name="RoomId" />
-                    </div>
-                    <div class="panel-form-item">
-                        <h5 class="panel-form-title">Phòng</h5>
-                        <input class="panel-form-input" type="text" name="RoomName" />
-                    </div>
-                    <div class="panel-form-item">
-                        <h5 class="panel-form-title">Người lớn</h5>
-                        <input class="panel-form-input" type="text" name="NumAdult" />
-                    </div>
-                    <div class="panel-form-item">
-                        <h5 class="panel-form-title">Trẻ em</h5>
-                        <input class="panel-form-input" type="text" name="NumChildren" />
-                    </div>
-                    <div class="panel-form-item">
-                        <h5 class="panel-form-title">Ghi chú</h5>
-                        <input class="panel-form-input" type="text" name="Note" />
-                    </div>
-                    <div class="panel-form-item">
-                        <h5 class="panel-form-title">Thời gian nhận phòng</h5>
-                        <input class="panel-form-input" type="datetime-local" name="CheckIn" />
-                    </div>
-                    <div class="panel-form-item">
-                        <h5 class="panel-form-title">Thời gian trả phòng</h5>
-                        <input class="panel-form-input" type="datetime-local" name="CheckOut" />
-                    </div>
-                    <div class="panel-form-item">
-                        <h5 class="panel-form-title">Trạng thái</h5>
-                        <input class="panel-form-input" type="text" name="Status" />
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
+    
 </div>

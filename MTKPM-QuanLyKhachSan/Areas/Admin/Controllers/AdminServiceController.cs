@@ -16,22 +16,22 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         {
             _serviceDao = serviceDao;
         }
-        // Hiển thị danh sách menu
+        // Hiển thị danh sách Menu
         public IActionResult Index(string searchString)
         {
             var services = string.IsNullOrEmpty(searchString) ? _serviceDao.GetServices() : _serviceDao.SearchServices(searchString);
             return View(services);
         }
-        // Hiển thị trang thêm menu
+        // Hiển thị trang thêm Menu
         public IActionResult Create()
         {
             return View();
         }
 
-        // Xử lý yêu cầu thêm menu (POST)
+        // Xử lý yêu cầu thêm Menu (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ServiceId, Name, Price")] Service service)
+        public async Task<IActionResult> Create([Bind("Name, Price")] Service service)
         {
             if (ModelState.IsValid)
             {
@@ -41,7 +41,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             return View(service);
         }
 
-        // Hiển thị trang chỉnh sửa menu
+        // Hiển thị trang chỉnh sửa Menu
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -56,11 +56,10 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             }
             return View(service);
         }
-
-        // Xử lý yêu cầu chỉnh sửa menu (POST)
+        // Xử lý yêu cầu chỉnh sửa Menu (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ServiceId, Name, Price")] Service service)
+        public async Task<IActionResult> Edit(int id, [Bind("ServiceId, Name, Price, ImageFile")] Service service)
         {
             if (id != service.ServiceId)
             {
@@ -71,15 +70,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             {
                 try
                 {
-                    // Lấy dịch vụ từ cơ sở dữ liệu dựa trên id
-                    var existingService = await _serviceDao.GetServiceByIdAsync(id);
-
-                    // Cập nhật thông tin từ form vào dịch vụ đã lấy
-                    existingService.Name = service.Name;
-                    existingService.Price = service.Price;
-
-                    // Gọi phương thức cập nhật dịch vụ trong ServiceDao
-                    await _serviceDao.UpdateServiceAsync(existingService);
+                    await _serviceDao.UpdateServiceAsync(service);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -89,7 +80,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             }
             return View(service);
         }
-        // Xử lý xem chi tiết menu
+
+        // Xử lý xem chi tiết Menu
         public async Task<IActionResult> Detail(int? id)
         {
             if (id == null)
@@ -105,7 +97,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
             return View(service);
         }
-        // Xử lý yêu cầu xóa menu
+        // Xử lý yêu cầu xóa Menu
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)

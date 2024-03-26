@@ -1,5 +1,42 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model MTKPM_QuanLyKhachSan.Models.Service
+
 @{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Xóa menu";
 }
+
+<div class="main-container d-flex">
+    <!-- Nội dung bên trái -->
+    <div class="left-panel col-8 pl-0 pr-0">
+        <h4 class="card-title float-left mt-2" style="font-size: 24px">Xóa Menu</h4>
+    </div>
+
+    <!-- Nội dung bên phải -->
+    <div class="right-panel col-4 pl-0 pr-0">
+        <form method="post" action="@Url.Action("Delete", "AdminService", new { id = Model.ServiceId })">
+            <!-- Xác nhận xóa menu -->
+            <div class="panel-save d-flex justify-content-between align-items-center">
+                <span>Bạn có chắc chắn muốn xóa?</span>
+
+                <div class="">
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </div>
+            </div>
+
+            <!-- Hiển thị thông tin menu -->
+            <div class="panel-form">
+                <div class="panel-form-info">
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Tên menu</h5>
+                        <p>@Model.Name</p>
+                    </div>
+
+                    <div class="panel-form-item">
+                        <h5 class="panel-form-title">Giá bán</h5>
+                        <p>@Model.Price</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

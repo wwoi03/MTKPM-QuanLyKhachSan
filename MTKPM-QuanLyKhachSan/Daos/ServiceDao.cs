@@ -12,13 +12,13 @@ namespace MTKPM_QuanLyKhachSan.Daos
             _context = context;
         }
 
-        // lấy danh sách dịch vụ
+        // Lấy danh sách Menu
         public List<Service> GetServices()
         {
             return _context.Services.ToList();
         }
 
-        // tìm kiếm dịch vụ
+        // Tìm kiếm Menu
         public List<Service> SearchServices(string serviceName)
         {
             if (string.IsNullOrEmpty(serviceName))
@@ -26,28 +26,28 @@ namespace MTKPM_QuanLyKhachSan.Daos
             else
                 return _context.Services.Where(i => i.Name.Contains(serviceName)).ToList();
         }
-        // Thêm dịch vụ mới
+        // Thêm Menu mới
         public async Task AddServiceAsync(Service service)
         {
             _context.Services.Add(service);
             await _context.SaveChangesAsync();
         }
 
-        // Cập nhật dịch vụ
+        // Cập nhật Menu
         public async Task UpdateServiceAsync(Service service)
         {
             _context.Update(service);
             await _context.SaveChangesAsync();
         }
 
-        // Xóa dịch vụ
+        // Xóa Menu
         public async Task DeleteServiceAsync(Service service)
         {
             _context.Services.Remove(service);
             await _context.SaveChangesAsync();
         }
 
-        // Lấy dịch vụ theo ID
+        // Lấy Menu theo ID
         public async Task<Service> GetServiceByIdAsync(int id)
         {
             return await _context.Services.FindAsync(id);

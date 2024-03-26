@@ -80,42 +80,4 @@
 
     </div>
 
-    <!-- Nội dung bên phải -->
-    <div class="right-panel col-4 pl-0 pr-0">
-        <form method="post" asp-action="Create" asp-controller="AdminService" enctype="multipart/form-data">
-            <!-- Lưu menu mới -->
-            <div class="panel-save d-flex justify-content-between align-items-center">
-                <span>Thêm menu mới</span>
-
-                <div class="">
-                    <button type="submit" class="btn btn-success">Lưu</button>
-                </div>
-            </div>
-
-            <!-- Form -->
-            <div class="panel-form">
-                <!-- Thông tin -->
-                <div class="panel-form-info">
-                    <!-- Mã menu -->
-                    <div class="panel-form-item">
-                        <h5 class="panel-form-title">Mã menu</h5>
-                        <input class="panel-form-input" type="text" name="ServiceId" />
-                    </div>
-
-                    <!-- Tên menu -->
-                    <div class="panel-form-item">
-                        <h5 class="panel-form-title">Tên menu</h5>
-                        <input class="panel-form-input" type="text" name="Name" />
-                    </div>
-
-                    <!-- Giá menu -->
-                    <div class="panel-form-item">
-                        <h5 class="panel-form-title">Giá bán</h5>
-                        <input class="panel-form-input" type="number" name="Price" placeholder="0.000 vnđ" />
-                    </div>
-
-                </div>
-            </div>
-        </form>
-    </div>
 </div>

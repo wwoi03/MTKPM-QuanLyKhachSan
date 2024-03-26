@@ -13,7 +13,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
             this.context = context;
         }
 
-        // lấy danh sách phòng đặt chưa nhận
+        // Lấy danh sách phòng đặt chưa nhận
         public List<BookRoomDetails> GetBookRoomDetails()
         {
             return context.BookRoomDetails
@@ -22,7 +22,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
                 .ToList();
         }
 
-        // lấy danh sách phòng đã nhận
+        // Lấy danh sách phòng đã nhận
         public List<BookRoomDetails> GetBookRoomDetailsReceive(int? hotelId)
         {
             return context.BookRoomDetails
@@ -39,14 +39,14 @@ namespace MTKPM_QuanLyKhachSan.Daos
                 .ToList();
         }
 
-        // tạo đặt phòng chi tiết
+        // Tạo đặt phòng chi tiết
         public void AddBookRoomDetails(BookRoomDetails bookRoomDetails)
         {
             context.BookRoomDetails.Add(bookRoomDetails);
             context.SaveChanges();
         }
 
-        // lấy bookingDetails theo id
+        // Lấy bookingDetails theo id
         public BookRoomDetails GetBookRoomDetailsById(int bookRoomDetailsId)
         {
             return context.BookRoomDetails
@@ -57,7 +57,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
                 .FirstOrDefault();
         }
 
-        // đổi phòng
+        // Đổi phòng
         public void ChangeRoom(int roomIdOld, int roomIdNew)
         {
             BookRoomDetails bookRoomDetails = GetBookRoomDetailsById(roomIdOld);
@@ -66,7 +66,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
             context.SaveChanges();
         }
 
-        // cập nhật chi tiết đặt phòng
+        // Cập nhật chi tiết đặt phòng
         public void UpdateBookRoomDetails(BookRoomDetails bookRoomDetails)
         {
             context.Update(bookRoomDetails);
