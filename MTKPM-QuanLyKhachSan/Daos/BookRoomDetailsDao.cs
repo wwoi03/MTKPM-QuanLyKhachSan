@@ -72,7 +72,8 @@ namespace MTKPM_QuanLyKhachSan.Daos
             context.Update(bookRoomDetails);
             context.SaveChanges();
         }
-        //Tìm kiếm lịch sử đặt phòng theo ngày/tháng/năm
+
+        // Tìm kiếm lịch sử đặt phòng theo ngày/tháng/năm
         public List<BookRoomDetails> Search(DateTime startDate, DateTime endDate)
         {
             return context.BookRoomDetails
@@ -81,16 +82,12 @@ namespace MTKPM_QuanLyKhachSan.Daos
                 .Where(i => i.CheckIn >= startDate && i.CheckOut <= endDate)
                 .ToList();
         }
-        //Xóa lịch sử đặt phòng
-        public void Delete(int id)
-        {
-            var bookingDetails = context.BookRoomDetails.Find(id);
-            if (bookingDetails != null)
-            {
-                context.BookRoomDetails.Remove(bookingDetails);
-                context.SaveChanges();
-            }
-        }
 
+        // Xóa chi tiết lịch sử đặt phòng
+        public void DeleteBookRoomDetails(BookRoomDetails bookRoomDetails)
+        {
+            context.Remove(bookRoomDetails);
+            context.SaveChanges();
+        }
     }
 }

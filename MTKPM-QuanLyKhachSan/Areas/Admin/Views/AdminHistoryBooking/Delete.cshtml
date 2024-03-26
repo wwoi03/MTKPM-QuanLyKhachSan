@@ -10,7 +10,7 @@
         <div class="custom-header-title">
             <div class="d-flex justify-content-between">
                 <h4 class="card-title float-left mt-2" style="font-size: 24px">Xóa Lịch Sử Đặt Phòng</h4>
-                <a href="@Url.Action("Index", "AdminHistoryBooking")" class="btn btn-primary float-right mt-2">Quay lại</a>
+                <a href="javascript:history.back()" class="btn btn-warning mt-2 mr-2">Quay lại</a>
             </div>
         </div>
 
@@ -24,8 +24,57 @@
                                 <p>Bạn có chắc chắn muốn xóa lịch sử đặt phòng này không?</p>
                                 <form method="post" action="@Url.Action("Delete", "AdminHistoryBooking")">
                                     <input type="hidden" name="id" value="@Model.BookRoomDetailsId" />
-                                    <button type="submit" class="btn btn-danger">Xóa</button>
-                                    <a href="@Url.Action("Index", "AdminHistoryBooking")" class="btn btn-primary">Hủy</a>
+                                    <a href="javascript:history.back()" class="btn btn-danger">Hủy</a>
+                                    <button type="submit" class="btn btn-success">Xóa</button>
+                                    
+                                    <div class="form-group">
+                                        <label>Mã đặt phòng:</label>
+                                        <input class="form-control" type="text" name="BookRoomId" value="@Model.BookRoomId" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Mã khách hàng:</label>
+                                        <input class="form-control" type="text" name="CustomerId" value="@Model.BookRoom.CustomerId" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tên khách hàng:</label>
+                                        <input class="form-control" type="text" name="CustomerName" value="@Model.BookRoom.Customer.Name" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Mã nhân viên:</label>
+                                        <input class="form-control" type="text" name="EmployeeId" value="@Model.BookRoom.EmployeeId" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Mã phòng:</label>
+                                        <input class="form-control" type="text" name="RoomId" value="@Model.RoomId" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phòng:</label>
+                                        <input class="form-control" type="text" name="RoomName" value="@Model.Room.Name" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Người lớn:</label>
+                                        <input class="form-control" type="text" name="NumAdult" value="@Model.BookRoom.NumAdult" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Trẻ em:</label>
+                                        <input class="form-control" type="text" name="NumChildren" value="@Model.BookRoom.NumChildren" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ghi chú:</label>
+                                        <input class="form-control" type="text" name="Note" value="@Model.BookRoom.Note" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Thời gian nhận phòng:</label>
+                                        <input class="form-control" type="datetime-local" name="CheckIn" value="@Model.CheckIn.ToString("yyyy-MM-ddTHH:mm")" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Thời gian trả phòng:</label>
+                                        <input class="form-control" type="datetime-local" name="CheckOut" value="@Model.CheckOut.ToString("yyyy-MM-ddTHH:mm")" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Trạng thái:</label>
+                                        <input class="form-control" type="text" name="Status" value="@Model.Status" readonly />
+                                    </div>
                                 </form>
                             </div>
                         </div>

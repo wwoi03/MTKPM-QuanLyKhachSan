@@ -28,7 +28,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         {
             return View();
         }
-        // Xử lý yêu cầu thêm Menu (POST)
+        // Xử lý yêu cầu thêm Menu 
         [HttpPost]
         public IActionResult Create(Service service)
         {
@@ -42,7 +42,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             var service = _serviceDao.GetServiceById(id);
             return View(service);
         }
-        // Xử lý yêu cầu chỉnh sửa Menu (POST)
+        // Xử lý yêu cầu chỉnh sửa Menu 
         [HttpPost]
         public IActionResult Edit(Service service )
         {
@@ -66,19 +66,18 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
             return View(service);
         }
-        // Xử lý yêu cầu xóa Menu
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        // Hiển thị trang xóa Menu
         public IActionResult Delete(int id)
         {
             var service = _serviceDao.GetServiceById(id);
-            if (service == null)
-            {
-                return NotFound();
-            }
-
+            return View(service);
+        }
+        // Xử lý yêu cầu xóa Menu 
+        [HttpPost]
+        public IActionResult Delete(Service service)
+        {
             _serviceDao.DeleteService(service);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index");
         }
     }
 }

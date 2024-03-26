@@ -10,6 +10,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
         {
             this.context = context;
         }
+
         // Tạo đặt phòng
         public void Booking(BookRoom bookRoom)
 		{
@@ -22,10 +23,18 @@ namespace MTKPM_QuanLyKhachSan.Daos
         {
             return context.BookRooms.Where(i => i.BookRoomId == bookingId).Include(i => i.Customer).FirstOrDefault();
         }
+
         // Cập nhật lịch sử đặt phòng
         public void UpdateBookRoom(BookRoom bookRoom)
         {
             context.Update(bookRoom);
+            context.SaveChanges();
+        }
+
+        // Xóa lịch sử đặt phòng
+        public void DeleteBookRoom(BookRoom bookRoom)
+        {
+            context.Remove(bookRoom);
             context.SaveChanges();
         }
     }

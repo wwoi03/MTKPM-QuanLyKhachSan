@@ -46,11 +46,18 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             _bookRoomDao.UpdateBookRoom(bookRoom);
             return RedirectToAction("Index");
         }
-        //Xử lý yêu cầu xóa lịch sử đặt phòng
-        [HttpPost]
+        //Hiển thị trang xóa lịch sử đặt phòng
         public IActionResult Delete(int id)
         {
-            _bookRoomDetailsDao.Delete(id);
+            var bookingDetails = _bookRoomDetailsDao.GetBookRoomDetailsById(id);
+            return View(bookingDetails);
+        }
+        //Xử lý yêu cầu xóa lịch sử đặt phòng
+        [HttpPost]
+        public IActionResult Delete(BookRoomDetails bookRoomDetails, BookRoom bookRoom)
+        {
+            _bookRoomDetailsDao.DeleteBookRoomDetails(bookRoomDetails);
+            _bookRoomDao.DeleteBookRoom(bookRoom);
             return RedirectToAction("Index");
         }
 

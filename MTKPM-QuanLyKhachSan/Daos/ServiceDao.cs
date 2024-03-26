@@ -26,6 +26,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
             else
                 return _context.Services.Where(i => i.Name.Contains(serviceName)).ToList();
         }
+
         // Thêm Menu mới
         public void AddService(Service service)
         {
@@ -43,8 +44,17 @@ namespace MTKPM_QuanLyKhachSan.Daos
         // Xóa Menu
         public void DeleteService(Service service)
         {
-            _context.Services.Remove(service);
-            _context.SaveChanges();
+            // Kiểm tra xem ServiceId đã được thiết lập chưa
+            if (service.ServiceId != 0)
+            {
+                _context.Services.Remove(service);
+                _context.SaveChanges();
+            }
+            else
+            {
+                // Xử lý khi ServiceId chưa được thiết lập
+                throw new ArgumentException("ServiceId has not been set.");
+            }
         }
 
         // Lấy Menu theo ID
