@@ -148,24 +148,24 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         }
 
         // thêm menu
-        [HttpGet]
-        public IActionResult OrderMenu(int bookRoomDetailsId)
-		{
-            ViewBag.bookRoomDetails = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
-            ViewBag.services = serviceDao.GetServices();
-            var services = serviceDao.GetServices();
+  //      [HttpGet]
+  //      public IActionResult OrderMenu(int bookRoomDetailsId)
+		//{
+  //          ViewBag.bookRoomDetails = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
+  //          ViewBag.services = serviceDao.GetServices();
+  //          var services = serviceDao.GetServices();
 
-            OrderMenuAdminVM orderMenuAdminVM = new OrderMenuAdminVM
-            {
-                BookRoomDetailsId = bookRoomDetailsId,
-                Orders = services.Select(service => new Order
-                {
-                    ServiceId = service.ServiceId,
-                }).ToList(),
-            };
+  //          OrderMenuAdminVM orderMenuAdminVM = new OrderMenuAdminVM
+  //          {
+  //              BookRoomDetailsId = bookRoomDetailsId,
+  //              Orders = services.Select(service => new Order
+  //              {
+  //                  ServiceId = service.ServiceId,
+  //              }).ToList(),
+  //          };
 
-            return PartialView(orderMenuAdminVM);
-		}
+  //          return PartialView(orderMenuAdminVM);
+		//}
 
         // thêm menu
         [HttpPost]

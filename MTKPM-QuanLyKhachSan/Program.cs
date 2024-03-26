@@ -14,10 +14,11 @@ builder.Services.AddDbContext<DatabaseContext>(x => x.UseSqlServer(builder.Confi
 // Kích hoạt Session
 builder.Services.AddSession();
 
-//Kích hoạt dịch vụ cho ServiceDao, BookRoomDao, BookRoomDetailsDao
+//Kích hoạt dịch vụ cho ServiceDao, BookRoomDao, BookRoomDetailsDao, IRepository<ServiceDao>
 builder.Services.AddScoped<ServiceDao>();
 builder.Services.AddScoped<BookRoomDetailsDao>();
 builder.Services.AddScoped<BookRoomDao>();
+builder.Services.AddScoped<IRepository<Service>, ServiceDao>();
 
 var app = builder.Build();
 

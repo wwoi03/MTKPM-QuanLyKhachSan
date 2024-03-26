@@ -11,15 +11,17 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
     [Area("Admin")]
     public class AdminServiceController : Controller
     {
-        private readonly ServiceDao _serviceDao;
-        public AdminServiceController(ServiceDao serviceDao)
+        private readonly IRepository<Service> _serviceRepository;
+
+        public AdminServiceController(IRepository<Service> serviceRepository)
         {
-            _serviceDao = serviceDao;
+            _serviceRepository = serviceRepository;
         }
+
         // Hiển thị danh sách Menu
         public IActionResult Index(string searchString)
         {
-            var services = string.IsNullOrEmpty(searchString) ? _serviceDao.GetServices() : _serviceDao.SearchServices(searchString);
+            var services = string.IsNullOrEmpty(searchString) ? _serviceRepository.GetServices() : _serviceRepository.SearchServices(searchString);
             return View(services);
         }
 
@@ -28,25 +30,27 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         {
             return View();
         }
+
         // Xử lý yêu cầu thêm Menu 
         [HttpPost]
         public IActionResult Create(Service service)
         {
-            _serviceDao.AddService(service);
+            _serviceRepository.AddService(service);
             return RedirectToAction("Index");
         }
 
         // Hiển thị trang chỉnh sửa Menu
         public IActionResult Edit(int id)
         {
-            var service = _serviceDao.GetServiceById(id);
+            var service = _serviceRepository.GetServiceById(id);
             return View(service);
         }
+
         // Xử lý yêu cầu chỉnh sửa Menu 
         [HttpPost]
-        public IActionResult Edit(Service service )
+        public IActionResult Edit(Service service)
         {
-            _serviceDao.UpdateService(service);
+            _serviceRepository.UpdateService(service);
             return RedirectToAction("Index");
         }
 
@@ -58,7 +62,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var service = _serviceDao.GetServiceById(id.Value);
+            var service = _serviceRepository.GetServiceById(id.Value);
             if (service == null)
             {
                 return NotFound();
@@ -66,17 +70,19 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
             return View(service);
         }
+
         // Hiển thị trang xóa Menu
         public IActionResult Delete(int id)
         {
-            var service = _serviceDao.GetServiceById(id);
+            var service = _serviceRepository.GetServiceById(id);
             return View(service);
         }
+
         // Xử lý yêu cầu xóa Menu 
         [HttpPost]
         public IActionResult Delete(Service service)
         {
-            _serviceDao.DeleteService(service);
+            _serviceRepository.DeleteService(service);
             return RedirectToAction("Index");
         }
     }

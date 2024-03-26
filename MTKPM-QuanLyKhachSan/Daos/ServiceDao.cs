@@ -3,65 +3,66 @@ using MTKPM_QuanLyKhachSan.Models;
 
 namespace MTKPM_QuanLyKhachSan.Daos
 {
-    public class ServiceDao
+    public class ServiceDao : IRepository<Service>
     {
         private readonly DatabaseContext _context;
 
+        // Tạo hàm ServiceDao khai báo biến _context
         public ServiceDao(DatabaseContext context)
         {
             _context = context;
         }
-
+        // Tạo hàm ServiceDao() rỗng
+        public ServiceDao()
+        {
+        }
         // Lấy danh sách Menu
-        public List<Service> GetServices()
+        public IEnumerable<Service> GetServices()
         {
             return _context.Services.ToList();
         }
-
-        // Tìm kiếm Menu
-        public List<Service> SearchServices(string serviceName)
+        // Tìm kiếm Menu theo tên Menu
+        public IEnumerable<Service> SearchServices(string searchString)
         {
-            if (string.IsNullOrEmpty(serviceName))
+            if (string.IsNullOrEmpty(searchString))
                 return _context.Services.ToList();
             else
-                return _context.Services.Where(i => i.Name.Contains(serviceName)).ToList();
+                return _context.Services.Where(i => i.Name.Contains(searchString)).ToList();
         }
-
+        // Lấy Menu theo Id
+        public Service GetServiceById(int id)
+        {
+            return _context.Services.Find(id);
+        }
         // Thêm Menu mới
         public void AddService(Service service)
         {
             _context.Services.Add(service);
             _context.SaveChanges();
         }
-
-        // Cập nhật Menu
+        // Cập nhật Menu được chỉnh sửa
         public void UpdateService(Service service)
         {
-            _context.Update(service);
+            _context.Entry(service).State = EntityState.Modified;
             _context.SaveChanges();
         }
-
         // Xóa Menu
         public void DeleteService(Service service)
         {
-            // Kiểm tra xem ServiceId đã được thiết lập chưa
-            if (service.ServiceId != 0)
-            {
-                _context.Services.Remove(service);
-                _context.SaveChanges();
-            }
-            else
-            {
-                // Xử lý khi ServiceId chưa được thiết lập
-                throw new ArgumentException("ServiceId has not been set.");
-            }
+            _context.Services.Remove(service);
+            _context.SaveChanges();
         }
 
-        // Lấy Menu theo ID
-        public Service GetServiceById(int id)
-        {
-            return _context.Services.Find(id);
-        }
+    }
+    //Khai báo interface IRepository
+    public interface IRepository<Service>
+    {
+        void AddService(Service entity);
+        void DeleteService(Service entity);
+        IEnumerable<Service> GetServices();
+        Service GetServiceById(int id);
+        IEnumerable<Service> SearchServices(string searchString);
+        void UpdateService(Service entity);
     }
 }
 
