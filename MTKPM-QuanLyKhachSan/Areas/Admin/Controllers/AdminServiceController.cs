@@ -31,65 +31,39 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // Xử lý yêu cầu thêm Menu (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name, Price")] Service service)
+        public IActionResult Create([Bind("Name, Price")] Service service)
         {
             if (ModelState.IsValid)
             {
-                await _serviceDao.AddServiceAsync(service);
+                _serviceDao.AddService(service);
                 return RedirectToAction(nameof(Index));
             }
             return View(service);
         }
 
         // Hiển thị trang chỉnh sửa Menu
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var service = await _serviceDao.GetServiceByIdAsync(id.Value);
-            if (service == null)
-            {
-                return NotFound();
-            }
+            var service = _serviceDao.GetServiceById(id);
             return View(service);
         }
         // Xử lý yêu cầu chỉnh sửa Menu (POST)
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ServiceId, Name, Price, ImageFile")] Service service)
+        public IActionResult Edit(Service service )
         {
-            if (id != service.ServiceId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    await _serviceDao.UpdateServiceAsync(service);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    throw;
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(service);
+            _serviceDao.UpdateService(service);
+            return RedirectToAction("Index");
         }
 
         // Xử lý xem chi tiết Menu
-        public async Task<IActionResult> Detail(int? id)
+        public IActionResult Detail(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var service = await _serviceDao.GetServiceByIdAsync(id.Value);
+            var service = _serviceDao.GetServiceById(id.Value);
             if (service == null)
             {
                 return NotFound();
@@ -100,15 +74,15 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // Xử lý yêu cầu xóa Menu
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id)
         {
-            var service = await _serviceDao.GetServiceByIdAsync(id);
+            var service = _serviceDao.GetServiceById(id);
             if (service == null)
             {
                 return NotFound();
             }
 
-            await _serviceDao.DeleteServiceAsync(service);
+            _serviceDao.DeleteService(service);
             return RedirectToAction(nameof(Index));
         }
     }

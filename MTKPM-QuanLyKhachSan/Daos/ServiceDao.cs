@@ -27,30 +27,30 @@ namespace MTKPM_QuanLyKhachSan.Daos
                 return _context.Services.Where(i => i.Name.Contains(serviceName)).ToList();
         }
         // Thêm Menu mới
-        public async Task AddServiceAsync(Service service)
+        public void AddService(Service service)
         {
             _context.Services.Add(service);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         // Cập nhật Menu
-        public async Task UpdateServiceAsync(Service service)
+        public void UpdateService(Service service)
         {
             _context.Update(service);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         // Xóa Menu
-        public async Task DeleteServiceAsync(Service service)
+        public void DeleteService(Service service)
         {
             _context.Services.Remove(service);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         // Lấy Menu theo ID
-        public async Task<Service> GetServiceByIdAsync(int id)
+        public Service GetServiceById(int id)
         {
-            return await _context.Services.FindAsync(id);
+            return _context.Services.Find(id);
         }
     }
 }

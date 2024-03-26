@@ -18,7 +18,6 @@ builder.Services.AddSession();
 builder.Services.AddScoped<ServiceDao>();
 builder.Services.AddScoped<BookRoomDetailsDao>();
 builder.Services.AddScoped<BookRoomDao>();
-///
 
 var app = builder.Build();
 
@@ -67,5 +66,13 @@ app.UseEndpoints(endpoints =>
 		pattern: "{controller=Home}/{action=Index}/{id?}");
 });
 
+// Thêm các route cho chức năng quản lý menu
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "adminService",
+        pattern: "{area=Admin}/{controller=AdminService}/{action=Index}/{id?}"
+    );
+});
 
 app.Run();
