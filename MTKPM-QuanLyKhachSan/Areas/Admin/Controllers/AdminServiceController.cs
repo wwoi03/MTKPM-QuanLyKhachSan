@@ -22,23 +22,18 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             var services = string.IsNullOrEmpty(searchString) ? _serviceDao.GetServices() : _serviceDao.SearchServices(searchString);
             return View(services);
         }
+
         // Hiển thị trang thêm Menu
         public IActionResult Create()
         {
             return View();
         }
-
         // Xử lý yêu cầu thêm Menu (POST)
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Name, Price")] Service service)
+        public IActionResult Create(Service service)
         {
-            if (ModelState.IsValid)
-            {
-                _serviceDao.AddService(service);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(service);
+            _serviceDao.AddService(service);
+            return RedirectToAction("Index");
         }
 
         // Hiển thị trang chỉnh sửa Menu
