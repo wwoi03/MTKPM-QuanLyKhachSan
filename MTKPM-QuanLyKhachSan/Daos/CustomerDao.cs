@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton;
 using MTKPM_QuanLyKhachSan.Models;
 
 namespace MTKPM_QuanLyKhachSan.Daos
@@ -6,9 +7,9 @@ namespace MTKPM_QuanLyKhachSan.Daos
     public class CustomerDao
     {
         DatabaseContext context;
-        public CustomerDao(DatabaseContext context)
+        public CustomerDao()
         {
-            this.context = context;
+            this.context = SingletonDatabase.Instance;
         }
         public Customer GetCustomerByUserName(string username)
         {

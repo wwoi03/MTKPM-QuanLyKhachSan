@@ -26,19 +26,19 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
         {
             context = SingletonDatabase.Instance;
 
-            billDao = new BillDao(context);
-            bookRoomDao = new BookRoomDao(context);
-            bookRoomDetailsDao = new BookRoomDetailsDao(context);
-            customerDao = new CustomerDao(context);
-            employeeDao = new EmployeeDao(context);
-            employeePermissionDao = new EmployeePermissionDao(context);
-            orderDao = new OrderDao(context);
-            permissionGroupDao = new PermissionGroupDao(context);
-            roleDao = new RoleDao(context);
-            roomDao = new RoomDao(context);
-            roomTypeDao = new RoomTypeDao(context);
-            roomTypeImageDao = new RoomTypeImageDao(context);
-            serviceDao = new ServiceDao(context);
+            billDao = new BillDao();
+            bookRoomDao = new BookRoomDao();
+            bookRoomDetailsDao = new BookRoomDetailsDao();
+            customerDao = new CustomerDao();
+            employeeDao = new EmployeeDao();
+            employeePermissionDao = new EmployeePermissionDao();
+            orderDao = new OrderDao();
+            permissionGroupDao = new PermissionGroupDao();
+            roleDao = new RoleDao();
+            roomDao = new RoomDao();
+            roomTypeDao = new RoomTypeDao();
+            roomTypeImageDao = new RoomTypeImageDao();
+            serviceDao = new ServiceDao();
         }
 
         // đặt phòng

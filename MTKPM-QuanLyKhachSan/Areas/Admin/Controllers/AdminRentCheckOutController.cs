@@ -21,16 +21,16 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         CustomerDao customerDao;
 
 
-        public AdminRentCheckOutController(DatabaseContext context)
+        public AdminRentCheckOutController()
         {
-            roomTypeDao = new RoomTypeDao(context);
-            roomDao = new RoomDao(context);
-            bookRoomDao = new BookRoomDao(context);
-            bookRoomDetailsDao = new BookRoomDetailsDao(context);
-            billDao = new BillDao(context);
-            orderDao = new OrderDao(context);
-            serviceDao = new ServiceDao(context);
-            customerDao = new CustomerDao(context);
+            roomTypeDao = new RoomTypeDao();
+            roomDao = new RoomDao();
+            bookRoomDao = new BookRoomDao();
+            bookRoomDetailsDao = new BookRoomDetailsDao();
+            billDao = new BillDao();
+            orderDao = new OrderDao();
+            serviceDao = new ServiceDao();
+            customerDao = new CustomerDao();
         }
 
         public IActionResult Index()

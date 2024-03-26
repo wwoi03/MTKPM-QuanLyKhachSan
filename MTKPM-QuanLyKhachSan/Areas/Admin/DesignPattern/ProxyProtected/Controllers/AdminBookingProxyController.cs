@@ -12,7 +12,6 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
     [Area("Admin")]
     public class AdminBookingProxyController : Controller, IBooking
     {
-        private DatabaseContext context;
         private EmployeeDao employeeDao;
         private Employee employee;
         private EmployeePermissionDao employeePermissionDao;
@@ -21,12 +20,10 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
 
         public AdminBookingProxyController()
         {
-            context = SingletonDatabase.Instance;
+            employeeDao = new EmployeeDao();
+            employeePermissionDao = new EmployeePermissionDao();
 
-            employeeDao = new EmployeeDao(context);
-            employeePermissionDao = new EmployeePermissionDao(context);
-
-            proxy = new AdminBookingController(context);
+            proxy = new AdminBookingController();
         }
 
         [HttpGet]
@@ -107,7 +104,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
 
             return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
-
+        [HttpGet]
         public IActionResult GetBooking()
         {
             employee = employeeDao.GetEmployeeById(HttpContext.Session.GetInt32("EmployeeId"));
@@ -125,7 +122,6 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
             return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
 
-        [HttpGet]
         public IActionResult Index()
         {
             employee = employeeDao.GetEmployeeById(HttpContext.Session.GetInt32("EmployeeId"));

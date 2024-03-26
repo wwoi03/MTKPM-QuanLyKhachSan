@@ -23,23 +23,11 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
         public AdminAccountController()
         {
-            DatabaseContext context = SingletonDatabase.Instance;
 
-            roleDao = new RoleDao(context);
-            permissionGroupDao = new PermissionGroupDao(context);
-            employeeDao = new EmployeeDao(context);
-            employeePermissionDao = new EmployeePermissionDao(context);
-
-            accountFacede = new AccountFacede();
-        }
-
-        public AdminAccountController(DatabaseContext context)
-        {
-            roleDao = new RoleDao(context);
-            permissionGroupDao = new PermissionGroupDao(context);
-            employeeDao = new EmployeeDao(context);
-            employeePermissionDao = new EmployeePermissionDao(context);
-
+            roleDao = new RoleDao();
+            permissionGroupDao = new PermissionGroupDao();
+            employeeDao = new EmployeeDao();
+            employeePermissionDao = new EmployeePermissionDao();
             accountFacede = new AccountFacede();
         }
 

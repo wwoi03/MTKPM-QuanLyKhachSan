@@ -16,9 +16,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
         {
             context = SingletonDatabase.Instance;
 
-            bookRoomDao = new BookRoomDao(context);
-            roomDao = new RoomDao(context);
-            customerDao = new CustomerDao(context);
+            bookRoomDao = new BookRoomDao();
+            roomDao = new RoomDao();
+            customerDao = new CustomerDao();
         }
 
         // đặt phòng

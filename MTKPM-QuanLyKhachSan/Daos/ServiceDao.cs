@@ -1,4 +1,5 @@
-﻿using MTKPM_QuanLyKhachSan.Models;
+﻿using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton;
+using MTKPM_QuanLyKhachSan.Models;
 
 namespace MTKPM_QuanLyKhachSan.Daos
 {
@@ -6,9 +7,9 @@ namespace MTKPM_QuanLyKhachSan.Daos
     {
         DatabaseContext context;
 
-        public ServiceDao(DatabaseContext context)
+        public ServiceDao()
         {
-            this.context = context;
+            this.context = SingletonDatabase.Instance;
         }
 
         // lấy danh sách dịch vụ

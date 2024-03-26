@@ -15,12 +15,10 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
 
         public AccountFacede()
         {
-            context = SingletonDatabase.Instance;
-
-            employeeDao = new EmployeeDao(context);
-            employeePermissionDao = new EmployeePermissionDao(context);
-            permissionGroupDao = new PermissionGroupDao(context);
-            roleDao = new RoleDao(context);
+            employeeDao = new EmployeeDao();
+            employeePermissionDao = new EmployeePermissionDao();
+            permissionGroupDao = new PermissionGroupDao();
+            roleDao = new RoleDao();
         }
 
         // tạo tài khoản phụ

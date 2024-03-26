@@ -13,7 +13,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton
         {
             // Cấu hình DbContextOptions
             var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-            optionsBuilder.UseSqlServer("Server=LAPTOP-OTHPHUSK\\SQLEXPRESS;Database=HotelManager;Trusted_Connection=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=.;Database=HotelManager;Trusted_Connection=True;TrustServerCertificate=True");
 
             // Trả về instance của DatabaseContext
             return new DatabaseContext(optionsBuilder.Options);

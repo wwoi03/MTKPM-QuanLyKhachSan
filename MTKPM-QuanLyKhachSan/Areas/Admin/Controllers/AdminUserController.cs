@@ -13,9 +13,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
         public AdminUserController()
         {
-            DatabaseContext context = SingletonDatabase.Instance;
-
-            employeeDao = new EmployeeDao(context);
+            employeeDao = new EmployeeDao();
         }
 
         [HttpGet]
@@ -40,7 +38,6 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
                     return RedirectToAction("Index", "AdminBookingProxy");
                 }
 
-                return View();
             }
 
             return View();

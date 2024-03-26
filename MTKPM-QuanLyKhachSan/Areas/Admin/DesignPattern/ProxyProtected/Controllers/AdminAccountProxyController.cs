@@ -22,10 +22,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
 
         public AdminAccountProxyController(IHttpContextAccessor httpContextAccessor)
         {
-            context = SingletonDatabase.Instance;
 
-            employeeDao = new EmployeeDao(context);
-            employeePermissionDao = new EmployeePermissionDao(context);
+            employeeDao = new EmployeeDao();
+            employeePermissionDao = new EmployeePermissionDao();
 
             employee = employeeDao.GetEmployeeById(httpContextAccessor.HttpContext?.Session.GetInt32("EmployeeId"));
             employeePermissions = employeePermissionDao.GetPermissionByEmployee(employee.EmployeeId);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton;
 using MTKPM_QuanLyKhachSan.Common;
 using MTKPM_QuanLyKhachSan.Models;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace MTKPM_QuanLyKhachSan.Daos
     {
         DatabaseContext context;
 
-        public RoomDao(DatabaseContext context)
+        public RoomDao()
         {
-            this.context = context;
+            this.context = SingletonDatabase.Instance;
         }
 
         // lấy danh sách phòng trống theo loại phòng
