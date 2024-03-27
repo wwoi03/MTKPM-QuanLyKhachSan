@@ -25,10 +25,10 @@
 		<div class="panel-form-roomtype-render custom-tab-content active">
 			<div class="d-flex">
 				<div class="row p-0 container-fluid panel-form-roomtype-render-list">
-					@foreach (var item in rooms)
+					@foreach (var room in rooms)
 					{
-						<div value="105" class="col-1 panel-form-roomtype-render-item">
-							@item.Name
+						<div data-room-id="@room.RoomId" class="col-1 panel-form-roomtype-render-item">
+							@room.Name
 						</div>
 					}
 				</div>
@@ -45,7 +45,7 @@
 						{
 							@if (roomType.RoomTypeId == room.RoomTypeId)
 							{
-								<div value="105" class="col-1 panel-form-roomtype-render-item">
+								<div data-room-id="@room.RoomId" class="col-1 panel-form-roomtype-render-item">
 									@room.Name
 								</div>
 							}

@@ -10,6 +10,7 @@
 	// view
 	function view() {
 		viewFullCanlandar();
+		viewChooseRoom();
 	}
 
 	// chức năng
@@ -210,8 +211,8 @@
 		})
 	}
 
-	// thêm phòng
-	function addRoomBooking() {
+	// view chọn phòng
+	function viewChooseRoom() {
 		$('.right-panel').on('click', '.panel-form-add-room', function (e) {
 			ajaxCall(
 				'GET',
@@ -233,6 +234,25 @@
 			)
 		})
 	}
+
+	// chọn phòng
+	function addRoomBooking() {
+		$('#choose-room').on('click', '.panel-form-roomtype-render-item', function (e) {
+			// Thêm phòng mới vào danh sách
+			var newRoom =
+				`<div class="col-2-4 panel-form-roomtype-render-item choose">
+					${$(this).text()}
+					<i class="fa-solid fa-circle-xmark"></i>
+					<input type="hidden" name="RoomIds" value="${$(this).data('room-id')}" />
+				</div>`;
+
+			$('.panel-form-roomtype-render-list.show-room').append(newRoom);
+
+			// Xóa phần tử hiện tại mà người dùng đã click vào
+			$(this).remove();
+		})
+    }
+
 
 	// chuyển tab room
 	function switchTabRoom() {

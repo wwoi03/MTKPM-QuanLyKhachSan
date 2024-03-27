@@ -101,7 +101,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // Chọn phòng đặt
         public IActionResult ChooseRoom()
         {
-            ViewBag.rooms = bookingFacede.roomDao.GetEmptyRooms(_myService.GetHotelId());
+            ViewBag.rooms = bookingFacede.roomDao.GetRoomWaits(_myService.GetHotelId());
             ViewBag.roomTypes = bookingFacede.roomTypeDao.GetRoomTypes(_myService.GetHotelId());
 
             return PartialView();

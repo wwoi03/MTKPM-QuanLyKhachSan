@@ -43,7 +43,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
                 {
                     // tạo khách hàng nếu chưa tồn tại
                     int customerId = customerDao.GetCustomerIdByPhoneOrCIC(bookingAdminVM.Phone, bookingAdminVM.CIC);
-                    if (customerId > 0)
+                    if (customerId == 0)
                     {
                         Customer newCustomer = new Customer
                         {
@@ -53,6 +53,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
                         };
 
                         customerDao.CreateCustomer(newCustomer);
+                        context.SaveChanges();
 
                         customerId = newCustomer.CustomerId;
                     }
@@ -61,28 +62,33 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
                     BookRoom newBookRoom = new BookRoom
                     {
                         CustomerId = customerId,
-                        EmployeeId = null,
-                        Note = bookingAdminVM.Note,
-                        HotelId = 1
+                        EmployeeId = myService.GetEmployeeId(),
+                        Note = string.IsNullOrEmpty(bookingAdminVM.Note) ? "" : bookingAdminVM.Note,
+                        HotelId = myService.GetHotelId(),
                     };
 
                     bookRoomDao.Booking(newBookRoom);
+                    context.SaveChanges();
 
                     // tạo phiếu chi tiết đặt phòng
-                    foreach (var room in bookingAdminVM.Rooms)
+                    foreach (var roomId in bookingAdminVM.RoomIds)
                     {
                         // kiểm tra phòng trống
-                        if (roomDao.IsRoomAvailable(room.RoomId))
+                        if (roomDao.IsRoomAvailable(roomId))
                         {
                             // tạo phòng
                             BookRoomDetails newBookRoomDetails = new BookRoomDetails
                             {
                                 BookRoomId = newBookRoom.BookRoomId,
-                                RoomId = room.RoomId,
+                                RoomId = roomId,
                                 CheckIn = bookingAdminVM.ConvertDateTime(bookingAdminVM.CheckIn),
                                 CheckOut = bookingAdminVM.ConvertDateTime(bookingAdminVM.CheckOut),
-                                Note = newBookRoom.Note
+                                Note = string.IsNullOrEmpty(newBookRoom.Note) ? "" : newBookRoom.Note,
+                                HotelId = myService.GetHotelId(),
                             };
+
+                            bookRoomDetailsDao.AddBookRoomDetails(newBookRoomDetails);
+                            roomDao.UpdateRoomPending(roomId);
                         }
                     }
 

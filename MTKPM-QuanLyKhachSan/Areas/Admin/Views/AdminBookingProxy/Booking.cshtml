@@ -39,12 +39,12 @@
 				<div class="panel-form-height">
 					<div class="panel-form-height-item">
 						<h5 class="panel-form-title">Ngày nhận phòng</h5>
-						<input type="text" readonly class="panel-form-input date-input" name="CheckIn" value="@Model.CheckIn" required/>
+						<input type="datetime-local" class="panel-form-input date-input" name="CheckIn" value="@Model.CheckIn" required/>
 					</div>
 
 					<div class="panel-form-height-item">
 						<h5 class="panel-form-title">Ngày trả phòng</h5>
-						<input type="text" readonly class="panel-form-input date-input" name="CheckOut" value="@Model.CheckOut" required/>
+						<input type="datetime-local" class="panel-form-input date-input" name="CheckOut" value="@Model.CheckOut" required/>
 					</div>
 				</div>
 			</div>
@@ -70,38 +70,13 @@
 
 			<!-- Danh sách phòng -->
 			<div class="d-flex justify-content-between" style="padding: 0 16px;">
-				<div class="row p-0 container-fluid panel-form-roomtype-render-list">
+				<div class="row p-0 container-fluid panel-form-roomtype-render-list show-room">
+					
 
-					<div value="105" class="col-2-4 panel-form-roomtype-render-item choose">
+					@*<div value="105" class="col-2-4 panel-form-roomtype-render-item choose">
 						101
 						<i class="fa-solid fa-circle-xmark"></i>
-					</div>
-
-					<div value="105" class="col-2-4 panel-form-roomtype-render-item choose">
-						101
-						<i class="fa-solid fa-circle-xmark"></i>
-					</div>
-
-					<div value="105" class="col-2-4 panel-form-roomtype-render-item choose">
-						101
-						<i class="fa-solid fa-circle-xmark"></i>
-					</div>
-
-					<div value="105" class="col-2-4 panel-form-roomtype-render-item choose">
-						101
-						<i class="fa-solid fa-circle-xmark"></i>
-					</div>
-
-					<div value="105" class="col-2-4 panel-form-roomtype-render-item choose">
-						101
-						<i class="fa-solid fa-circle-xmark"></i>
-					</div>
-
-					<div value="105" class="col-2-4 panel-form-roomtype-render-item choose">
-						101
-						<i class="fa-solid fa-circle-xmark"></i>
-					</div>
-
+					</div>*@
 				</div>
 			</div>
 		</div>

@@ -30,7 +30,12 @@ namespace MTKPM_QuanLyKhachSan.Daos
         // kiểm tra khách hàng đã tồn tại với SĐT hoặc CCCD
         public int GetCustomerIdByPhoneOrCIC(string phone, string cic)
         {
-            return context.Customers.FirstOrDefault(i => i.Phone.Equals(phone) || i.CIC.Equals(cic)).CustomerId;
+            Customer? customer = context.Customers.FirstOrDefault(i => i.Phone.Equals(phone) || i.CIC.Equals(cic));
+
+            if (customer == null)
+                return 0;
+
+            return customer.CustomerId;
         }
     }
 }

@@ -21,7 +21,7 @@
             return _httpContextAccessor.HttpContext.Session.GetInt32("EmployeeId");
         }
 
-        public string GetEmployeeName()
+        public string? GetEmployeeName()
         {
             return _httpContextAccessor.HttpContext.Session.GetString("EmployeeName");
         }

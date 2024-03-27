@@ -110,11 +110,5 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
             else
                 return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
-
-        /*public void InitData()
-        {
-            employee = employeeDao.GetEmployeeById(HttpContext.Session.GetInt32("EmployeeId"));
-            employeePermissions = employeePermissionDao.GetPermissionByEmployee(employee.EmployeeId);
-        }*/
     }
 }

@@ -49,6 +49,15 @@ namespace MTKPM_QuanLyKhachSan.Daos
         public List<Room> GetEmptyRooms(int? hotelId)
         {
             return context.Rooms
+                .Where(i => (RoomStatusType)i.Status == RoomStatusType.RoomAvailable && i.HotelId == hotelId)
+                .Include(i => i.RoomType)
+                .ToList();
+        }
+
+        // lấy danh sách phòng trống
+        public List<Room> GetRoomWaits(int? hotelId)
+        {
+            return context.Rooms
                 .Where(i => (RoomStatusType)i.Status == RoomStatusType.RoomAvailable || (RoomStatusType)i.Status == RoomStatusType.RoomPending && i.HotelId == hotelId)
                 .Include(i => i.RoomType)
                 .ToList();
@@ -83,6 +92,14 @@ namespace MTKPM_QuanLyKhachSan.Daos
         public Room? GetRoomById(int roomId)
         {
             return context.Rooms.FirstOrDefault(i => i.RoomId == roomId);
+        }
+
+        // cập nhật trạng thái phòng chờ nhận
+        public void UpdateRoomPending(int roomId)
+        {
+            Room room = GetRoomById(roomId);
+            room.Status = (int)RoomStatusType.RoomPending;
+            context.Rooms.Update(room);
         }
     }
 }
