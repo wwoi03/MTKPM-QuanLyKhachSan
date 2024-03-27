@@ -18,9 +18,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
         private IBooking proxy;
         private IService myService;
 
-        public AdminBookingProxyController(IService myService)
+        public AdminBookingProxyController(DatabaseContext context, IService myService)
         {
-            this.context = SingletonDatabase.Instance;
+            //this.context = SingletonDatabase.Instance;
             this.myService = myService;
 
             employeePermissionDao = new EmployeePermissionDao(context);

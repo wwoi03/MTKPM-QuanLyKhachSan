@@ -49,7 +49,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
                         {
                             Phone = bookingAdminVM.Phone,
                             CIC = bookingAdminVM.CIC,
-                            Name = bookingAdminVM.Name
+                            Name = bookingAdminVM.Name,
+                            HotelId = myService.GetHotelId()
                         };
 
                         customerDao.CreateCustomer(newCustomer);

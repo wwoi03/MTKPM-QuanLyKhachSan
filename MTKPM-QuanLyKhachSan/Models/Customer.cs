@@ -6,8 +6,8 @@ namespace MTKPM_QuanLyKhachSan.Models
     {
         [Key]
         public int CustomerId { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string? Username { get; set; }
+        public string? Password { get; set; }
         public string Name { get; set; }
         public string CIC { get; set; } // căn cước công dân
         public string? Phone { get; set; }

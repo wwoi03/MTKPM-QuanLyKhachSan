@@ -8,7 +8,7 @@ namespace MTKPM_QuanLyKhachSan.Models
         public int BillId { get; set; }
         public int BookRoomDetailsId { get; set; }
         public BookRoomDetails BookRoomDetails { get; set; }
-        public string Payer { get; set; }
+        public string? Payer { get; set; }
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
         public decimal ServicePrice { get; set; }

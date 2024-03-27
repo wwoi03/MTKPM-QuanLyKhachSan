@@ -37,7 +37,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
         // danh sách phòng chờ
         public List<RoomWaitVM> RoomWait()
         {
-            var roomWaits = RoomDao.GetEmptyRooms(myService.GetHotelId());
+            var roomWaits = RoomDao.GetRoomWaits(myService.GetHotelId());
 
             List<RoomWaitVM> roomWaitVMs = roomWaits.Select(roomWait => new RoomWaitVM
             {

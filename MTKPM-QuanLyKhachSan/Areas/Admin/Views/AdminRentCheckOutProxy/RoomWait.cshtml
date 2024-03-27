@@ -52,15 +52,25 @@
 							</div>
 
 							<div id="myDropdown" class="custom-dropdown-menu">
-								<div class="custom-dropdown-menu-item">
-									<i class="custom-icon fa-solid fa-key"></i>
-									<p>Nhận phòng</p>
-								</div>
+								@if ((RoomStatusType)room.Status == RoomStatusType.RoomPending)
+								{
+									<div class="custom-dropdown-menu-item">
+										<i class="custom-icon fa-solid fa-key"></i>
+										<p>Nhận phòng</p>
+									</div>
+								}
+								else 
+								{
+									<div class="custom-dropdown-menu-item not-allowed">
+										<i class="custom-icon fa-solid fa-key"></i>
+										<p class="custom-color-nomal">Nhận phòng</p>
+									</div>
 
-								@*<div class="custom-dropdown-menu-item">
-									<i class="custom-icon fa-solid fa-circle-xmark"></i>
-									<p>Hủy phòng</p>
-								</div>*@
+									<div class="custom-dropdown-menu-item">
+										<i class="custom-icon fa-solid fa-circle-xmark"></i>
+										<p>Hủy phòng</p>
+									</div>
+								}
 
 								@if ((RoomTidyType)room.Tidy == RoomTidyType.NotCleaned)
 								{
