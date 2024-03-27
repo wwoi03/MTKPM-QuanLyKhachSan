@@ -40,12 +40,13 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
                     Employee employee = new Employee()
                     {
                         Name = employeeVM.Name,
-                        HotelId = 1,
+                        HotelId = myService.GetHotelId(),
                         Username = employeeVM.Username,
                         Password = employeeVM.Password,
                         Status = 0
                     };
                     EmployeeDao.CreateAccount(employee);
+                    context.SaveChanges();
 
                     // duyệt danh sách quyền
                     foreach (var item in employeeVM.Permissions)
@@ -58,7 +59,6 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
 
                         EmployeePermissionDao.AddEmployeePermission(employeePermission);
                     }
-
                     context.SaveChanges();
                 }
                 catch (Exception ex)
@@ -129,6 +129,22 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
             };
 
             return executionOutcome;
+        }
+
+        public EmployeeVM GetAccount(int employeeId)
+        {
+            var employee = EmployeeDao.GetEmployeeById(employeeId);
+
+            EmployeeVM employeeVM = new EmployeeVM()
+            {
+                EmployeeId = employee.EmployeeId,
+                Name = employee.Name,
+                Username = employee.Username,
+                PermissionsEmployee = EmployeePermissionDao.GetPermissionByEmployee(employee.EmployeeId).Select(i => i.Permission).ToList(),
+                HotelId = myService.GetHotelId()
+            };
+
+            return employeeVM;
         }
 
         public ExecutionOutcome EditAccount(EmployeeVM employeeVM)

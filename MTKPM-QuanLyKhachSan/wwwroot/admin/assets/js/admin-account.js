@@ -9,7 +9,8 @@
 
     // view
     function view() {
-        createAccountView();
+        viewCreateAccount();
+        viewEditAccount();
     }
 
     // chức năng
@@ -22,7 +23,7 @@
     }
 
     // view tạo tại khoản phụ
-    function createAccountView() {
+    function viewCreateAccount() {
         $('#create').on('click', function () {
             ajaxCall(
                 'GET',
@@ -66,6 +67,22 @@
                 }
             )
         });
+    }
+
+    // view tạo tại khoản phụ
+    function viewEditAccount() {
+        $('.left-panel').on('click', '.account-edit', function () {
+            var employeeId = $(this).data('employee-id');
+
+            ajaxCall(
+                'GET',
+                '/Admin/AdminAccountProxy/EditAccount',
+                { employeeId: employeeId },
+                function (data) {
+                    $('.right-panel').html(data);
+                }
+            )
+        })
     }
 
     // nhấn quyền

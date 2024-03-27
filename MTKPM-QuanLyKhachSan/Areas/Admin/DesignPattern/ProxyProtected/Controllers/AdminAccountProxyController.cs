@@ -19,9 +19,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
         private IAccountEmployee proxy;
         private IService myService;
 
-        public AdminAccountProxyController(IService myService)
+        public AdminAccountProxyController(DatabaseContext context, IService myService)
         {
-            this.context = SingletonDatabase.Instance;
+            //this.context = SingletonDatabase.Instance;
             this.myService = myService;
             this.employeePermissionDao = new EmployeePermissionDao(context);
             this.proxy = new AdminAccountController(context, myService);

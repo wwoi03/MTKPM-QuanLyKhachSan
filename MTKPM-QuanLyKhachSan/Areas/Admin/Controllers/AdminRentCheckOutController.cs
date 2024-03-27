@@ -136,7 +136,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         {
             ExecutionOutcome executionOutcome = rentCheckOutFacede.OrderMenu(bookRoomDetailsId, orders);
 
-            return PartialView(executionOutcome);
+            return Json(executionOutcome);
         }
 
         // chỉnh sửa phòng
