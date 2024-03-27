@@ -79,7 +79,6 @@
 				left: 'prev,next today',
 				center: 'title',
 				right: 'btnExportFileExcel btnBooking'
-				//right: 'resourceTimelineMonth,resourceTimelineThreeDays,timeGridWeek,dayGridMonth'
 			},
 			views: {
 				resourceTimelineMonth: {

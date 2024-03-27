@@ -8,6 +8,14 @@
         RoomPending = 2      // Phòng đang chờ nhận
     }
 
+    public enum BookRoomDetailsType : int
+    {
+        NotReceived = 0,  // chưa nhận
+        Received = 1,    // đã nhận
+        Cancel = 2,    // bị hủy
+        Pay = 3,      // đã thanh toán
+    }
+
     // Trạng thái dọn phòng
     public enum RoomTidyType : int
     {

@@ -150,7 +150,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
         }
 
         // chỉnh sửa phòng
-        public BookRoomDetailsAdminVM EditBookRoomDetails(int bookRoomDetailsId)
+        public BookRoomDetailsAdminVM GetBookRoomDetails(int bookRoomDetailsId)
         {
             var bookRoomDetails = BookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
 
@@ -239,6 +239,52 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
             {
                 Result = status,
                 Mess = status == false ? "Phòng không tồn tại" : ""
+            };
+
+            return executionOutcome;
+        }
+
+        // nhận phòng
+        public ExecutionOutcome CheckIn(int roomId)
+        {
+            var room = RoomDao.GetRoomById(roomId);
+            var status = false;
+
+            if (room != null)
+            {
+                BookRoomDetailsDao.UpdateCheckInByRoomId(roomId);
+                RoomDao.CheckIn(roomId);
+                context.SaveChanges();
+                status = true;
+            }
+
+            ExecutionOutcome executionOutcome = new ExecutionOutcome
+            {
+                Result = status,
+                Mess = status == false ? "Phòng không tồn tại" : "Nhận phòng thành công"
+            };
+
+            return executionOutcome;
+        }
+
+        // nhận phòng
+        public ExecutionOutcome CancelBooking(int roomId)
+        {
+            var room = RoomDao.GetRoomById(roomId);
+            var status = false;
+
+            if (room != null)
+            {
+                BookRoomDetailsDao.CancelBookRoomDetailsByRoomId(roomId);
+                RoomDao.CancelBooking(roomId);
+                context.SaveChanges();
+                status = true;
+            }
+
+            ExecutionOutcome executionOutcome = new ExecutionOutcome
+            {
+                Result = status,
+                Mess = status == false ? "Phòng không tồn tại" : "Hủy đặt phòng thành công"
             };
 
             return executionOutcome;

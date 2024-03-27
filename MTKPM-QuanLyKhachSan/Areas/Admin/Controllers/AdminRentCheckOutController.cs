@@ -143,7 +143,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult EditBookRoomDetails(int bookRoomDetailsId)
         {
-            BookRoomDetailsAdminVM bookRoomDetailsAdminVM = rentCheckOutFacede.EditBookRoomDetails(bookRoomDetailsId);
+            BookRoomDetailsAdminVM bookRoomDetailsAdminVM = rentCheckOutFacede.GetBookRoomDetails(bookRoomDetailsId);
 
             return PartialView(bookRoomDetailsAdminVM);
         }
@@ -153,6 +153,22 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         public IActionResult EditBookRoomDetails(BookRoomDetailsAdminVM bookRoomDetailsAdminVM)
         {
             ExecutionOutcome executionOutcome = rentCheckOutFacede.EditBookRoomDetails(bookRoomDetailsAdminVM);
+
+            return Json(executionOutcome);
+        }
+
+        [HttpPost]
+        public IActionResult CheckIn(int roomId)
+        {
+            ExecutionOutcome executionOutcome = rentCheckOutFacede.CheckIn(roomId);
+
+            return Json(executionOutcome);
+        }
+
+        [HttpPost]
+        public IActionResult CancelBooking(int roomId)
+        {
+            ExecutionOutcome executionOutcome = rentCheckOutFacede.CancelBooking(roomId);
 
             return Json(executionOutcome);
         }

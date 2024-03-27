@@ -19,5 +19,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Services
         IActionResult OrderMenu(int bookRoomDetailsId, List<Order> orders);
         IActionResult EditBookRoomDetails(int bookRoomDetailsId);
         IActionResult EditBookRoomDetails(BookRoomDetailsAdminVM bookRoomDetailsAdminVM);
+        IActionResult CheckIn(int roomId);
+        IActionResult CancelBooking(int roomId);
     }
 }

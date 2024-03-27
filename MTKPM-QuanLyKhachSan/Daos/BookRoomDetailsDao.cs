@@ -34,7 +34,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
                     brd => brd.RoomId, // Khóa ngoại từ BookRoomDetails
                     room => room.RoomId, // Khóa chính từ Room
                     (brd, room) => new { brd, room }) // Kết quả kết hợp)
-                .Where(i => i.room.Status == (int)RoomStatusType.RoomOccupied && i.brd.HotelId == hotelId)
+                .Where(i => i.room.Status == (int)RoomStatusType.RoomOccupied && i.brd.HotelId == hotelId && (BookRoomDetailsType)i.brd.Status == BookRoomDetailsType.Received)
                 .Select(i => i.brd)
                 .ToList();
         }
@@ -68,6 +68,25 @@ namespace MTKPM_QuanLyKhachSan.Daos
         public void UpdateBookRoomDetails(BookRoomDetails bookRoomDetails)
         {
             context.Update(bookRoomDetails);
+        }
+
+        // cập nhật ngày nhận phòng theo roomId
+        public void UpdateCheckInByRoomId(int roomId)
+        {
+            BookRoomDetails? bookRoomDetails = context
+                .BookRoomDetails
+                .FirstOrDefault(i => i.RoomId == roomId && (BookRoomDetailsType)i.Status == BookRoomDetailsType.NotReceived);
+            bookRoomDetails.Status = (int)BookRoomDetailsType.Received;
+            bookRoomDetails.CheckIn = DateTime.Now;
+        }
+
+        // hủy chi tiết đặt phòng
+        public void CancelBookRoomDetailsByRoomId(int roomId)
+        {
+            BookRoomDetails? bookRoomDetails = context
+                .BookRoomDetails
+                .FirstOrDefault(i => i.RoomId == roomId && (BookRoomDetailsType)i.Status == BookRoomDetailsType.NotReceived);
+            context.Remove(bookRoomDetails);
         }
     }
 }

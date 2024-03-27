@@ -19,12 +19,24 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
         private IRentCheckOut proxy;
         private IService myService;
 
-        public AdminRentCheckOutProxyController(IService myService)
+        public AdminRentCheckOutProxyController(DatabaseContext context, IService myService)
         {
-            this.context = SingletonDatabase.Instance;
+            //this.context = SingletonDatabase.Instance;
             this.myService = myService;
             this.employeePermissionDao = new EmployeePermissionDao(context);
             this.proxy = new AdminRentCheckOutController(context, myService);
+        }
+
+        [HttpPost]
+        public IActionResult CancelBooking(int roomId)
+        {
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
+
+            if (checkPermission)
+                return proxy.CancelBooking(roomId);
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
 
         public IActionResult ChangeRoom(int bookRoomDetailsId)
@@ -46,6 +58,18 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
 
             if (checkPermission)
                 return proxy.ChangeRoom(roomIdOld, roomIdNew, isCleanRoom);
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
+        }
+
+        [HttpPost]
+        public IActionResult CheckIn(int roomId)
+        {
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
+
+            if (checkPermission)
+                return proxy.CheckIn(roomId);
             else
                 return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }

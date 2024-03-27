@@ -24,6 +24,8 @@
         searchMenu();
         editRoomRent();
         orderMenu();
+        checkIn();
+        cancelBooking();
     }
 
     // xử lý chuyển view
@@ -332,6 +334,60 @@
                         })
 
                         viewRoomRent();
+                    } else {
+                        error({
+                            title: data.mess
+                        })
+                    }
+                }
+            )
+        });
+    }
+
+    // nhận phòng
+    function checkIn() {
+        $('#section-left-panel').on('click', '.check-in-room', function (e) {
+            var roomId = $(this).data('room-id');
+
+            ajaxCall(
+                'POST',
+                '/Admin/AdminRentCheckOutProxy/CheckIn',
+                { roomId: roomId },
+                function (data) {
+                    if (data.result == true) {
+                        success({
+                            title: data.mess,
+                            showCancel: false,
+                        })
+
+                        viewRoomWait();
+                    } else {
+                        error({
+                            title: data.mess
+                        })
+                    }
+                }
+            )
+        });
+    }
+
+    // hủy đặt phòng
+    function cancelBooking() {
+        $('#section-left-panel').on('click', '.cancel-room', function (e) {
+            var roomId = $(this).data('room-id');
+
+            ajaxCall(
+                'POST',
+                '/Admin/AdminRentCheckOutProxy/CancelBooking',
+                { roomId: roomId },
+                function (data) {
+                    if (data.result == true) {
+                        success({
+                            title: data.mess,
+                            showCancel: false,
+                        })
+
+                        viewRoomWait();
                     } else {
                         error({
                             title: data.mess

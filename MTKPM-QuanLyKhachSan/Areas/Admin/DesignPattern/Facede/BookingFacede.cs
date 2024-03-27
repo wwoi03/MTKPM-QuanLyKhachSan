@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton;
+using MTKPM_QuanLyKhachSan.Common;
 using MTKPM_QuanLyKhachSan.Common.Config;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
@@ -86,6 +87,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
                                 CheckOut = bookingAdminVM.ConvertDateTime(bookingAdminVM.CheckOut),
                                 Note = string.IsNullOrEmpty(newBookRoom.Note) ? "" : newBookRoom.Note,
                                 HotelId = myService.GetHotelId(),
+                                Status = (int)BookRoomDetailsType.NotReceived
                             };
 
                             bookRoomDetailsDao.AddBookRoomDetails(newBookRoomDetails);
@@ -139,7 +141,13 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
                 start = DateTime.Parse(booking.CheckIn.ToString()).ToString("yyyy-MM-dd"),
                 end = DateTime.Parse(booking.CheckOut.ToString()).ToString("yyyy-MM-dd"),
                 title = booking.BookRoom.Customer.Name,
-                color = "#2BA5F0",
+                color = (BookRoomDetailsType)booking.Status switch
+                {
+                    BookRoomDetailsType.Pay => "#FFE0B6",
+                    BookRoomDetailsType.NotReceived => "#2BA5F0", 
+                    BookRoomDetailsType.Received => "#00A69A", 
+
+                },
             }).ToList();
 
             return bookingEventVMs;

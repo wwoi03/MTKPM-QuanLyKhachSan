@@ -101,5 +101,21 @@ namespace MTKPM_QuanLyKhachSan.Daos
             room.Status = (int)RoomStatusType.RoomPending;
             context.Rooms.Update(room);
         }
+
+        // nhận phòng
+        public void CheckIn(int roomId)
+        {
+            Room room = GetRoomById(roomId);
+            room.Status = (int)RoomStatusType.RoomOccupied;
+            context.Rooms.Update(room);
+        }
+
+        // hủy đặt phòng
+        public void CancelBooking(int roomId)
+        {
+            Room room = GetRoomById(roomId);
+            room.Status = (int)RoomStatusType.RoomAvailable;
+            context.Rooms.Update(room);
+        }
     }
 }

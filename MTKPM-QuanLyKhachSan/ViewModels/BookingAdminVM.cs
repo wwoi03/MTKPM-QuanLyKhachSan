@@ -56,9 +56,14 @@ namespace MTKPM_QuanLyKhachSan.ViewModels
         // Kiểm tra ràng buộc
         public bool Validation(out string error)
         {
-            if (int.Parse(Phone) <= 0 || Phone.Length > 10)
+            if (Phone.Length <= 0 || Phone.Length > 10)
             {
                 error = "Vui lòng nhập đúng định dạng số điện thoại.";
+                return false;
+            }
+            if (CIC.Length <= 0 || CIC.Length > 20)
+            {
+                error = "Vui lòng nhập đúng định dạng căn cước công dân.";
                 return false;
             }
             else if (string.IsNullOrEmpty(CheckIn))
@@ -84,6 +89,11 @@ namespace MTKPM_QuanLyKhachSan.ViewModels
             else if (CheckDate() == false)
             {
                 error = "Ngày đi phải nhỏ hơn ngày tới.";
+                return false;
+            } 
+            else if (RoomIds.Count == 0 || Rooms.Count > 0)
+            {
+                error = "Vui lòng thêm phòng thuê.";
                 return false;
             }
             else

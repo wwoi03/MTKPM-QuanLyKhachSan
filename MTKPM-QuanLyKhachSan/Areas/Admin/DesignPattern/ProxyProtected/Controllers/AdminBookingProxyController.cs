@@ -22,9 +22,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
         {
             //this.context = SingletonDatabase.Instance;
             this.myService = myService;
-
-            employeePermissionDao = new EmployeePermissionDao(context);
-            proxy = new AdminBookingController(context, myService);
+            this.employeePermissionDao = new EmployeePermissionDao(context);
+            this.proxy = new AdminBookingController(context, myService);
         }
 
         [HttpGet]
