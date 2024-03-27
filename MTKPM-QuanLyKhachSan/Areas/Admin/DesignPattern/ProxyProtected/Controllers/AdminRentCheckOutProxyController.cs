@@ -51,13 +51,13 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
         }
 
         [HttpPost]
-        public IActionResult ChangeRoom(int roomIdOld, int roomIdNew, bool isCleanRoom = false)
+        public IActionResult ChangeRoom(int bookRoomDetailsId, int roomIdOld, int roomIdNew, bool isCleanRoom = false)
         {
             int? employeeId = myService.GetEmployeeId();
             var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
 
             if (checkPermission)
-                return proxy.ChangeRoom(roomIdOld, roomIdNew, isCleanRoom);
+                return proxy.ChangeRoom(bookRoomDetailsId, roomIdOld, roomIdNew, isCleanRoom);
             else
                 return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
@@ -70,6 +70,30 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
 
             if (checkPermission)
                 return proxy.CheckIn(roomId);
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
+        }
+
+        [HttpGet]
+        public IActionResult CheckOut(int bookRoomDetailsId)
+        {
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
+
+            if (checkPermission)
+                return proxy.CheckOut(bookRoomDetailsId);
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
+        }
+
+        [HttpPost]
+        public IActionResult CheckOut(CheckOutVM checkOutVM)
+        {
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
+
+            if (checkPermission)
+                return proxy.CheckOut(checkOutVM);
             else
                 return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }

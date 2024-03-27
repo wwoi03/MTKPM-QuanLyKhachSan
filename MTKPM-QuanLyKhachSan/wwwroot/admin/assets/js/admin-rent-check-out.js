@@ -13,6 +13,7 @@
         viewRoomChange();
         viewOrderMenu();
         viewEditRoomRent();
+        viewCheckOut();
     }
 
     // chức năng
@@ -25,6 +26,7 @@
         editRoomRent();
         orderMenu();
         checkIn();
+        checkOut();
         cancelBooking();
     }
 
@@ -168,6 +170,7 @@
     function changeRoom() {
         $('.right-panel').on('click', '.btn-change-room', function () {
             // lấy roomId
+            var bookRoomDetailsId = $(this).data('bookroom-details-id');
             var roomIdOld = $(this).data('room-id-old');
             var roomIdNew = $(this).data('room-id-new');
             var isCleanRoom = $(this).data('is-clean-room');
@@ -175,7 +178,7 @@
             ajaxCall(
                 'POST',
                 '/Admin/AdminRentCheckOutProxy/ChangeRoom',
-                { roomIdOld: roomIdOld, roomIdNew: roomIdNew, isCleanRoom: isCleanRoom },
+                { bookRoomDetailsId: bookRoomDetailsId, roomIdOld: roomIdOld, roomIdNew: roomIdNew, isCleanRoom: isCleanRoom },
                 function (data) {
                     if (data.result != null && data.result == false) {
                         error({
@@ -361,6 +364,50 @@
                         })
 
                         viewRoomWait();
+                    } else {
+                        error({
+                            title: data.mess
+                        })
+                    }
+                }
+            )
+        });
+    }
+
+    // view trả phòng
+    function viewCheckOut() {
+        $('#section-left-panel').on('click', '.btn-check-out-view', function (e) {
+            var bookRoomDetailsId = $(this).data('bookroom-details-id');
+
+            ajaxCall(
+                'GET',
+                '/Admin/AdminRentCheckOutProxy/CheckOut',
+                { bookRoomDetailsId: bookRoomDetailsId },
+                function (data) {
+                    $('.right-panel').html(data);
+                }
+            )
+        });
+    }
+
+    // view trả phòng
+    function checkOut() {
+        $('.right-panel').on('submit', '#form-check-out', function (e) {
+            e.preventDefault(); // Ngăn chặn việc tải lại trang
+
+            ajaxCall(
+                'POST',
+                '/Admin/AdminRentCheckOutProxy/CheckOut',
+                $(this).serialize(),
+                function (data) {
+                    if (data.result == true) {
+                        $('.right-panel').html('');
+                        viewRoomRent();
+
+                        success({
+                            title: data.mess,
+                            showCancel: false,
+                        })
                     } else {
                         error({
                             title: data.mess

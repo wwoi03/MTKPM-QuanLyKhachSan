@@ -1,4 +1,5 @@
-﻿using MTKPM_QuanLyKhachSan.Common.Config;
+﻿using MTKPM_QuanLyKhachSan.Common;
+using MTKPM_QuanLyKhachSan.Common.Config;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
 using MTKPM_QuanLyKhachSan.ViewModels;
@@ -66,7 +67,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
                 Tidy = roomRent.Room.Tidy,
                 Note = roomRent.Note,
                 CheckIn = roomRent.CheckIn,
-                TotalPrice = OrderDao.CalcOrderPrice(roomRent.BookRoomDetailsId) + roomRent.Room.RoomType.Price,
+                TotalPrice = BillDao.CalcTotalPriceRoom(roomRent.BookRoomDetailsId),
                 QuantityMenu = OrderDao.CalcOrderQuantity(roomRent.BookRoomDetailsId),
             }).ToList();
 
@@ -74,7 +75,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
         }
 
         // đổi phòng
-        public ExecutionOutcome ChangeRoom(int roomIdOld, int roomIdNew, bool isCleanRoom = false)
+        public ExecutionOutcome ChangeRoom(int bookRoomDetailsIdint, int roomIdOld, int roomIdNew, bool isCleanRoom = false)
         {
             var roomOld = RoomDao.GetRoomById(roomIdOld);
             var roomNew = RoomDao.GetRoomById(roomIdNew);
@@ -82,11 +83,22 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
 
             if (roomOld != null && roomNew != null)
             {
-                BookRoomDetailsDao.ChangeRoom(roomIdOld, roomIdNew);
+                // cập nhật phòng mới
+                BookRoomDetailsDao.ChangeRoom(bookRoomDetailsIdint, roomIdNew);
 
+                // cập nhật trạng thái phòng mới
+                RoomDao.UpdateStatus(roomIdNew, (int)RoomStatusType.RoomOccupied);
+
+                // cập nhật trạng thái phòng cũ
+                RoomDao.UpdateStatus(roomIdOld, (int)RoomStatusType.RoomAvailable);
+
+                // dọn phòng cũ
+                RoomDao.RequestCleanRoom(roomIdOld);
+
+                // dọn phòng mới
                 if (isCleanRoom)
                 {
-                    RoomDao.CleanRoom(roomIdNew);
+                    RoomDao.RequestCleanRoom(roomIdNew);
                 }
 
                 context.SaveChanges();
@@ -153,6 +165,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
         public BookRoomDetailsAdminVM GetBookRoomDetails(int bookRoomDetailsId)
         {
             var bookRoomDetails = BookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
+            var orders = OrderDao.GetOrderByBookRoomDetailsId(bookRoomDetailsId);
 
             BookRoomDetailsAdminVM bookRoomDetailsAdminVM = new BookRoomDetailsAdminVM
             {
@@ -163,10 +176,87 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
                 RoomName = bookRoomDetails.Room.Name,
                 CheckIn = bookRoomDetails.CheckIn,
                 Note = bookRoomDetails.Note,
-                Orders = null,
+                Orders = orders,
             };
 
             return bookRoomDetailsAdminVM;
+        }
+
+        // chỉnh sửa phòng
+        public CheckOutVM CheckOut(int bookRoomDetailsId)
+        {
+            var bookRoomDetails = BookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
+
+            if ((BookRoomDetailsType)bookRoomDetails.Status == BookRoomDetailsType.Received)
+            {
+                var orders = OrderDao.GetOrderByBookRoomDetailsId(bookRoomDetailsId);
+
+                CheckOutVM checkOutVM = new CheckOutVM
+                {
+                    BookRoomDetailsId = bookRoomDetailsId,
+                    CustomerId = bookRoomDetails.BookRoom.Customer.CustomerId,
+                    RoomId = bookRoomDetails.RoomId,
+                    RoomName = bookRoomDetails.Room.Name,
+                    CheckIn = bookRoomDetails.CheckIn,
+                    CheckOut = DateTime.Now,
+                    TotalPriceRoom = BillDao.CalcPriceRoom(bookRoomDetailsId),
+                    TotalPriceService = BillDao.CalcPriceService(bookRoomDetailsId),
+                    Name = bookRoomDetails.BookRoom.Customer.Name,
+                    Orders = orders,
+                };
+
+                return checkOutVM;
+            }
+
+            throw new Exception("Lỗi hệ thống");
+        }
+
+        public ExecutionOutcome CheckOut(CheckOutVM checkOutVM)
+        {
+            string error = null;
+            bool status = true;
+
+            try
+            {
+                // tạo bill
+                Bill bill = new Bill()
+                {
+                    BookRoomDetailsId = checkOutVM.BookRoomDetailsId,
+                    ServicePrice = BillDao.CalcPriceService(checkOutVM.BookRoomDetailsId),
+                    RoomPrice = BillDao.CalcPriceRoom(checkOutVM.BookRoomDetailsId),
+                    TotalPrice = BillDao.CalcTotalPriceRoom(checkOutVM.BookRoomDetailsId),
+                    DatePayment = DateTime.Now,
+                    CustomerId = checkOutVM.CustomerId,
+                    HotelId = myService.GetHotelId(),
+                };
+                BillDao.CreateBill(bill);
+
+                // cập nhật ngày trả phòng
+                BookRoomDetailsDao.UpdateCheckOut(checkOutVM.BookRoomDetailsId, DateTime.Now);
+
+                // cập nhật trạng thái chi tiết đặt phòng
+                BookRoomDetailsDao.UpdateStatus(checkOutVM.BookRoomDetailsId, (int)BookRoomDetailsType.Pay);
+
+                // cập nhật trạng thái phòng
+                RoomDao.UpdateStatus(checkOutVM.RoomId, (int)RoomStatusType.RoomAvailable);
+
+                // cập nhật trạng thái dọn phòng
+                RoomDao.UpdateTidy(checkOutVM.RoomId, (int)RoomTidyType.NotCleaned);
+
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                error = "Hệ thống lỗi. Vui lòng thử lại sau.";
+                status = false;
+            }
+            
+
+            return new ExecutionOutcome
+            {
+                Mess = string.IsNullOrEmpty(error) ? "Trả phòng thành công." : error,
+                Result = status,
+            };
         }
 
         // chỉnh sửa phòng

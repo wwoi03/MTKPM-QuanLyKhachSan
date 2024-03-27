@@ -1,4 +1,5 @@
-﻿using MTKPM_QuanLyKhachSan.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MTKPM_QuanLyKhachSan.Models;
 
 namespace MTKPM_QuanLyKhachSan.Daos
 {
@@ -31,6 +32,16 @@ namespace MTKPM_QuanLyKhachSan.Daos
         public void CreateOrder(Order order)
         {
             context.Orders.Add(order);
+        }
+
+        // lấy order theo bookRoomDetailsId
+        public List<Order> GetOrderByBookRoomDetailsId(int bookRoomDetailsId)
+        {
+            return context.Orders
+                .Include(i => i.BookRoomDetails)
+                .Include(i => i.Service)
+                .Where(i => i.BookRoomDetailsId == bookRoomDetailsId)
+                .ToList();
         }
     }
 }

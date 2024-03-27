@@ -108,9 +108,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
         // đổi phòng
         [HttpPost]
-        public IActionResult ChangeRoom(int roomIdOld, int roomIdNew, bool isCleanRoom = false)
+        public IActionResult ChangeRoom(int bookRoomDetailsIdint, int roomIdOld, int roomIdNew, bool isCleanRoom = false)
         {
-            ExecutionOutcome executionOutcome = rentCheckOutFacede.ChangeRoom(roomIdOld, roomIdNew, isCleanRoom);
+            ExecutionOutcome executionOutcome = rentCheckOutFacede.ChangeRoom(bookRoomDetailsIdint, roomIdOld, roomIdNew, isCleanRoom);
 
             if (executionOutcome.Result)
                 return RedirectToAction("RoomRent", "AdminRentCheckOutProxy", new { area = "Admin" });
@@ -161,6 +161,21 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         public IActionResult CheckIn(int roomId)
         {
             ExecutionOutcome executionOutcome = rentCheckOutFacede.CheckIn(roomId);
+
+            return Json(executionOutcome);
+        }
+
+        public IActionResult CheckOut(int bookRoomDetailsId)
+        {
+            CheckOutVM checkOutVM = rentCheckOutFacede.CheckOut(bookRoomDetailsId);
+
+            return PartialView(checkOutVM);
+        }
+
+        [HttpPost]
+        public IActionResult CheckOut(CheckOutVM checkOutVM)
+        {
+            ExecutionOutcome executionOutcome = rentCheckOutFacede.CheckOut(checkOutVM);
 
             return Json(executionOutcome);
         }

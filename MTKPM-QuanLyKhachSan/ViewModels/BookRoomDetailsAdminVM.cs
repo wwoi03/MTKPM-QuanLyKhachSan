@@ -14,6 +14,7 @@ namespace MTKPM_QuanLyKhachSan.ViewModels
         public DateTime CheckIn { get; set; }
         public string CheckInTime { get; set; }
         public string Note { get; set; } = "";
+        public Decimal Price { get; set; }
         public List<Order> Orders { get; set; }
 
         // chuyển đổi giờ
@@ -24,10 +25,23 @@ namespace MTKPM_QuanLyKhachSan.ViewModels
             return CheckIn.ToString("yyyy-MM-dd");
         }
 
+        // Tính tổng tiền menu
+        public decimal CalcPriceMenu()
+        {
+            return Orders.Sum(o => o.Price * o.Quantity);
+        }
+
+        public string FormatCurrency(decimal price)
+        {
+            // Sử dụng phương thức ToString("C") để định dạng tiền tệ
+            string formatCurrency = string.Format("{0:N0} đ", price);
+            return formatCurrency;
+        }
+
         // lấy giờ
         public string ViewCheckInTime()
         {
-            return CheckIn.TimeOfDay.ToString();
+            return CheckIn.Hour + ":" + CheckIn.Minute;
         }
 
         // Kiểm tra ràng buộc
@@ -48,7 +62,7 @@ namespace MTKPM_QuanLyKhachSan.ViewModels
                 error = "Căn cước công dân không được âm.";
                 return false;
             }
-            else if (IsValidTime(CheckInTime, "HH:mm:ss") == false)
+            else if (IsValidTime(CheckInTime, "HH:mm") == false)
             {
                 error = "Giờ nhận phòng cần đúng định dạng giờ phút (00:00 đến 23:59).";
                 return false;
@@ -95,10 +109,11 @@ namespace MTKPM_QuanLyKhachSan.ViewModels
         // nối ngày và giờ
         public void ConcatDateTime()
         {
-            // Phân tích chuỗi thời gian thành TimeSpan
-            TimeSpan timeSpan = TimeSpan.Parse(CheckInTime);
-
-            CheckIn.Add(timeSpan);
+            if (TimeSpan.TryParseExact(CheckInTime, "hh\\:mm", CultureInfo.InvariantCulture, out TimeSpan timeSpan))
+            {
+                // Nối giờ và phút vào CheckIn
+                CheckIn = new DateTime(CheckIn.Year, CheckIn.Month, CheckIn.Day, timeSpan.Hours, timeSpan.Minutes, 0);
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace MTKPM_QuanLyKhachSan.Models
         public decimal RoomPrice { get; set; }
         public decimal TotalPrice { get; set; }
         public DateTime DatePayment { get; set; }
-        public int HotelId { get; set; }
+        public int? HotelId { get; set; }
         public Hotel Hotel { get; set; }
     }
 }

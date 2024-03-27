@@ -1,10 +1,10 @@
 ﻿@using MTKPM_QuanLyKhachSan.ViewModels
-@model BookRoomDetailsAdminVM
+@model CheckOutVM
 @{
 
 }
 
-<form id="form-book-room-details" method="post">
+<form id="form-check-out" method="post">
 	<!-- Lưu đặt phòng -->
 	<div class="panel-save d-flex justify-content-between align-items-center">
 		<div>
@@ -13,8 +13,10 @@
 		</div>
 
 		<div class="">
-			<input type="submit" id="edit-booking" value="Lưu" />
+			<input type="submit" id="edit-booking" value="Trả phòng" />
 			<input hidden name="BookRoomDetailsId" value="@Model.BookRoomDetailsId" />
+			<input hidden name="CustomerId" value="@Model.CustomerId" />
+			<input hidden name="RoomId" value="@Model.RoomId" />
 		</div>
 	</div>
 
@@ -25,19 +27,7 @@
 			<!-- Tên khách hàng -->
 			<div class="panel-form-item">
 				<h5 class="panel-form-title">Họ và tên khách hàng</h5>
-				<input class="panel-form-input" name="CustomerName" type="text" value="@Model.CustomerName" required />
-			</div>
-
-			<!-- Số điện thoại -->
-			<div class="panel-form-item">
-				<h5 class="panel-form-title">Số điện thoại</h5>
-				<input class="panel-form-input" name="Phone" type="number" value="@Model.Phone" required />
-			</div>
-
-			<!-- CCCD -->
-			<div class="panel-form-item">
-				<h5 class="panel-form-title">Căn cước công dân</h5>
-				<input class="panel-form-input" name="CIC" type="number" value="@Model.CIC" required />
+				<input class="panel-form-input" name="Name" type="text" value="@Model.Name" readonly />
 			</div>
 
 			<!-- Ngày -->
@@ -45,12 +35,44 @@
 				<div class="panel-form-height">
 					<div class="panel-form-height-item">
 						<h5 class="panel-form-title">Ngày nhận phòng</h5>
-						<input type="date" class="panel-form-input" name="CheckIn" value="@Model.ConvertDateTimeToDateTimeLocal()" required />
+						<input type="hidden" name="CheckIn" value="@Model.CheckIn" readonly />
+						<input type="date" class="panel-form-input" name="" value="@Model.ViewCheckInDate(Model.CheckIn)" readonly />
 					</div>
 
 					<div class="panel-form-height-item">
 						<h5 class="panel-form-title">Giờ nhận phòng</h5>
-						<input type="text" class="panel-form-input" name="CheckInTime" value="@Model.ViewCheckInTime()" required />
+						<input type="text" class="panel-form-input" name="" value="@Model.ViewCheckInTime(Model.CheckIn)" readonly />
+					</div>
+				</div>
+			</div>
+
+			<!-- Ngày -->
+			<div class="panel-form-item">
+				<div class="panel-form-height">
+					<div class="panel-form-height-item">
+						<h5 class="panel-form-title">Ngày trả phòng</h5>
+						<input type="hidden" name="CheckOut" value="@Model.CheckOut" readonly />
+						<input type="date" class="panel-form-input" name="" value="@Model.ViewCheckInDate(Model.CheckOut)" readonly />
+					</div>
+
+					<div class="panel-form-height-item">
+						<h5 class="panel-form-title">Giờ trả phòng</h5>
+						<input type="text" class="panel-form-input" name="" value="@Model.ViewCheckInTime(Model.CheckOut)" readonly />
+					</div>
+				</div>
+			</div>
+
+			<!-- Ngày -->
+			<div class="panel-form-item">
+				<div class="panel-form-height">
+					<div class="panel-form-height-item">
+						<h5 class="panel-form-title">Tiền phòng</h5>
+						<input type="text" class="panel-form-input" name="TotalPriceRoom" value="@Model.FormatCurrency(Model.TotalPriceRoom)" readonly />
+					</div>
+
+					<div class="panel-form-height-item d-flex align-items-end">
+						<h5 class="panel-form-title"></h5>
+						<p style="margin: 0; padding: 0">Tiền phòng @Model.DayStay() ngày</p>
 					</div>
 				</div>
 			</div>

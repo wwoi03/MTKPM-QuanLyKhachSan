@@ -8159,3 +8159,51 @@ ul.custom-tabs {
     color: rgba(0, 0, 0, 0.3) !important;
     cursor: pointer !important;
 }
+
+/* My menu */
+.custom-my-menu-container {
+    margin: 16px;
+}
+
+.custom-my-menu-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-my-menu-th, .custom-my-menu-td {
+    text-align: left;
+    padding: 8px;
+}
+
+    .custom-my-menu-td.delete-order div {
+        cursor: pointer;
+        color: #333;
+        display: inline-block;
+        padding: 8px 12px;
+    }
+
+        .custom-my-menu-td.delete-order div:hover {
+            background-color: #F2F2F2;
+        }
+
+    .custom-my-menu-td .dot-icon {
+    }
+
+.custom-my-menu-qty-soda {
+    padding: 0 8px;
+}
+
+.custom-my-menu-th {
+    background-color: #f2f2f2;
+}
+
+.custom-my-menu-action-btn {
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+}
+
+.custom-my-menu-total-row {
+    font-weight: bold;
+}
