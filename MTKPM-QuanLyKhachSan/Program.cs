@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.DotNet.Scaffolding.Shared.ProjectModel;
+using Microsoft.EntityFrameworkCore;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
+using PdfSharp.Charting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,11 +16,15 @@ builder.Services.AddDbContext<DatabaseContext>(x => x.UseSqlServer(builder.Confi
 // Kích hoạt Session
 builder.Services.AddSession();
 
-//Kích hoạt dịch vụ cho ServiceDao, BookRoomDao, BookRoomDetailsDao, IRepository<ServiceDao>
+// Bùi Nguyễn Nhật Phi - kích hoạt dịch vụ cho ServiceDao, BookRoomDao, BookRoomDetailsDao
 builder.Services.AddScoped<ServiceDao>();
 builder.Services.AddScoped<BookRoomDetailsDao>();
 builder.Services.AddScoped<BookRoomDao>();
+// Bùi Nguyễn Nhật Phi - kích hoạt dịch vụ IRepository cho Service, ServiceDao
 builder.Services.AddScoped<IRepository<Service>, ServiceDao>();
+// Bùi Nguyễn Nhật Phi - kích hoạt dịch vụ Dependency Injection cho IBookRoomDetailsDao, IBookRoomDao
+builder.Services.AddScoped<IBookRoomDetailsDao, BookRoomDetailsDao>();
+builder.Services.AddScoped<IBookRoomDao, BookRoomDao>();
 
 var app = builder.Build();
 

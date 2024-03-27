@@ -4,19 +4,19 @@ using MTKPM_QuanLyKhachSan.Models;
 
 namespace MTKPM_QuanLyKhachSan.Daos
 {
-    public class BookRoomDetailsDao
+    public class BookRoomDetailsDao : IBookRoomDetailsDao
     {
-        DatabaseContext context;
+        private readonly DatabaseContext _context;
 
         public BookRoomDetailsDao(DatabaseContext context)
         {
-            this.context = context;
+            _context = context;
         }
 
         // Lấy danh sách phòng đặt chưa nhận
         public List<BookRoomDetails> GetBookRoomDetails()
         {
-            return context.BookRoomDetails
+            return _context.BookRoomDetails
                 .Include(i => i.BookRoom.Customer)
                 .Include(i => i.Room)
                 .ToList();
@@ -25,12 +25,12 @@ namespace MTKPM_QuanLyKhachSan.Daos
         // Lấy danh sách phòng đã nhận
         public List<BookRoomDetails> GetBookRoomDetailsReceive(int? hotelId)
         {
-            return context.BookRoomDetails
+            return _context.BookRoomDetails
                 .Include(i => i.BookRoom)
                 .Include(i => i.BookRoom.Customer)
                 .Include(i  => i.Room)
                 .Include(i  => i.Room.RoomType)
-                .Join(context.Rooms, 
+                .Join(_context.Rooms, 
                     brd => brd.RoomId, // Khóa ngoại từ BookRoomDetails
                     room => room.RoomId, // Khóa chính từ Room
                     (brd, room) => new { brd, room }) // Kết quả kết hợp)
@@ -42,14 +42,14 @@ namespace MTKPM_QuanLyKhachSan.Daos
         // Tạo đặt phòng chi tiết
         public void AddBookRoomDetails(BookRoomDetails bookRoomDetails)
         {
-            context.BookRoomDetails.Add(bookRoomDetails);
-            context.SaveChanges();
+            _context.BookRoomDetails.Add(bookRoomDetails);
+            _context.SaveChanges();
         }
 
         // Lấy bookingDetails theo id
         public BookRoomDetails GetBookRoomDetailsById(int bookRoomDetailsId)
         {
-            return context.BookRoomDetails
+            return _context.BookRoomDetails
                 .Where(i => i.BookRoomDetailsId == bookRoomDetailsId)
                 .Include(i => i.BookRoom.Customer)
                 .Include(i => i.Room)
@@ -62,21 +62,21 @@ namespace MTKPM_QuanLyKhachSan.Daos
         {
             BookRoomDetails bookRoomDetails = GetBookRoomDetailsById(roomIdOld);
             bookRoomDetails.RoomId = roomIdNew;
-            context.Update(bookRoomDetails);
-            context.SaveChanges();
+            _context.Update(bookRoomDetails);
+            _context.SaveChanges();
         }
 
         // Cập nhật chi tiết đặt phòng
         public void UpdateBookRoomDetails(BookRoomDetails bookRoomDetails)
         {
-            context.Update(bookRoomDetails);
-            context.SaveChanges();
+            _context.Update(bookRoomDetails);
+            _context.SaveChanges();
         }
 
         // Tìm kiếm lịch sử đặt phòng theo ngày/tháng/năm
         public List<BookRoomDetails> Search(DateTime startDate, DateTime endDate)
         {
-            return context.BookRoomDetails
+            return _context.BookRoomDetails
                 .Include(i => i.BookRoom.Customer)
                 .Include(i => i.Room)
                 .Where(i => i.CheckIn >= startDate && i.CheckOut <= endDate)
@@ -86,8 +86,20 @@ namespace MTKPM_QuanLyKhachSan.Daos
         // Xóa chi tiết lịch sử đặt phòng
         public void DeleteBookRoomDetails(BookRoomDetails bookRoomDetails)
         {
-            context.Remove(bookRoomDetails);
-            context.SaveChanges();
+            _context.Remove(bookRoomDetails);
+            _context.SaveChanges();
         }
+    }
+    // Khai báo interface IBookRoomDetailsDao
+    public interface IBookRoomDetailsDao
+    {
+        List<BookRoomDetails> GetBookRoomDetails();
+        List<BookRoomDetails> GetBookRoomDetailsReceive(int? hotelId);
+        void AddBookRoomDetails(BookRoomDetails bookRoomDetails);
+        BookRoomDetails GetBookRoomDetailsById(int bookRoomDetailsId);
+        void ChangeRoom(int roomIdOld, int roomIdNew);
+        void UpdateBookRoomDetails(BookRoomDetails bookRoomDetails);
+        List<BookRoomDetails> Search(DateTime startDate, DateTime endDate);
+        void DeleteBookRoomDetails(BookRoomDetails bookRoomDetails);
     }
 }

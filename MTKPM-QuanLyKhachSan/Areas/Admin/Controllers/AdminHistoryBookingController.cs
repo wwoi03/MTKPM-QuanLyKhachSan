@@ -12,10 +12,10 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
     [Area("Admin")]
     public class AdminHistoryBookingController : Controller
     {
-        private readonly BookRoomDetailsDao _bookRoomDetailsDao;
-        private readonly BookRoomDao _bookRoomDao;
+        private readonly IBookRoomDetailsDao _bookRoomDetailsDao;
+        private readonly IBookRoomDao _bookRoomDao;
 
-        public AdminHistoryBookingController(BookRoomDetailsDao bookRoomDetailsDao, BookRoomDao bookRoomDao)
+        public AdminHistoryBookingController(IBookRoomDetailsDao bookRoomDetailsDao, IBookRoomDao bookRoomDao)
         {
             _bookRoomDetailsDao = bookRoomDetailsDao;
             _bookRoomDao = bookRoomDao;

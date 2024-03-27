@@ -977,6 +977,14 @@
       "PackagePath": "staticwebassets\\admin\\assets\\css\\util.css"
     },
     {
+      "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\admin\\assets\\dp_NhatPhi\\IBookRoomDao.cs",
+      "PackagePath": "staticwebassets\\admin\\assets\\dp_NhatPhi\\IBookRoomDao.cs"
+    },
+    {
+      "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\admin\\assets\\dp_NhatPhi\\IBookRoomDetailsDao.cs",
+      "PackagePath": "staticwebassets\\admin\\assets\\dp_NhatPhi\\IBookRoomDetailsDao.cs"
+    },
+    {
       "Id": "C:\\Users\\acer\\Desktop\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\admin\\assets\\dp_NhatPhi\\IRepository.cs",
       "PackagePath": "staticwebassets\\admin\\assets\\dp_NhatPhi\\IRepository.cs"
     },
