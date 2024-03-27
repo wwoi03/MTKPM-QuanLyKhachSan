@@ -22,9 +22,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
         private ServiceDao serviceDao;
         DatabaseContext context;
 
-        public FacedeDao()
+        public FacedeDao(DatabaseContext context)
         {
-            context = SingletonDatabase.Instance;
+            context = context;
 
             billDao = new BillDao(context);
             bookRoomDao = new BookRoomDao(context);

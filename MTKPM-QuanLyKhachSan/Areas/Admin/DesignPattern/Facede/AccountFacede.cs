@@ -13,9 +13,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
         private RoleDao roleDao;
         DatabaseContext context;
 
-        public AccountFacede()
+        public AccountFacede(DatabaseContext context)
         {
-            context = SingletonDatabase.Instance;
+            context = context;
 
             employeeDao = new EmployeeDao(context);
             employeePermissionDao = new EmployeePermissionDao(context);

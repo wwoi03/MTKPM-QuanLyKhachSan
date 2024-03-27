@@ -20,17 +20,17 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
         private List<EmployeePermission> employeePermissions;
         private IAccountEmployee proxy;
 
-        public AdminAccountProxyController(IHttpContextAccessor httpContextAccessor)
+        public AdminAccountProxyController()
         {
             context = SingletonDatabase.Instance;
 
             employeeDao = new EmployeeDao(context);
             employeePermissionDao = new EmployeePermissionDao(context);
 
-            employee = employeeDao.GetEmployeeById(httpContextAccessor.HttpContext?.Session.GetInt32("EmployeeId"));
-            employeePermissions = employeePermissionDao.GetPermissionByEmployee(employee.EmployeeId);
+            /*employee = employeeDao.GetEmployeeById(httpContextAccessor.HttpContext?.Session.GetInt32("EmployeeId"));
+            employeePermissions = employeePermissionDao.GetPermissionByEmployee(employee.EmployeeId);*/
 
-            proxy = new AdminAccountController();
+            proxy = new AdminAccountController(context);
         }
 
         public IActionResult Index()

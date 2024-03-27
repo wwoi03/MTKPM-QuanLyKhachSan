@@ -21,18 +21,6 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         EmployeePermissionDao employeePermissionDao;
         AccountFacede accountFacede;
 
-        public AdminAccountController()
-        {
-            DatabaseContext context = SingletonDatabase.Instance;
-
-            roleDao = new RoleDao(context);
-            permissionGroupDao = new PermissionGroupDao(context);
-            employeeDao = new EmployeeDao(context);
-            employeePermissionDao = new EmployeePermissionDao(context);
-
-            accountFacede = new AccountFacede();
-        }
-
         public AdminAccountController(DatabaseContext context)
         {
             roleDao = new RoleDao(context);
@@ -40,7 +28,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             employeeDao = new EmployeeDao(context);
             employeePermissionDao = new EmployeePermissionDao(context);
 
-            accountFacede = new AccountFacede();
+            accountFacede = new AccountFacede(context);
         }
 
         public IActionResult Index()

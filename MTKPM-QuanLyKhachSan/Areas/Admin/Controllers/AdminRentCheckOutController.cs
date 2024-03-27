@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Services;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton;
+using MTKPM_QuanLyKhachSan.Common.Config;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
 using MTKPM_QuanLyKhachSan.ViewModels;
@@ -20,8 +21,10 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         ServiceDao serviceDao;
         CustomerDao customerDao;
 
+        //private BookingFacede bookingFacede;
+        private readonly IService _myService;
 
-        public AdminRentCheckOutController(DatabaseContext context)
+        public AdminRentCheckOutController(DatabaseContext context, IService myService)
         {
             roomTypeDao = new RoomTypeDao(context);
             roomDao = new RoomDao(context);
@@ -31,6 +34,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             orderDao = new OrderDao(context);
             serviceDao = new ServiceDao(context);
             customerDao = new CustomerDao(context);
+
+            _myService = myService; 
         }
 
         public IActionResult Index()
@@ -41,9 +46,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // danh sách phòng chờ
         public IActionResult RoomWait()
         {
-            var roomWaits = roomDao.GetEmptyRooms(HttpContext.Session.GetInt32("HotelId"));
+            var roomWaits = roomDao.GetEmptyRooms(_myService.GetHotelId());
 
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(_myService.GetHotelId());
             ViewBag.roomWaits = roomWaits.Select(roomWait => new RoomWaitVM
             {
                 RoomId = roomWait.RoomId,
@@ -59,9 +64,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // danh sách phòng đang thuê
         public IActionResult RoomRent()
         {
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(_myService.GetHotelId());
 
-            var roomRents = bookRoomDetailsDao.GetBookRoomDetailsReceive(HttpContext.Session.GetInt32("HotelId"));
+            var roomRents = bookRoomDetailsDao.GetBookRoomDetailsReceive(_myService.GetHotelId());
 
             ViewBag.roomRents = roomRents.Select(roomRent => new RoomRentVM
 			{
@@ -83,8 +88,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // danh sách phòng cần dọn
         public IActionResult RoomClean()
         {
-            ViewBag.roomCleans = roomDao.GetCleanRooms(HttpContext.Session.GetInt32("HotelId"));
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
+            ViewBag.roomCleans = roomDao.GetCleanRooms(_myService.GetHotelId());
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(_myService.GetHotelId());
 
             return PartialView();
         }
@@ -92,8 +97,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // lịch sử phòng
         public IActionResult RoomHistory()
         {
-            ViewBag.roomHistory = billDao.GetBills(HttpContext.Session.GetInt32("HotelId"));
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
+            ViewBag.roomHistory = billDao.GetBills(_myService.GetHotelId());
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(_myService.GetHotelId());
 
             return PartialView();
         }
@@ -125,8 +130,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         public IActionResult ChangeRoom(int bookRoomDetailsId)
         {
             ViewBag.roomChange = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
-            ViewBag.roomWaits = roomDao.GetEmptyRooms(HttpContext.Session.GetInt32("HotelId"));
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
+            ViewBag.roomWaits = roomDao.GetEmptyRooms(_myService.GetHotelId());
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(_myService.GetHotelId());
 
             return PartialView();
         }

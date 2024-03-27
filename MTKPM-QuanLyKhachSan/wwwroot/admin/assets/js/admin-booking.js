@@ -46,13 +46,12 @@
 		ajaxCall(
 			'GET',
 			'/Admin/AdminBookingProxy/GetBooking',
+			null,
 			function (data) {
 				var dataResources = JSON.parse(data.resources);
 				var dataEvents = JSON.parse(data.events);
 
 				renderFullCallendar(dataResources, dataEvents);
-
-				console.log(1111)
 			}
 		)
     }
@@ -96,7 +95,7 @@
 				btnBooking: {
 					text: 'Đặt phòng',
 					click: function () {
-						booking();
+						viewBooking();
 					}
 				},
 				btnExportFileExcel: {

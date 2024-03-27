@@ -3,6 +3,7 @@ using MTKPM_QuanLyKhachSan.Areas.Admin.Controllers;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Services;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton;
 using MTKPM_QuanLyKhachSan.Common;
+using MTKPM_QuanLyKhachSan.Common.Config;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
 using MTKPM_QuanLyKhachSan.ViewModels;
@@ -14,212 +15,164 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
     public class AdminRentCheckOutProxyController : Controller, IRentCheckOut
     {
         private DatabaseContext context;
-        private EmployeeDao employeeDao;
-        private Employee employee;
         private EmployeePermissionDao employeePermissionDao;
-        private List<EmployeePermission> employeePermissions;
         private IRentCheckOut proxy;
+        private IService myService;
 
-        public AdminRentCheckOutProxyController()
+        public AdminRentCheckOutProxyController(IService myService)
         {
             context = SingletonDatabase.Instance;
-
-            employeeDao = new EmployeeDao(context);
+            this.myService = myService;
             employeePermissionDao = new EmployeePermissionDao(context);
-
-            proxy = new AdminRentCheckOutController(context);
+            proxy = new AdminRentCheckOutController(context, myService);
         }
 
         public IActionResult ChangeRoom(int bookRoomDetailsId)
         {
-            InitData();
-            foreach (var permission in employeePermissions)
-            {
-                if (RentCheckOutType.RentCheckOutAll.ToString().Equals(permission.Permission.PermissionId))
-                {
-                    return proxy.ChangeRoom(bookRoomDetailsId);
-                }
-            }
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
 
-            return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
+            if (checkPermission)
+                return proxy.ChangeRoom(bookRoomDetailsId);
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
+
         [HttpPost]
         public IActionResult ChangeRoom(int roomIdOld, int roomIdNew, bool isCleanRoom = false)
         {
-            InitData();
-            foreach (var permission in employeePermissions)
-            {
-                if (RentCheckOutType.RentCheckOutAll.ToString().Equals(permission.Permission.PermissionId))
-                {
-                    return proxy.ChangeRoom(roomIdOld, roomIdNew, isCleanRoom);
-                }
-            }
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
 
-            return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
+            if (checkPermission)
+                return proxy.ChangeRoom(roomIdOld, roomIdNew, isCleanRoom);
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
+
         [HttpPost]
         public IActionResult CleanRoom(int roomId)
         {
-            InitData();
-            foreach (var permission in employeePermissions)
-            {
-                if (RentCheckOutType.RentCheckOutAll.ToString().Equals(permission.Permission.PermissionId))
-                {
-                    return proxy.CleanRoom(roomId);
-                }
-            }
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
 
-            return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
+            if (checkPermission)
+                return proxy.CleanRoom(roomId);
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
 
         public IActionResult EditBookRoomDetails(int bookRoomDetailsId)
         {
-            InitData();
-            foreach (var permission in employeePermissions)
-            {
-                if (RentCheckOutType.RentCheckOutAll.ToString().Equals(permission.Permission.PermissionId))
-                {
-                    return proxy.EditBookRoomDetails(bookRoomDetailsId);
-                }
-            }
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
 
-            return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
+            if (checkPermission)
+                return proxy.EditBookRoomDetails(bookRoomDetailsId);
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
+
         [HttpPost]
         public IActionResult EditBookRoomDetails(BookRoomDetailsAdminVM bookRoomDetailsAdminVM)
         {
-            InitData();
-            foreach (var permission in employeePermissions)
-            {
-                if (RentCheckOutType.RentCheckOutAll.ToString().Equals(permission.Permission.PermissionId))
-                {
-                    return proxy.EditBookRoomDetails(bookRoomDetailsAdminVM);
-                }
-            }
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
 
-            return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
+            if (checkPermission)
+                return proxy.EditBookRoomDetails(bookRoomDetailsAdminVM);
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
 
         public IActionResult Index()
         {
-            employee = employeeDao.GetEmployeeById(HttpContext.Session.GetInt32("EmployeeId"));
-            employeePermissions = employeePermissionDao.GetPermissionByEmployee(employee.EmployeeId);
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
 
-            foreach (var permission in employeePermissions)
-            {
-                if (RentCheckOutType.RentCheckOutAll.ToString().Equals(permission.Permission.PermissionId))
-                {
-                    return proxy.Index();
-                }
-            }
-
-            return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
+            if (checkPermission)
+                return proxy.Index();
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
 
         public IActionResult OrderMenu(int bookRoomDetailsId)
         {
-            InitData();
-            foreach (var permission in employeePermissions)
-            {
-                if (RentCheckOutType.RentCheckOutAll.ToString().Equals(permission.Permission.PermissionId))
-                {
-                    return proxy.OrderMenu(bookRoomDetailsId);
-                }
-            }
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
 
-            return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
+            if (checkPermission)
+                return proxy.OrderMenu(bookRoomDetailsId);
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
 
         [HttpPost]
         public IActionResult OrderMenu(int bookRoomDetailsId, List<Order> orders)
         {
-            InitData();
-            foreach (var permission in employeePermissions)
-            {
-                if (RentCheckOutType.RentCheckOutAll.ToString().Equals(permission.Permission.PermissionId))
-                {
-                    return proxy.OrderMenu(bookRoomDetailsId, orders);
-                }
-            }
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
 
-            return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
+            if (checkPermission)
+                return proxy.OrderMenu(bookRoomDetailsId, orders);
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
+
         [HttpPost]
         public IActionResult RequestCleanRoom(int roomId)
         {
-            InitData();
-            foreach (var permission in employeePermissions)
-            {
-                if (RentCheckOutType.RentCheckOutAll.ToString().Equals(permission.Permission.PermissionId))
-                {
-                    return proxy.RequestCleanRoom(roomId);
-                }
-            }
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
 
-            return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
+            if (checkPermission)
+                return proxy.RequestCleanRoom(roomId);
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
 
         public IActionResult RoomClean()
         {
-            InitData();
-            foreach (var permission in employeePermissions)
-            {
-                if (RentCheckOutType.RentCheckOutAll.ToString().Equals(permission.Permission.PermissionId))
-                {
-                    return proxy.RoomClean();
-                }
-            }
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
 
-            return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
+            if (checkPermission)
+                return proxy.RoomClean();
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
 
         public IActionResult RoomHistory()
         {
-            InitData();
-            foreach (var permission in employeePermissions)
-            {
-                if (RentCheckOutType.RentCheckOutAll.ToString().Equals(permission.Permission.PermissionId))
-                {
-                    return proxy.RoomHistory();
-                }
-            }
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
 
-            return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
+            if (checkPermission)
+                return proxy.RoomHistory();
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
 
         public IActionResult RoomRent()
         {
-            InitData();
-            foreach (var permission in employeePermissions)
-            {
-                if (RentCheckOutType.RentCheckOutAll.ToString().Equals(permission.Permission.PermissionId))
-                {
-                    return proxy.RoomRent();
-                }
-            }
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
 
-            return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
+            if (checkPermission)
+                return proxy.RoomRent();
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
 
         public IActionResult RoomWait()
         {
-            InitData();
+            int? employeeId = myService.GetEmployeeId();
+            var checkPermission = employeePermissionDao.CheckPermission(employeeId, RentCheckOutType.RentCheckOutAll.ToString());
 
-            foreach (var permission in employeePermissions)
-            {
-                if (RentCheckOutType.RentCheckOutAll.ToString().Equals(permission.Permission.PermissionId))
-                {
-                    return proxy.RoomWait();
-                }
-            }
-
-            return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
-        }
-
-        public void InitData()
-        {
-            employee = employeeDao.GetEmployeeById(HttpContext.Session.GetInt32("EmployeeId"));
-            employeePermissions = employeePermissionDao.GetPermissionByEmployee(employee.EmployeeId);
+            if (checkPermission)
+                return proxy.RoomWait();
+            else
+                return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
     }
 }

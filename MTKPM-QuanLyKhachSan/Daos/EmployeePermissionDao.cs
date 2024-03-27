@@ -26,5 +26,13 @@ namespace MTKPM_QuanLyKhachSan.Daos
                 .Include(i => i.Permission).ToList();
             return listEmployeePermission;
         }
+
+        // kiểm tra quyền
+        public bool CheckPermission(int? employeeId, string permission)
+        {
+            return context.EmployeePermissions
+                .Where(i => i.EmployeeId == employeeId && i.PermissionId.Equals(permission))
+                .Any();
+        }
     }
 }
