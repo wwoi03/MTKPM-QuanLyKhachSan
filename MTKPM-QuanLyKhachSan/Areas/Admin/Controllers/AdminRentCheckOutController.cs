@@ -2,6 +2,7 @@
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Services;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton;
+using MTKPM_QuanLyKhachSan.Common;
 using MTKPM_QuanLyKhachSan.Common.Config;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
@@ -85,7 +86,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
             {
                 Room room = rentCheckOutFacede.RoomDao.GetRoomById(roomId);
 
-                if (room.Status == 1)
+                if ((RoomStatusType)room.Status == RoomStatusType.RoomOccupied)
                     return RedirectToAction("RoomRent", "AdminRentCheckOutProxy", new { area = "Admin" });
                 else
                     return RedirectToAction("RoomWait", "AdminRentCheckOutProxy", new { area = "Admin" });

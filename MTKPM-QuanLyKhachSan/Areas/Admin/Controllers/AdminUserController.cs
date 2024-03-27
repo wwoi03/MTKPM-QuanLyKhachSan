@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton;
+using MTKPM_QuanLyKhachSan.Common.Config;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
 using MTKPM_QuanLyKhachSan.ViewModels;
@@ -10,17 +11,22 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
     public class AdminUserController : Controller
     {
         EmployeeDao employeeDao;
+        IService myService;
 
-        public AdminUserController()
+        public AdminUserController(IService myService)
         {
-            DatabaseContext context = SingletonDatabase.Instance;
-
-            employeeDao = new EmployeeDao(context);
+            this.myService = myService;
+            employeeDao = new EmployeeDao(SingletonDatabase.Instance);
         }
 
         [HttpGet]
         public IActionResult Login()
         {
+            if (myService.GetEmployeeId() != null)
+            {
+                return RedirectToAction("Index", "AdminHome");
+            }
+
             return View(new LoginVM());
         }
 
