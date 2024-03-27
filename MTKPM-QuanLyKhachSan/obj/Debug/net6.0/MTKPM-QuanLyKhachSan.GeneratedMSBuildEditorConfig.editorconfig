@@ -92,6 +92,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb29tVHlwZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRoom/AddRoom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb29tXEFkZFJvb20uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRoom/DetailsRoom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb29tXERldGFpbHNSb29tLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/diepm/Desktop/MTKPM_Quản lý Khách Sạn/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRoom/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb29tXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
