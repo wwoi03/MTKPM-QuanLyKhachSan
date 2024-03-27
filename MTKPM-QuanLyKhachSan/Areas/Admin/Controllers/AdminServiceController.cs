@@ -15,7 +15,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
         public AdminServiceController(IRepository<Service> serviceRepository)
         {
-            _serviceRepository = serviceRepository;
+            // Sử dụng Proxy để thông qua ServiceRepositoryProxy thay vì trực tiếp truy cập vào ServiceDao
+            _serviceRepository = new ServiceRepositoryProxy(serviceRepository);
         }
 
         // Hiển thị danh sách Menu
