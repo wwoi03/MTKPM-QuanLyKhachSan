@@ -9,6 +9,7 @@ using System.Drawing.Drawing2D;
 using System;
 using MTKPM_QuanLyKhachSan.DesignPattern.Singleton;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Strategy;
+using Humanizer.Localisation.TimeToClockNotation;
 
 namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 {
@@ -43,6 +44,37 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 			var rooms = roomStrategy.RoomStrategy(roomId);
 			ViewBag.Room = rooms;
 			return View();
+		}
+		public IActionResult DoubleRooms (int roomId)
+		{
+			if (roomId == 0)
+			{
+				var rooms = (from item in SingletonDatabase.Instance.Rooms orderby item.RoomId descending where item.RoomTypeId == 2 select item).ToList();
+				ViewBag.Room = rooms;
+				return View();
+			}
+			else
+			{
+				var rooms = (from item in SingletonDatabase.Instance.Rooms orderby item.RoomId descending where item.RoomTypeId == 2 && item.RoomTypeId == roomId select item).ToList();
+				ViewBag.Room = rooms;
+				return View();
+			}
+		}
+
+		public IActionResult StandardRooms(int roomId)
+		{
+			if (roomId == 0)
+			{
+				var rooms = (from item in SingletonDatabase.Instance.Rooms orderby item.RoomId descending where item.RoomTypeId == 3 select item).ToList();
+				ViewBag.Room = rooms;
+				return View();
+			}
+			else
+			{
+				var rooms = (from item in SingletonDatabase.Instance.Rooms orderby item.RoomId descending where item.RoomTypeId == 3 && item.RoomTypeId == roomId select item).ToList();
+				ViewBag.Room = rooms;
+				return View();
+			}
 		}
 
 		[HttpGet]
