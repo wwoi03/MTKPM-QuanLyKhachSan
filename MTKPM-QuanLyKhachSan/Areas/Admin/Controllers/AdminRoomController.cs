@@ -7,6 +7,8 @@ using MTKPM_QuanLyKhachSan.ViewModels;
 using System.Diagnostics;
 using System.Drawing.Drawing2D;
 using System;
+using MTKPM_QuanLyKhachSan.DesignPattern.Singleton;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Strategy;
 
 namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 {
@@ -15,15 +17,34 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 	public class AdminRoomController : Controller
 	{
 		RoomDao roomDao;
+		private StrategyDatabase roomStrategy;
+		//public AdminRoomController(DatabaseContext context)
+		//{
+		//	roomDao = new RoomDao(context);
+		//}
 		public AdminRoomController(DatabaseContext context)
 		{
+			roomStrategy = new Under5HundredRoom();
 			roomDao = new RoomDao(context);
+			
 		}
 		public IActionResult Index()
 		{
 			ViewBag.Room = roomDao.GetRooms();
 			return View();
 		}
+
+		public void SetRoomStrategy(StrategyDatabase strategy)
+		{
+			roomStrategy = strategy;
+		}
+		public IActionResult LuxuryRooms(int roomId)
+		{
+			var rooms = roomStrategy.RoomStrategy(roomId);
+			ViewBag.Room = rooms;
+			return View();
+		}
+
 		[HttpGet]
 		public IActionResult AddRoom()
 		{
@@ -41,13 +62,16 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 				RoomTypeId = roomVM.RoomTypeId,
 				Tidy = roomVM.Tidy,
 			};
-			roomDao.InsertRoom(room);
+			SingletonDatabase.Instance.Rooms.Add(room);
+			SingletonDatabase.Instance.SaveChanges();
+			//roomDao.InsertRoom(room);
 			return RedirectToAction("Index");
 		}
 		[HttpPost]
 		public IActionResult DeleteRoom (int roomId) 
 		{
-			roomDao.DeleteRoom(roomId);
+			SingletonDatabase.Instance.Rooms.Remove(SingletonDatabase.Instance.Rooms.FirstOrDefault(i => i.RoomId == roomId));
+			SingletonDatabase.Instance.SaveChanges();
 			ExecutionOutcome executionOutcome = new ExecutionOutcome()
 			{
 				Result = true,
@@ -59,7 +83,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 		[HttpGet]
 		public IActionResult DetailsRoom(int roomId)
 		{
-			Room room = roomDao.GetRoomById(roomId);
+			Room room = SingletonDatabase.Instance.Rooms.FirstOrDefault(i => i.RoomId == roomId);
 			RoomVM roomVM = new RoomVM()
 			{
 				RoomId= room.RoomId,
@@ -74,8 +98,46 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 		[HttpPost]
 		public IActionResult DeltailsRoom (RoomVM roomVM)
 		{
-			roomDao.DetailRoom(roomVM);
+			SingletonDatabase.Instance.SaveChanges();
 			return RedirectToAction("Index");
+		}
+
+		[HttpGet]		
+		public IActionResult EditRoom (int roomId)
+		{
+			Room room = SingletonDatabase.Instance.Rooms.FirstOrDefault(i => i.RoomId == roomId);
+			RoomVM roomVM = new RoomVM()
+			{
+				RoomId = room.RoomId,
+				Name = room.Name,
+				Status = room.Status,
+				RoomTypeId = room.RoomTypeId,
+				Tidy = room.Tidy,
+			};
+			return PartialView(roomVM);
+		}
+		[HttpPost]
+		public IActionResult EditRoom (RoomVM roomVM)
+		{
+			Room room = new Room()
+			{
+				RoomId = roomVM.RoomId,
+				Name = roomVM.Name,
+				Status = roomVM.Status,
+				RoomTypeId = roomVM.RoomTypeId,
+				Tidy = roomVM.Tidy,
+
+			};
+			//roomDao.EditRoom(room);
+			ExecutionOutcome executionOutcome = new ExecutionOutcome()
+			{
+				Result = true,
+				Mess = "Cập nhật phòng thành công."
+			};
+			//SingletonDatabase.Instance.Rooms.Update(room);
+			//SingletonDatabase.Instance.SaveChanges();
+			roomDao.EditRoom(room);
+			return Ok(executionOutcome);
 		}
 	}
 }

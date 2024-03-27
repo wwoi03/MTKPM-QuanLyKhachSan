@@ -19,11 +19,20 @@
 					</div>
 				</div>
 				<div class="custom-bulkhead">
-					<form style="position: relative">
-						<input id="search-input" type="text" class="form-control" placeholder="Tìm kiếm theo tên phòng" name="searchString">
-						<p id="submit-button" class="btn" style="position: absolute; top: 0; right: 0"><i class="fas fa-search"></i></p>
-					</form>
+					<!-- Thanh mục lục -->
+					<ul class="nav">
+						<li class="nav-item">
+							<a href="/Admin/AdminRoom/LuxuryRooms" class="nav-link">Phòng cao cấp</a>
+						</li>
+						<li class="nav-item">
+							<a href="/Admin/AdminRoom/DoubleRooms" class="nav-link">Phòng đôi</a>
+						</li>
+						<li class="nav-item">
+							<a href="/Admin/AdminRoom/StandardRooms" class="nav-link">Phòng thường</a>
+						</li>
+					</ul>
 				</div>
+
 			</div>
 			<div class="row">
 				<div class="col-sm-12">
@@ -55,11 +64,10 @@
 											<img src="/images/@item.Image" style="width: 100%">
 											</td>*@
 												<td>
-													<a data-menu-id="@item.RoomTypeId" class="btn btn-primary btn-sm menu-details">
+													<a data-room-id="@item.RoomId" class="edit-room btn btn-primary btn-sm ">
 														<i class="fas fa-pencil-alt"></i>
 														Chỉnh sửa 
 													</a>
-
 													<a data-room-id="@item.RoomId" class="details-room btn btn-info btn-sm">
 														<i class="fas fa-pencil-alt"></i>
 														Chi tiết

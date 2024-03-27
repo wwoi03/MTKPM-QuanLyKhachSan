@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MTKPM_QuanLyKhachSan.Common;
+using MTKPM_QuanLyKhachSan.DesignPattern.Singleton;
 using MTKPM_QuanLyKhachSan.Models;
 using MTKPM_QuanLyKhachSan.ViewModels;
 using System.Linq;
@@ -105,5 +106,11 @@ namespace MTKPM_QuanLyKhachSan.Daos
 		{
 			context.SaveChanges();
 		}
+        public void EditRoom (Room room)
+        {
+            context.Rooms.Update(room);
+            context.SaveChanges();
+        }
+      
 	}
 }

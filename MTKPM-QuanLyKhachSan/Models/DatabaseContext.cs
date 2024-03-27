@@ -9,7 +9,7 @@ namespace MTKPM_QuanLyKhachSan.Models
 
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 			modelBuilder.Entity<PermissionGroup>()
 				.HasKey(o => new { o.PermissionId, o.RoleId });

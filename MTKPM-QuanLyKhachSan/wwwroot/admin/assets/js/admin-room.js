@@ -5,6 +5,8 @@
     function main() {
         deleteRoom()
         detailsRoomView()
+        editRoomView()
+        editRoom()
     }
     function deleteRoom() {
         
@@ -49,7 +51,7 @@
                 '/Admin/AdminRoom/DetailsRoom',
                 { roomId : roomId},
                  function (data) {
-                     console.log(data)
+                    
                     $('.right-panel').html(data);
                 }
             )
@@ -68,6 +70,55 @@
                 '/Admin/AdminRoom/DetailsRoom',
                 $(this).serialize(),
                 function (data) {
+                    if (data.result == true) {
+                        success({
+                            title: data.mess,
+                            text: "",
+                            funcConfirm: function () {
+                                location.reload();
+                            },
+                            funcCancel: function () {
+                                location.reload();
+                            },
+                        });
+                    } else {
+                        error({
+                            title: data.mess,
+                        });
+                    }
+                }
+            )
+        });
+    }
+
+    function editRoomView() {
+
+
+        $('.left-panel').on('click', '.edit-room', function (e) {
+            var roomId = $(this).data('room-id');
+           
+            ajaxCall(
+                'GET',
+                '/Admin/AdminRoom/EditRoom',
+                { roomId: roomId },
+                function (data) {
+                   
+                    $('.right-panel').html(data);
+                }
+            )
+            
+        });
+    }
+    function editRoom() {
+        $('.right-panel').on('submit', '#form-edit-room', function (e) {
+            e.preventDefault(); // Ngăn chặn việc tải lại trang
+            console.log("ddd")
+            ajaxCall(
+                'POST',
+                '/Admin/AdminRoom/EditRoom',
+                $(this).serialize(),             
+                function (data) {
+                    console.log(data.result);
                     if (data.result == true) {
                         success({
                             title: data.mess,
