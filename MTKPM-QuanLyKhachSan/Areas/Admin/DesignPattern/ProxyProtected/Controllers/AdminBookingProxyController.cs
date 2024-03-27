@@ -63,6 +63,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
                 return RedirectToAction("Index", "Error", new { mess = "Bạn không có quyền truy cập." });
         }
 
+        [HttpGet]
         public IActionResult ChooseRoom()
         {
             int? employeeId = myService.GetEmployeeId();
