@@ -21,25 +21,18 @@
 
 	// view 
 	function viewFullCanlandar() {
-		var path = window.location.pathname;
+		ajaxCall(
+			'GET',
+			'/Admin/AdminBooking/GetBooking',
+			function (data) {
+				var dataResources = JSON.parse(data.resources);
+				var dataEvents = JSON.parse(data.events);
 
-		console.log(path)
+				renderFullCallendar(dataResources, dataEvents);
 
-		if (path === '/' || path === '/Admin/AdminBooking/Index') {
-
-			ajaxCall(
-				'GET',
-				'/Admin/AdminBooking/GetBooking',
-				function (data) {
-					var dataResources = JSON.parse(data.resources);
-					var dataEvents = JSON.parse(data.events);
-
-					renderFullCallendar(dataResources, dataEvents);
-
-					console.log(1111)
-				}
-			)
-        }
+				console.log(1111)
+			}
+		)
     }
 
 	// hiển thị giao diện Calendar
