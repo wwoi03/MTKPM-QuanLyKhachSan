@@ -20,7 +20,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
 		}
 
         // lấy danh sách tài khoản
-        public List<Employee> GetEmployees(int hotelId)
+        public List<Employee> GetEmployees(int? hotelId)
         {
             return context.Employees.Where(i => i.HotelId == hotelId).ToList();
         }

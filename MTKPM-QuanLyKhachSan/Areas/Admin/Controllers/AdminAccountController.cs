@@ -3,6 +3,7 @@ using Microsoft.Identity.Client;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Services;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton;
+using MTKPM_QuanLyKhachSan.Common.Config;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
 using MTKPM_QuanLyKhachSan.ViewModels;
@@ -15,35 +16,19 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 
     public class AdminAccountController : Controller, IAccountEmployee
     {
-        RoleDao roleDao;
-        PermissionGroupDao permissionGroupDao;
-        EmployeeDao employeeDao;
-        EmployeePermissionDao employeePermissionDao;
-        AccountFacede accountFacede;
+        private AccountFacede accountFacede;
+        private readonly IService myService;
 
-        public AdminAccountController(DatabaseContext context)
+        public AdminAccountController(DatabaseContext context, IService myService)
         {
-            roleDao = new RoleDao(context);
-            permissionGroupDao = new PermissionGroupDao(context);
-            employeeDao = new EmployeeDao(context);
-            employeePermissionDao = new EmployeePermissionDao(context);
-
-            accountFacede = new AccountFacede(context);
+            this.myService = myService;
+            accountFacede = new AccountFacede(context, myService);
         }
 
         public IActionResult Index()
         {
-            ViewBag.employees = employeeDao.GetEmployees(1);
+            ViewBag.employees = accountFacede.EmployeeDao.GetEmployees(myService.GetHotelId());
            
-            return View();
-        }
-
-        public IActionResult Login()
-        {
-            HttpContext.Session.SetInt32("EmployeeId", 1);
-            HttpContext.Session.SetString("EmployeeName", "Đào Công Tuấn");
-            HttpContext.Session.SetInt32("HotelId", 1);
-
             return View();
         }
 
@@ -51,9 +36,9 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult CreateAccount()
         {
-            ViewBag.roles = roleDao.GetRoles(1);
-            ViewBag.permissionGroups = permissionGroupDao.GetPermissionGroups();
-
+            ViewBag.roles = accountFacede.RoleDao.GetRoles(myService.GetHotelId());
+            ViewBag.permissionGroups = accountFacede.PermissionGroupDao.GetPermissionGroups();
+            
             EmployeeVM employeeVM = new EmployeeVM();
 
             return PartialView(employeeVM);
@@ -71,40 +56,16 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult EditAccount(int employeeId)
         {
-            ViewBag.roles = roleDao.GetRoles(1);
-            ViewBag.permissionGroups = permissionGroupDao.GetPermissionGroups();
+            ViewBag.roles = accountFacede.RoleDao.GetRoles(myService.GetHotelId());
+            ViewBag.permissionGroups = accountFacede.PermissionGroupDao.GetPermissionGroups();
 
-            EmployeeVM employeeVM = new EmployeeVM();
-
-            return PartialView(employeeVM);
+            return PartialView(new EmployeeVM());
         }
 
         [HttpPost]
-        public IActionResult EditAccount(EmployeeVM employeeVM)
+        public IActionResult EditAccount(EmployeeVM EditAccount)
         {
-            string error;
-            bool status = employeeVM.Validation(out error);
-
-            if (status)
-            {
-                // duyệt danh sách quyền
-                foreach (var item in employeeVM.Permissions)
-                {
-                    EmployeePermission employeePermission = new EmployeePermission()
-                    {
-                        //EmployeeId = employee.EmployeeId,
-                        PermissionId = item.ToString(),
-                    };
-
-                    employeePermissionDao.AddEmployeePermission(employeePermission);
-                }
-            }
-
-            ExecutionOutcome executionOutcome = new ExecutionOutcome()
-            {
-                Result = status,
-                Mess = string.IsNullOrEmpty(error) ? "Tạo tài khoản thành công." : error
-            };
+            ExecutionOutcome executionOutcome = accountFacede.EditAccount(EditAccount);
 
             return Json(executionOutcome);
         }

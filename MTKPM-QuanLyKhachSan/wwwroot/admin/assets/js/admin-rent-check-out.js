@@ -127,7 +127,13 @@
                 '/Admin/AdminRentCheckOutProxy/CleanRoom',
                 { roomId: roomId },
                 function (data) {
-                    $('#section-left-panel').html(data);
+                    if (data.result != null && data.result == false) {
+                        error({
+                            title: data.mess
+                        })
+                    } else {
+                        $('#section-left-panel').html(data);
+                    }
                 }
             )
         })
@@ -144,7 +150,13 @@
                 '/Admin/AdminRentCheckOutProxy/RequestCleanRoom',
                 { roomId: roomId },
                 function (data) {
-                    $('#section-left-panel').html(data);
+                    if (data.result != null && data.result == false) {
+                        error({
+                            title: data.mess
+                        })
+                    } else {
+                        $('#section-left-panel').html(data);
+                    }
                 }
             )
         })
@@ -163,8 +175,14 @@
                 '/Admin/AdminRentCheckOutProxy/ChangeRoom',
                 { roomIdOld: roomIdOld, roomIdNew: roomIdNew, isCleanRoom: isCleanRoom },
                 function (data) {
-                    $('.right-panel').html('');
-                    $('#section-left-panel').html(data);
+                    if (data.result != null && data.result == false) {
+                        error({
+                            title: data.mess
+                        })
+                    } else {
+                        $('.right-panel').html('');
+                        $('#section-left-panel').html(data);
+                    }
                 }
             )
         });

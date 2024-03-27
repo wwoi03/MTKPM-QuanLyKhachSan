@@ -37,7 +37,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
                     HttpContext.Session.SetString("EmployeeName", employee.Name);
                     HttpContext.Session.SetInt32("HotelId", employee.HotelId);
 
-                    return RedirectToAction("Index", "AdminBookingProxy");
+                    return RedirectToAction("Index", "AdminHome");
                 }
 
                 return View();

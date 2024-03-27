@@ -1,4 +1,5 @@
 ﻿using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton;
+using MTKPM_QuanLyKhachSan.Common.Config;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
 using MTKPM_QuanLyKhachSan.ViewModels;
@@ -7,20 +8,22 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
 {
     public class AccountFacede
     {
-        private EmployeeDao employeeDao;
-        private EmployeePermissionDao employeePermissionDao;
-        private PermissionGroupDao permissionGroupDao;
-        private RoleDao roleDao;
-        DatabaseContext context;
+        public EmployeeDao EmployeeDao { get; set; }
+        public EmployeePermissionDao EmployeePermissionDao { get; set; }
+        public PermissionGroupDao PermissionGroupDao { get; set; }
+        public RoleDao RoleDao { get; set; }
+        private DatabaseContext context;
+        private IService myService;
 
-        public AccountFacede(DatabaseContext context)
+        public AccountFacede(DatabaseContext context, IService myService)
         {
-            context = context;
+            this.context = context;
+            this.myService = myService;
 
-            employeeDao = new EmployeeDao(context);
-            employeePermissionDao = new EmployeePermissionDao(context);
-            permissionGroupDao = new PermissionGroupDao(context);
-            roleDao = new RoleDao(context);
+            EmployeeDao = new EmployeeDao(context);
+            EmployeePermissionDao = new EmployeePermissionDao(context);
+            PermissionGroupDao = new PermissionGroupDao(context);
+            RoleDao = new RoleDao(context);
         }
 
         // tạo tài khoản phụ
@@ -42,7 +45,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
                         Password = employeeVM.Password,
                         Status = 0
                     };
-                    employeeDao.CreateAccount(employee);
+                    EmployeeDao.CreateAccount(employee);
 
                     // duyệt danh sách quyền
                     foreach (var item in employeeVM.Permissions)
@@ -53,7 +56,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
                             PermissionId = item.ToString(),
                         };
 
-                        employeePermissionDao.AddEmployeePermission(employeePermission);
+                        EmployeePermissionDao.AddEmployeePermission(employeePermission);
                     }
 
                     context.SaveChanges();
@@ -83,7 +86,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
 
             try
             {
-                employeeDao.LockAccount(employeeId);
+                EmployeeDao.LockAccount(employeeId);
                 context.SaveChanges();
             }
             catch (Exception ex)
@@ -110,7 +113,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
 
             try
             {
-                employeeDao.UnLockAccount(employeeId);
+                EmployeeDao.UnLockAccount(employeeId);
                 context.SaveChanges();
             }
             catch (Exception ex)
@@ -123,6 +126,43 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
             {
                 Result = status,
                 Mess = string.IsNullOrEmpty(error) ? "Mở khóa tài khoản thành công." : error
+            };
+
+            return executionOutcome;
+        }
+
+        public ExecutionOutcome EditAccount(EmployeeVM employeeVM)
+        {
+            string error;
+            bool status = employeeVM.Validation(out error);
+
+            if (status)
+            {
+                try
+                {
+                    // duyệt danh sách quyền
+                    foreach (var item in employeeVM.Permissions)
+                    {
+                        EmployeePermission employeePermission = new EmployeePermission()
+                        {
+                            //EmployeeId = employee.EmployeeId,
+                            PermissionId = item.ToString(),
+                        };
+
+                        EmployeePermissionDao.AddEmployeePermission(employeePermission);
+                    }
+                } 
+                catch (Exception ex)
+                {
+                    error = "Hệ thống lỗi. Vui lòng thử lại sau.";
+                    status = false;
+                }
+            }
+
+            ExecutionOutcome executionOutcome = new ExecutionOutcome()
+            {
+                Result = status,
+                Mess = string.IsNullOrEmpty(error) ? "Tạo tài khoản thành công." : error
             };
 
             return executionOutcome;

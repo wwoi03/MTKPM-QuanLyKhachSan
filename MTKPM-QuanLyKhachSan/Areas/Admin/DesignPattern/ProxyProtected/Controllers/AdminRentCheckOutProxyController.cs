@@ -21,10 +21,10 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Controll
 
         public AdminRentCheckOutProxyController(IService myService)
         {
-            context = SingletonDatabase.Instance;
+            this.context = SingletonDatabase.Instance;
             this.myService = myService;
-            employeePermissionDao = new EmployeePermissionDao(context);
-            proxy = new AdminRentCheckOutController(context, myService);
+            this.employeePermissionDao = new EmployeePermissionDao(context);
+            this.proxy = new AdminRentCheckOutController(context, myService);
         }
 
         public IActionResult ChangeRoom(int bookRoomDetailsId)

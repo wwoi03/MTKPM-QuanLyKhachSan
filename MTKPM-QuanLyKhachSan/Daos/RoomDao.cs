@@ -80,7 +80,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
         }
 
         // lấy phòng theo id
-        public Room GetRoomById(int roomId)
+        public Room? GetRoomById(int roomId)
         {
             return context.Rooms.FirstOrDefault(i => i.RoomId == roomId);
         }

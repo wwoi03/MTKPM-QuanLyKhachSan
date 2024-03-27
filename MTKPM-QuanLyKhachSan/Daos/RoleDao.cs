@@ -12,7 +12,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
         }
 
         // lấy danh sách quyền hạn theo khách sạn
-        public List<Role> GetRoles(int hotelId)
+        public List<Role> GetRoles(int? hotelId)
 		{
             return context.Roles
                 .Where(r => r.HotelId == hotelId || r.HotelId == null || r.HotelId == 0)
