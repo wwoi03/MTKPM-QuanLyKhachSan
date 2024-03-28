@@ -1,0 +1,117 @@
+﻿@using MTKPM_QuanLyKhachSan.Common
+@{
+	var roomTypes = ViewBag.roomTypes;
+	var roomRents = ViewBag.roomRents;
+}
+
+@foreach (var roomType in roomTypes)
+{
+	<div class="custom-room-type-item">
+		<div class="custom-room-type-title">
+			<p>@roomType.Name</p>
+		</div>
+
+		<div class="d-flex flex-xl-wrap ml-xl-n2 mr-xl-n2">
+			@foreach (var room in roomRents)
+			{
+				if (@roomType.RoomTypeId == @room.RoomTypeId)
+				{
+					<div class="col-4 pl-2 pr-2 pt-4 ">
+						<div class="custom-card">
+							<div class="custom-card-header">
+								<span class="title custom-color-red">@room.RoomName</span>
+
+								<div class="">
+									@if ((RoomTidyType)room.Tidy == RoomTidyType.NotCleaned)
+									{
+										<i class="custom-icon fa-solid fa-tag custom-color-red"></i>
+									}
+									<i class="custom-icon fa-solid fa-ellipsis-vertical icon-menu"></i>
+								</div>
+							</div>
+							<div class="custom-card-content">
+								<div class="date block">
+									<i class="custom-icon fa-solid fa-face-smile"></i>
+									<span class="custom-text">@room.CustomerName</span>
+								</div>
+
+								<div class="date block">
+									<i class="custom-icon fa-solid fa-clock"></i>
+									<span class="custom-text">@room.CalcTimeStay()</span>
+								</div>
+
+								<div style="display: flex;">
+									<div class="date block" style="flex: 1.5;">
+										<i class="custom-icon fa-solid fa-burger"></i>
+										<span class="custom-text">@room.QuantityMenu</span>
+									</div>
+
+									<div class="date block" style="flex: 2;">
+										<i class="custom-icon fa-solid fa-dollar-sign"></i>
+										<span class="custom-text">@room.FormatMoney()</span>
+									</div>
+								</div>
+								
+								<div class="date block">
+									<i class="custom-icon fa-solid fa-comment"></i>
+
+									@if (room.Note == null || room.Note.Equals("")) 
+									{
+										<span class="custom-text">Không có ghi chú</span>
+									}
+									else
+									{
+										<span class="custom-text">@room.Note</span>
+									}
+								</div>
+							</div>
+
+							<div id="myDropdown" class="custom-dropdown-menu">
+								<div class="custom-dropdown-menu-item btn-edit-room-rent-view" data-bookroom-details-id="@room.BookRoomDetailsId">
+									<i class="custom-icon custom-icon fa-solid fa-pen-to-square"></i>
+									<p>Chỉnh sửa</p>
+								</div>
+
+								<div class="custom-dropdown-menu-item btn-order-menu-view" data-bookroom-details-id="@room.BookRoomDetailsId">
+									<i class="custom-icon fa-solid fa-burger"></i>
+									<p>Thêm menu</p>
+								</div>
+
+								<div class="custom-dropdown-menu-item btn-check-out-view" data-bookroom-details-id="@room.BookRoomDetailsId">
+									<i class="custom-icon fa-solid fa-reply"></i>
+									<p>Trả phòng</p>
+								</div>
+
+								<div class="custom-dropdown-menu-item btn-change-room-view" data-bookroom-details-id="@room.BookRoomDetailsId">
+									<i class="custom-icon fa-solid fa-repeat"></i>
+									<p>Đổi phòng</p>
+								</div>
+
+								@if ((RoomTidyType)room.Tidy == RoomTidyType.NotCleaned)
+								{
+									<div class="custom-dropdown-menu-item not-allowed">
+										<i class="custom-icon fa-solid fa-tag"></i>
+										<p class="custom-color-nomal">Yêu cầu dọn phòng</p>
+									</div>
+								}
+								else
+								{
+									<div class="custom-dropdown-menu-item btn-request-clean-room" data-room-id="@room.RoomId">
+										<i class="custom-icon fa-solid fa-tag"></i>
+										<p>Yêu cầu dọn phòng</p>
+									</div>
+								}
+								
+								<div class="custom-dropdown-menu-item">
+									<i class="custom-icon fa-solid fa-trash"></i>
+									<p>Xóa</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+			}
+		</div>
+	</div>
+}
+

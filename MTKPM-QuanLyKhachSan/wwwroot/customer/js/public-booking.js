@@ -1,6 +1,4 @@
-﻿import { toast } from '../../lib/toast/toast.js';
-
-document.addEventListener('DOMContentLoaded', function () {
+﻿document.addEventListener('DOMContentLoaded', function () {
 	main();
 
 	// main
@@ -57,12 +55,12 @@ document.addEventListener('DOMContentLoaded', function () {
 					url: "../../PublicRoom/Booking",
 					data: bookingVM,
 					success: function (data) {
-						toast({
-							title: "Thành công!",
-							message: "Bạn đã đặt phòng thành công.",
-							type: "success",
-							duration: 3000
-						});
+						if (data.result == true) {
+							success(data.mess, "Chuyển tới trang đặt phòng?", bookingHistory);
+						}
+						else {
+							error(data.mess);
+                        }
 					},
 					error: function () {
 
@@ -86,5 +84,38 @@ document.addEventListener('DOMContentLoaded', function () {
 		};
 
 		return bookingVM;
+	}
+
+	// alert success
+	function success(title, text, functionResult) {
+		Swal.fire({
+			title: title,
+			text: text,
+			icon: "success",
+			confirmButtonColor: "#1577BD",
+			cancelButtonColor: "#999999",
+			showCancelButton: true,
+			reverseButtons: true,
+		}).then((result) => {
+			if (result.isConfirmed) {
+				functionResult();
+			} else {
+				location.reload();
+            }
+		});
+	}
+
+	// alert error
+	function error(title) {
+		Swal.fire({
+			title: title,
+			icon: "error",
+			confirmButtonColor: "#1577BD",
+		})
+	}
+
+	// chuyển sang trang lịch sử đặt phòng
+	function bookingHistory() {
+		window.location.href = "../../PublicCustomer/HistoryBooking";
     }
 })

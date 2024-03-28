@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JEUh0c5OY2TgrdwCmbx3NM66zKXa5fQ1iQ3msxz3fS6QTdBbX6PTDqiL6OQQUGLfgMLE4tTQDb8cGl8FAik95Q==",
+  "dgSpecHash": "fChqMYiBLQoqGd/7L+VMI+wF0xNVugx9pD2IBy4oPjV0QwU0huia5BuZv6kLsKH27Dij5crWv8jKGt7KlxDvTA==",
   "success": true,
-  "projectFilePath": "C:\\Huflit_Study_Material\\Project\\course-projects\\DA-MTKPM-WebQuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj",
+  "projectFilePath": "D:\\Huflit_Study_Material\\Project\\course-projects\\DA-MTKPM-WebQuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tuand\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\tuand\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

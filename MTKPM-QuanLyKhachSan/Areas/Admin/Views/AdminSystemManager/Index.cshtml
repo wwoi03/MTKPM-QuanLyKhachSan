@@ -1,0 +1,71 @@
+﻿@{
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-container">
+	<div class="sys-container">
+		<div class="d-flex">
+			<a class="sys-card" href="/Admin/AdminRoomType/Index">
+				<div class="sys-card-icon">
+					<i class="fa-solid fa-house"></i>
+				</div>
+
+				<div class="sys-card-title">
+					<p>Loại phòng</p>
+				</div>
+			</a>
+
+			<a class="sys-card" href="/Admin/AdminRoom/Index">
+				<div class="sys-card-icon">
+					<i class="fa-solid fa-bed"></i>
+				</div>
+
+				<div class="sys-card-title">
+					<p>Phòng</p>
+				</div>
+			</a>
+
+			<a class="sys-card" asp-controller="Menu" asp-action="Index">
+				<div class="sys-card-icon">
+					<i class="fa-solid fa-bell-concierge"></i>
+				</div>
+
+				<div class="sys-card-title" asp-controller="Menu" asp-action="Index">
+					<p>Menu</p>
+				</div>
+			</a>
+
+			<a class="sys-card" asp-controller="History" asp-action="Index">
+				<div class="sys-card-icon">
+					<i class="fa-solid fa-file-lines"></i>
+				</div>
+
+				<div class="sys-card-title">
+					<p>Lịch sử</p>
+				</div>
+			</a>
+		</div>
+
+		<div class="d-flex">
+			<a class="sys-card" href="/Admin/AdminAccountProxy/Index">
+				<div class="sys-card-icon">
+					<i class="fa-solid fa-code-branch"></i>
+				</div>
+
+				<div class="sys-card-title">
+					<p>Tài khoản phụ</p>
+				</div>
+			</a>
+
+			<a class="sys-card" asp-controller="Position" asp-action="Index">
+				<div class="sys-card-icon">
+					<i class="fa-solid fa-eye"></i>
+				</div>
+
+				<div class="sys-card-title">
+					<p>Chức vụ</p>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>

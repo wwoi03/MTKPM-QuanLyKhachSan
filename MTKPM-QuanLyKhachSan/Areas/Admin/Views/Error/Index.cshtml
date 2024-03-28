@@ -1,0 +1,16 @@
+﻿@{
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<input type="hidden" id="mess-noti" value="@ViewBag.Mess" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    var inputElement = document.getElementById("mess-noti");
+
+	Swal.fire({
+        title: inputElement.value,
+        icon: "error",
+        confirmButtonColor: "#1577BD",
+    })
+</script>

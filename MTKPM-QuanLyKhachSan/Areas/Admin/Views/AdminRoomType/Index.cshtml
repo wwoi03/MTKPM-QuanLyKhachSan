@@ -1,0 +1,85 @@
+﻿﻿﻿﻿@using MTKPM_QuanLyKhachSan.ViewModels
+@{
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+	var RoomType = ViewBag.RoomType;
+}
+@model RoomTypeVM
+<div class="main-container d-flex">
+	<!-- Nội dung bên trái -->
+	<div class="left-panel col-8 pl-0 pr-0">
+		<div class="content container-fluid">
+			<div class="page-header">
+				<div class="row align-items-center">
+					<div class="col">
+						<div class="">
+							<h4 class="card-title float-left mt-2" style="font-size: 24px">Tất cả loại phòng</h4>
+							<a href="/Admin/AdminRoomType/AddRoomType" class="btn btn-primary float-right veiwbutton" id="menu-create">Thêm loại phòng</a>
+						</div>
+					</div>
+				</div>
+				<div class="custom-bulkhead">
+					<form style="position: relative">
+						<input id="search-input" type="text" class="form-control" placeholder="Tìm kiếm theo tên phòng" name="searchString">
+						<p id="submit-button" class="btn" style="position: absolute; top: 0; right: 0"><i class="fas fa-search"></i></p>
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="card card-table">
+						<div class="card-body booking_card">
+							<div class="table-responsive">
+								<table class="datatable table table-stripped table table-hover table-center mb-0">
+									<thead>
+										<tr>
+											<th style="width: 1%" class="custom-text-center">Mã</th>
+											<th style="width: 20%">Tên Loại Phòng</th>
+											<th style="width: 10%" class="custom-text-center">Giá</th>
+											<th style="width: 10%" class="custom-text-center">Số giường</th>
+											<th style="width: 20%" class="custom-text-center">Hình ảnh</th>
+											<th style="width: 39%">Chức năng</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in RoomType)
+										{
+
+											<tr>
+												<td>@item.RoomTypeId</td>
+												<td>@item.Name</td>
+												<td>@item.Price</td>
+												<td>@item.NumBed</td>
+												<td><img class="img-100w-50h" src="~/img/avatar-1.jpg" /></td>
+												@*<td>
+											<img src="/images/@item.Image" style="width: 100%">
+											</td>*@
+												<td>
+													<a data-menu-id="@item.RoomTypeId" class="btn btn-primary btn-sm menu-details">
+														<i class="fas fa-pencil-alt"></i>
+														Chi tiết
+													</a>
+
+													<a data-menu-id="@item.RoomTypeId" class="btn btn-info btn-sm menu-edit">
+														<i class="fas fa-pencil-alt"></i>
+														Chỉnh sửa
+													</a>
+													<a data-menu-id="@item.RoomTypeId" class="btn btn-danger btn-sm menu-delete">
+														<i class="fas fa-pencil-alt"></i>
+														Xóa
+													</a>
+												</td>
+											</tr>
+										}
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="right-panel col-4 pl-0 pr-0">
+	</div>
+</div>

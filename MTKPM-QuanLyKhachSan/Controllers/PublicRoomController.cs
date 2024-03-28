@@ -10,12 +10,14 @@ namespace MTKPM_QuanLyKhachSan.Controllers
         RoomTypeDao roomTypeDao;
         RoomDao roomDao;
         BookRoomDao bookRoomDao;
+        BookRoomDetailsDao bookRoomDetailsDao;
 
         public PublicRoomController(DatabaseContext context)
         {
             roomTypeDao = new RoomTypeDao(context);
             roomDao = new RoomDao(context);
             bookRoomDao = new BookRoomDao(context);
+            bookRoomDetailsDao = new BookRoomDetailsDao(context);
         }
 
         public IActionResult Index(SearchRoomTypeVM searchRoomTypeVM)
@@ -34,7 +36,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             }
             else
             {
-                ViewBag.rooms = roomTypeDao.GetRoomTypes();
+                ViewBag.rooms = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
             }
 
             return View();
@@ -49,7 +51,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 
         public IActionResult Booking()
         {
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
 
 			if (HttpContext.Session.GetInt32("CustomerId") == null)
 			{
@@ -64,21 +66,64 @@ namespace MTKPM_QuanLyKhachSan.Controllers
         [HttpPost]
         public IActionResult Booking(BookingVM bookingVM)
         {
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
 
-            BookRoom bookRoom = new BookRoom()
+            ViewModels.ExecutionOutcome executeOperation;
+
+            if (roomDao.RoomStatus(bookingVM.RoomId) != 0)
             {
-                CheckIn = bookingVM.ConvertDateTime(bookingVM.CheckIn),
-                CheckOut = bookingVM.ConvertDateTime(bookingVM.CheckOut),
-                CustomerId = (int)HttpContext.Session.GetInt32("CustomerId"),
-                RoomId = bookingVM.RoomId,
-                Note = bookingVM.Note,
-                IsPayment = false,
-            };
+                executeOperation = new ViewModels.ExecutionOutcome()
+                {
+                    Result = false,
+                    Mess = "Phòng đã có người đặt. Vui lòng chọn phòng khác.",
+                };
+            } 
+            else if (int.Parse(bookingVM.Phone) <= 0 || bookingVM.Phone.Length > 10)
+            {
+                executeOperation = new ViewModels.ExecutionOutcome()
+                {
+                    Result = false,
+                    Mess = "Vui lòng nhập đúng định dạng số điện thoại.",
+                };
+            }
+            else if (bookingVM.CheckDate() == false)
+            {
+                executeOperation = new ViewModels.ExecutionOutcome()
+                {
+                    Result = false,
+                    Mess = "Ngày đi phải nhỏ hơn ngày tới.",
+                };
+            }
+            else
+            {
+                BookRoom bookRoom = new BookRoom()
+                {
+                    CustomerId = (int)HttpContext.Session.GetInt32("CustomerId"),
+                    Note = bookingVM.Note,
+                    NumAdult = bookingVM.NumAdult,
+                    NumChildren = bookingVM.NumChildren,
+                };
 
-            bookRoomDao.Booking(bookRoom);
+                bookRoomDao.Booking(bookRoom);
 
-            return Json("Bạn đã đặt phòng thành công.");
+                BookRoomDetails bookRoomDetails = new BookRoomDetails()
+                {
+                    BookRoomId = bookRoom.BookRoomId,
+                    RoomId = bookingVM.RoomId,
+                    CheckIn = bookingVM.ConvertDateTime(bookingVM.CheckIn),
+                    CheckOut = bookingVM.ConvertDateTime(bookingVM.CheckOut),
+                };
+
+                bookRoomDetailsDao.AddBookRoomDetails(bookRoomDetails);
+
+                executeOperation = new ViewModels.ExecutionOutcome()
+                {
+                    Result = true,
+                    Mess = "Đã đặt phòng thành công.",
+                };
+            }
+
+            return Json(executeOperation);
         }
 
         [HttpPost]

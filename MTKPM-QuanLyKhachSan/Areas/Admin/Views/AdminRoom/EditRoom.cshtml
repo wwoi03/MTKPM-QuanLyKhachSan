@@ -1,0 +1,49 @@
+﻿@using MTKPM_QuanLyKhachSan.ViewModels
+@{
+	Layout = null;
+}
+@model RoomVM
+
+<form id="form-edit-room" >
+	<!-- Lưu đặt phòng -->
+	<div class="panel-save d-flex justify-content-between align-items-center">
+		<span>Cập nhật </span>
+
+		<div class="">
+			<input type="submit" value="Lưu" />
+		</div>
+	</div>
+
+	<!-- Form -->
+	<div class="panel-form">
+		<!-- Thông tin -->
+		<div class="panel-form-info">
+			<!-- Tên tài khoản -->
+			<div class="panel-form-item">
+				<h5 class="panel-form-title">Mã</h5>
+				<input class="panel-form-input" type="text" name="RoomId" value="@Model.RoomId" readonly  />
+			</div>
+
+			<!-- Tên tài khoản -->
+			<a class="panel-form-item">
+				<h5 class="panel-form-title">Tên Phòng</h5>
+				<input class="panel-form-input" type="number" name="Name" value="@Model.Name" />
+			</a>
+
+			<a class="panel-form-item">
+				<h5 class="panel-form-title">Trạng thái</h5>
+				<input class="panel-form-input" type="number" name="Status" value="@Model.Status" />
+			</a>
+
+			<a class="panel-form-item">
+				<h5 class="panel-form-title">Loại Phòng</h5>
+				<input class="panel-form-input" type="numebr" name="RoomTypeId" value="@Model.RoomTypeId" />
+			</a>
+
+			<a class="panel-form-item">
+				<h5 class="panel-form-title">Dọn dẹp</h5>
+				<input class="panel-form-input" type="number" name="Tidy" value="@Model.Tidy" />
+			</a>		
+		</div>
+	</div>
+</form>
