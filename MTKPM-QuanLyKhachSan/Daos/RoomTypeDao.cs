@@ -41,5 +41,15 @@ namespace MTKPM_QuanLyKhachSan.Daos
             }
             return roomTypes;
         }
+
+        public List<RoomType> GetRoomTypes1()
+        {
+            return context.RoomTypes.OrderByDescending(p => p.RoomTypeId).ToList();
+        }
+        public void InsertRoomType(RoomType newRoomType)
+        {
+            context.RoomTypes.Add(newRoomType);
+            context.SaveChanges();
+        }
     }
 }

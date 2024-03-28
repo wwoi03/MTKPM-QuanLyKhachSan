@@ -1,0 +1,79 @@
+﻿@using MTKPM_QuanLyKhachSan.ViewModels
+@{
+	Layout = null;
+}
+@model RoomVM
+
+<form id="form-details-account">
+	<!-- Lưu đặt phòng -->
+	<div class="panel-save d-flex justify-content-between align-items-center">
+		<span>Chi tiết </span>
+	</div>
+
+	<!-- Form -->
+	<div class="panel-form">
+		<!-- Thông tin -->
+		<div class="panel-form-info">
+			<!-- Tên tài khoản -->
+			<div class="panel-form-item">
+				<h5 class="panel-form-title">Mã</h5>
+				<input class="panel-form-input" type="text" name="Name" value="@Model.RoomId" readonly />
+			</div>
+
+			<!-- Tên tài khoản -->
+			<a class="panel-form-item">
+				<h5 class="panel-form-title">Tên Phòng</h5>
+				<input class="panel-form-input" type="text" name="Username" value="@Model.Name" readonly />
+			</a>
+
+			<a class="panel-form-item">
+				<h5 class="panel-form-title">Trạng thái</h5>
+				<input class="panel-form-input" type="text" name="Username" value="@Model.Status" readonly />
+			</a>
+
+			<a class="panel-form-item">
+				<h5 class="panel-form-title">Loại Phòng</h5>
+				<input class="panel-form-input" type="text" name="Username" value="@Model.RoomTypeId" readonly />
+			</a>
+
+			<a class="panel-form-item">
+				<h5 class="panel-form-title">Dọn dẹp</h5>
+				<input class="panel-form-input" type="text" name="Username" value="@Model.Tidy" readonly />
+			</a>
+
+			<!-- Mật khẩu -->
+			
+
+				@*<!-- Tên tài khoản -->
+				<div class="panel-form-item">
+				<h5 class="panel-form-title">Giới tính</h5>
+				<input class="panel-form-input" type="text" />
+				</div>
+
+				<!-- Tên tài khoản -->
+				<div class="panel-form-item">
+				<h5 class="panel-form-title">Ngày sinh</h5>
+				<input class="panel-form-input" type="text" />
+				</div>
+
+				<!-- Tên tài khoản -->
+				<div class="panel-form-item">
+				<h5 class="panel-form-title">Số điện thoại</h5>
+				<input class="panel-form-input" type="text" />
+				</div>
+
+				<!-- Tên tài khoản -->
+				<div class="panel-form-item">
+				<h5 class="panel-form-title">Địa chỉ</h5>
+				<input class="panel-form-input" type="text" />
+				</div>
+
+				<!-- Tên tài khoản -->
+				<div class="panel-form-item">
+				<h5 class="panel-form-title">Email</h5>
+				<input class="panel-form-input" type="text" />
+				</div>*@
+			</div>
+		</div>
+	</div>
+</form>

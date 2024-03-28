@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Strategy;
 using MTKPM_QuanLyKhachSan.Common.Config;
 using MTKPM_QuanLyKhachSan.Models;
 
@@ -15,6 +16,23 @@ builder.Services.AddDbContext<DatabaseContext>(x => x.UseSqlServer(builder.Confi
 
 // Kích hoạt Session
 builder.Services.AddSession();
+builder.Services.AddScoped<Under5HundredRoom>();
+builder.Services.AddScoped<DoubleRooms>();
+builder.Services.AddScoped<StandardRooms>();
+
+builder.Services.AddScoped<Under5HundredRoom>();
+builder.Services.AddScoped<DoubleRooms>();
+builder.Services.AddScoped<StandardRooms>();
+builder.Services.AddSingleton<Func<string, StrategyDatabase>>(serviceProvider => key =>
+{
+    return key switch
+    {
+        "LuxuryRooms" => serviceProvider.GetService<Under5HundredRoom>(),
+        "DoubleRooms" => serviceProvider.GetService<DoubleRooms>(),
+        "StandardRooms" => serviceProvider.GetService<StandardRooms>(),
+        _ => throw new KeyNotFoundException()
+    };
+});
 
 var app = builder.Build();
 

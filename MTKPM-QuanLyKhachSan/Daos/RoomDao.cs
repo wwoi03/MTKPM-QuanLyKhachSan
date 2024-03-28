@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MTKPM_QuanLyKhachSan.Common;
 using MTKPM_QuanLyKhachSan.Models;
+using MTKPM_QuanLyKhachSan.ViewModels;
 using System.Linq;
 
 namespace MTKPM_QuanLyKhachSan.Daos
@@ -132,6 +133,26 @@ namespace MTKPM_QuanLyKhachSan.Daos
             Room room = GetRoomById(roomId);
             room.Status = (int)RoomStatusType.RoomAvailable;
             context.Rooms.Update(room);
+        }
+
+        public void InsertRoom(Room newRoom)
+        {
+            context.Rooms.Add(newRoom);
+            context.SaveChanges();
+        }
+        public void DeleteRoom(int roomId)
+        {
+            context.Rooms.Remove(GetRoomById(roomId));
+            context.SaveChanges();
+        }
+        public void DetailRoom(RoomVM roomVM)
+        {
+            context.SaveChanges();
+        }
+        public void EditRoom(Room room)
+        {
+            context.Rooms.Update(room);
+            context.SaveChanges();
         }
     }
 }
