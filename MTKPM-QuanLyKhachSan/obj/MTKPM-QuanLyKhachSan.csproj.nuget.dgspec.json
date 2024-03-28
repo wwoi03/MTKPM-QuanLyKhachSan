@@ -45,6 +45,10 @@
               "target": "Package",
               "version": "[1.11.57, )"
             },
+            "Microsoft.AspNetCore.Authentication.Facebook": {
+              "target": "Package",
+              "version": "[6.0.28, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.15, )"

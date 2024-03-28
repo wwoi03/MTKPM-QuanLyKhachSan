@@ -7,6 +7,9 @@ using MTKPM_QuanLyKhachSan.ViewModels;
 using System.Diagnostics;
 using System.Drawing.Drawing2D;
 using System;
+using MTKPM_QuanLyKhachSan.DesignPattern.Singleton;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Strategy;
+using Humanizer.Localisation.TimeToClockNotation;
 
 namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 {

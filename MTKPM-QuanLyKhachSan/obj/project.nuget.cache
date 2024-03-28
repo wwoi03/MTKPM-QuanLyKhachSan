@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XY/7UsHNnqfkjeOcJ4VDX4ojTKSnsxcTCUcFHsrwxqog3g6wcuRGs50AQuk8QRy1eTss/kHf12mHJ42xGzUlvw==",
+  "dgSpecHash": "PMo7Q3D3UtUgwt3AVmDgZ27y3jauv3+atXhhZg0RSlxu4JzopRbOnLtkSPTpFgerllAlI86bypzk9h2PPDgufQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\diepm\\Desktop\\MTKPM_Quản lý Khách Sạn\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan.csproj",
   "expectedPackageFiles": [
@@ -60,6 +60,7 @@
     "C:\\Users\\diepm\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\diepm\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\diepm\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
+    "C:\\Users\\diepm\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\6.0.28\\microsoft.aspnetcore.authentication.facebook.6.0.28.nupkg.sha512",
     "C:\\Users\\diepm\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.0\\microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",
     "C:\\Users\\diepm\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
     "C:\\Users\\diepm\\.nuget\\packages\\microsoft.build\\17.3.2\\microsoft.build.17.3.2.nupkg.sha512",

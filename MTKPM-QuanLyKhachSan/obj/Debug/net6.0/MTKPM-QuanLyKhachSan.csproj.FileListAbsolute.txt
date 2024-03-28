@@ -833,3 +833,4 @@ C:\Users\diepm\Desktop\MTKPM_Quản lý Khách Sạn\MTKPM-QuanLyKhachSan\MTKPM-
 C:\Users\diepm\Desktop\MTKPM_Quản lý Khách Sạn\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0\MTKPM-QuanLyKhachSan.pdb
 C:\Users\diepm\Desktop\MTKPM_Quản lý Khách Sạn\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0\MTKPM-QuanLyKhachSan.genruntimeconfig.cache
 C:\Users\diepm\Desktop\MTKPM_Quản lý Khách Sạn\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\obj\Debug\net6.0\ref\MTKPM-QuanLyKhachSan.dll
+C:\Users\diepm\Desktop\MTKPM_Quản lý Khách Sạn\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Facebook.dll

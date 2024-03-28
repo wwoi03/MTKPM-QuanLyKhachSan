@@ -19,15 +19,22 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 	{
 		RoomDao roomDao;
 		private StrategyDatabase roomStrategy;
+		private readonly Under5HundredRoom _under5HundredRoom;
+		private readonly DoubleRooms _doubleRoom;
+		private readonly StandardRooms _standardRooms;
 		//public AdminRoomController(DatabaseContext context)
 		//{
 		//	roomDao = new RoomDao(context);
 		//}
-		public AdminRoomController(DatabaseContext context)
+		public AdminRoomController(DatabaseContext context , Under5HundredRoom under5HundredRoom, DoubleRooms doubleRoom, StandardRooms standardRooms)
 		{
-			roomStrategy = new Under5HundredRoom();
+			//roomStrategy = new Under5HundredRoom();
+			//roomStrategy = new DoubleRooms();
+			//roomStrategy = new StandardRooms();
 			roomDao = new RoomDao(context);
-			
+			_under5HundredRoom = under5HundredRoom;
+			_doubleRoom = doubleRoom;
+			_standardRooms = standardRooms;
 		}
 		public IActionResult Index()
 		{
@@ -41,40 +48,22 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 		}
 		public IActionResult LuxuryRooms(int roomId)
 		{
-			var rooms = roomStrategy.RoomStrategy(roomId);
+			var rooms = _under5HundredRoom.RoomStrategy(roomId);
 			ViewBag.Room = rooms;
-			return View();
+			return View();			
 		}
 		public IActionResult DoubleRooms (int roomId)
 		{
-			if (roomId == 0)
-			{
-				var rooms = (from item in SingletonDatabase.Instance.Rooms orderby item.RoomId descending where item.RoomTypeId == 2 select item).ToList();
-				ViewBag.Room = rooms;
-				return View();
-			}
-			else
-			{
-				var rooms = (from item in SingletonDatabase.Instance.Rooms orderby item.RoomId descending where item.RoomTypeId == 2 && item.RoomTypeId == roomId select item).ToList();
-				ViewBag.Room = rooms;
-				return View();
-			}
+			var rooms = _doubleRoom.RoomStrategy(roomId);
+			ViewBag.Room = rooms;
+			return View();	
 		}
 
 		public IActionResult StandardRooms(int roomId)
 		{
-			if (roomId == 0)
-			{
-				var rooms = (from item in SingletonDatabase.Instance.Rooms orderby item.RoomId descending where item.RoomTypeId == 3 select item).ToList();
-				ViewBag.Room = rooms;
-				return View();
-			}
-			else
-			{
-				var rooms = (from item in SingletonDatabase.Instance.Rooms orderby item.RoomId descending where item.RoomTypeId == 3 && item.RoomTypeId == roomId select item).ToList();
-				ViewBag.Room = rooms;
-				return View();
-			}
+			var rooms = _standardRooms.RoomStrategy(roomId);
+			ViewBag.Room = rooms;
+			return View();		
 		}
 
 		[HttpGet]
