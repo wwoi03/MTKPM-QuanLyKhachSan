@@ -1,4 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.ProxyProtected.Services;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton;
+using MTKPM_QuanLyKhachSan.Common;
+using MTKPM_QuanLyKhachSan.Common.Config;
 using MTKPM_QuanLyKhachSan.Daos;
 using MTKPM_QuanLyKhachSan.Models;
 using MTKPM_QuanLyKhachSan.ViewModels;
@@ -7,25 +12,15 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/[controller]/[action]")]
-    public class AdminRentCheckOutController : Controller
+    public class AdminRentCheckOutController : Controller, IRentCheckOut
     {
-        RoomTypeDao roomTypeDao;
-        RoomDao roomDao;
-        BookRoomDao bookRoomDao;
-        BookRoomDetailsDao bookRoomDetailsDao;
-        BillDao billDao;
-        OrderDao orderDao;
-        ServiceDao serviceDao;
+        private RentCheckOutFacede rentCheckOutFacede;
+        private readonly IService myService;
 
-        public AdminRentCheckOutController(DatabaseContext context)
+        public AdminRentCheckOutController(DatabaseContext context, IService myService)
         {
-            roomTypeDao = new RoomTypeDao(context);
-            roomDao = new RoomDao(context);
-            bookRoomDao = new BookRoomDao(context);
-            bookRoomDetailsDao = new BookRoomDetailsDao(context);
-            billDao = new BillDao(context);
-            orderDao = new OrderDao(context);
-            serviceDao = new ServiceDao(context);
+            this.myService = myService;
+            rentCheckOutFacede = new RentCheckOutFacede(context, myService);
         }
 
         public IActionResult Index()
@@ -36,17 +31,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // danh sách phòng chờ
         public IActionResult RoomWait()
         {
-            var roomWaits = roomDao.GetEmptyRooms();
-
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
-            ViewBag.roomWaits = roomWaits.Select(roomWait => new RoomWaitVM
-            {
-                RoomId = roomWait.RoomId,
-                RoomTypeId = roomWait.RoomTypeId,
-                RoomName = roomWait.Name,
-                Status = roomWait.Status,
-                Tidy = roomWait.Tidy,
-            });
+            ViewBag.roomTypes = rentCheckOutFacede.RoomTypeDao.GetRoomTypes(myService.GetHotelId());
+            ViewBag.roomWaits = rentCheckOutFacede.RoomWait();
 
             return PartialView();
         }
@@ -54,21 +40,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // danh sách phòng đang thuê
         public IActionResult RoomRent()
         {
-            var roomRents = bookRoomDetailsDao.GetBookRoomDetailsReceive();
-
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
-            ViewBag.roomRents = roomRents.Select(roomRent => new RoomRentVM
-			{
-                BookRoomDetailsId = roomRent.BookRoomDetailsId,
-                RoomId = roomRent.RoomId,
-                RoomTypeId = roomRent.Room.RoomTypeId,
-                RoomName = roomRent.Room.Name,
-                Tidy = roomRent.Room.Tidy,
-                Note = roomRent.BookRoom.Note,
-                CheckIn = roomRent.CheckIn,
-                TotalPrice = orderDao.CalcOrderPrice(roomRent.BookRoomDetailsId) + roomRent.Room.RoomType.Price,
-                QuantityMenu = orderDao.CalcOrderQuantity(roomRent.BookRoomDetailsId),
-            }).ToList();
+            ViewBag.roomTypes = rentCheckOutFacede.RoomTypeDao.GetRoomTypes(myService.GetHotelId());
+            ViewBag.roomRents = rentCheckOutFacede.RoomRent();
 
             return PartialView();
         }
@@ -76,8 +49,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // danh sách phòng cần dọn
         public IActionResult RoomClean()
         {
-            ViewBag.roomCleans = roomDao.GetCleanRooms();
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+            ViewBag.roomCleans = rentCheckOutFacede.RoomDao.GetCleanRooms(myService.GetHotelId());
+            ViewBag.roomTypes = rentCheckOutFacede.RoomTypeDao.GetRoomTypes(myService.GetHotelId());
 
             return PartialView();
         }
@@ -85,8 +58,8 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         // lịch sử phòng
         public IActionResult RoomHistory()
         {
-            ViewBag.roomHistory = billDao.GetBills();
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+            ViewBag.roomHistory = rentCheckOutFacede.BillDao.GetBills(myService.GetHotelId());
+            ViewBag.roomTypes = rentCheckOutFacede.RoomTypeDao.GetRoomTypes(myService.GetHotelId());
 
             return PartialView();
         }
@@ -95,57 +68,124 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult CleanRoom(int roomId)
         {
-            roomDao.CleanRoom(roomId);
-            return RedirectToAction("RoomClean", "AdminRentCheckOut", new { area = "Admin" });
+            ExecutionOutcome executionOutcome = rentCheckOutFacede.CleanRoom(roomId);
+
+            if (executionOutcome.Result)
+                return RedirectToAction("RoomClean", "AdminRentCheckOutProxy", new { area = "Admin" });
+
+            return PartialView(executionOutcome);
         }
 
         // yêu cầu dọn phòng
         [HttpPost]
         public IActionResult RequestCleanRoom(int roomId)
         {
-            roomDao.RequestCleanRoom(roomId);
+            ExecutionOutcome executionOutcome = rentCheckOutFacede.RequestCleanRoom(roomId);
 
-            Room room = roomDao.GetRoomById(roomId);
+            if (executionOutcome.Result)
+            {
+                Room room = rentCheckOutFacede.RoomDao.GetRoomById(roomId);
 
-            if (room.Status == 1) 
-                return RedirectToAction("RoomRent", "AdminRentCheckOut", new { area = "Admin" });
-            else
-                return RedirectToAction("RoomWait", "AdminRentCheckOut", new { area = "Admin" });
+                if ((RoomStatusType)room.Status == RoomStatusType.RoomOccupied)
+                    return RedirectToAction("RoomRent", "AdminRentCheckOutProxy", new { area = "Admin" });
+                else
+                    return RedirectToAction("RoomWait", "AdminRentCheckOutProxy", new { area = "Admin" });
+            }
+                
+            return PartialView(executionOutcome); 
         }
 
         // đổi phòng
         [HttpGet]
         public IActionResult ChangeRoom(int bookRoomDetailsId)
         {
-            ViewBag.roomChange = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
-            ViewBag.roomWaits = roomDao.GetEmptyRooms();
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+            ViewBag.roomChange = rentCheckOutFacede.BookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
+            ViewBag.roomWaits = rentCheckOutFacede.RoomDao.GetEmptyRooms(myService.GetHotelId());
+            ViewBag.roomTypes = rentCheckOutFacede.RoomTypeDao.GetRoomTypes(myService.GetHotelId());
 
             return PartialView();
         }
 
         // đổi phòng
         [HttpPost]
-        public IActionResult ChangeRoom(int roomIdOld, int roomIdNew, bool isCleanRoom = false)
+        public IActionResult ChangeRoom(int bookRoomDetailsIdint, int roomIdOld, int roomIdNew, bool isCleanRoom = false)
         {
-            bookRoomDetailsDao.ChangeRoom(roomIdOld, roomIdNew);
+            ExecutionOutcome executionOutcome = rentCheckOutFacede.ChangeRoom(bookRoomDetailsIdint, roomIdOld, roomIdNew, isCleanRoom);
 
-            if (isCleanRoom)
-            {
-                roomDao.CleanRoom(roomIdNew);
-            }
-
-            return RedirectToAction("RoomRent", "AdminRentCheckOut", new { area = "Admin" });
+            if (executionOutcome.Result)
+                return RedirectToAction("RoomRent", "AdminRentCheckOutProxy", new { area = "Admin" });
+                
+            return PartialView(executionOutcome);
         }
 
         // thêm menu
         [HttpGet]
         public IActionResult OrderMenu(int bookRoomDetailsId)
 		{
-            ViewBag.bookRoomDetails = bookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
-            ViewBag.services = serviceDao.GetServices();
+            ViewBag.bookRoomDetails = rentCheckOutFacede.BookRoomDetailsDao.GetBookRoomDetailsById(bookRoomDetailsId);
+            ViewBag.services = rentCheckOutFacede.ServiceDao.GetServices();
 
-            return PartialView();
+            OrderMenuAdminVM orderMenuAdminVM = rentCheckOutFacede.OrderMenu(bookRoomDetailsId);
+
+            return PartialView(orderMenuAdminVM);
 		}
+
+        // thêm menu
+        [HttpPost]
+        public IActionResult OrderMenu(int bookRoomDetailsId, List<Order> orders)
+        {
+            ExecutionOutcome executionOutcome = rentCheckOutFacede.OrderMenu(bookRoomDetailsId, orders);
+
+            return PartialView(executionOutcome);
+        }
+
+        // chỉnh sửa phòng
+        [HttpGet]
+        public IActionResult EditBookRoomDetails(int bookRoomDetailsId)
+        {
+            BookRoomDetailsAdminVM bookRoomDetailsAdminVM = rentCheckOutFacede.GetBookRoomDetails(bookRoomDetailsId);
+
+            return PartialView(bookRoomDetailsAdminVM);
+        }
+
+        // chỉnh sửa phòng
+        [HttpPost]
+        public IActionResult EditBookRoomDetails(BookRoomDetailsAdminVM bookRoomDetailsAdminVM)
+        {
+            ExecutionOutcome executionOutcome = rentCheckOutFacede.EditBookRoomDetails(bookRoomDetailsAdminVM);
+
+            return Json(executionOutcome);
+        }
+
+        [HttpPost]
+        public IActionResult CheckIn(int roomId)
+        {
+            ExecutionOutcome executionOutcome = rentCheckOutFacede.CheckIn(roomId);
+
+            return Json(executionOutcome);
+        }
+
+        public IActionResult CheckOut(int bookRoomDetailsId)
+        {
+            CheckOutVM checkOutVM = rentCheckOutFacede.CheckOut(bookRoomDetailsId);
+
+            return PartialView(checkOutVM);
+        }
+
+        [HttpPost]
+        public IActionResult CheckOut(CheckOutVM checkOutVM)
+        {
+            ExecutionOutcome executionOutcome = rentCheckOutFacede.CheckOut(checkOutVM);
+
+            return Json(executionOutcome);
+        }
+
+        [HttpPost]
+        public IActionResult CancelBooking(int roomId)
+        {
+            ExecutionOutcome executionOutcome = rentCheckOutFacede.CancelBooking(roomId);
+
+            return Json(executionOutcome);
+        }
     }
 }

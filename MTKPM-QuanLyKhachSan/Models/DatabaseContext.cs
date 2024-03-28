@@ -4,6 +4,18 @@ namespace MTKPM_QuanLyKhachSan.Models
 {
     public class DatabaseContext : DbContext
     {
+        /*private DatabaseContext _instance;
+
+        public DatabaseContext GetInstance(DbContextOptions options)
+        {
+            if (_instance == null)
+            {
+                _instance = new DatabaseContext(options);
+                Console.WriteLine("Init");
+            }
+            return _instance;
+        }*/
+
         public DatabaseContext(DbContextOptions options) : base(options)
         {
 
@@ -11,8 +23,10 @@ namespace MTKPM_QuanLyKhachSan.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<EmployeeRole>()
-                .HasKey(o => new { o.RoleId, o.EmployeeId });
+			modelBuilder.Entity<PermissionGroup>()
+				.HasKey(o => new { o.PermissionId, o.RoleId });
+            modelBuilder.Entity<EmployeePermission>()
+                .HasKey(o => new { o.PermissionId, o.EmployeeId });
         }
 
         public DbSet<Employee> Employees { get; set; }
@@ -26,6 +40,9 @@ namespace MTKPM_QuanLyKhachSan.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<EmployeeRole> EmployeeRoles { get; set; }
+        public DbSet<Hotel> Hotels { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<PermissionGroup> PermissionGroups { get; set; }
+        public DbSet<EmployeePermission> EmployeePermissions { get; set; }
     }
 }

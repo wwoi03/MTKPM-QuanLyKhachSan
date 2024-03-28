@@ -36,7 +36,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             }
             else
             {
-                ViewBag.rooms = roomTypeDao.GetRoomTypes();
+                ViewBag.rooms = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
             }
 
             return View();
@@ -51,7 +51,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 
         public IActionResult Booking()
         {
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
 
 			if (HttpContext.Session.GetInt32("CustomerId") == null)
 			{
@@ -66,7 +66,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
         [HttpPost]
         public IActionResult Booking(BookingVM bookingVM)
         {
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
 
             ViewModels.ExecutionOutcome executeOperation;
 

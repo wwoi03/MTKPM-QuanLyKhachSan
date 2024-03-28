@@ -1,4 +1,95 @@
-﻿$(document).ready(function () {
+﻿// alert success
+function success({ title = "Thành công", text = "", funcConfirm = null, funcCancel = null, showCancel = true }) {
+    Swal.fire({
+        title: title,
+        text: text,
+        icon: "success",
+        confirmButtonColor: "#1577BD",
+        cancelButtonColor: "#999999",
+        showCancelButton: showCancel,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            funcConfirm();
+        } else {
+            funcCancel();
+        }
+    });
+}
+
+// alert comfirm
+function confirm({ title = "Xác nhận", text = "", funcConfirm = null, funcCancel = null }) {
+    Swal.fire({
+        title: title,
+        text: text,
+        confirmButtonColor: "#1577BD",
+        cancelButtonColor: "#999999",
+        showCancelButton: true,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            funcConfirm();
+        } else {
+            funcCancel();
+        }
+    });
+}
+
+// alert error
+function error({ title = "Thành bại" }) {
+    Swal.fire({
+        title: title,
+        icon: "error",
+        confirmButtonColor: "#1577BD",
+    })
+}
+
+// Toast function
+function toast({ title = "", message = "", type = "info", duration = 3000 }) {
+    const main = document.getElementById("custom-toast");
+    if (main) {
+        const toast = document.createElement("div");
+
+        // Auto remove toast
+        const autoRemoveId = setTimeout(function () {
+            main.removeChild(toast);
+        }, duration + 1000);
+
+        // Remove toast when clicked
+        toast.onclick = function (e) {
+            if (e.target.closest(".custom-toast__close")) {
+                main.removeChild(toast);
+                clearTimeout(autoRemoveId);
+            }
+        };
+
+        const icons = {
+            success: "fas fa-check-circle",
+            info: "fas fa-info-circle",
+            warning: "fas fa-exclamation-circle",
+            error: "fas fa-exclamation-circle"
+        };
+        const icon = icons[type];
+        const delay = (duration / 1000).toFixed(2);
+
+        toast.classList.add("custom-toast", `custom-toast--${type}`);
+        toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards`;
+
+        toast.innerHTML = `
+                    <div class="custom-toast__icon">
+                        <i class="${icon}"></i>
+                    </div>
+                    <div class="custom-toast__body">
+                        <h3 class="custom-toast__title">${title}</h3>
+                        <p class="custom-toast__msg">${message}</p>
+                    </div>
+                    <div class="custom-toast__close">
+                        <i class="fas fa-times"></i>
+                    </div>
+                `;
+        main.appendChild(toast);
+    }
+}
+
+$(document).ready(function () {
     // Datepicker
     jQuery.datetimepicker.setLocale('vi');
 
@@ -82,15 +173,18 @@
             var dropdownMenu = card.find('.custom-dropdown-menu');
             var menuActive = $('.custom-dropdown-menu.active');
 
-            // đóng menu hiện tại đang mở
-            if (menuActive.length) {
-                menuActive.removeClass('active');
-            }
+            
 
             // kiểm tra menu đang bấm có đang mở
             if (dropdownMenu.hasClass('active')) {
                 dropdownMenu.removeClass('active');
             } else {
+                // đóng menu hiện tại đang mở
+                if (menuActive.length) {
+                    menuActive.removeClass('active');
+                }
+
+                // mở menu đang bấm
                 dropdownMenu.addClass('active');
             }
         });

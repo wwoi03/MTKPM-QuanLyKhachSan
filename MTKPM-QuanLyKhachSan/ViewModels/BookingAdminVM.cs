@@ -25,24 +25,24 @@ namespace MTKPM_QuanLyKhachSan.ViewModels
 
         public string Note { get; set; } = "";
 
-        public List<Room> Rooms { get; set; }
+        public List<Room> Rooms { get; set; } = new List<Room>();
+        public List<int> RoomIds { get; set; } = new List<int>();
 
         public DateTime ConvertDateTime(string dateTimeStr)
         {
-            string format = "dd.MM.yyyy HH:mm";
+            string format = "yyyy-MM-ddTHH:mm";
+            DateTime dateTime = DateTime.ParseExact(dateTimeStr, format, null);
+            return dateTime;
+        }
 
-            // Sử dụng ParseExact
-            try
-            {
-                DateTime result = DateTime.ParseExact(dateTimeStr, format, System.Globalization.CultureInfo.InvariantCulture);
-                return result;
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Chuỗi không hợp lệ");
-            }
+        // Hàm kiểm tra xem một chuỗi có đúng với định dạng datetime-local không
+        public static bool IsDateTimeLocalValid(string dateTimeLocalString)
+        {
+            // Định dạng của chuỗi đầu vào từ input type="datetime-local"
+            string format = "yyyy-MM-ddTHH:mm";
 
-            return DateTime.MinValue;
+            // Kiểm tra chuỗi có đúng với định dạng datetime-local không
+            return DateTime.TryParseExact(dateTimeLocalString, format, null, System.Globalization.DateTimeStyles.None, out _);
         }
 
         // kiểm tra ngày trả bé hơn ngày nhận
@@ -56,14 +56,44 @@ namespace MTKPM_QuanLyKhachSan.ViewModels
         // Kiểm tra ràng buộc
         public bool Validation(out string error)
         {
-            if (int.Parse(Phone) <= 0 || Phone.Length > 10)
+            if (Phone.Length <= 0 || Phone.Length > 10)
             {
                 error = "Vui lòng nhập đúng định dạng số điện thoại.";
+                return false;
+            }
+            if (CIC.Length <= 0 || CIC.Length > 20)
+            {
+                error = "Vui lòng nhập đúng định dạng căn cước công dân.";
+                return false;
+            }
+            else if (string.IsNullOrEmpty(CheckIn))
+            {
+                error = "Vui lòng nhập ngày nhận phòng";
+                return false;
+            }
+            else if (string.IsNullOrEmpty(CheckOut))
+            {
+                error = "Vui lòng nhập ngày trả phòng";
+                return false;
+            }
+            else if (!IsDateTimeLocalValid(CheckIn))
+            {
+                error = "Ngày nhận phòng không đúng định dạng";
+                return false;
+            }
+            else if (!IsDateTimeLocalValid(CheckOut))
+            {
+                error = "Ngày nhận phòng không đúng định dạng";
                 return false;
             }
             else if (CheckDate() == false)
             {
                 error = "Ngày đi phải nhỏ hơn ngày tới.";
+                return false;
+            } 
+            else if (RoomIds.Count == 0 || Rooms.Count > 0)
+            {
+                error = "Vui lòng thêm phòng thuê.";
                 return false;
             }
             else

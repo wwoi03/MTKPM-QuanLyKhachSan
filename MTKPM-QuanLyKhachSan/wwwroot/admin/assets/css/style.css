@@ -6830,6 +6830,13 @@ h3.page-sub-title {
 .panel-form-item {
     padding-top: 18px;
     padding-bottom: 12px;
+    position: relative;
+}
+
+.panel-form-icon {
+    position: absolute;
+    right: 0;
+    font-size: 16px;
 }
 
 .panel-form-title {
@@ -6852,6 +6859,7 @@ h3.page-sub-title {
 
 .panel-form-height-item {
     width: 50%;
+    position: relative;
 }
 
     .panel-form-height-item:first-child {
@@ -6953,7 +6961,21 @@ h3.page-sub-title {
     background-color: #009688;
     border-radius: 20px;
     text-align: center;
+    cursor: pointer;
 }
+
+    .panel-form-roomtype-render-item.choose {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: default;
+    }
+
+    .panel-form-roomtype-render-item.choose i {
+        font-size: 16px;
+        cursor: pointer;
+    }
+
 
     .panel-form-roomtype-render-item.active::after {
         position: absolute;
@@ -7103,6 +7125,11 @@ h3.page-sub-title {
             border-radius: 4px;
         }
 
+.mess-validation {
+    font-size: 15px;
+    color: red;
+    margin-bottom: -14px;
+}
 /*--------------------------------------------Thuê trả - Phòng ------------------------------*/
 .book-room-details-tabs {
     display: none;
@@ -7437,11 +7464,21 @@ h3.page-sub-title {
     margin-bottom: 16px;
 }
 
-    .setting-account-item input {
-        width: 16px;
-        height: 16px;
-        margin-right: 5px;
+    .setting-account-item * {
+        cursor: pointer !important;
     }
+
+.setting-account-item-title {
+    border-bottom: 1px solid #949494;
+    border-top: 1px solid #949494;
+    padding: 12px 0;
+}
+
+.setting-account-item input {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
 
     .setting-account-item label {
         font-weight: 500 !important;
@@ -8011,4 +8048,162 @@ ul.custom-tabs {
     color: white;
     font-size: 14px;
     z-index: 99999999999;
+}
+
+/* ======= Toast message ======== */
+
+#custom-toast {
+    position: fixed !important;
+    top: 32px !important;
+    right: 32px !important;
+    z-index: 999999 !important;
+}
+
+.custom-toast {
+    display: flex !important;
+    align-items: center !important;
+    background-color: #fff !important;
+    border-radius: 2px !important;
+    padding: 20px 0 !important;
+    min-width: 400px !important;
+    max-width: 450px !important;
+    border-left: 4px solid !important;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08) !important;
+    transition: all linear 0.3s !important;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0 !important;
+        transform: translateX(calc(100% + 32px));
+    }
+
+    to {
+        opacity: 1 !important;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+.custom-toast--success {
+    border-color: #47d864 !important;
+}
+
+    .custom-toast--success .custom-toast__icon {
+        color: #47d864 !important;
+    }
+
+.custom-toast--info {
+    border-color: #2f86eb !important;
+}
+
+    .custom-toast--info .custom-toast__icon {
+        color: #2f86eb !important;
+    }
+
+.custom-toast--warning {
+    border-color: #ffc021 !important;
+}
+
+    .custom-toast--warning .custom-toast__icon {
+        color: #ffc021 !important;
+    }
+
+.custom-toast--error {
+    border-color: #ff623d !important;
+}
+
+    .custom-toast--error .custom-toast__icon {
+        color: #ff623d !important;
+    }
+
+.custom-toast + .custom-toast {
+    margin-top: 24px !important;
+}
+
+.custom-toast__icon {
+    font-size: 24px !important;
+}
+
+.custom-toast__icon,
+.custom-toast__close {
+    padding: 0 16px !important;
+}
+
+.custom-toast__body {
+    flex-grow: 1 !important;
+}
+
+.custom-toast__title {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #333 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.custom-toast__msg {
+    font-size: 14px !important;
+    color: #888 !important;
+    margin: 6px 0 0 0 !important ;
+    line-height: 1.5 !important;
+}
+
+.custom-toast__close {
+    font-size: 20px !important;
+    color: rgba(0, 0, 0, 0.3) !important;
+    cursor: pointer !important;
+}
+
+/* My menu */
+.custom-my-menu-container {
+    margin: 16px;
+}
+
+.custom-my-menu-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-my-menu-th, .custom-my-menu-td {
+    text-align: left;
+    padding: 8px;
+}
+
+    .custom-my-menu-td.delete-order div {
+        cursor: pointer;
+        color: #333;
+        display: inline-block;
+        padding: 8px 12px;
+    }
+
+        .custom-my-menu-td.delete-order div:hover {
+            background-color: #F2F2F2;
+        }
+
+    .custom-my-menu-td .dot-icon {
+    }
+
+.custom-my-menu-qty-soda {
+    padding: 0 8px;
+}
+
+.custom-my-menu-th {
+    background-color: #f2f2f2;
+}
+
+.custom-my-menu-action-btn {
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+}
+
+.custom-my-menu-total-row {
+    font-weight: bold;
 }

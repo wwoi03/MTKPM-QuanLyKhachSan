@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MTKPM_QuanLyKhachSan.Common;
 using MTKPM_QuanLyKhachSan.Models;
+using MTKPM_QuanLyKhachSan.ViewModels;
 using System.Linq;
 
 namespace MTKPM_QuanLyKhachSan.Daos
@@ -26,25 +27,48 @@ namespace MTKPM_QuanLyKhachSan.Daos
             return context.Rooms.FirstOrDefault(i => i.RoomId == roomId).Status;
         }
 
-        // lấy danh sách phòng
-        public List<Room> GetRooms()
+        // kiểm tra phòng trống
+        public bool IsRoomAvailable(int roomId)
         {
-            return context.Rooms.OrderByDescending(i => Convert.ToInt32(i.Name)).ToList();
+            var status = RoomStatus(roomId);
+
+            if ((RoomStatusType)status == RoomStatusType.RoomAvailable)
+               return true;
+            return false;
+        }
+
+        // lấy danh sách phòng
+        public List<Room> GetRooms(int? hotelId)
+        {
+            return context.Rooms
+                .Where(i => i.HotelId == hotelId)
+                .OrderByDescending(i => Convert.ToInt32(i.Name))
+                .ToList();
         }
 
         // lấy danh sách phòng trống
-        public List<Room> GetEmptyRooms()
+        public List<Room> GetEmptyRooms(int? hotelId)
         {
-            return context.Rooms.
-                Where(i => (RoomStatusType)i.Status == RoomStatusType.RoomAvailable || (RoomStatusType)i.Status == RoomStatusType.RoomPending).
-                Include(i => i.RoomType).ToList();
+            return context.Rooms
+                .Where(i => (RoomStatusType)i.Status == RoomStatusType.RoomAvailable && i.HotelId == hotelId)
+                .Include(i => i.RoomType)
+                .ToList();
+        }
+
+        // lấy danh sách phòng trống
+        public List<Room> GetRoomWaits(int? hotelId)
+        {
+            return context.Rooms
+                .Where(i => (RoomStatusType)i.Status == RoomStatusType.RoomAvailable || (RoomStatusType)i.Status == RoomStatusType.RoomPending && i.HotelId == hotelId)
+                .Include(i => i.RoomType)
+                .ToList();
         }
 
         // lấy danh sách phòng cần dọn
-        public List<Room> GetCleanRooms()
+        public List<Room> GetCleanRooms(int? hotelId)
         {
             return context.Rooms
-                .Where(i => i.Tidy == 1)
+                .Where(i => i.Tidy == 1 && i.HotelId == hotelId)
                 .OrderByDescending(i => Convert.ToInt32(i.Name))
                 .ToList();
         }
@@ -55,7 +79,6 @@ namespace MTKPM_QuanLyKhachSan.Daos
             Room room = GetRoomById(roomId);
             room.Tidy = 0;
             context.Rooms.Update(room);
-            context.SaveChanges();
         }
 
         // dọn phòng
@@ -64,13 +87,72 @@ namespace MTKPM_QuanLyKhachSan.Daos
             Room room = GetRoomById(roomId);
             room.Tidy = 1;
             context.Rooms.Update(room);
-            context.SaveChanges();
         }
 
         // lấy phòng theo id
-        public Room GetRoomById(int roomId)
+        public Room? GetRoomById(int roomId)
         {
             return context.Rooms.FirstOrDefault(i => i.RoomId == roomId);
+        }
+
+        // cập nhật trạng thái phòng chờ nhận
+        public void UpdateRoomPending(int roomId)
+        {
+            Room room = GetRoomById(roomId);
+            room.Status = (int)RoomStatusType.RoomPending;
+            context.Rooms.Update(room);
+        }
+
+        // cập nhật trạng thái phòng chờ nhận
+        public void UpdateStatus(int roomId, int status)
+        {
+            Room room = GetRoomById(roomId);
+            room.Status = status;
+            context.Rooms.Update(room);
+        }
+
+        // cập nhật trạng thái phòng chờ nhận
+        public void UpdateTidy(int roomId, int tidy)
+        {
+            Room room = GetRoomById(roomId);
+            room.Tidy = tidy;
+            context.Rooms.Update(room);
+        }
+
+        // nhận phòng
+        public void CheckIn(int roomId)
+        {
+            Room room = GetRoomById(roomId);
+            room.Status = (int)RoomStatusType.RoomOccupied;
+            context.Rooms.Update(room);
+        }
+
+        // hủy đặt phòng
+        public void CancelBooking(int roomId)
+        {
+            Room room = GetRoomById(roomId);
+            room.Status = (int)RoomStatusType.RoomAvailable;
+            context.Rooms.Update(room);
+        }
+
+        public void InsertRoom(Room newRoom)
+        {
+            context.Rooms.Add(newRoom);
+            context.SaveChanges();
+        }
+        public void DeleteRoom(int roomId)
+        {
+            context.Rooms.Remove(GetRoomById(roomId));
+            context.SaveChanges();
+        }
+        public void DetailRoom(RoomVM roomVM)
+        {
+            context.SaveChanges();
+        }
+        public void EditRoom(Room room)
+        {
+            context.Rooms.Update(room);
+            context.SaveChanges();
         }
     }
 }

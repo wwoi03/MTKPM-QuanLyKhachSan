@@ -10,9 +10,11 @@ namespace MTKPM_QuanLyKhachSan.Models
         public Customer Customer { get; set; }
         public int? EmployeeId { get; set; }
         public Employee Employee { get; set; }
-        public int? NumAdult { get; set; }
-        public int? NumChildren { get; set; }
-        public string? Note { get; set; }
+        public int? NumAdult { get; set; } = 0;
+        public int? NumChildren { get; set; } = 0;
+        public string? Note { get; set; } = "";
+        public int? HotelId { get; set; }
+        public Hotel Hotel { get; set; }
 
         public DateTime ConvertDateTime(string dateTimeStr)
         {
