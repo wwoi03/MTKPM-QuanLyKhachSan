@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Prototype;
 using MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Singleton;
 using MTKPM_QuanLyKhachSan.Common;
 using MTKPM_QuanLyKhachSan.Common.Config;
@@ -72,23 +73,25 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.DesignPattern.Facede
                     bookRoomDao.Booking(newBookRoom);
                     context.SaveChanges();
 
+                    IPrototype bookRoomDetailsIP = new BookRoomDetails
+                    {
+                        BookRoomId = newBookRoom.BookRoomId,
+                        RoomId = 0,
+                        CheckIn = bookingAdminVM.ConvertDateTime(bookingAdminVM.CheckIn),
+                        CheckOut = bookingAdminVM.ConvertDateTime(bookingAdminVM.CheckOut),
+                        Note = string.IsNullOrEmpty(newBookRoom.Note) ? "" : newBookRoom.Note,
+                        HotelId = myService.GetHotelId(),
+                        Status = (int)BookRoomDetailsType.NotReceived
+                    };
+
                     // tạo phiếu chi tiết đặt phòng
                     foreach (var roomId in bookingAdminVM.RoomIds)
                     {
                         // kiểm tra phòng trống
                         if (roomDao.IsRoomAvailable(roomId))
                         {
-                            // tạo phòng
-                            BookRoomDetails newBookRoomDetails = new BookRoomDetails
-                            {
-                                BookRoomId = newBookRoom.BookRoomId,
-                                RoomId = roomId,
-                                CheckIn = bookingAdminVM.ConvertDateTime(bookingAdminVM.CheckIn),
-                                CheckOut = bookingAdminVM.ConvertDateTime(bookingAdminVM.CheckOut),
-                                Note = string.IsNullOrEmpty(newBookRoom.Note) ? "" : newBookRoom.Note,
-                                HotelId = myService.GetHotelId(),
-                                Status = (int)BookRoomDetailsType.NotReceived
-                            };
+                            BookRoomDetails newBookRoomDetails = (BookRoomDetails)bookRoomDetailsIP.Clone();
+                            newBookRoomDetails.RoomId = roomId;
 
                             bookRoomDetailsDao.AddBookRoomDetails(newBookRoomDetails);
                             roomDao.UpdateRoomPending(roomId);
