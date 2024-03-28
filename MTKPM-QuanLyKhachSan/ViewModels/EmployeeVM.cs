@@ -17,6 +17,7 @@ namespace MTKPM_QuanLyKhachSan.ViewModels
         public Hotel Hotel { get; set; }
 
         public List<string> Permissions { get; set; } = new List<string>();
+        public List<Permission> PermissionsEmployee { get; set; }
 
         // validation
         public bool Validation(out string error)
@@ -25,7 +26,7 @@ namespace MTKPM_QuanLyKhachSan.ViewModels
             {
                 error = "Vui lòng nhập tên người dùng.";
                 return false;
-            } 
+            }
             else if (string.IsNullOrEmpty(Username))
             {
                 error = "Vui lòng nhập tên đăng nhập.";

@@ -37,7 +37,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         public IActionResult CreateAccount()
         {
             ViewBag.roles = accountFacede.RoleDao.GetRoles(myService.GetHotelId());
-            ViewBag.permissionGroups = accountFacede.PermissionGroupDao.GetPermissionGroups();
+            ViewBag.permissionGroups = accountFacede.PermissionGroupDao.GetPermissionGroups(myService.GetHotelId());
             
             EmployeeVM employeeVM = new EmployeeVM();
 
@@ -56,10 +56,11 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult EditAccount(int employeeId)
         {
-            ViewBag.roles = accountFacede.RoleDao.GetRoles(myService.GetHotelId());
-            ViewBag.permissionGroups = accountFacede.PermissionGroupDao.GetPermissionGroups();
+            ViewBag.roles = accountFacede.RoleDao.GetRoles(employeeId);
+            ViewBag.permissionGroups = accountFacede.PermissionGroupDao.GetPermissionGroups(myService.GetHotelId());
+            EmployeeVM employeeVM = accountFacede.GetAccount(employeeId);
 
-            return PartialView(new EmployeeVM());
+            return PartialView(employeeVM);
         }
 
         [HttpPost]
