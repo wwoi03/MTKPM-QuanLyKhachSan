@@ -80,5 +80,18 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 			}
 			return View();
 		}
+		[HttpPost]
+		public IActionResult DeleteRoomType(int roomTypeId)
+		{
+			SingletonDatabase.Instance.RoomTypes.Remove(SingletonDatabase.Instance.RoomTypes.FirstOrDefault(i => i.RoomTypeId == roomTypeId));
+			SingletonDatabase.Instance.SaveChanges();
+			ExecutionOutcome executionOutcome = new ExecutionOutcome()
+			{
+				Result = true,
+				Mess = "Xóa phòng thành công."
+			};
+
+			return Json(executionOutcome);
+		}
 	}
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NkK7juOx7jATZ2dtO/ewHNqFPzIg5TaXvJD/vhNuRqM=",
+  "Hash": "xeS4ZY2NgOKBhIfFiBCq7eD64rbnE1iYnjGiffFN7+M=",
   "Source": "MTKPM-QuanLyKhachSan",
   "BasePath": "_content/MTKPM-QuanLyKhachSan",
   "Mode": "Default",
@@ -9705,6 +9705,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\admin\\assets\\js\\admin-room.js"
+    },
+    {
+      "Identity": "C:\\Users\\diepm\\Desktop\\MTKPM_Quản lý Khách Sạn\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\admin\\assets\\js\\admin-roomtype.js",
+      "SourceId": "MTKPM-QuanLyKhachSan",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\diepm\\Desktop\\MTKPM_Quản lý Khách Sạn\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\",
+      "BasePath": "_content/MTKPM-QuanLyKhachSan",
+      "RelativePath": "admin/assets/js/admin-roomtype.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\admin\\assets\\js\\admin-roomtype.js"
     },
     {
       "Identity": "C:\\Users\\diepm\\Desktop\\MTKPM_Quản lý Khách Sạn\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\admin\\assets\\js\\booking.js",

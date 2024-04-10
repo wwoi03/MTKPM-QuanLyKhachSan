@@ -2277,6 +2277,10 @@
       "PackagePath": "staticwebassets\\admin\\assets\\js\\admin-room.js"
     },
     {
+      "Id": "C:\\Users\\diepm\\Desktop\\MTKPM_Quản lý Khách Sạn\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\admin\\assets\\js\\admin-roomtype.js",
+      "PackagePath": "staticwebassets\\admin\\assets\\js\\admin-roomtype.js"
+    },
+    {
       "Id": "C:\\Users\\diepm\\Desktop\\MTKPM_Quản lý Khách Sạn\\MTKPM-QuanLyKhachSan\\MTKPM-QuanLyKhachSan\\wwwroot\\admin\\assets\\js\\booking.js",
       "PackagePath": "staticwebassets\\admin\\assets\\js\\booking.js"
     },

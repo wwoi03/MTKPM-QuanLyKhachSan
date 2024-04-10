@@ -28,7 +28,7 @@ namespace MTKPM_QuanLyKhachSan.Areas.Admin.Controllers
 		//}
 		public AdminRoomController(DatabaseContext context , Under5HundredRoom under5HundredRoom, DoubleRooms doubleRoom, StandardRooms standardRooms)
 		{
-			roomDao = new RoomDao(context);
+				
 			_under5HundredRoom = under5HundredRoom;
 			_doubleRoom = doubleRoom;
 			_standardRooms = standardRooms;
