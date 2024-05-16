@@ -1,0 +1,93 @@
+﻿﻿﻿﻿@using MTKPM_QuanLyKhachSan.ViewModels
+@{
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+	var Room = ViewBag.Room;
+}
+@model RoomVM
+
+<div class="main-container d-flex">
+	<!-- Nội dung bên trái -->
+	<div class="left-panel col-8 pl-0 pr-0">
+		<div class="content container-fluid">
+			<div class="page-header">
+				<div class="row align-items-center">
+					<div class="col">
+						<div class="">
+							<h4 class="card-title float-left mt-2" style="font-size: 24px">Phòng</h4>
+							<a href="/Admin/AdminRoom/AddRoom" class="btn btn-primary float-right veiwbutton" id="menu-create">Thêm phòng</a>
+						</div>
+					</div>
+				</div>
+				<div class="custom-bulkhead">
+					<!-- Thanh mục lục -->
+					<ul class="nav">
+						<li class="nav-item">
+							<a href="/Admin/AdminRoom/LuxuryRooms" class="nav-link">Phòng cao cấp</a>
+						</li>
+						<li class="nav-item">
+							<a href="/Admin/AdminRoom/DoubleRooms" class="nav-link">Phòng đôi</a>
+						</li>
+						<li class="nav-item">
+							<a href="/Admin/AdminRoom/StandardRooms" class="nav-link">Phòng thường</a>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="card card-table">
+						<div class="card-body booking_card">
+							<div class="table-responsive">
+								<table class="datatable table table-stripped table table-hover table-center mb-0">
+									<thead>
+										<tr>
+											<th style="width: 1%" class="custom-text-center">Mã</th>
+											<th style="width: 20%">Tên</th>
+											<th style="width: 10%" class="custom-text-center">Trạng thái</th>
+											<th style="width: 15%" class="custom-text-center">Loại phòng</th>
+											<th style="width: 15%" class="custom-text-center">Dọn dẹp</th>
+											<th style="width: 39%">Chức năng</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Room)
+										{
+
+											<tr>
+												<td>@item.RoomId</td>
+												<td>@item.Name</td>
+												<td>@item.Status</td>
+												<td>@item.RoomTypeId</td>
+												<td>@item.Tidy</td>
+												@*<td>
+											<img src="/images/@item.Image" style="width: 100%">
+											</td>*@
+												<td>
+													<a data-room-id="@item.RoomId" class="edit-room btn btn-primary btn-sm ">
+														<i class="fas fa-pencil-alt"></i>
+														Chỉnh sửa
+													</a>
+													<a data-room-id="@item.RoomId" class="details-room btn btn-info btn-sm">
+														<i class="fas fa-pencil-alt"></i>
+														Chi tiết
+													</a>
+													<a data-room-id="@item.RoomId" onclick="deleteRoom(@item.RoomId)" class="delete-room btn btn-danger btn-sm">
+														<i class="fas fa-pencil-alt"></i>
+														Xóa
+													</a>
+												</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="right-panel col-4 pl-0 pr-0">
+	</div>
+</div>

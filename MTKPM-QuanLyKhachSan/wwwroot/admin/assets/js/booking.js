@@ -17,8 +17,6 @@
 		});
 	}
 
-	
-
 	// hiển thị giao diện Calendar
 	function renderFullCallendar(dataResources, dataEvents) {
 		var calendarEl = document.getElementById('calendar');
@@ -102,11 +100,34 @@
 				$(".right-panel").html(data);
 
 				addRoomBooking();
+				postBooking();
 			},
 			error: function () {
 
             }
 		});
+
+		function postBooking() {
+			document.getElementById('form-book-room').addEventListener('submit', function (e) {
+				e.preventDefault(); // Ngăn chặn việc tải lại trang
+
+				$.ajax({
+					type: "POST",
+					url: "/Admin/AdminBooking/Booking",
+					data: $(this).serialize(),
+					success: function (data) {
+						if (data.result == true) {
+							success(data.mess, "", null);
+                        } else {
+							error(data.mess);
+						}
+					},
+					error: function () {
+
+					}
+				});
+			})
+        }
 	}
 
 	// chi tiết đặt phòng
@@ -131,15 +152,23 @@
 		document.getElementById('form-book-room').addEventListener('submit', function (e) {
 			e.preventDefault(); // Ngăn chặn việc tải lại trang
 
+			console.log($(this).serialize())
+
 			$.ajax({
 				type: "POST",
 				url: "/Admin/AdminBooking/EditBooking",
 				data: $(this).serialize(),
 				success: function (data) {
-					if (data.result == true) 
-						success(data.mess, "", null);
-					else {
-						error(data.mess);
+					if (data.result == true) {
+						success(
+							title = data.mess,
+							"",
+							null
+						);
+                    } else {
+						error(
+							title = data.mess
+						);
 						editBooking();
 					}
 				},
@@ -152,17 +181,28 @@
 
 	// thêm phòng
 	function addRoomBooking() {
-		var roomContainer = document.querySelector('.custom-room-container');
-
 		document.querySelector('.panel-form-add-room').addEventListener('click', function () {
-			roomContainer.classList.add('active');
+			$.ajax({
+				type: "POST",
+				url: "/Admin/AdminBooking/ChooseRoom",
+				success: function (data) {
+					$('#choose-room').html(data);
+
+					var roomContainer = document.querySelector('.custom-room-container');
+
+					roomContainer.classList.add('active');
+
+					document.querySelector('.custom-overlay').addEventListener('click', function () {
+						roomContainer.classList.remove('active');
+					});
+
+					switchTabRoom();
+				},
+				error: function () {
+
+				}
+			});
 		})
-
-		document.querySelector('.custom-overlay').addEventListener('click', function () {
-			roomContainer.classList.remove('active');
-		});
-
-		switchTabRoom();
 	}
 
 	// chuyển tab room
@@ -255,3 +295,4 @@
 		})
 	}
 });
+

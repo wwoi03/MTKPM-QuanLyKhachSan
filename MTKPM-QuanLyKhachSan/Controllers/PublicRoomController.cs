@@ -36,7 +36,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             }
             else
             {
-                ViewBag.rooms = roomTypeDao.GetRoomTypes();
+                ViewBag.rooms = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
             }
 
             return View();
@@ -51,7 +51,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 
         public IActionResult Booking()
         {
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
 
 			if (HttpContext.Session.GetInt32("CustomerId") == null)
 			{
@@ -66,13 +66,13 @@ namespace MTKPM_QuanLyKhachSan.Controllers
         [HttpPost]
         public IActionResult Booking(BookingVM bookingVM)
         {
-            ViewBag.roomTypes = roomTypeDao.GetRoomTypes();
+            ViewBag.roomTypes = roomTypeDao.GetRoomTypes(HttpContext.Session.GetInt32("HotelId"));
 
-            ExecuteOperation executeOperation;
+            ViewModels.ExecutionOutcome executeOperation;
 
             if (roomDao.RoomStatus(bookingVM.RoomId) != 0)
             {
-                executeOperation = new ExecuteOperation()
+                executeOperation = new ViewModels.ExecutionOutcome()
                 {
                     Result = false,
                     Mess = "Phòng đã có người đặt. Vui lòng chọn phòng khác.",
@@ -80,7 +80,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             } 
             else if (int.Parse(bookingVM.Phone) <= 0 || bookingVM.Phone.Length > 10)
             {
-                executeOperation = new ExecuteOperation()
+                executeOperation = new ViewModels.ExecutionOutcome()
                 {
                     Result = false,
                     Mess = "Vui lòng nhập đúng định dạng số điện thoại.",
@@ -88,7 +88,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
             }
             else if (bookingVM.CheckDate() == false)
             {
-                executeOperation = new ExecuteOperation()
+                executeOperation = new ViewModels.ExecutionOutcome()
                 {
                     Result = false,
                     Mess = "Ngày đi phải nhỏ hơn ngày tới.",
@@ -116,7 +116,7 @@ namespace MTKPM_QuanLyKhachSan.Controllers
 
                 bookRoomDetailsDao.AddBookRoomDetails(bookRoomDetails);
 
-                executeOperation = new ExecuteOperation()
+                executeOperation = new ViewModels.ExecutionOutcome()
                 {
                     Result = true,
                     Mess = "Đã đặt phòng thành công.",

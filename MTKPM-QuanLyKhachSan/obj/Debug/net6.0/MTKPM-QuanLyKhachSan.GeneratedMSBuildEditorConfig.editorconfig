@@ -15,20 +15,32 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Huflit_Study_Material\Project\course-projects\DA-MTKPM-WebQuanLyKhachSan\MTKPM-QuanLyKhachSan\MTKPM-QuanLyKhachSan
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminAccount/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5BY2NvdW50XEluZGV4LmNzaHRtbA==
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminAccountProxy/CreateAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5BY2NvdW50UHJveHlcQ3JlYXRlQWNjb3VudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminBooking/Booking.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Cb29raW5nXEJvb2tpbmcuY3NodG1s
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminAccountProxy/EditAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5BY2NvdW50UHJveHlcRWRpdEFjY291bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminBooking/BookingDetails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Cb29raW5nXEJvb2tpbmdEZXRhaWxzLmNzaHRtbA==
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminAccountProxy/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5BY2NvdW50UHJveHlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminBooking/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Cb29raW5nXEluZGV4LmNzaHRtbA==
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminBookingProxy/Booking.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Cb29raW5nUHJveHlcQm9va2luZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminBookingProxy/BookingDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Cb29raW5nUHJveHlcQm9va2luZ0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminBookingProxy/ChooseRoom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Cb29raW5nUHJveHlcQ2hvb3NlUm9vbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminBookingProxy/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Cb29raW5nUHJveHlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminHistoryBooking/Index.cshtml]
@@ -39,16 +51,76 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Ib21lXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRentCheckOut/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5SZW50Q2hlY2tPdXRcSW5kZXguY3NodG1s
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRentCheckOutProxy/ChangeRoom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5SZW50Q2hlY2tPdXRQcm94eVxDaGFuZ2VSb29tLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRentCheckOutProxy/CheckOut.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5SZW50Q2hlY2tPdXRQcm94eVxDaGVja091dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRentCheckOutProxy/EditBookRoomDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5SZW50Q2hlY2tPdXRQcm94eVxFZGl0Qm9va1Jvb21EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRentCheckOutProxy/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5SZW50Q2hlY2tPdXRQcm94eVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRentCheckOutProxy/OrderMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5SZW50Q2hlY2tPdXRQcm94eVxPcmRlck1lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRentCheckOutProxy/RoomClean.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5SZW50Q2hlY2tPdXRQcm94eVxSb29tQ2xlYW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRentCheckOutProxy/RoomHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5SZW50Q2hlY2tPdXRQcm94eVxSb29tSGlzdG9yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRentCheckOutProxy/RoomRent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5SZW50Q2hlY2tPdXRQcm94eVxSb29tUmVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRentCheckOutProxy/RoomWait.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5SZW50Q2hlY2tPdXRQcm94eVxSb29tV2FpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRoomType/AddRoomType.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb29tVHlwZVxBZGRSb29tVHlwZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRoomType/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb29tVHlwZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRoom/AddRoom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb29tXEFkZFJvb20uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRoom/DetailsRoom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb29tXERldGFpbHNSb29tLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRoom/DoubleRooms.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb29tXERvdWJsZVJvb21zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRoom/EditRoom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb29tXEVkaXRSb29tLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRoom/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb29tXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRoom/LuxuryRooms.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb29tXEx1eHVyeVJvb21zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminRoom/StandardRooms.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb29tXFN0YW5kYXJkUm9vbXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminService/Index.cshtml]
@@ -57,6 +129,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminSystemManager/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5TeXN0ZW1NYW5hZ2VyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/AdminUser/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Vc2VyXExvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/Error/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRXJyb3JcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Huflit_Study_Material/Project/course-projects/DA-MTKPM-WebQuanLyKhachSan/MTKPM-QuanLyKhachSan/MTKPM-QuanLyKhachSan/Areas/Admin/Views/Shared/_AdminLayout.cshtml]

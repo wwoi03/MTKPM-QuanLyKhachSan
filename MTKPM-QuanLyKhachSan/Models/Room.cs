@@ -11,5 +11,7 @@ namespace MTKPM_QuanLyKhachSan.Models
         public int RoomTypeId { get; set; }
         public RoomType RoomType { get; set; }
         public int Tidy { get; set; }
+        public int? HotelId { get; set; }
+        public Hotel Hotel { get; set; }
     }
 }

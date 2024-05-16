@@ -1,0 +1,151 @@
+﻿@using MTKPM_QuanLyKhachSan.ViewModels
+@model CheckOutVM
+@{
+
+}
+
+<form id="form-check-out" method="post">
+	<!-- Lưu đặt phòng -->
+	<div class="panel-save d-flex justify-content-between align-items-center">
+		<div>
+			<i style="font-size: 20px;" class="custom-icon fa-solid fa-pen custom-color-red"></i>
+			<span style="font-size: 16px">@Model.RoomName</span>
+		</div>
+
+		<div class="">
+			<input type="submit" id="edit-booking" value="Trả phòng" />
+			<input hidden name="BookRoomDetailsId" value="@Model.BookRoomDetailsId" />
+			<input hidden name="CustomerId" value="@Model.CustomerId" />
+			<input hidden name="RoomId" value="@Model.RoomId" />
+		</div>
+	</div>
+
+	<!-- Form -->
+	<div class="panel-form">
+		<!-- Thông tin -->
+		<div class="panel-form-info">
+			<!-- Tên khách hàng -->
+			<div class="panel-form-item">
+				<h5 class="panel-form-title">Họ và tên khách hàng</h5>
+				<input class="panel-form-input" name="Name" type="text" value="@Model.Name" readonly />
+			</div>
+
+			<!-- Ngày -->
+			<div class="panel-form-item">
+				<div class="panel-form-height">
+					<div class="panel-form-height-item">
+						<h5 class="panel-form-title">Ngày nhận phòng</h5>
+						<input type="hidden" name="CheckIn" value="@Model.CheckIn" readonly />
+						<input type="date" class="panel-form-input" name="" value="@Model.ViewCheckInDate(Model.CheckIn)" readonly />
+					</div>
+
+					<div class="panel-form-height-item">
+						<h5 class="panel-form-title">Giờ nhận phòng</h5>
+						<input type="text" class="panel-form-input" name="" value="@Model.ViewCheckInTime(Model.CheckIn)" readonly />
+					</div>
+				</div>
+			</div>
+
+			<!-- Ngày -->
+			<div class="panel-form-item">
+				<div class="panel-form-height">
+					<div class="panel-form-height-item">
+						<h5 class="panel-form-title">Ngày trả phòng</h5>
+						<input type="hidden" name="CheckOut" value="@Model.CheckOut" readonly />
+						<input type="date" class="panel-form-input" name="" value="@Model.ViewCheckInDate(Model.CheckOut)" readonly />
+					</div>
+
+					<div class="panel-form-height-item">
+						<h5 class="panel-form-title">Giờ trả phòng</h5>
+						<input type="text" class="panel-form-input" name="" value="@Model.ViewCheckInTime(Model.CheckOut)" readonly />
+					</div>
+				</div>
+			</div>
+
+			<!-- Ngày -->
+			<div class="panel-form-item">
+				<div class="panel-form-height">
+					<div class="panel-form-height-item">
+						<h5 class="panel-form-title">Tiền phòng</h5>
+						<input type="text" class="panel-form-input" name="TotalPriceRoom" value="@Model.FormatCurrency(Model.TotalPriceRoom)" readonly />
+					</div>
+
+					<div class="panel-form-height-item d-flex align-items-end">
+						<h5 class="panel-form-title"></h5>
+						<p style="margin: 0; padding: 0">Tiền phòng @Model.DayStay() ngày</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Ghi chú -->
+			<div class="panel-form-item">
+				<h5 class="panel-form-title">Ghi chú</h5>
+				<input class="panel-form-input" type="text" name="Note" value="@Model.Note" placeholder="Ghi chú (số lượng người,...)" />
+			</div>
+		</div>
+
+		<!-- Phòng -->
+		<div class="panel-form-room">
+			<div class="panel-form-room-item" style="border-bottom: 1px solid #949494">
+				<h5 class="panel-form-title">Menu sử dụng</h5>
+
+				<div class="panel-form-add-room">
+					<i class="fa-solid fa-square-plus"></i>
+					<p class="panel-form-room-btn">Thêm</p>
+					<input id="list-room" hidden name="Rooms" />
+				</div>
+			</div>
+
+			<div class="custom-my-menu-container">
+				<table id="custom-my-menu-orderTable" class="custom-my-menu-table">
+					<tr>
+						<th class="custom-my-menu-th">Tên menu</th>
+						<th class="custom-my-menu-th">Số lượng</th>
+						<th class="custom-my-menu-th">Thành tiền</th>
+						<th class="custom-my-menu-th">Thao tác</th>
+					</tr>
+
+					@foreach (var order in Model.Orders)
+					{
+						<tr>
+
+							<td class="custom-my-menu-td">@order.Service.Name</td>
+							<td class="custom-my-menu-td">
+								<div class="d-flex">
+									<div class="dot-icon btn-delete-menu">
+										<div class="dot-icon2">
+											<i class="fa-solid fa-minus"></i>
+										</div>
+									</div>
+
+									<span class="custom-my-menu-qty-soda">@order.Quantity</span>
+
+									<div class="dot-icon btn-add-menu">
+										<div class="dot-icon2">
+											<i class="fa-solid fa-plus"></i>
+										</div>
+									</div>
+								</div>
+
+							</td>
+							<td class="custom-my-menu-td" id="custom-my-menu-price-soda">@order.FormatCurrency()</td>
+							<td class="custom-my-menu-td delete-order">
+								<div>
+									<i class="fas fa-trash"></i>
+									Xóa
+								</div>
+							</td>
+						</tr>
+					}
+
+					<tr class="custom-my-menu-total-row">
+						<td colspan="2" class="custom-my-menu-td">Tổng tiền</td>
+						<td class="custom-my-menu-td" id="custom-my-menu-total-price">@Model.FormatCurrency(Model.CalcPriceMenu())</td>
+						<td class="custom-my-menu-td"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</form>
+

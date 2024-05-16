@@ -1,0 +1,73 @@
+﻿@using MTKPM_QuanLyKhachSan.Common
+@{
+	var roomChange = ViewBag.roomChange;
+	var roomTypes = ViewBag.roomTypes;
+	var rooms = ViewBag.roomWaits;
+}
+
+<form id="form-book-room" method="post">
+	<!-- Lưu đặt phòng -->
+	<div class="panel-save d-flex align-items-center">
+		<i style="font-size: 20px;" class="custom-icon fa-solid fa-repeat custom-color-red"></i>
+		<span style="font-size: 16px;">@roomChange.Room.Name</span>
+	</div>
+
+	<!-- Form -->
+	<div class="panel-form">
+		<!-- Thông tin -->
+		@foreach (var roomType in roomTypes)
+		{
+			<div class="panel-form-info" style="border-bottom: 1px solid #ccc !important;">
+				<div class="custom-room-type-title">
+					<p>@roomType.Name</p>
+				</div>
+
+				<div class="d-flex flex-xl-wrap ml-xl-n2 mr-xl-n2">
+					@foreach (var room in rooms)
+					{
+						if (@roomType.RoomTypeId == @room.RoomTypeId)
+						{
+							<div class="col-4 pl-2 pr-2 pt-4 ">
+								<div class="custom-card">
+									<div class="custom-card-header">
+										<span class="title custom-color-green">@room.Name</span>
+										<i class="custom-icon fa-solid fa-ellipsis-vertical icon-menu"></i>
+									</div>
+
+									<div class="custom-card-content">
+										@if ((RoomTidyType)room.Tidy == RoomTidyType.NotCleaned)
+										{
+											<div class="status block">
+												<i class="custom-icon fa-solid fa-xmark icon"></i>
+												<span class="custom-text">Chưa dọn</span>
+											</div>
+										}
+										else
+										{
+											<div class="status block">
+												<i class="custom-icon fa-solid fa-check custom-color-green"></i>
+												<span class="custom-text custom-color-text">Đã dọn</span>
+											</div>
+										}
+									</div>
+
+									<div id="myDropdown" class="custom-dropdown-menu">
+										<div class="custom-dropdown-menu-item btn-change-room" data-bookroom-details-id="@roomChange.BookRoomDetailsId" data-room-id-old="@roomChange.RoomId" data-room-id-new="@room.RoomId" data-is-clean-room="fasle">
+											<i class="custom-icon fa-solid fa-repeat"></i>
+											<p>Đổi phòng</p>
+										</div>
+
+										<div class="custom-dropdown-menu-item btn-change-room" data-bookroom-details-id="@roomChange.BookRoomDetailsId" data-room-id-old="@roomChange.RoomId" data-room-id-new="@room.RoomId" data-is-clean-room="true">
+											<i class="custom-icon fa-solid fa-tag"></i>
+											<p>Đổi phòng và yêu cầu dọn phòng</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						}
+					}
+				</div>
+			</div>
+		}
+	</div>
+</form>

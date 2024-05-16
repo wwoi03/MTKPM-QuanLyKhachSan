@@ -16,7 +16,6 @@ namespace MTKPM_QuanLyKhachSan.Daos
         public void Booking(BookRoom bookRoom)
 		{
             context.BookRooms.Add(bookRoom);
-            context.SaveChanges();
 		}
 
         // lấy booking theo id
@@ -24,5 +23,7 @@ namespace MTKPM_QuanLyKhachSan.Daos
         {
             return context.BookRooms.Where(i => i.BookRoomId == bookingId).Include(i => i.Customer).FirstOrDefault();
         }
+
+        //
     }
 }
